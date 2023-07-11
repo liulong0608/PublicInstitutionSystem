@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>测试报告</title>
+    <meta name="generator" content="HTMLTestRunner 0.9.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/echarts/3.8.5/echarts.common.min.js"></script>
+    <!-- <script type="text/javascript" src="js/echarts.common.min.js"></script> -->
+    
+<style type="text/css" media="screen">
+    body        { font-family: Microsoft YaHei,Consolas,arial,sans-serif; font-size: 80%; }
+    table       { font-size: 100%; }
+    pre         { white-space: pre-wrap;word-wrap: break-word; }
+    /* -- heading ---------------------------------------------------------------------- */
+    h1 {
+        font-size: 16pt;
+        color: gray;
+    }
+    .heading {
+        margin-top: 0ex;
+        margin-bottom: 1ex;
+    }
+    .heading .attribute {
+        margin-top: 1ex;
+        margin-bottom: 0;
+    }
+    .heading .description {
+        margin-top: 2ex;
+        margin-bottom: 3ex;
+    }
+    /* -- css div popup ------------------------------------------------------------------------ */
+    a.popup_link {
+    }
+    a.popup_link:hover {
+        color: red;
+    }
+    .popup_window {
+        display: none;
+        position: relative;
+        left: 0px;
+        top: 0px;
+        /*border: solid #627173 1px; */
+        padding: 10px;
+        /*background-color: #E6E6D6; */
+        font-family: "Lucida Console", "Courier New", Courier, monospace;
+        text-align: left;
+        font-size: 8pt;
+        /* width: 500px;*/
+    }
+    }
+    /* -- report ------------------------------------------------------------------------ */
+    #show_detail_line {
+        margin-top: 3ex;
+        margin-bottom: 1ex;
+    }
+    #result_table {
+        width: 99%;
+    }
+    #header_row {
+        font-weight: bold;
+        color: #303641;
+        background-color: #ebebeb;
+    }
+    #total_row  { font-weight: bold; }
+    .passClass  { background-color: #bdedbc; }
+    .failClass  { background-color: #ffefa4; }
+    .errorClass { background-color: #ffc9c9; }
+    .passCase   { color: #6c6; }
+    .failCase   { color: #FF6600; font-weight: bold; }
+    .errorCase  { color: #c00; font-weight: bold; }
+    .hiddenRow  { display: none; }
+    .testcase   { margin-left: 2em; }
+    /* -- ending ---------------------------------------------------------------------- */
+    #ending {
+    }
+    #div_base {
+                position:absolute;
+                top:0%;
+                left:5%;
+                right:5%;
+                width: auto;
+                height: auto;
+                margin: -15px 0 0 0;
+    }
+</style>
+
+</head>
+<body>
+    <script language="javascript" type="text/javascript"><!--
+    output_list = Array();
+    /* level - 0:Summary; 1:Failed; 2:All */
+    function showCase(level) {
+        trs = document.getElementsByTagName("tr");
+        for (var i = 0; i < trs.length; i++) {
+            tr = trs[i];
+            id = tr.id;
+            if (id.substr(0,2) == 'ft') {
+                if (level < 1) {
+                    tr.className = 'hiddenRow';
+                }
+                else {
+                    tr.className = '';
+                }
+            }
+            if (id.substr(0,2) == 'pt') {
+                if (level > 1) {
+                    tr.className = '';
+                }
+                else {
+                    tr.className = 'hiddenRow';
+                }
+            }
+        }
+    }
+    function showClassDetail(cid, count) {
+        var id_list = Array(count);
+        var toHide = 1;
+        for (var i = 0; i < count; i++) {
+            tid0 = 't' + cid.substr(1) + '.' + (i+1);
+            tid = 'f' + tid0;
+            tr = document.getElementById(tid);
+            if (!tr) {
+                tid = 'p' + tid0;
+                tr = document.getElementById(tid);
+            }
+            id_list[i] = tid;
+            if (tr.className) {
+                toHide = 0;
+            }
+        }
+        for (var i = 0; i < count; i++) {
+            tid = id_list[i];
+            if (toHide) {
+                document.getElementById('div_'+tid).style.display = 'none'
+                document.getElementById(tid).className = 'hiddenRow';
+            }
+            else {
+                document.getElementById(tid).className = '';
+            }
+        }
+    }
+    function showTestDetail(div_id){
+        var details_div = document.getElementById(div_id)
+        var displayState = details_div.style.display
+        // alert(displayState)
+        if (displayState != 'block' ) {
+            displayState = 'block'
+            details_div.style.display = 'block'
+        }
+        else {
+            details_div.style.display = 'none'
+        }
+    }
+    function html_escape(s) {
+        s = s.replace(/&/g,'&amp;');
+        s = s.replace(/</g,'&lt;');
+        s = s.replace(/>/g,'&gt;');
+        return s;
+    }
+    /* obsoleted by detail in <div>
+    function showOutput(id, name) {
+        var w = window.open("", //url
+                        name,
+                        "resizable,scrollbars,status,width=800,height=450");
+        d = w.document;
+        d.write("<pre>");
+        d.write(html_escape(output_list[id]));
+        d.write("\n");
+        d.write("<a href='javascript:window.close()'>close</a>\n");
+        d.write("</pre>\n");
+        d.close();
+    }
+    */
+    --></script>
+    <div id="div_base">
+        
+    <div class='page-header'>
+        <h1>测试报告</h1>
+    <p class='attribute'><strong>开始时间:</strong> 2023-07-07 17:24:04</p>
+<p class='attribute'><strong>运行时长:</strong> 0:01:29.630582</p>
+<p class='attribute'><strong>状态:</strong> 错误 1</p>
+
+    </div>
+    <div style="float: left;width:50%;"><p class='description'>Test the import testcase</p></div>
+    <div id="chart" style="width:50%;height:400px;float:left;"></div>
+
+        
+    <div class="btn-group btn-group-sm">
+        <button class="btn btn-default" onclick='javascript:showCase(0)'>总结</button>
+        <button class="btn btn-default" onclick='javascript:showCase(1)'>失败</button>
+        <button class="btn btn-default" onclick='javascript:showCase(2)'>全部</button>
+    </div>
+    <p></p>
+    <table id='result_table' class="table table-bordered">
+        <colgroup>
+            <col align='left' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+        </colgroup>
+        <tr id='header_row'>
+            <td>测试套件/测试用例</td>
+            <td>总数</td>
+            <td>通过</td>
+            <td>失败</td>
+            <td>错误</td>
+            <td>查看</td>
+        </tr>
+        
+    <tr class='errorClass'>
+        <td>test_all_case.TestAll</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td><a href="javascript:showClassDetail('c1',1)">详情</a></td>
+    </tr>
+
+<tr id='ft1.1' class='none'>
+    <td class='errorCase'><div class='testcase'>test_2_add_manager_1</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.1')" >
+        错误</a>
+    <div id='div_ft1.1' class="popup_window">
+        <pre>ft1.1: 
+2023-07-07 17:24:04,478 - root - INFO - ############################### START ###############################
+
+2023-07-07 17:24:06,318 - root - INFO - SUCCESS    Start a new browser: Chrome, Spend 1.839280605316162 seconds
+
+2023-07-07 17:24:06,465 - root - INFO - SUCCESS    Set browser window maximized, Spend 0.14596080780029297 seconds
+
+2023-07-07 17:24:07,821 - root - INFO - SUCCESS    Navigated to http://192.168.2.194/console/login, Spend 1.3533060550689697 seconds
+
+2023-07-07 17:24:07,953 - root - INFO - SUCCESS    Typed element: &lt;id-&gt;username&gt; content: 888, Spend 0.13236498832702637 seconds
+
+2023-07-07 17:24:08,113 - root - INFO - SUCCESS    Typed element: &lt;id-&gt;password&gt; content: Aa123456, Spend 0.15866756439208984 seconds
+
+2023-07-07 17:24:08,228 - root - INFO - SUCCESS    Typed element: &lt;id-&gt;captcha&gt; content: abcd, Spend 0.11434650421142578 seconds
+
+2023-07-07 17:24:08,321 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//*[@id="root"]/div/div[2]/div[1]/div/form/div[5]/div/div/div/div/button&gt;, Spend 0.09115123748779297 seconds
+
+2023-07-07 17:24:09,823 - root - INFO - SUCCESS    Start a new browser: &lt;public.common.base_page.BasePage object at 0x000002318650E800&gt;, Spend 0.0 seconds
+
+2023-07-07 17:24:10,189 - root - INFO - SUCCESS    Navigated to http://192.168.2.194/console/home, Spend 0.36486124992370605 seconds
+
+2023-07-07 17:24:12,589 - root - INFO - SUCCESS    Clicked element: &lt;css-&gt;.ant-card:nth-child(4) .home_auto_btn__LBhkK:nth-child(2)&gt;, Spend 2.3991153240203857 seconds
+
+2023-07-07 17:24:14,248 - root - INFO - SUCCESS    Move to element: &lt;xpath-&gt;//span[contains(.,'业务审核')]&gt;, Spend 1.6588823795318604 seconds
+
+2023-07-07 17:24:14,342 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//*[@class="cdk-overlay-pane"]/div/ul/li[3]/a&gt;, Spend 0.09234023094177246 seconds
+
+2023-07-07 17:24:17,463 - root - INFO - SUCCESS    Click by LinkText content: 705341494, Spend 0.09983253479003906 seconds
+['617198EF1E25E6EA52BCA86721941B75', '849ECD0DB7CDA9D6DC4D2B3E550FDD13']
+
+2023-07-07 17:24:19,742 - root - INFO - SUCCESS    Get current window title, Spend 0.0286562442779541 seconds
+
+2023-07-07 17:24:19,742 - root - INFO - SUCCESS    Switch to the new window,new window's url: 四川省事业单位工资基金经办系统(基层版), Spend 0.27500104904174805 seconds
+
+2023-07-07 17:24:21,806 - root - INFO - SUCCESS    Get element text element: &lt;xpath-&gt;//ul[@class="menu-root"]/li[4]/div&gt;, Spend 0.06141853332519531 seconds
+人员新增减少
+
+2023-07-07 17:24:22,123 - root - INFO - SUCCESS    Move to element: &lt;xpath-&gt;//ul[@class="menu-root"]/li[4]/div&gt;, Spend 0.31579113006591797 seconds
+
+2023-07-07 17:24:22,451 - root - INFO - SUCCESS    Move to element: &lt;xpath-&gt;//ul[@class="menu-root"]/li[4]/div&gt;, Spend 0.327472448348999 seconds
+
+2023-07-07 17:24:23,908 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//nz-select[@formcontrolname="personalIdentityId"]&gt;, Spend 1.3662912845611572 seconds
+
+2023-07-07 17:24:25,112 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//nz-option-item[@title="管理人员"]&gt;, Spend 0.20028948783874512 seconds
+
+2023-07-07 17:24:25,113 - root - INFO - SUCCESS   HtmlSelect element &lt;xpath-&gt;//nz-option-item[@title="管理人员"]&gt; is selected successfully, Spend 2.572327136993408 seconds
+
+2023-07-07 17:24:25,529 - root - INFO - SUCCESS    Clear and type element: &lt;xpath-&gt;//input[@placeholder="请选择起薪时间"]&gt; content: 200501, Spend 0.41591644287109375 seconds
+
+2023-07-07 17:24:25,674 - root - INFO - SUCCESS    Typed element: &lt;xpath-&gt;//input[@placeholder="请输入姓名"]&gt; content: 邹三, Spend 0.1437239646911621 seconds
+
+2023-07-07 17:24:25,808 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//nz-select[@formcontrolname="gender"]&gt;, Spend 0.13382339477539062 seconds
+
+2023-07-07 17:24:26,988 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//nz-option-item[@title="女"]&gt;, Spend 0.1738121509552002 seconds
+
+2023-07-07 17:24:26,989 - root - INFO - SUCCESS   HtmlSelect element &lt;xpath-&gt;//nz-option-item[@title="女"]&gt; is selected successfully, Spend 1.3139004707336426 seconds
+
+2023-07-07 17:24:27,112 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//nz-select[@nzplaceholder="请选择民族"]&gt;, Spend 0.12102961540222168 seconds
+
+2023-07-07 17:24:28,299 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//nz-option-item[@title="汉"]&gt;, Spend 0.18672466278076172 seconds
+
+2023-07-07 17:24:28,301 - root - INFO - SUCCESS   HtmlSelect element &lt;xpath-&gt;//nz-option-item[@title="汉"]&gt; is selected successfully, Spend 1.310863971710205 seconds
+
+2023-07-07 17:24:28,664 - root - INFO - SUCCESS    Typed element: &lt;xpath-&gt;//input[@placeholder="请输入身份证号"]&gt; content: 327130198304132369, Spend 0.362213134765625 seconds
+
+2023-07-07 17:24:28,987 - root - INFO - SUCCESS    Clear and type element: &lt;xpath-&gt;//lib-date-input[@formcontrolname="birthDate"]/div/nz-input-group/input&gt; content: 19830413, Spend 0.3204967975616455 seconds
+
+2023-07-07 17:24:29,096 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//nz-select[@nzplaceholder="请选择政治面貌"]&gt;, Spend 0.10903763771057129 seconds
+
+2023-07-07 17:24:30,262 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//nz-option-item[@title="群众"]&gt;, Spend 0.16358542442321777 seconds
+
+2023-07-07 17:24:30,264 - root - INFO - SUCCESS   HtmlSelect element &lt;xpath-&gt;//nz-option-item[@title="群众"]&gt; is selected successfully, Spend 1.2762067317962646 seconds
+
+2023-07-07 17:24:30,505 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//nz-select[@formcontrolname="initialPersonalIdentityId"]&gt;, Spend 0.23976969718933105 seconds
+
+2023-07-07 17:24:31,640 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//nz-option-item[@title="管理人员"]&gt;, Spend 0.1130530834197998 seconds
+
+2023-07-07 17:24:31,641 - root - INFO - SUCCESS   HtmlSelect element &lt;xpath-&gt;//nz-option-item[@title="管理人员"]&gt; is selected successfully, Spend 1.3745062351226807 seconds
+
+2023-07-07 17:24:31,795 - root - INFO - SUCCESS    Typed element: &lt;xpath-&gt;//input[@formcontrolname="nativePlace"]&gt; content: 四川宜宾, Spend 0.15307927131652832 seconds
+
+2023-07-07 17:24:31,992 - root - INFO - SUCCESS    Typed element: &lt;xpath-&gt;//textarea[@formcontrolname="address"]&gt; content: 四川省宜宾市翠屏区, Spend 0.1970221996307373 seconds
+
+2023-07-07 17:24:32,119 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//nz-select[@nzplaceholder="请选择人员来源"]&gt;, Spend 0.12572193145751953 seconds
+
+2023-07-07 17:24:33,323 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//nz-option-item[@title="公招(高等院校毕业生)"]&gt;, Spend 0.19283199310302734 seconds
+
+2023-07-07 17:24:33,324 - root - INFO - SUCCESS   HtmlSelect element &lt;xpath-&gt;//nz-option-item[@title="公招(高等院校毕业生)"]&gt; is selected successfully, Spend 1.330604076385498 seconds
+
+2023-07-07 17:24:33,801 - root - INFO - SUCCESS    Clear and type element: &lt;xpath-&gt;//lib-date-input[@formcontrolname="joinDate"]/div/nz-input-group/input&gt; content: 20030101, Spend 0.4734830856323242 seconds
+
+2023-07-07 17:24:34,107 - root - INFO - SUCCESS    Clear and type element: &lt;xpath-&gt;//lib-date-input[@formcontrolname="enterDate"]/div/nz-input-group/input&gt; content: 20030101, Spend 0.3047480583190918 seconds
+
+2023-07-07 17:24:34,237 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//nz-select[@nzplaceholder="请选择学历"]&gt;, Spend 0.1303424835205078 seconds
+
+2023-07-07 17:24:35,405 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//nz-option-item[@title="大学本科毕业"]&gt;, Spend 0.15425848960876465 seconds
+
+2023-07-07 17:24:35,405 - root - INFO - SUCCESS   HtmlSelect element &lt;xpath-&gt;//nz-option-item[@title="大学本科毕业"]&gt; is selected successfully, Spend 1.2978436946868896 seconds
+
+2023-07-07 17:24:35,780 - root - INFO - SUCCESS    Clear and type element: &lt;xpath-&gt;//lib-date-input[@formcontrolname="graduateDate"]/div/nz-input-group/input&gt; content: 20020630, Spend 0.3740715980529785 seconds
+
+2023-07-07 17:24:46,084 - root - ERROR - FAIL    Unable to click element: &lt;xpath-&gt;//nz-select[@formcontrolname="localRankOrg"]&gt;, Spend 10.303100824356079 seconds
+
+2023-07-07 17:24:46,085 - root - ERROR - FAIL   HtmlSelect element &lt;xpath-&gt;//nz-option-item[@title="七级职员岗位"]&gt; not found, Spend 10.30410099029541 seconds
+
+2023-07-07 17:24:56,516 - root - ERROR - FAIL    Unable to click element: &lt;xpath-&gt;//nz-select[@formcontrolname="academicSection"]&gt;, Spend 10.42902159690857 seconds
+
+2023-07-07 17:24:56,518 - root - ERROR - FAIL   HtmlSelect element &lt;xpath-&gt;//nz-option-item[@title="职业中学"]&gt; not found, Spend 10.431024074554443 seconds
+
+2023-07-07 17:24:56,672 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//div[@class="ant-tabs-nav-list"]/div[2]&gt;, Spend 0.1532750129699707 seconds
+
+2023-07-07 17:24:56,835 - root - INFO - SUCCESS    Typed element: &lt;xpath-&gt;//input[@placeholder="请输入职务"]&gt; content: 九级技术岗位, Spend 0.16238832473754883 seconds
+
+2023-07-07 17:24:57,184 - root - INFO - SUCCESS    Clear and type element: &lt;xpath-&gt;//lib-date-input[@formcontrolname="presentOccupationDate"]/div/nz-input-group/input&gt; content: 20030101, Spend 0.34941792488098145 seconds
+
+2023-07-07 17:24:57,390 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//nz-select[@formcontrolname="trueProRankId"]&gt;, Spend 0.2039508819580078 seconds
+
+2023-07-07 17:24:58,592 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//nz-option-item[@title="九级岗位"]&gt;, Spend 0.19525718688964844 seconds
+
+2023-07-07 17:24:58,593 - root - INFO - SUCCESS   HtmlSelect element &lt;xpath-&gt;//nz-option-item[@title="九级岗位"]&gt; is selected successfully, Spend 1.4072096347808838 seconds
+
+2023-07-07 17:25:08,871 - root - ERROR - FAIL    Unable to click element: &lt;xpath-&gt;//nz-select[@formcontrolname="levelProRankId"]&gt;, Spend 10.276734828948975 seconds
+
+2023-07-07 17:25:08,873 - root - ERROR - FAIL   HtmlSelect element &lt;七级职员&gt; not found, Spend 10.277732372283936 seconds
+
+2023-07-07 17:25:09,036 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//nz-select[@formcontrolname="salaryMappingProRankId"]&gt;, Spend 0.16327691078186035 seconds
+
+2023-07-07 17:25:10,197 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//nz-option-item[@title="九级岗位"]&gt;, Spend 0.14494776725769043 seconds
+
+2023-07-07 17:25:10,198 - root - INFO - SUCCESS   HtmlSelect element &lt;xpath-&gt;//nz-option-item[@title="九级岗位"]&gt; is selected successfully, Spend 1.3257169723510742 seconds
+
+2023-07-07 17:25:10,697 - root - INFO - SUCCESS    Clear and type element: &lt;xpath-&gt;//lib-date-input[@formcontrolname="jobNowDate"]/div/nz-input-group/input&gt; content: 20030101, Spend 0.49630117416381836 seconds
+
+2023-07-07 17:25:10,887 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//nz-select[@formcontrolname="formerSalaryGrade"]&gt;, Spend 0.18990182876586914 seconds
+
+2023-07-07 17:25:12,090 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//nz-option-item[@title="4级"]&gt;, Spend 0.18596982955932617 seconds
+
+2023-07-07 17:25:12,090 - root - INFO - SUCCESS   HtmlSelect element &lt;xpath-&gt;//nz-option-item[@title="4级"]&gt; is selected successfully, Spend 1.3933734893798828 seconds
+
+2023-07-07 17:25:12,440 - root - INFO - SUCCESS    Clear and type element: &lt;xpath-&gt;//input[@placeholder="请输入薪级起考年限"]&gt; content: 2019, Spend 0.3497476577758789 seconds
+
+2023-07-07 17:25:12,566 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//nz-select[@formcontrolname="primaryAndHighSchoolTeacher"]&gt;, Spend 0.12444424629211426 seconds
+
+2023-07-07 17:25:13,669 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//nz-option-item[@title="是"]&gt;, Spend 0.0961768627166748 seconds
+
+2023-07-07 17:25:13,670 - root - INFO - SUCCESS   HtmlSelect element &lt;xpath-&gt;//nz-option-item[@title="是"]&gt; is selected successfully, Spend 1.2290239334106445 seconds
+
+2023-07-07 17:25:13,752 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//nz-select[@formcontrolname="tg10wage"]&gt;, Spend 0.08191585540771484 seconds
+
+2023-07-07 17:25:25,039 - root - ERROR - FAIL    Unable to click element: &lt;xpath-&gt;//nz-option-item[@title="是"]&gt;, Spend 10.279271602630615 seconds
+
+2023-07-07 17:25:25,040 - root - ERROR - FAIL   HtmlSelect element &lt;xpath-&gt;//nz-option-item[@title="是"]&gt; not found, Spend 11.369627237319946 seconds
+
+2023-07-07 17:25:25,752 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//div[@class="staff-head-warp"]/lib-staff-head/form/nz-form-item[5]/nz-form-label/label/button&gt;, Spend 0.24761748313903809 seconds
+
+2023-07-07 17:25:25,934 - root - INFO - SUCCESS    Typed element: &lt;xpath-&gt;//nz-space[@class="ant-space ant-space-horizontal"]/nz-space-item[1]/lib-accessory-upload/nz-upload/div/div/input&gt; content: D:\BusinessWageSystem\data\附件示例.png, Spend 0.18053317070007324 seconds
+
+2023-07-07 17:25:28,941 - root - INFO - SUCCESS    File uploaded successfully, Spend 3.1888082027435303 seconds
+
+2023-07-07 17:25:29,196 - root - INFO - SUCCESS    Get the current window screenshot,path: assertion_文件上传.png, Spend 0.2528269290924072 seconds
+
+2023-07-07 17:25:29,310 - root - INFO - SUCCESS    Clicked element: &lt;css-&gt;div.ant-modal-footer button.ant-btn-primary&gt;, Spend 0.11305904388427734 seconds
+
+2023-07-07 17:25:30,242 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//div[@class="ant-tabs-extra-content ng-star-inserted"]/nz-space/nz-space-item[1]/nz-button-group/button[4]&gt;, Spend 0.4302365779876709 seconds
+
+2023-07-07 17:25:30,488 - root - INFO - SUCCESS    Clicked element: &lt;css-&gt;div.ant-modal-footer button.ant-btn-primary&gt;, Spend 0.24576616287231445 seconds
+
+2023-07-07 17:25:30,588 - root - INFO - SUCCESS    Clicked element: &lt;xpath-&gt;//div[@class="staff-head-warp"]/lib-staff-head/button&gt;, Spend 0.10052156448364258 seconds
+
+2023-07-07 17:25:32,206 - root - INFO - SUCCESS    Get element text element: &lt;xpath-&gt;/html/body/div/div[2]/div/nz-message-container/div/nz-message/div/div/div/span&gt;, Spend 1.115311861038208 seconds
+
+2023-07-07 17:25:32,207 - root - INFO - SUCCESS   Assertion success, expected result 【录入人员成功】, actual result 【录入人员成功】, Spend 1.6178176403045654 seconds
+
+2023-07-07 17:25:32,502 - root - INFO - SUCCESS    Get the current window screenshot,path: assertion_1688721932.png, Spend 0.2926788330078125 seconds
+
+2023-07-07 17:25:34,106 - root - INFO - SUCCESS    Closed current window, Spend 0.10219860076904297 seconds
+Traceback (most recent call last):
+  File "D:\BusinessWageSystem\public\common\base_util.py", line 37, in tearDown
+    self.driver.quit()
+AttributeError: type object 'TestAll' has no attribute 'driver'
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+        <tr id='total_row'>
+            <td>总计</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+        <div id='ending'>&nbsp;</div>
+        
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('chart'));
+        // 指定图表的配置项和数据
+        var option = {
+            title : {
+                text: '测试执行情况',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            color: ['#95b75d', 'grey', '#b64645'],
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['通过','失败','错误']
+            },
+            series : [
+                {
+                    name: '测试执行情况',
+                    type: 'pie',
+                    radius : '60%',
+                    center: ['50%', '60%'],
+                    data:[
+                        {value:0, name:'通过'},
+                        {value:0, name:'失败'},
+                        {value:1, name:'错误'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+    
+    </div>
+</body>
+</html>
