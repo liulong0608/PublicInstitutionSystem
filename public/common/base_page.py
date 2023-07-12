@@ -46,6 +46,8 @@ class BasePage(object):
 
     def log_error(self, msg):
         logger.error(msg)
+        timestamp = str(int(time.time()))  # 使用时间戳作为文件名
+        self.take_screenshot(f"FAIL_{timestamp}.png")
 
     def element_wait(self, css, secs=10):
         """

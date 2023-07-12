@@ -46,10 +46,5 @@ def get_xls_to_dict(xlsname, sheetname):
         result.append(temp)
     return result
 
-datas = get_xls_to_dict('makeUnit.xlsx', '新建单位')
-for data in datas:
-    print(data)
-    if data['单位名称'] is not None:
-        print('单位：', data['单位名称'])
 
 

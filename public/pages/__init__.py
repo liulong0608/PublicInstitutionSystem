@@ -106,3 +106,19 @@ cjmcDate_loc = 'xpath->//lib-date-input[@formcontrolname="rankingDate"]/div/nz-i
 # 新增机关技术工人
 
 # 新增机关普通工人
+
+# 单位基础信息修改
+dwxxgl_loc = 'css->.ant-card:nth-child(3) .home_auto_btn__LBhkK:nth-child(2)'
+query_loc = 'name->queryStr'
+queryBtn_loc = 'xpath->//div[@class="ant-row"]/nz-form-item[7]/nz-form-control/div/div/nz-button-group/button[1]'
+dw_loc = 'xpath->//tbody[@class="ant-table-tbody"]/tr[2]/td[2]'
+dwxxBtn_loc = 'xpath->//div[@class="btn"]/button[1]'
+tyshxydm_loc = 'xpath->//input[@formcontrolname="organizationCode"]'
+dwmc_loc = 'xpath->//input[@formcontrolname="organizationName"]'
+dwfzr_loc = 'xpath->//input[@formcontrolname="head"]'
+dwdh_loc = 'xpath->//input[@formcontrolname="telephone"]'
+dwdz_loc = 'xpath->//input[@formcontrolname="address"]'
+yb_loc = 'xpath->//input[@formcontrolname="zipCode"]'
+
+
+

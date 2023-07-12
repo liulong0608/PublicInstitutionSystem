@@ -33,6 +33,5 @@ class BaseUtil(unittest.TestCase):
         time.sleep(1.5)
 
     def tearDown(self):
-        time.sleep(10)
         self.driver.quit()
         self.logger.info('###############################  End  ###############################')

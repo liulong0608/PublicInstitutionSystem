@@ -20,6 +20,18 @@ TYSHXYID = '705341494'
 
 class PersonnelAddPage(BasePage):
 
+    def preposition(self, grassrootsUnitsID=TYSHXYID):
+        self.open('http://192.168.2.194/console/home')  # 打开控制台
+        self.click(glbBtn_loc)  # 点击管理版
+        self.move_to_element(ywshBtn_loc)  # 悬停业务审核
+        self.click(ywzd_jcBtn_loc)  # 点击业务指导基层
+        time.sleep(3)
+        self.click_linkText(grassrootsUnitsID)  # 进入指定基层单位
+        time.sleep(2)
+        self.into_new_window()  # 切换到新窗口
+        time.sleep(2)
+        self.hover_and_click(xzjsBtn_loc, ryxzBtn_lco)  # 悬停人员新增减少菜单,点击新增按钮
+
     # 新增事业管理人员
     def add_manager_page(self, dentityPersonne, salaryDate, name, gender, nationality, idCard, politicalStatus,
                          initialPersonnelIdentity, personnelSource, entryUnitTime, enterDate, personnelFinanceCode,
@@ -29,8 +41,8 @@ class PersonnelAddPage(BasePage):
                          internalMechanism, remarks, degree,
                          localRankSequence, periodOfStudy, socialSecurityNumber,
                          surveyStandard, primaryAndHighSchoolTeacher, nurse, tg10wage,
-                         specialEducation, jbt, jx,
-                         grassrootsUnitsID=TYSHXYID):
+                         specialEducation, jbt, jx
+                         ):
         """
         :param jx: 绩效
         :param jbt: 津补贴额度
@@ -73,16 +85,7 @@ class PersonnelAddPage(BasePage):
         :param grassrootsUnitsID:基层单位id
         :return:
         """
-        self.open('http://192.168.2.194/console/home')  # 打开控制台
-        self.click(glbBtn_loc)  # 点击管理版
-        self.move_to_element(ywshBtn_loc)  # 悬停业务审核
-        self.click(ywzd_jcBtn_loc)  # 点击业务指导基层
-        time.sleep(3)
-        self.click_linkText(grassrootsUnitsID)  # 进入指定基层单位
-        time.sleep(2)
-        self.into_new_window()  # 切换到新窗口
-        time.sleep(2)
-        self.hover_and_click(xzjsBtn_loc, ryxzBtn_lco)  # 悬停人员新增减少菜单,点击新增按钮
+        self.preposition()
         self.htmlSelect(rysf_loc, f'xpath->//nz-option-item[@title="{dentityPersonne}"]')  # 选择人员身份
         self.clear_type(qxsj_loc, salaryDate)  # 输入起薪时间
         self.send_keys(name_loc, name)  # 输入人员姓名
@@ -243,8 +246,7 @@ class PersonnelAddPage(BasePage):
                                    internalMechanism, remarks, degree,
                                    full_time, periodOfStudy, socialSecurityNumber,
                                    surveyStandard, primaryAndHighSchoolTeacher, nurse, tg10wage,
-                                   specialEducation, jbt, jx,
-                                   grassrootsUnitsID=TYSHXYID):
+                                   specialEducation, jbt, jx):
         """
         :param compulsoryEducation: 是否义务教育教师
         :param jx: 绩效
@@ -286,16 +288,7 @@ class PersonnelAddPage(BasePage):
         :param grassrootsUnitsID:基层单位id
         :return:
         """
-        self.open('http://192.168.2.194/console/home')  # 打开控制台
-        self.click(glbBtn_loc)  # 点击管理版
-        self.move_to_element(ywshBtn_loc)  # 悬停业务审核
-        self.click(ywzd_jcBtn_loc)  # 点击业务指导基层
-        time.sleep(2)
-        self.click_linkText(grassrootsUnitsID)  # 进入指定基层单位
-        time.sleep(2)
-        self.into_new_window()  # 切换到新窗口
-        time.sleep(2)
-        self.hover_and_click(xzjsBtn_loc, ryxzBtn_lco)  # 悬停人员新增减少菜单,点击新增按钮
+        self.preposition()
         self.htmlSelect(rysf_loc, f'xpath->//nz-option-item[@title="{dentityPersonne}"]')  # 选择人员身份
         self.clear_type(qxsj_loc, salaryDate)  # 输入起薪时间
         self.send_keys(name_loc, name)  # 输入人员姓名
@@ -453,8 +446,7 @@ class PersonnelAddPage(BasePage):
                                internalMechanism, remarks, degree,
                                periodOfStudy, socialSecurityNumber,
                                surveyStandard,
-                               specialEducation, jbt, jx,
-                               grassrootsUnitsID=TYSHXYID):
+                               specialEducation, jbt, jx):
         """
         :param technicalCertificate: 是否取得技术证书
         :param jx: 绩效
@@ -492,16 +484,7 @@ class PersonnelAddPage(BasePage):
         :param grassrootsUnitsID:基层单位id
         :return:
         """
-        self.open('http://192.168.2.194/console/home')  # 打开控制台
-        self.click(glbBtn_loc)  # 点击管理版
-        self.move_to_element(ywshBtn_loc)  # 悬停业务审核
-        self.click(ywzd_jcBtn_loc)  # 点击业务指导基层
-        time.sleep(2)
-        self.click_linkText(grassrootsUnitsID)  # 进入指定基层单位
-        time.sleep(2)
-        self.into_new_window()  # 切换到新窗口
-        time.sleep(2)
-        self.hover_and_click(xzjsBtn_loc, ryxzBtn_lco)  # 悬停人员新增减少菜单,点击新增按钮
+        self.preposition()
         self.htmlSelect(rysf_loc, f'xpath->//nz-option-item[@title="{dentityPersonne}"]')  # 选择人员身份
         self.clear_type(qxsj_loc, salaryDate)  # 输入起薪时间
         self.send_keys(name_loc, name)  # 输入人员姓名
@@ -640,8 +623,7 @@ class PersonnelAddPage(BasePage):
                                 internalMechanism, remarks, degree,
                                 periodOfStudy, socialSecurityNumber,
                                 surveyStandard,
-                                specialEducation, jbt, jx,
-                                grassrootsUnitsID=TYSHXYID):
+                                specialEducation, jbt, jx):
         """
         :param jx: 绩效
         :param jbt: 津补贴额度
@@ -678,16 +660,7 @@ class PersonnelAddPage(BasePage):
         :param grassrootsUnitsID:基层单位id
         :return:
         """
-        self.open('http://192.168.2.194/console/home')  # 打开控制台
-        self.click(glbBtn_loc)  # 点击管理版
-        self.move_to_element(ywshBtn_loc)  # 悬停业务审核
-        self.click(ywzd_jcBtn_loc)  # 点击业务指导基层
-        time.sleep(2)
-        self.click_linkText(grassrootsUnitsID)  # 进入指定基层单位
-        time.sleep(2)
-        self.into_new_window()  # 切换到新窗口
-        time.sleep(2)
-        self.hover_and_click(xzjsBtn_loc, ryxzBtn_lco)  # 悬停人员新增减少菜单,点击新增按钮
+        self.preposition()
         self.htmlSelect(rysf_loc, f'xpath->//nz-option-item[@title="{dentityPersonne}"]')  # 选择人员身份
         self.clear_type(qxsj_loc, salaryDate)  # 输入起薪时间
         self.send_keys(name_loc, name)  # 输入人员姓名
@@ -815,8 +788,7 @@ class PersonnelAddPage(BasePage):
                            education, graduationTime, birthplace, address,
                            internalMechanism, calledTime, whetherMain, remarks, degree, socialSecurityNumber,
                            trueProRankId,
-                           formerSalaryMappingProRankId, formerSalaryRank, formerSalaryGrade, rankingDate, jbt, jx,
-                           grassrootsUnitsID=TYSHXYID):
+                           formerSalaryMappingProRankId, formerSalaryRank, formerSalaryGrade, rankingDate, jbt, jx):
         """
         :param rankingDate: 成绩津贴名次取得时间
         :param formerSalaryGrade: 成绩津贴名次
@@ -850,16 +822,7 @@ class PersonnelAddPage(BasePage):
         :param grassrootsUnitsID:基层单位id
         :return:
         """
-        self.open('http://192.168.2.194/console/home')  # 打开控制台
-        self.click(glbBtn_loc)  # 点击管理版
-        self.move_to_element(ywshBtn_loc)  # 悬停业务审核
-        self.click(ywzd_jcBtn_loc)  # 点击业务指导基层
-        time.sleep(2)
-        self.click_linkText(grassrootsUnitsID)  # 进入指定基层单位
-        time.sleep(2)
-        self.into_new_window()  # 切换到新窗口
-        time.sleep(2)
-        self.hover_and_click(xzjsBtn_loc, ryxzBtn_lco)  # 悬停人员新增减少菜单,点击新增按钮
+        self.preposition()
         self.htmlSelect(rysf_loc, f'xpath->//nz-option-item[@title="{dentityPersonne}"]')  # 选择人员身份
         self.clear_type(qxsj_loc, salaryDate)  # 输入起薪时间
         self.send_keys(name_loc, name)  # 输入人员姓名
@@ -921,6 +884,29 @@ class PersonnelAddPage(BasePage):
         self.htmlSelect(cjjtcc_loc, f'xpath->//nz-option-item[@title="{formerSalaryRank}"]')  # 选择成绩津贴层次
         self.htmlSelect(cjjtmc_loc, f'xpath->//nz-option-item[@title="{formerSalaryGrade}"]')  # 选择成绩津贴名次
         self.clear_type(cjmcDate_loc, rankingDate)  # 输入成绩津贴名次取得时间
+
+        # 输入津补贴
+        try:
+            if jbt is not None:
+                jbtxm = self.get_elements(jbtxmInputs_loc)
+                if jbtxm:  # 如果津补贴存在
+                    for jbt_input in jbtxm:
+                        jbt_input.send_keys(int(jbt))
+            else:
+                pass
+        except:
+            pass
+        # 输入绩效项
+        try:
+            if jx is not None:
+                jxxm = self.get_elements(jxxmInputs_loc)
+                if jxxm:
+                    for jx_input in jxxm:
+                        jx_input.send_keys(int(jx))
+                else:
+                    pass
+        except:
+            pass
 
         self.click(gzfjBtn_loc)  # 点击工资报审附件按钮
         self.upload_winFile(upload_file_loc, globalparam.file_path+'附件示例.png')  # 上传附件
