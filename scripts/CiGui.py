@@ -1,3 +1,14 @@
+# == Coding: UTF-8 ==
+# @Project :        PublicInstitutionSystem
+# @fileName         CiGui.py  
+# @version          v0.1
+# @author           Echo
+# @GiteeWarehouse   https://gitee.com/liu-long068/
+# @editsession      2023/7/12
+# @Software:        PyCharm
+# ====/******/=====
+import tkinter as tk
+# from scripts.social_unified_creditcode.succ_utils.sucreditcode import CreditIdentifier
 # -*-coding=utf-8-*-
 # 生成、验证社会统一社会信用代码
 
@@ -174,6 +185,53 @@ class CreditIdentifier(object):
         return code == self.get_social_credit_code(code)
 
 
-def generateUnifiedSocialCreditCode():
-    ci = CreditIdentifier()
-    return ci.gen_random_credit_code().get('code')
+class App:
+    def __init__(self):
+        self.ci = CreditIdentifier()
+
+        self.window = tk.Tk()
+        self.window.title("社会统一信用代码生成器")
+        self.window.iconbitmap('credit.ico')
+
+        # 设置窗体大小
+        self.window.geometry("350x80")
+
+        # 标签和输入框
+        self.label_address = tk.Label(self.window, text="地\t址：")
+        self.label_address.grid(row=0, column=0, sticky=tk.W)
+
+        self.address_entry = tk.Entry(self.window, width=40)
+        self.address_entry.grid(row=0, column=1)
+
+        self.label_code = tk.Label(self.window, text="统一社会信用代码：")
+        self.label_code.grid(row=1, column=0, sticky=tk.W)
+
+        self.code_entry = tk.Entry(self.window, width=40)
+        self.code_entry.grid(row=1, column=1)
+
+        # 生成按钮和清除按钮
+        self.generate_button = tk.Button(self.window, text="生成", command=self.generate_code)
+        self.generate_button.grid(row=2, column=0, columnspan=2)
+
+        self.clear_button = tk.Button(self.window, text="清除", command=self.clear_fields)
+        self.clear_button.grid(row=2, column=1, columnspan=2)
+
+    def generate_code(self):
+        random_code = self.ci.gen_random_credit_code()
+        address = random_code["address"]
+        code = random_code["code"]
+        self.address_entry.delete(0, tk.END)
+        self.address_entry.insert(tk.END, address)
+        self.code_entry.delete(0, tk.END)
+        self.code_entry.insert(tk.END, code)
+
+    def clear_fields(self):
+        self.address_entry.delete(0, tk.END)
+        self.code_entry.delete(0, tk.END)
+
+    def run(self):
+        self.window.mainloop()
+
+
+app = App()
+app.run()
