@@ -1,7 +1,7 @@
 # == Coding: UTF-8 ==
 # @Project :        BusinessWageSystem
 # @fileName         base_page.py  
-# @version          v0.1
+# @version          v0.2
 # @author           Echo
 # @GiteeWarehouse   https://gitee.com/liu-long068/
 # @editsession      2023/6/9
@@ -498,9 +498,9 @@ class BasePage(object):
         try:
             self.click(select_css)
             time.sleep(1)
-            self.click(value_css)
+            self.click(f'xpath->//nz-option-item[@title="{value_css}"]')
             self.log_debug(
-                "{0}HtmlSelect element <{1}> is selected successfully, Spend {2} seconds".format(success, value_css,
+                "{0}HtmlSelect element <{1}> is selected successfully, Spend {2} seconds".format(success, f'xpath->//nz-option-item[@title="{value_css}"]',
                                                                                                  time.time() - t1))
         except Exception:
             self.log_error(
