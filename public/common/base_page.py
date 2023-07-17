@@ -555,7 +555,7 @@ class BasePage(object):
         """ 模糊断言 """
         t1 = time.time()
         try:
-            time.sleep(0.5)
+            self.element_wait(practical_loc)
             practical = self.get_text(practical_loc)
             assert expect in practical
             # self.get_img(kwargs)
@@ -578,7 +578,7 @@ class BasePage(object):
     def assert_equals(self, expect, practical_loc, **kwargs):
         t1 = time.time()
         try:
-            time.sleep(0.5)
+            self.element_wait(practical_loc)
             practical = self.get_text(practical_loc)
             assert expect == practical
             self.log_debug(
