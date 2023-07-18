@@ -1,7 +1,7 @@
 # == Coding: UTF-8 ==
 # @Project :        BusinessWageSystem
 # @fileName         base_page.py  
-# @version          v0.2
+# @version          v0.4
 # @author           Echo
 # @GiteeWarehouse   https://gitee.com/liu-long068/
 # @editsession      2023/6/9
@@ -15,7 +15,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import TimeoutException, InvalidSelectorException, NoSuchElementException
 from public.common.log import Log
 from config import globalparam
 
@@ -40,6 +40,7 @@ class BasePage(object):
         except Exception:
             raise NameError("Not found {0} browser,You can enter 'ie','ff',"
                             "'chrome','RChrome','RIe' or 'RFirefox'.".format(browser))
+        self.wait: WebDriverWait = WebDriverWait(self.driver, timeout=15, poll_frequency=0.8)
 
     def log_debug(self, msg):
         logger.info(msg)
@@ -49,81 +50,99 @@ class BasePage(object):
         timestamp = str(int(time.time()))  # 使用时间戳作为文件名
         self.take_screenshot(f"FAIL_{timestamp}.png")
 
-    def element_wait(self, css, secs=10):
+    def element_dyeing(self, element) -> None:
+        """
+        将被操作的元素染色
+        :rollback: 是否将元素回滚
+        :return: None
+        """
+        self.driver.execute_script("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');",
+                                   element)
+
+    def __wait_element_visible(self, loc):
         """
         Waiting for an element to display.
         Usage:
         driver.element_wait("id->kw",10)
         """
-        if "->" not in css:
-            raise NameError("Positioning syntax errors, lack of '->'.")
+        if "->" not in loc:
+            raise ValueError("Invalid positioning syntax. Expected format: 'by->value'")
 
-        by = css.split("->")[0].strip()
-        value = css.split("->")[1].strip()
-        messages = 'Element: {0} not found in {1} seconds.'.format(css, secs)
+        by, value = loc.split("->")
+        by = by.strip()
+        value = value.strip()
+        selector_map = {
+            "id": By.ID,
+            "name": By.NAME,
+            "class": By.CLASS_NAME,
+            "link_text": By.LINK_TEXT,
+            "xpath": By.XPATH,
+            "css": By.CSS_SELECTOR
+        }
 
-        if by == "id":
-            WebDriverWait(self.driver, secs, 1).until(EC.presence_of_element_located((By.ID, value)), messages)
-        elif by == "name":
-            WebDriverWait(self.driver, secs, 1).until(EC.presence_of_element_located((By.NAME, value)), messages)
-        elif by == "class":
-            WebDriverWait(self.driver, secs, 1).until(EC.presence_of_element_located((By.CLASS_NAME, value)), messages)
-        elif by == "link_text":
-            WebDriverWait(self.driver, secs, 1).until(EC.presence_of_element_located((By.LINK_TEXT, value)), messages)
-        elif by == "xpath":
-            WebDriverWait(self.driver, secs, 1).until(EC.presence_of_element_located((By.XPATH, value)), messages)
-        elif by == "css":
-            WebDriverWait(self.driver, secs, 1).until(EC.presence_of_element_located((By.CSS_SELECTOR, value)),
-                                                      messages)
-        else:
-            raise NameError(
-                "Please enter the correct targeting elements,'id','name','class','link_text','xpaht','css'.")
+        try:
+            locator = (selector_map[by], value)
+            self.wait.until(EC.visibility_of_element_located(locator))
+            self.log_debug("Element {0} is visible".format(loc))
+        except TimeoutException:
+            self.log_error("Wait element {0} timed out!".format(loc))
+            raise TimeoutException('元素等待超时')
 
-    def get_element(self, css):
-        if "->" not in css:
-            raise NameError("Positioning syntax errors, lack of '->'.")
+    def get_element(self, loc):
+        """
+        获取页面元素
+        :param loc: 元素定位
+        :return: 一个元素
+        """
+        if "->" not in loc:
+            raise ValueError("Invalid positioning syntax. Expected format: 'by->value'")
 
-        by = css.split("->")[0].strip()
-        value = css.split("->")[1].strip()
+        by, value = loc.split("->")
+        by = by.strip()
+        value = value.strip()
 
-        if by == 'id':
-            element = self.driver.find_element(By.ID, value)
-        elif by == 'name':
-            element = self.driver.find_element(By.NAME, value)
-        elif by == 'class':
-            element = self.driver.find_element(By.CLASS_NAME, value)
-        elif by == 'link_text':
-            element = self.driver.find_element(By.LINK_TEXT, value)
-        elif by == 'xpath':
-            element = self.driver.find_element(By.XPATH, value)
-        elif by == 'css':
-            element = self.driver.find_element(By.CSS_SELECTOR, value)
-        else:
-            raise NameError("请输入正确的目标元素，'id'，'name'，'class'，'link_text'，'xpaht'，'css'")
-        return element
+        selector_map = {
+            "id": By.ID,
+            "name": By.NAME,
+            "class": By.CLASS_NAME,
+            "link_text": By.LINK_TEXT,
+            "xpath": By.XPATH,
+            "css": By.CSS_SELECTOR
+        }
+        try:
+            locator = (selector_map[by], value)
+            element = self.driver.find_element(*locator)
+            return element
+        except NoSuchElementException:
+            raise NoSuchElementException(f"Element {loc} not found")
 
-    def get_elements(self, css):
-        if "->" not in css:
-            raise NameError("Positioning syntax errors, lack of '->'.")
+    def get_elements(self, loc) -> list:
+        """
+        获取一组元素
+        :param loc: 元素定位
+        :return: 一组元素
+        """
+        if "->" not in loc:
+            raise ValueError("Invalid positioning syntax. Expected format: 'by->value'")
 
-        by = css.split("->")[0].strip()
-        value = css.split("->")[1].strip()
+        by, value = loc.split("->")
+        by = by.strip()
+        value = value.strip()
 
-        if by == 'id':
-            elements = self.driver.find_elements(By.ID, value)
-        elif by == 'name':
-            elements = self.driver.find_elements(By.NAME, value)
-        elif by == 'class':
-            elements = self.driver.find_elements(By.CLASS_NAME, value)
-        elif by == 'link_text':
-            elements = self.driver.find_elements(By.LINK_TEXT, value)
-        elif by == 'xpath':
-            elements = self.driver.find_elements(By.XPATH, value)
-        elif by == 'css':
-            elements = self.driver.find_elements(By.CSS_SELECTOR, value)
-        else:
-            raise NameError("请输入正确的目标元素，'id'，'name'，'class'，'link_text'，'xpaht'，'css'")
-        return elements
+        selector_map = {
+            "id": By.ID,
+            "name": By.NAME,
+            "class": By.CLASS_NAME,
+            "link_text": By.LINK_TEXT,
+            "xpath": By.XPATH,
+            "css": By.CSS_SELECTOR
+        }
+        try:
+            locator = (selector_map[by], value)
+            elements = self.driver.find_elements(*locator)
+            return elements
+        except NoSuchElementException:
+            raise NoSuchElementException(f"Element {loc} not found")
 
     def open(self, url):
         t1 = time.time()
@@ -149,51 +168,51 @@ class BasePage(object):
                                                                                               wide, high,
                                                                                               time.time() - t1))
 
-    def send_keys(self, css, text):
+    def send_keys(self, loc, value):
         t1 = time.time()
         try:
-            self.element_wait(css)
-            el = self.get_element(css)
-            el.send_keys(text)
+            el = self.get_element(loc)
+            self.__wait_element_visible(loc)
+            el.send_keys(value)
             self.log_debug("{0} Typed element: <{1}> content: {2}, Spend {3} seconds".format(success,
-                                                                                             css, text,
+                                                                                             loc, value,
                                                                                              time.time() - t1))
-        except Exception:
+        except Exception as e:
             self.log_error("{0} Unable to type element: <{1}> content: {2}, Spend {3} seconds".format(fail,
-                                                                                                      css, text,
+                                                                                                      loc, value,
                                                                                                       time.time() - t1))
-            raise
+            raise e
 
-    def clear_type(self, css, text):
+    def clear_type(self, loc, value):
         t1 = time.time()
         try:
-            self.element_wait(css)
-            el = self.get_element(css)
+            el = self.get_element(loc)
+            self.__wait_element_visible(loc)
             el.send_keys(Keys.CONTROL, 'a')
-            el.send_keys(text)
+            el.send_keys(value)
             el.send_keys(Keys.TAB)
             self.log_debug("{0} Clear and type element: <{1}> content: {2}, Spend {3} seconds".format(success,
-                                                                                                      css, text,
+                                                                                                      loc, value,
                                                                                                       time.time() - t1))
-        except Exception:
+        except Exception as e:
             self.log_error("{0} Unable to clear and type element: <{1}> content: {2}, Spend {3} seconds".format(fail,
-                                                                                                                css,
-                                                                                                                text,
+                                                                                                                loc,
+                                                                                                                value,
                                                                                                                 time.time() - t1))
-            raise
+            raise e
 
-    def click(self, css):
+    def click(self, loc):
         t1 = time.time()
         try:
-            self.element_wait(css)
-            el = self.get_element(css)
+            el = self.get_element(loc)
+            self.__wait_element_visible(loc)
             el.click()
-            self.log_debug("{0} Clicked element: <{1}>, Spend {2} seconds".format(success, css, time.time() - t1))
-        except Exception:
-            self.log_error("{0} Unable to click element: <{1}>, Spend {2} seconds".format(fail, css, time.time() - t1))
-            raise
+            self.log_debug("{0} Clicked element: <{1}>, Spend {2} seconds".format(success, loc, time.time() - t1))
+        except Exception as e:
+            self.log_error("{0} Unable to click element: <{1}>, Spend {2} seconds".format(fail, loc, time.time() - t1))
+            raise e
 
-    def right_click(self, css):
+    def right_click(self, loc):
         """
         Right click element.
 
@@ -202,77 +221,78 @@ class BasePage(object):
         """
         t1 = time.time()
         try:
-            self.element_wait(css)
-            el = self.get_element(css)
+            el = self.get_element(loc)
+            self.__wait_element_visible(loc)
             ActionChains(self.driver).context_click(el).perform()
-            self.log_debug("{0} Right click element: <{1}>, Spend {2} seconds".format(success, css, time.time() - t1))
+            self.log_debug("{0} Right click element: <{1}>, Spend {2} seconds".format(success, loc, time.time() - t1))
         except Exception:
             self.log_error(
-                "{0} Unable to right click element: <{1}>, Spend {2} seconds".format(fail, css, time.time() - t1))
-            raise
-
-    def move_to_element(self, css):
-        t1 = time.time()
-        try:
-            self.element_wait(css)
-            el = self.get_element(css)
-            ActionChains(self.driver).move_to_element(el).perform()
-            self.log_debug("{0} Move to element: <{1}>, Spend {2} seconds".format(success, css, time.time() - t1))
-        except Exception:
-            self.log_error("{0} unable move to element: <{1}>, Spend {2} seconds".format(fail, css, time.time() - t1))
+                "{0} Unable to right click element: <{1}>, Spend {2} seconds".format(fail, loc, time.time() - t1))
             raise
 
     def hover_and_click(self, hover_loc, click_loc):
-        self.move_to_element(hover_loc)
-        self.element_wait(click_loc)
-        el = self.get_element(click_loc)
-        el.click()
-
-    def double_click(self, css):
         t1 = time.time()
         try:
-            self.element_wait(css)
-            el = self.get_element(css)
+            self.__wait_element_visible(hover_loc)
+            el = self.get_element(hover_loc)
+            ActionChains(self.driver).move_to_element(el).perform()
+            self.log_debug("{0} Move to element: <{1}>, Spend {2} seconds".format(success, hover_loc, time.time() - t1))
+            el = self.get_element(click_loc)
+            el.click()
+            self.log_debug(
+                "{0} Move to element: <{1}> click element: <{2}>, Spend {3} seconds".format(success, hover_loc,
+                                                                                            click_loc,
+                                                                                            time.time() - t1))
+        except Exception as e:
+            self.log_error(
+                "{0} unable move to element: <{1}>, Spend {2} seconds".format(fail, hover_loc, time.time() - t1))
+            raise e
+
+    def double_click(self, loc):
+        t1 = time.time()
+        try:
+            el = self.get_element(loc)
+            self.__wait_element_visible(loc)
             ActionChains(self.driver).double_click(el).perform()
-            self.log_debug("{0} Double click element: <{1}>, Spend {2} seconds".format(success, css, time.time() - t1))
+            self.log_debug("{0} Double click element: <{1}>, Spend {2} seconds".format(success, loc, time.time() - t1))
         except Exception:
             self.log_error(
-                "{0} Unable to double click element: <{1}>, Spend {2} seconds".format(fail, css, time.time() - t1))
+                "{0} Unable to double click element: <{1}>, Spend {2} seconds".format(fail, loc, time.time() - t1))
             raise
 
-    def drag_and_drop(self, el_css, ta_css):
+    def drag_and_drop(self, el_loc, ta_loc):
         """
         拖动一个元素到一定的距离，然后放下它.
         """
         t1 = time.time()
         try:
-            self.element_wait(el_css)
-            element = self.get_element(el_css)
-            self.element_wait(ta_css)
-            target = self.get_element(ta_css)
+            self.__wait_element_visible(el_loc)
+            element = self.get_element(el_loc)
+            self.__wait_element_visible(ta_loc)
+            target = self.get_element(ta_loc)
             ActionChains(driver).drag_and_drop(element, target).perform()
             self.log_debug("{0} Drag and drop element: <{1}> to element: <{2}>, Spend {3} seconds".format(success,
-                                                                                                          el_css,
-                                                                                                          ta_css,
+                                                                                                          el_loc,
+                                                                                                          ta_loc,
                                                                                                           time.time() - t1))
         except Exception:
             self.log_error(
                 "{0} Unable to drag and drop element: <{1}> to element: <{2}>, Spend {3} seconds".format(fail,
-                                                                                                         el_css,
-                                                                                                         ta_css,
+                                                                                                         el_loc,
+                                                                                                         ta_loc,
                                                                                                          time.time() - t1))
             raise
 
-    def click_linkText(self, text):
+    def click_linkText(self, value):
         time.sleep(1)
         t1 = time.time()
         try:
-            self.driver.find_element(By.PARTIAL_LINK_TEXT, text).click()
+            self.driver.find_element(By.PARTIAL_LINK_TEXT, value).click()
             self.log_debug(
-                "{0} Click by LinkText content: {1}, Spend {2} seconds".format(success, text, time.time() - t1))
+                "{0} Click by LinkText content: {1}, Spend {2} seconds".format(success, value, time.time() - t1))
         except Exception:
             self.log_error(
-                "{0} Unable to Click by LinkText content: {1}, Spend {2} seconds".format(fail, text, time.time() - t1))
+                "{0} Unable to Click by LinkText content: {1}, Spend {2} seconds".format(fail, value, time.time() - t1))
             raise
 
     def close(self):
@@ -314,52 +334,70 @@ class BasePage(object):
                                                                                                      time.time() - t1))
             raise
 
-    def get_attribute(self, css, attribute):
+    def get_attribute(self, loc, attribute):
         """
         获取元素属性的值.
         """
         t1 = time.time()
         try:
-            el = self.get_element(css)
+            el = self.get_element(loc)
             attr = el.get_attribute(attribute)
             self.log_debug("{0} Get attribute element: <{1}>,attribute: {2}, Spend {3} seconds".format(success,
-                                                                                                       css, attribute,
+                                                                                                       loc, attribute,
                                                                                                        time.time() - t1))
             return attr
         except Exception:
             self.log_error("{0} Unable to get attribute element: <{1}>,attribute: {2}, Spend {3} seconds".format(fail,
-                                                                                                                 css,
+                                                                                                                 loc,
                                                                                                                  attribute,
                                                                                                                  time.time() - t1))
             raise
 
-    def get_text(self, css):
+    def get_element_text(self, loc):
+        """
+        获取元素的文本值
+        :param loc: 定位元素
+        :return: 元素文本值
+        """
         t1 = time.time()
         try:
-            self.element_wait(css)
-            text = self.get_element(css).text
+            self.__wait_element_visible(loc)
+            value = self.get_element(loc).text
             self.log_debug(
-                "{0} Get element text element: <{1}>, Spend {2} seconds".format(success, css, time.time() - t1))
-            return text
-        except Exception:
+                "{0} Get element text element: <{1}>, Spend {2} seconds".format(success, loc, time.time() - t1))
+            return value
+        except Exception as e:
             self.log_error(
-                "{0} Unable to get element text element: <{1}>, Spend {2} seconds".format(fail, css, time.time() - t1))
-            raise
+                "{0} Unable to get element text element: <{1}>, Spend {2} seconds".format(fail, loc, time.time() - t1))
+            raise e
 
     def get_title(self):
+        """
+        获取当前窗口标题
+        :return:
+        """
         t1 = time.time()
         title = self.driver.title
         self.log_debug("{0} Get current window title, Spend {1} seconds".format(success, time.time() - t1))
         return title
 
     def get_url(self):
+        """
+        获取当前窗口url
+        :return:
+        """
         t1 = time.time()
         time.sleep(1)
         url = self.driver.current_url
         self.log_debug("{0} Get current window url, Spend {1} seconds".format(success, time.time() - t1))
         return url
 
-    def wait(self, secs):
+    def __wait(self, secs):
+        """
+        等待一段时间
+        :param secs:
+        :return:
+        """
         t1 = time.time()
         self.driver.implicitly_wait(secs)
         self.log_debug("{0} Set wait all element display in {1} seconds, Spend {2} seconds".format(success,
@@ -367,38 +405,60 @@ class BasePage(object):
                                                                                                    time.time() - t1))
 
     def accept_alert(self):
+        """
+        接受警告框
+        :return:
+        """
         t1 = time.time()
         self.driver.switch_to.alert.accept()
         self.log_debug("{0} Accept warning box, Spend {1} seconds".format(success, time.time() - t1))
 
     def dismiss_alert(self):
+        """
+        关闭警告框
+        :return:
+        """
         t1 = time.time()
         self.driver.switch_to.alert.dismiss()
         self.log_debug("{0} Dismisses the alert available, Spend {1} seconds".format(success, time.time() - t1))
 
-    def switch_to_frame(self, css):
+    def switch_to_frame(self, loc):
+        """
+        切换到指定frame
+        :param loc: frame的loc
+        :return:
+        """
         t1 = time.time()
         try:
-            self.element_wait(css)
-            iframe_el = self.get_element(css)
+            self.__wait_element_visible(loc)
+            iframe_el = self.get_element(loc)
             self.driver.switch_to.frame(iframe_el)
             self.log_debug(
-                "{0} Switch to frame element: <{1}>, Spend {2} seconds".format(success, css, time.time() - t1))
+                "{0} Switch to frame element: <{1}>, Spend {2} seconds".format(success, loc, time.time() - t1))
         except Exception:
             self.log_error(
-                "{0} Unable switch to frame element: <{1}>, Spend {2} seconds".format(fail, css, time.time() - t1))
+                "{0} Unable switch to frame element: <{1}>, Spend {2} seconds".format(fail, loc, time.time() - t1))
             raise
 
     def switch_to_frame_out(self):
+        """
+        切换到默认的frame
+        :return:
+        """
         t1 = time.time()
         self.driver.switch_to.default_content()
         self.log_debug("{0} Switch to frame out, Spend {1} seconds".format(success, time.time() - t1))
 
-    def open_new_window(self, css):
+    def open_new_window(self, loc):
+        """
+        打开新的窗口
+        :param loc:
+        :return:
+        """
         t1 = time.time()
         try:
             original_windows = self.driver.current_window_handle
-            el = self.get_element(css)
+            el = self.get_element(loc)
             el.click()
             all_handles = self.driver.window_handles
             for handle in all_handles:
@@ -406,25 +466,25 @@ class BasePage(object):
                     self.driver.switch_to.window(handle)
             self.log_debug(
                 "{0} Click element: <{1}> open a new window and swich into, Spend {2} seconds".format(success,
-                                                                                                      css,
+                                                                                                      loc,
                                                                                                       time.time() - t1))
-        except Exception:
+        except Exception as e:
             self.log_error("{0} Click element: <{1}> open a new window and swich into, Spend {2} seconds".format(fail,
-                                                                                                                 css,
+                                                                                                                 loc,
                                                                                                                  time.time() - t1))
-            raise
+            raise e
 
-    def element_exist(self, css):
+    def element_exist(self, loc):
         """
         判断元素是否存在，返回结果为真或假判断元素是否存在，返回结果为真或假.
         """
         t1 = time.time()
         try:
-            self.element_wait(css)
-            self.log_debug("{0} Element: <{1}> is exist, Spend {2} seconds".format(success, css, time.time() - t1))
+            self.__wait_element_visible(loc)
+            self.log_debug("{0} Element: <{1}> is exist, Spend {2} seconds".format(success, loc, time.time() - t1))
             return True
         except TimeoutException:
-            self.log_error("{0} Element: <{1}> is not exist, Spend {2} seconds".format(fail, css, time.time() - t1))
+            self.log_error("{0} Element: <{1}> is not exist, Spend {2} seconds".format(fail, loc, time.time() - t1))
             return False
 
     def take_screenshot(self, filename):
@@ -433,7 +493,7 @@ class BasePage(object):
         """
         t1 = time.time()
         try:
-            self.driver.get_screenshot_as_file(globalparam.img_path+'\\'+filename)
+            self.driver.get_screenshot_as_file(globalparam.img_path + '\\' + filename)
             self.log_debug("{0} Get the current window screenshot,path: {1}, Spend {2} seconds".format(success,
                                                                                                        filename,
                                                                                                        time.time() - t1))
@@ -446,6 +506,7 @@ class BasePage(object):
     def into_new_window(self):
         """
         进入新窗口.
+        :return:
         """
         t1 = time.time()
         try:
@@ -464,7 +525,7 @@ class BasePage(object):
             self.log_error("{0} Unable switch to the new window, Spend {1} seconds".format(fail, time.time() - t1))
             raise
 
-    def type_and_enter(self, css, text, secs=0.5):
+    def input_and_enter(self, loc, value, secs = 0.5):
         """
         Operation input box. 1、input message,sleep 0.5s;2、input ENTER.
 
@@ -473,41 +534,42 @@ class BasePage(object):
         """
         t1 = time.time()
         try:
-            self.element_wait(css)
-            ele = self.get_element(css)
-            ele.send_keys(text)
+            self.__wait_element_visible(loc)
+            ele = self.get_element(loc)
+            ele.send_keys(value)
             time.sleep(secs)
             ele.send_keys(Keys.ENTER)
             self.log_debug(
                 "{0} Element <{1}> type content: {2},and sleep {3} seconds,input ENTER key, Spend {4} seconds".format(
-                    success, css, text, secs, time.time() - t1))
+                    success, loc, value, secs, time.time() - t1))
         except Exception:
             self.log_error(
                 "{0} Unable element <{1}> type content: {2},and sleep {3} seconds,input ENTER key, Spend {4} seconds".
-                format(fail, css, text, secs, time.time() - t1))
+                format(fail, loc, value, secs, time.time() - t1))
             raise
 
-    def htmlSelect(self, select_css, value_css):
+    def htmlSelect(self, select_loc, value_loc):
         """
         特殊下拉框控件选择
-        :param value_css: 需要选择的元素
-        :param select_css: 下拉框控件元素
+        :param value_loc: 需要选择的元素
+        :param select_loc: 下拉框控件元素
         :return:
         """
         t1 = time.time()
         try:
-            self.click(select_css)
+            self.click(select_loc)
             time.sleep(1)
-            self.click(f'xpath->//nz-option-item[@title="{value_css}"]')
+            self.click(f'xpath->//nz-option-item[@title="{value_loc}"]')
             self.log_debug(
-                "{0}HtmlSelect element <{1}> is selected successfully, Spend {2} seconds".format(success, f'xpath->//nz-option-item[@title="{value_css}"]',
+                "{0}HtmlSelect element <{1}> is selected successfully, Spend {2} seconds".format(success,
+                                                                                                 f'xpath->//nz-option-item[@title="{value_loc}"]',
                                                                                                  time.time() - t1))
-        except Exception:
+        except Exception as e:
             self.log_error(
-                "{0}HtmlSelect element <{1}> not found, Spend {2} seconds".format(fail, value_css, time.time() - t1))
-            raise
+                "{0}HtmlSelect element <{1}> not found, Spend {2} seconds".format(fail, value_loc, time.time() - t1))
+            raise e
 
-    def js_click(self, css):
+    def js_click(self, loc):
         """
         Input a css selecter,use javascript click element.
 
@@ -515,7 +577,7 @@ class BasePage(object):
         driver.js_click('#buttonid')
         """
         t1 = time.time()
-        js_str = "$('{0}').click()".format(css)
+        js_str = "$('{0}').click()".format(loc)
         try:
             self.driver.execute_script(js_str)
             self.log_debug(
@@ -536,13 +598,13 @@ class BasePage(object):
         """
         return self.driver
 
-    def upload_winFile(self, css, filepath):
+    def upload_winFile(self, loc, filepath):
         """
         通过Windows系统上传文件
         """
         t1 = time.time()
         try:
-            self.send_keys(css, filepath)
+            self.send_keys(loc, filepath)
             time.sleep(3)
             self.log_debug("{0} File uploaded successfully, Spend {1} seconds".format(success, time.time() - t1))
         except Exception:
@@ -551,14 +613,18 @@ class BasePage(object):
         finally:
             self.take_screenshot("assertion_文件上传.png")
 
-    def fuzzy_assert(self, expect, practical_loc, **kwargs):
-        """ 模糊断言 """
+    def fuzzy_assert(self, expect, practical_loc):
+        """
+        模糊断言
+        :param expect: 预期结果
+        :param practical_loc: 实际结果
+        :return:
+        """
         t1 = time.time()
         try:
-            self.element_wait(practical_loc)
-            practical = self.get_text(practical_loc)
+            self.__wait_element_visible(practical_loc)
+            practical = self.get_element_text(practical_loc)
             assert expect in practical
-            # self.get_img(kwargs)
             self.log_debug(
                 "{0}Assertion success, expected result 【{1}】, actual result 【{2}】, Spend {3} seconds".format(success,
                                                                                                              expect,
@@ -575,11 +641,17 @@ class BasePage(object):
             timestamp = str(int(time.time()))  # 使用时间戳作为文件名
             self.take_screenshot(f"assertion_{timestamp}.png")
 
-    def assert_equals(self, expect, practical_loc, **kwargs):
+    def assert_equals(self, expect, practical_loc):
+        """
+        断言
+        :param expect: 预期结果
+        :param practical_loc: 实际结果
+        :return:
+        """
         t1 = time.time()
         try:
-            self.element_wait(practical_loc)
-            practical = self.get_text(practical_loc)
+            self.__wait_element_visible(practical_loc)
+            practical = self.get_element_text(practical_loc)
             assert expect == practical
             self.log_debug(
                 "{0}Assertion success, expected result 【{1}】, actual result 【{2}】, Spend {3} seconds".format(success,
