@@ -20,11 +20,10 @@ TYSHXYID = '705341494'
 
 class PersonnelAddPage(BasePage):
 
-    def preposition(self, grassrootsUnitsID=TYSHXYID):
+    def preposition(self, grassrootsUnitsID = TYSHXYID):
         self.open('http://192.168.2.194/console/home')  # 打开控制台
         self.click(glbBtn_loc)  # 点击管理版
-        self.move_to_element(ywshBtn_loc)  # 悬停业务审核
-        self.click(ywzd_jcBtn_loc)  # 点击业务指导基层
+        self.hover_and_click(ywshBtn_loc, ywzd_jcBtn_loc)  # 悬停业务审核,点击业务指导基层
         time.sleep(3)
         self.click_linkText(grassrootsUnitsID)  # 进入指定基层单位
         time.sleep(2)
@@ -82,7 +81,6 @@ class PersonnelAddPage(BasePage):
         :param nurse:是否护士
         :param tg10wage:是否提高10%
         :param specialEducation:是否特殊教育
-        :param grassrootsUnitsID:基层单位id
         :return:
         """
         self.preposition()
@@ -285,7 +283,6 @@ class PersonnelAddPage(BasePage):
         :param nurse:是否护士
         :param tg10wage:是否提高10%
         :param specialEducation:是否特殊教育
-        :param grassrootsUnitsID:基层单位id
         :return:
         """
         self.preposition()
@@ -481,7 +478,6 @@ class PersonnelAddPage(BasePage):
         :param periodOfStudy:学段
         :param surveyStandard:地勘标准
         :param specialEducation:是否特殊教育
-        :param grassrootsUnitsID:基层单位id
         :return:
         """
         self.preposition()
@@ -657,7 +653,6 @@ class PersonnelAddPage(BasePage):
         :param periodOfStudy:学段
         :param surveyStandard:地勘标准
         :param specialEducation:是否特殊教育
-        :param grassrootsUnitsID:基层单位id
         :return:
         """
         self.preposition()
@@ -819,7 +814,6 @@ class PersonnelAddPage(BasePage):
         :param birthplace:籍贯
         :param address:住址
         :param degree:学位
-        :param grassrootsUnitsID:基层单位id
         :return:
         """
         self.preposition()
@@ -909,7 +903,7 @@ class PersonnelAddPage(BasePage):
             pass
 
         self.click(gzfjBtn_loc)  # 点击工资报审附件按钮
-        self.upload_winFile(upload_file_loc, globalparam.file_path+'附件示例.png')  # 上传附件
+        self.upload_winFile(upload_file_loc, globalparam.file_path + '附件示例.png')  # 上传附件
         self.click(qdfj_file_loc)  # 点击上传附件确定窗口按钮
         time.sleep(0.5)
         self.click(ndkhBtn_loc)  # 点击年度考核
