@@ -1,7 +1,7 @@
 # == Coding: UTF-8 ==
 # @Project :        BusinessWageSystem
 # @fileName         base_page.py  
-# @version          v0.4
+# @version          v0.5
 # @author           Echo
 # @GiteeWarehouse   https://gitee.com/liu-long068/
 # @editsession      2023/6/9
@@ -42,6 +42,11 @@ class BasePage(object):
                             "'chrome','RChrome','RIe' or 'RFirefox'.".format(browser))
         self.wait: WebDriverWait = WebDriverWait(self.driver, timeout=15, poll_frequency=0.8)
 
+    def quit(self):
+        if self.driver is not None:
+            self.driver.quit()
+            self.log_debug("Browser closed.")
+
     def log_debug(self, msg):
         logger.info(msg)
 
@@ -68,9 +73,8 @@ class BasePage(object):
         if "->" not in loc:
             raise ValueError("Invalid positioning syntax. Expected format: 'by->value'")
 
-        by, value = loc.split("->")
-        by = by.strip()
-        value = value.strip()
+        by = loc.split("->")[0].strip()
+        value = loc.split("->")[1].strip()
         selector_map = {
             "id": By.ID,
             "name": By.NAME,
@@ -154,6 +158,10 @@ class BasePage(object):
             raise
 
     def max_window(self):
+        """
+        设置最大窗口
+        :return:
+        """
         t1 = time.time()
         self.driver.maximize_window()
         self.log_debug("{0} Set browser window maximized, Spend {1} seconds".format(success, time.time() - t1))
@@ -169,6 +177,12 @@ class BasePage(object):
                                                                                               time.time() - t1))
 
     def send_keys(self, loc, value):
+        """
+        输入值
+        :param loc:
+        :param value:
+        :return:
+        """
         t1 = time.time()
         try:
             el = self.get_element(loc)
@@ -184,6 +198,12 @@ class BasePage(object):
             raise e
 
     def clear_type(self, loc, value):
+        """
+        输入框清除并且输入值
+        :param loc:
+        :param value:
+        :return:
+        """
         t1 = time.time()
         try:
             el = self.get_element(loc)
@@ -202,10 +222,15 @@ class BasePage(object):
             raise e
 
     def click(self, loc):
+        """
+        点击元素
+        :param loc:
+        :return:
+        """
         t1 = time.time()
         try:
-            el = self.get_element(loc)
             self.__wait_element_visible(loc)
+            el = self.get_element(loc)
             el.click()
             self.log_debug("{0} Clicked element: <{1}>, Spend {2} seconds".format(success, loc, time.time() - t1))
         except Exception as e:
@@ -231,6 +256,12 @@ class BasePage(object):
             raise
 
     def hover_and_click(self, hover_loc, click_loc):
+        """
+        鼠标悬停并且点击
+        :param hover_loc:
+        :param click_loc:
+        :return:
+        """
         t1 = time.time()
         try:
             self.__wait_element_visible(hover_loc)
@@ -249,6 +280,11 @@ class BasePage(object):
             raise e
 
     def double_click(self, loc):
+        """
+        双击
+        :param loc:
+        :return:
+        """
         t1 = time.time()
         try:
             el = self.get_element(loc)
@@ -270,7 +306,7 @@ class BasePage(object):
             element = self.get_element(el_loc)
             self.__wait_element_visible(ta_loc)
             target = self.get_element(ta_loc)
-            ActionChains(driver).drag_and_drop(element, target).perform()
+            ActionChains(self.driver).drag_and_drop(element, target).perform()
             self.log_debug("{0} Drag and drop element: <{1}> to element: <{2}>, Spend {3} seconds".format(success,
                                                                                                           el_loc,
                                                                                                           ta_loc,
@@ -284,6 +320,11 @@ class BasePage(object):
             raise
 
     def click_linkText(self, value):
+        """
+        点击链接文本
+        :param value: 链接文本值
+        :return:
+        """
         time.sleep(1)
         t1 = time.time()
         try:
@@ -302,14 +343,6 @@ class BasePage(object):
         t1 = time.time()
         self.driver.close()
         self.log_debug("{0} Closed current window, Spend {1} seconds".format(success, time.time() - t1))
-
-    def quit(self):
-        """
-        关闭浏览器实例
-        """
-        t1 = time.time()
-        self.driver.quit()
-        self.log_debug("{0} Closed all window and quit the driver, Spend {1} seconds".format(success, time.time() - t1))
 
     def refresh(self):
         """
@@ -548,25 +581,32 @@ class BasePage(object):
                 format(fail, loc, value, secs, time.time() - t1))
             raise
 
-    def htmlSelect(self, select_loc, value_loc):
+    def htmlSelect(self, select_loc, option_value):
         """
         特殊下拉框控件选择
-        :param value_loc: 需要选择的元素
+        :param option_value: 需要选择的元素
         :param select_loc: 下拉框控件元素
         :return:
         """
         t1 = time.time()
         try:
+            self.__wait_element_visible(select_loc)
             self.click(select_loc)
             time.sleep(1)
-            self.click(f'xpath->//nz-option-item[@title="{value_loc}"]')
+            # 获取所有下拉值
+            select_options = self.driver.find_elements(By.CSS_SELECTOR, 'nz-option-item')
+            for select_option in select_options:
+                attribute = select_option.get_attribute('title')
+                if attribute == option_value:
+                    self.click(f'xpath->//nz-option-item[@title="{attribute}"]')
+                    break
             self.log_debug(
                 "{0}HtmlSelect element <{1}> is selected successfully, Spend {2} seconds".format(success,
-                                                                                                 f'xpath->//nz-option-item[@title="{value_loc}"]',
+                                                                                                 f'xpath->//nz-option-item[@title="{option_value}"]',
                                                                                                  time.time() - t1))
         except Exception as e:
             self.log_error(
-                "{0}HtmlSelect element <{1}> not found, Spend {2} seconds".format(fail, value_loc, time.time() - t1))
+                "{0}HtmlSelect element <{1}> not found, Spend {2} seconds".format(fail, option_value, time.time() - t1))
             raise e
 
     def js_click(self, loc):
@@ -604,14 +644,13 @@ class BasePage(object):
         """
         t1 = time.time()
         try:
-            self.send_keys(loc, filepath)
+            time.sleep(1.5)
+            self.get_element(loc).send_keys(filepath)
             time.sleep(3)
             self.log_debug("{0} File uploaded successfully, Spend {1} seconds".format(success, time.time() - t1))
-        except Exception:
+        except Exception as e:
             self.log_error("{0} File uploaded fail, Spend {1} seconds".format(fail, time.time() - t1))
-            raise
-        finally:
-            self.take_screenshot("assertion_文件上传.png")
+            raise e
 
     def fuzzy_assert(self, expect, practical_loc):
         """
