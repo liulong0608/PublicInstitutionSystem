@@ -1,7 +1,7 @@
 # == Coding: UTF-8 ==
 # @Project :        BusinessWageSystem
 # @fileName         personnelAdd_page.py  
-# @version          v0.1
+# @version          v0.2
 # @author           Echo
 # @GiteeWarehouse   https://gitee.com/liu-long068/
 # @editsession      2023/6/9
@@ -15,13 +15,14 @@ from config import globalparam
 from public.common.base_page import BasePage
 from public.pages import *
 
-TYSHXYID = '705341494'
+TYSHXYID = '9153262422416699BG'
 
 
 class PersonnelAddPage(BasePage):
 
     def preposition(self, grassrootsUnitsID = TYSHXYID):
         self.open('http://192.168.2.194/console/home')  # 打开控制台
+        time.sleep(1)
         self.click(glbBtn_loc)  # 点击管理版
         self.hover_and_click(ywshBtn_loc, ywzd_jcBtn_loc)  # 悬停业务审核,点击业务指导基层
         time.sleep(3)
@@ -30,6 +31,7 @@ class PersonnelAddPage(BasePage):
         self.into_new_window()  # 切换到新窗口
         time.sleep(2)
         self.hover_and_click(xzjsBtn_loc, ryxzBtn_lco)  # 悬停人员新增减少菜单,点击新增按钮
+        # time.sleep(1)
 
     # 新增事业管理人员
     def add_manager_page(self, dentityPersonne, salaryDate, name, gender, nationality, idCard, politicalStatus,
@@ -84,16 +86,16 @@ class PersonnelAddPage(BasePage):
         :return:
         """
         self.preposition()
-        self.htmlSelect(rysf_loc, f'xpath->//nz-option-item[@title="{dentityPersonne}"]')  # 选择人员身份
+        self.htmlSelect(rysf_loc, dentityPersonne)  # 选择人员身份
         self.clear_type(qxsj_loc, salaryDate)  # 输入起薪时间
         self.send_keys(name_loc, name)  # 输入人员姓名
-        self.htmlSelect(gender_loc, f'xpath->//nz-option-item[@title="{gender}"]')  # 选择性别
-        self.htmlSelect(mz_loc, f'xpath->//nz-option-item[@title="{nationality}"]')  # 选择民族
+        self.htmlSelect(gender_loc, gender)  # 选择性别
+        self.htmlSelect(mz_loc, nationality)  # 选择民族
         self.send_keys(idNumber_loc, idCard)  # 输入身份证号码
         self.clear_type(birthday_loc, idCard[6:14])  # 输入出生日期
-        self.htmlSelect(zzmm_loc, f'xpath->//nz-option-item[@title="{politicalStatus}"]')  # 选择政治面貌
+        self.htmlSelect(zzmm_loc, politicalStatus)  # 选择政治面貌
         if initialPersonnelIdentity is not None:
-            self.htmlSelect(csrysf_loc, f'xpath->//nz-option-item[@title="{initialPersonnelIdentity}"]')  # 选择初始人员身份
+            self.htmlSelect(csrysf_loc, initialPersonnelIdentity)  # 选择初始人员身份
         else:
             pass
         if birthplace is not None:
@@ -104,11 +106,11 @@ class PersonnelAddPage(BasePage):
             self.send_keys(address_loc, address)  # 输入住址
         else:
             pass
-        self.htmlSelect(ryly_loc, f'xpath->//nz-option-item[@title="{personnelSource}"]')  # 选择人员来源
+        self.htmlSelect(ryly_loc, personnelSource)  # 选择人员来源
         self.clear_type(jrdwDate_loc, entryUnitTime)  # 输入进入本单位时间
         if internalMechanism is not None:
             try:
-                self.htmlSelect(nsjg_loc, f'xpath->//nz-option-item[@title="{internalMechanism}"]')  # 选择所属机构
+                self.htmlSelect(nsjg_loc, internalMechanism)  # 选择所属机构
             except:
                 pass
         else:
@@ -122,22 +124,22 @@ class PersonnelAddPage(BasePage):
             self.send_keys(ryczCode_loc, personnelFinanceCode)  # 输入人员财政编码
         else:
             pass
-        self.htmlSelect(xl_loc, f'xpath->//nz-option-item[@title="{education}"]')  # 选择学历
+        self.htmlSelect(xl_loc, education)  # 选择学历
         if degree is not None:
-            self.htmlSelect(xw_loc, f'xpath->//nz-option-item[@title="{degree}"]')  # 选择学位
+            self.htmlSelect(xw_loc, degree)  # 选择学位
         else:
             pass
         self.clear_type(byDate_loc, graduationTime)  # 输入毕业时间
         try:
             if self.get_element(dfzjxl_loc):  # 地方职级序列
-                self.htmlSelect(dfzjxl_loc, f'xpath->//nz-option-item[@title="{localRankSequence}"]')
+                self.htmlSelect(dfzjxl_loc, localRankSequence)
             else:
                 pass
         except:
             pass
         try:
             if self.get_element(xd_loc) and periodOfStudy is not None:  # 学段
-                self.htmlSelect(xd_loc, f'xpath->//nz-option-item[@title="{periodOfStudy}"]')
+                self.htmlSelect(xd_loc, periodOfStudy)
             else:
                 pass
         except:
@@ -149,14 +151,14 @@ class PersonnelAddPage(BasePage):
         self.click(gzxxBtn_loc)  # 点击工资信息按钮
         try:  # 是否地勘
             if surveyStandard is not None:
-                self.htmlSelect(dk_loc, f'xpath->//nz-option-item[@title="{surveyStandard}"]')
+                self.htmlSelect(dk_loc, surveyStandard)
             else:
                 pass
         except:
             pass
         self.send_keys(xrzw_loc, position)  # 输入现任职务
         self.clear_type(xrwzDate_loc, positionTime)  # 输入现任职务时间
-        self.htmlSelect(sjgw_loc, f'xpath->//nz-option-item[@title="{actualPost}"]')  # 选择实际岗位
+        self.htmlSelect(sjgw_loc, actualPost)  # 选择实际岗位
         try:
             if self.get_element(zydj_loc) and rankOffStaff_time is not None:
                 self.htmlSelect(zydj_loc, rankOfStaff)  # 职员等级
@@ -165,34 +167,35 @@ class PersonnelAddPage(BasePage):
                 pass
         except:
             pass
-        self.htmlSelect(jbgzdygw_loc, f'xpath->//nz-option-item[@title="{postWage}"]')  # 选择基本工资对应岗位
+        self.htmlSelect(jbgzdygw_loc, postWage)  # 选择基本工资对应岗位
         self.clear_type(rxgwDate_loc, actualPostTime)  # 输入任现岗位/职员等级时间
         isPayScale = {
             '实际岗位': actualPost,
             '基本工资对应岗位': postWage
         }
         if isPayScale.get('实际岗位') and isPayScale.get('基本工资对应岗位') != '事业管理人员试用期':
-            self.htmlSelect(xj_loc, f'xpath->//nz-option-item[@title="{payScale}"]')  # 选择薪级
+            time.sleep(1)
+            self.htmlSelect(xj_loc, payScale)  # 选择薪级
             self.clear_type(xjqknx_loc, payScaleTime)  # 输入薪级起考年限
         else:
             pass
         if primaryAndHighSchoolTeacher == '是':
-            self.htmlSelect(zxxjs_loc, f'xpath->//nz-option-item[@title="{primaryAndHighSchoolTeacher}"]')  # 是否中小学教师
+            self.htmlSelect(zxxjs_loc, primaryAndHighSchoolTeacher)  # 是否中小学教师
         else:
             pass
         if nurse == '是':
-            self.htmlSelect(hs_loc, f'xpath->//nz-option-item[@title="{nurse}"]')  # 是否护士
+            self.htmlSelect(hs_loc, nurse)  # 是否护士
         else:
             pass
         if tg10wage == '是' and (primaryAndHighSchoolTeacher == '是' or nurse == '是'):
             try:
-                self.htmlSelect(tg10wage_loc, f'xpath->//nz-option-item[@title="{tg10wage}"]')  # 是否提高10%
+                self.htmlSelect(tg10wage_loc, tg10wage)  # 是否提高10%
             except:
                 pass
         else:
             pass
         if specialEducation == '是':
-            self.htmlSelect(tsjy_loc, f'xpath->//nz-option-item[@title="{specialEducation}"]')  # 是否特殊教育
+            self.htmlSelect(tsjy_loc, specialEducation)  # 是否特殊教育
         else:
             pass
         # 输入津补贴
@@ -219,7 +222,7 @@ class PersonnelAddPage(BasePage):
             pass
 
         self.click(gzfjBtn_loc)  # 点击工资报审附件按钮
-        time.sleep(0.5)
+        time.sleep(0.7)
         self.upload_winFile(upload_file_loc, globalparam.file_path + '附件示例.png')  # 上传附件
         self.click(qdfj_file_loc)  # 点击上传附件确定窗口按钮
         time.sleep(0.5)
@@ -286,16 +289,16 @@ class PersonnelAddPage(BasePage):
         :return:
         """
         self.preposition()
-        self.htmlSelect(rysf_loc, f'xpath->//nz-option-item[@title="{dentityPersonne}"]')  # 选择人员身份
+        self.htmlSelect(rysf_loc, dentityPersonne)  # 选择人员身份
         self.clear_type(qxsj_loc, salaryDate)  # 输入起薪时间
         self.send_keys(name_loc, name)  # 输入人员姓名
-        self.htmlSelect(gender_loc, f'xpath->//nz-option-item[@title="{gender}"]')  # 选择性别
-        self.htmlSelect(mz_loc, f'xpath->//nz-option-item[@title="{nationality}"]')  # 选择民族
+        self.htmlSelect(gender_loc, gender)  # 选择性别
+        self.htmlSelect(mz_loc, nationality)  # 选择民族
         self.send_keys(idNumber_loc, idCard)  # 输入身份证号码
         self.clear_type(birthday_loc, idCard[6:14])  # 输入出生日期
-        self.htmlSelect(zzmm_loc, f'xpath->//nz-option-item[@title="{politicalStatus}"]')  # 选择政治面貌
+        self.htmlSelect(zzmm_loc, politicalStatus)  # 选择政治面貌
         if initialPersonnelIdentity is not None:
-            self.htmlSelect(csrysf_loc, f'xpath->//nz-option-item[@title="{initialPersonnelIdentity}"]')  # 选择初始人员身份
+            self.htmlSelect(csrysf_loc, initialPersonnelIdentity)  # 选择初始人员身份
         else:
             pass
         if birthplace is not None:
@@ -306,11 +309,11 @@ class PersonnelAddPage(BasePage):
             self.send_keys(address_loc, address)  # 输入住址
         else:
             pass
-        self.htmlSelect(ryly_loc, f'xpath->//nz-option-item[@title="{personnelSource}"]')  # 选择人员来源
+        self.htmlSelect(ryly_loc, personnelSource)  # 选择人员来源
         self.clear_type(jrdwDate_loc, entryUnitTime)  # 输入进入本单位时间
         if internalMechanism is not None:
             try:
-                self.htmlSelect(nsjg_loc, f'xpath->//nz-option-item[@title="{internalMechanism}"]')  # 选择所属机构
+                self.htmlSelect(nsjg_loc, internalMechanism)  # 选择所属机构
             except:
                 pass
         else:
@@ -324,22 +327,22 @@ class PersonnelAddPage(BasePage):
             self.send_keys(ryczCode_loc, personnelFinanceCode)  # 输入人员财政编码
         else:
             pass
-        self.htmlSelect(xl_loc, f'xpath->//nz-option-item[@title="{education}"]')  # 选择学历
+        self.htmlSelect(xl_loc, education)  # 选择学历
         if degree is not None:
-            self.htmlSelect(xw_loc, f'xpath->//nz-option-item[@title="{degree}"]')  # 选择学位
+            self.htmlSelect(xw_loc, degree)  # 选择学位
         else:
             pass
         self.clear_type(byDate_loc, graduationTime)  # 输入毕业时间
         try:
             if self.get_element(zzqk_loc) and full_time is not None:  # 专职情况
-                self.htmlSelect(zzqk_loc, f'xpath->//nz-option-item[@title="{full_time}"]')
+                self.htmlSelect(zzqk_loc, full_time)
             else:
                 pass
         except:
             pass
         try:
             if xd_loc and periodOfStudy is not None:  # 学段
-                self.htmlSelect(xd_loc, f'xpath->//nz-option-item[@title="{periodOfStudy}"]')
+                self.htmlSelect(xd_loc, periodOfStudy)
             else:
                 pass
         except:
@@ -352,39 +355,39 @@ class PersonnelAddPage(BasePage):
 
         if surveyStandard is not None:
             try:  # 是否地勘
-                self.htmlSelect(dk_loc, f'xpath->//nz-option-item[@title="{surveyStandard}"]')
+                self.htmlSelect(dk_loc, surveyStandard)
             except:
                 pass
         else:
             pass
-        self.htmlSelect(ywjyjs_loc, f'xpath->//nz-option-item[@title="{compulsoryEducation}"]')  # 是否义务教育教师
+        self.htmlSelect(ywjyjs_loc, compulsoryEducation)  # 是否义务教育教师
         self.send_keys(xrzw_loc, position)  # 输入现任职务
         self.clear_type(xrwzDate_loc, positionTime)  # 输入现任职务时间
-        self.htmlSelect(sjgw_loc, f'xpath->//nz-option-item[@title="{actualPost}"]')  # 选择实际岗位
-        self.htmlSelect(jbgzdygw_loc, f'xpath->//nz-option-item[@title="{postWage}"]')  # 选择基本工资对应岗位
+        self.htmlSelect(sjgw_loc, actualPost)  # 选择实际岗位
+        self.htmlSelect(jbgzdygw_loc, postWage)  # 选择基本工资对应岗位
         self.clear_type(rxgwDate_loc, actualPostTime)  # 输入任现岗位/职员等级时间
         isPayScale = {
             '实际岗位': actualPost,
             '基本工资对应岗位': postWage
         }
         if isPayScale.get('实际岗位') and isPayScale.get('基本工资对应岗位') != '事业专业技术人员试用期':
-            self.htmlSelect(xj_loc, f'xpath->//nz-option-item[@title="{payScale}"]')  # 选择薪级
+            self.htmlSelect(xj_loc, payScale)  # 选择薪级
             self.clear_type(xjqknx_loc, payScaleTime)  # 输入薪级起考年限
         else:
             pass
         if compulsoryEducation == '否':
             if primaryAndHighSchoolTeacher == '是':
                 self.htmlSelect(zxxjs_loc,
-                                f'xpath->//nz-option-item[@title="{primaryAndHighSchoolTeacher}"]')  # 是否中小学教师
+                                primaryAndHighSchoolTeacher)  # 是否中小学教师
             else:
                 pass
             if nurse == '是':
-                self.htmlSelect(hs_loc, f'xpath->//nz-option-item[@title="{nurse}"]')  # 是否护士
+                self.htmlSelect(hs_loc, nurse)  # 是否护士
             else:
                 pass
             if tg10wage == '是' and (primaryAndHighSchoolTeacher == '是' or nurse == '是'):
                 try:
-                    self.htmlSelect(tg10wage_loc, f'xpath->//nz-option-item[@title="{tg10wage}"]')  # 是否提高10%
+                    self.htmlSelect(tg10wage_loc, tg10wage)  # 是否提高10%
                 except:
                     pass
             else:
@@ -392,7 +395,7 @@ class PersonnelAddPage(BasePage):
         else:
             pass
         if specialEducation == '是':
-            self.htmlSelect(tsjy_loc, f'xpath->//nz-option-item[@title="{specialEducation}"]')  # 是否特殊教育
+            self.htmlSelect(tsjy_loc, specialEducation)  # 是否特殊教育
         else:
             pass
         # 输入津补贴
@@ -481,16 +484,16 @@ class PersonnelAddPage(BasePage):
         :return:
         """
         self.preposition()
-        self.htmlSelect(rysf_loc, f'xpath->//nz-option-item[@title="{dentityPersonne}"]')  # 选择人员身份
+        self.htmlSelect(rysf_loc, dentityPersonne)  # 选择人员身份
         self.clear_type(qxsj_loc, salaryDate)  # 输入起薪时间
         self.send_keys(name_loc, name)  # 输入人员姓名
-        self.htmlSelect(gender_loc, f'xpath->//nz-option-item[@title="{gender}"]')  # 选择性别
-        self.htmlSelect(mz_loc, f'xpath->//nz-option-item[@title="{nationality}"]')  # 选择民族
+        self.htmlSelect(gender_loc, gender)  # 选择性别
+        self.htmlSelect(mz_loc, nationality)  # 选择民族
         self.send_keys(idNumber_loc, idCard)  # 输入身份证号码
         self.clear_type(birthday_loc, idCard[6:14])  # 输入出生日期
-        self.htmlSelect(zzmm_loc, f'xpath->//nz-option-item[@title="{politicalStatus}"]')  # 选择政治面貌
+        self.htmlSelect(zzmm_loc, politicalStatus)  # 选择政治面貌
         if initialPersonnelIdentity is not None:
-            self.htmlSelect(csrysf_loc, f'xpath->//nz-option-item[@title="{initialPersonnelIdentity}"]')  # 选择初始人员身份
+            self.htmlSelect(csrysf_loc, initialPersonnelIdentity)  # 选择初始人员身份
         else:
             pass
         if birthplace is not None:
@@ -501,11 +504,11 @@ class PersonnelAddPage(BasePage):
             self.send_keys(address_loc, address)  # 输入住址
         else:
             pass
-        self.htmlSelect(ryly_loc, f'xpath->//nz-option-item[@title="{personnelSource}"]')  # 选择人员来源
+        self.htmlSelect(ryly_loc, personnelSource)  # 选择人员来源
         self.clear_type(jrdwDate_loc, entryUnitTime)  # 输入进入本单位时间
         if internalMechanism is not None:
             try:
-                self.htmlSelect(nsjg_loc, f'xpath->//nz-option-item[@title="{internalMechanism}"]')  # 选择所属机构
+                self.htmlSelect(nsjg_loc, internalMechanism)  # 选择所属机构
             except:
                 pass
         else:
@@ -519,22 +522,22 @@ class PersonnelAddPage(BasePage):
             self.send_keys(ryczCode_loc, personnelFinanceCode)  # 输入人员财政编码
         else:
             pass
-        self.htmlSelect(xl_loc, f'xpath->//nz-option-item[@title="{education}"]')  # 选择学历
+        self.htmlSelect(xl_loc, education)  # 选择学历
         if degree is not None:
-            self.htmlSelect(xw_loc, f'xpath->//nz-option-item[@title="{degree}"]')  # 选择学位
+            self.htmlSelect(xw_loc, degree)  # 选择学位
         else:
             pass
         self.clear_type(byDate_loc, graduationTime)  # 输入毕业时间
         try:
             if jszs_loc and technicalCertificate is not None:  # 是否取得技术证书
-                self.htmlSelect(zzqk_loc, f'xpath->//nz-option-item[@title="{jszs_loc}"]')
+                self.htmlSelect(zzqk_loc, jszs_loc)
             else:
                 pass
         except:
             pass
         try:
             if xd_loc and periodOfStudy is not None:  # 学段
-                self.htmlSelect(xd_loc, f'xpath->//nz-option-item[@title="{periodOfStudy}"]')
+                self.htmlSelect(xd_loc, periodOfStudy)
             else:
                 pass
         except:
@@ -547,15 +550,15 @@ class PersonnelAddPage(BasePage):
 
         if surveyStandard is not None:
             try:  # 是否地勘
-                self.htmlSelect(dk_loc, f'xpath->//nz-option-item[@title="{surveyStandard}"]')
+                self.htmlSelect(dk_loc, surveyStandard)
             except:
                 pass
         else:
             pass
         self.send_keys(xrzw_loc, position)  # 输入现任职务
         self.clear_type(xrwzDate_loc, positionTime)  # 输入现任职务时间
-        self.htmlSelect(sjgw_loc, f'xpath->//nz-option-item[@title="{actualPost}"]')  # 选择实际岗位
-        self.htmlSelect(jbgzdygw_loc, f'xpath->//nz-option-item[@title="{postWage}"]')  # 选择基本工资对应岗位
+        self.htmlSelect(sjgw_loc, actualPost)  # 选择实际岗位
+        self.htmlSelect(jbgzdygw_loc, postWage)  # 选择基本工资对应岗位
         self.clear_type(rxgwDate_loc, actualPostTime)  # 输入任现岗位/职员等级时间
         isPayScale = {
             '实际岗位': actualPost,
@@ -563,12 +566,12 @@ class PersonnelAddPage(BasePage):
         }
         if isPayScale.get('实际岗位') and isPayScale.get(
                 '基本工资对应岗位') != '事业技术工人学徒期' or '事业技术工人熟练期':
-            self.htmlSelect(xj_loc, f'xpath->//nz-option-item[@title="{payScale}"]')  # 选择薪级
+            self.htmlSelect(xj_loc, payScale)  # 选择薪级
             self.clear_type(xjqknx_loc, payScaleTime)  # 输入薪级起考年限
         else:
             pass
         if specialEducation == '是':
-            self.htmlSelect(tsjy_loc, f'xpath->//nz-option-item[@title="{specialEducation}"]')  # 是否特殊教育
+            self.htmlSelect(tsjy_loc, specialEducation)  # 是否特殊教育
         else:
             pass
         # 输入津补贴
@@ -656,16 +659,16 @@ class PersonnelAddPage(BasePage):
         :return:
         """
         self.preposition()
-        self.htmlSelect(rysf_loc, f'xpath->//nz-option-item[@title="{dentityPersonne}"]')  # 选择人员身份
+        self.htmlSelect(rysf_loc, dentityPersonne)  # 选择人员身份
         self.clear_type(qxsj_loc, salaryDate)  # 输入起薪时间
         self.send_keys(name_loc, name)  # 输入人员姓名
-        self.htmlSelect(gender_loc, f'xpath->//nz-option-item[@title="{gender}"]')  # 选择性别
-        self.htmlSelect(mz_loc, f'xpath->//nz-option-item[@title="{nationality}"]')  # 选择民族
+        self.htmlSelect(gender_loc, gender)  # 选择性别
+        self.htmlSelect(mz_loc, nationality)  # 选择民族
         self.send_keys(idNumber_loc, idCard)  # 输入身份证号码
         self.clear_type(birthday_loc, idCard[6:14])  # 输入出生日期
-        self.htmlSelect(zzmm_loc, f'xpath->//nz-option-item[@title="{politicalStatus}"]')  # 选择政治面貌
+        self.htmlSelect(zzmm_loc, politicalStatus)  # 选择政治面貌
         if initialPersonnelIdentity is not None:
-            self.htmlSelect(csrysf_loc, f'xpath->//nz-option-item[@title="{initialPersonnelIdentity}"]')  # 选择初始人员身份
+            self.htmlSelect(csrysf_loc, initialPersonnelIdentity)  # 选择初始人员身份
         else:
             pass
         if birthplace is not None:
@@ -676,11 +679,11 @@ class PersonnelAddPage(BasePage):
             self.send_keys(address_loc, address)  # 输入住址
         else:
             pass
-        self.htmlSelect(ryly_loc, f'xpath->//nz-option-item[@title="{personnelSource}"]')  # 选择人员来源
+        self.htmlSelect(ryly_loc, personnelSource)  # 选择人员来源
         self.clear_type(jrdwDate_loc, entryUnitTime)  # 输入进入本单位时间
         if internalMechanism is not None:
             try:
-                self.htmlSelect(nsjg_loc, f'xpath->//nz-option-item[@title="{internalMechanism}"]')  # 选择所属机构
+                self.htmlSelect(nsjg_loc, internalMechanism)  # 选择所属机构
             except:
                 pass
         else:
@@ -694,15 +697,15 @@ class PersonnelAddPage(BasePage):
             self.send_keys(ryczCode_loc, personnelFinanceCode)  # 输入人员财政编码
         else:
             pass
-        self.htmlSelect(xl_loc, f'xpath->//nz-option-item[@title="{education}"]')  # 选择学历
+        self.htmlSelect(xl_loc, education)  # 选择学历
         if degree is not None:
-            self.htmlSelect(xw_loc, f'xpath->//nz-option-item[@title="{degree}"]')  # 选择学位
+            self.htmlSelect(xw_loc, degree)  # 选择学位
         else:
             pass
         self.clear_type(byDate_loc, graduationTime)  # 输入毕业时间
         try:
             if xd_loc and periodOfStudy is not None:  # 学段
-                self.htmlSelect(xd_loc, f'xpath->//nz-option-item[@title="{periodOfStudy}"]')
+                self.htmlSelect(xd_loc, periodOfStudy)
             else:
                 pass
         except:
@@ -715,15 +718,15 @@ class PersonnelAddPage(BasePage):
 
         if surveyStandard is not None:
             try:  # 是否地勘
-                self.htmlSelect(dk_loc, f'xpath->//nz-option-item[@title="{surveyStandard}"]')
+                self.htmlSelect(dk_loc, surveyStandard)
             except:
                 pass
         else:
             pass
         self.send_keys(xrzw_loc, position)  # 输入现任职务
         self.clear_type(xrwzDate_loc, positionTime)  # 输入现任职务时间
-        self.htmlSelect(sjgw_loc, f'xpath->//nz-option-item[@title="{actualPost}"]')  # 选择实际岗位
-        self.htmlSelect(jbgzdygw_loc, f'xpath->//nz-option-item[@title="{postWage}"]')  # 选择基本工资对应岗位
+        self.htmlSelect(sjgw_loc, actualPost)  # 选择实际岗位
+        self.htmlSelect(jbgzdygw_loc, postWage)  # 选择基本工资对应岗位
         self.clear_type(rxgwDate_loc, actualPostTime)  # 输入任现岗位/职员等级时间
         isPayScale = {
             '实际岗位': actualPost,
@@ -731,12 +734,12 @@ class PersonnelAddPage(BasePage):
         }
         if isPayScale.get('实际岗位') and isPayScale.get(
                 '基本工资对应岗位') != '事业普通工人学徒期' or '事业普通工人熟练期':
-            self.htmlSelect(xj_loc, f'xpath->//nz-option-item[@title="{payScale}"]')  # 选择薪级
+            self.htmlSelect(xj_loc, payScale)  # 选择薪级
             self.clear_type(xjqknx_loc, payScaleTime)  # 输入薪级起考年限
         else:
             pass
         if specialEducation == '是':
-            self.htmlSelect(tsjy_loc, f'xpath->//nz-option-item[@title="{specialEducation}"]')  # 是否特殊教育
+            self.htmlSelect(tsjy_loc, specialEducation)  # 是否特殊教育
         else:
             pass
         # 输入津补贴
@@ -817,16 +820,16 @@ class PersonnelAddPage(BasePage):
         :return:
         """
         self.preposition()
-        self.htmlSelect(rysf_loc, f'xpath->//nz-option-item[@title="{dentityPersonne}"]')  # 选择人员身份
+        self.htmlSelect(rysf_loc, dentityPersonne)  # 选择人员身份
         self.clear_type(qxsj_loc, salaryDate)  # 输入起薪时间
         self.send_keys(name_loc, name)  # 输入人员姓名
-        self.htmlSelect(gender_loc, f'xpath->//nz-option-item[@title="{gender}"]')  # 选择性别
-        self.htmlSelect(mz_loc, f'xpath->//nz-option-item[@title="{nationality}"]')  # 选择民族
+        self.htmlSelect(gender_loc, gender)  # 选择性别
+        self.htmlSelect(mz_loc, nationality)  # 选择民族
         self.send_keys(idNumber_loc, idCard)  # 输入身份证号码
         self.clear_type(birthday_loc, idCard[6:14])  # 输入出生日期
-        self.htmlSelect(zzmm_loc, f'xpath->//nz-option-item[@title="{politicalStatus}"]')  # 选择政治面貌
+        self.htmlSelect(zzmm_loc, politicalStatus)  # 选择政治面貌
         if initialPersonnelIdentity is not None:
-            self.htmlSelect(csrysf_loc, f'xpath->//nz-option-item[@title="{initialPersonnelIdentity}"]')  # 选择初始人员身份
+            self.htmlSelect(csrysf_loc, initialPersonnelIdentity)  # 选择初始人员身份
         else:
             pass
         if birthplace is not None:
@@ -837,11 +840,11 @@ class PersonnelAddPage(BasePage):
             self.send_keys(address_loc, address)  # 输入住址
         else:
             pass
-        self.htmlSelect(ryly_loc, f'xpath->//nz-option-item[@title="{personnelSource}"]')  # 选择人员来源
+        self.htmlSelect(ryly_loc, personnelSource)  # 选择人员来源
         self.clear_type(jrdwDate_loc, entryUnitTime)  # 输入进入本单位时间
         if internalMechanism is not None:
             try:
-                self.htmlSelect(nsjg_loc, f'xpath->//nz-option-item[@title="{internalMechanism}"]')  # 选择所属机构
+                self.htmlSelect(nsjg_loc, internalMechanism)  # 选择所属机构
             except:
                 pass
         else:
@@ -860,9 +863,9 @@ class PersonnelAddPage(BasePage):
             self.send_keys(ryczCode_loc, personnelFinanceCode)  # 输入人员财政编码
         else:
             pass
-        self.htmlSelect(xl_loc, f'xpath->//nz-option-item[@title="{education}"]')  # 选择学历
+        self.htmlSelect(xl_loc, education)  # 选择学历
         if degree is not None:
-            self.htmlSelect(xw_loc, f'xpath->//nz-option-item[@title="{degree}"]')  # 选择学位
+            self.htmlSelect(xw_loc, degree)  # 选择学位
         else:
             pass
         self.clear_type(byDate_loc, graduationTime)  # 输入毕业时间
@@ -872,11 +875,11 @@ class PersonnelAddPage(BasePage):
             pass
         self.click(gzxxBtn_loc)  # 点击工资信息按钮
 
-        self.htmlSelect(sjjcjtdc_loc, f'xpath->//nz-option-item[@title="{trueProRankId}"]')  # 选择实际基础津贴档次
+        self.htmlSelect(sjjcjtdc_loc, trueProRankId)  # 选择实际基础津贴档次
         self.htmlSelect(jbgzdyjcjtdc_loc,
-                        f'xpath->//nz-option-item[@title="{formerSalaryMappingProRankId}"]')  # 选择基本工资对应基础津贴档次
-        self.htmlSelect(cjjtcc_loc, f'xpath->//nz-option-item[@title="{formerSalaryRank}"]')  # 选择成绩津贴层次
-        self.htmlSelect(cjjtmc_loc, f'xpath->//nz-option-item[@title="{formerSalaryGrade}"]')  # 选择成绩津贴名次
+                        formerSalaryMappingProRankId)  # 选择基本工资对应基础津贴档次
+        self.htmlSelect(cjjtcc_loc, formerSalaryRank)  # 选择成绩津贴层次
+        self.htmlSelect(cjjtmc_loc, formerSalaryGrade)  # 选择成绩津贴名次
         self.clear_type(cjmcDate_loc, rankingDate)  # 输入成绩津贴名次取得时间
 
         # 输入津补贴
