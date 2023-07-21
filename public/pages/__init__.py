@@ -78,7 +78,7 @@ ndkhBtn_loc = 'xpath->//div[@class="ant-tabs-extra-content ng-star-inserted"]/nz
 ndkhMsg_loc = 'xpath->/html/body/div/div[2]/div/nz-message-container/div/nz-message/div/div/div/span'
 sureNdkhBtn_loc = 'css->div.ant-modal-footer button.ant-btn-primary'
 gzfjBtn_loc = 'xpath->//div[@class="staff-head-warp"]/lib-staff-head/form/nz-form-item[5]/nz-form-label/label/button'
-upload_file_loc = 'xpath->//nz-space[@class="ant-space ant-space-horizontal"]/nz-space-item[1]/lib-accessory-upload/nz-upload/div/div/input'
+upload_file_loc = 'css->lib-accessory-action > nz-space > nz-space-item:nth-child(1) > lib-accessory-upload-group > nz-list > nz-list-header > div > div:nth-child(2) > nz-space > nz-space-item:nth-child(1) > lib-accessory-upload > nz-upload > div > div > input[type=file]'
 qdfj_file_loc = 'css->div.ant-modal-footer button.ant-btn-primary'
 sureBtn_loc = 'xpath->//div[@class="staff-head-warp"]/lib-staff-head/button'
 add_msg_loc = 'xpath->/html/body/div/div[2]/div/nz-message-container/div/nz-message/div/div/div/span'
