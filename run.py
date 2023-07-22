@@ -8,10 +8,11 @@
 # @Software:        PyCharm
 # ====/******/=====
 import unittest
-import HTMLTestRunner
+from scripts.HTMLTestRunner import *
 import time
 from config import globalparam
 from testcase.test_all_case import TestAll
+from BeautifulReport import BeautifulReport
 
 
 def run():
@@ -21,8 +22,8 @@ def run():
     now = time.strftime('%Y-%m-%d')
     reportname = globalparam.report_path + '\\' + 'TestResult' + now + '.html'
     with open(reportname, 'w', encoding='utf-8') as f:
-        runner = HTMLTestRunner.HTMLTestRunner(
-            stream=f,
+        runner = HTMLTestRunner(
+            stream=f, verbosity=2,
             title='测试报告',
             description='Test the import testcase'
         )
