@@ -11,8 +11,6 @@ import unittest
 from scripts.HTMLTestRunner import *
 import time
 from config import globalparam
-from testcase.test_all_case import TestAll
-from BeautifulReport import BeautifulReport
 
 
 def run():
