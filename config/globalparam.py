@@ -24,6 +24,7 @@ report_path = os.path.join(prj_path, 'report', 'testreport')
 # 默认浏览器
 browser = 'Chrome'
 # 附件地址
-file_path = os.path.join(prj_path, 'data'+'\\')  # 输出：D:\PublicInstitutionSystem\data
+# file_path = os.path.join(prj_path, 'data'+'\\')  # 输出：D:\PublicInstitutionSystem\data
+file_path = os.path.join(prj_path, 'data'+'/')  # 输出：D:\PublicInstitutionSystem\data
 # 测试数据路径
 data_path = os.path.join(prj_path, 'data', 'testdata')
