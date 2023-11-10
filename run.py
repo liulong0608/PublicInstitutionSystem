@@ -8,7 +8,7 @@
 # @Software:        PyCharm
 # ====/******/=====
 import unittest
-from scripts.HTMLTestRunner import *
+from utils.HTMLTestRunner import *
 import time
 from config import globalparam
 

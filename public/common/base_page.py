@@ -363,9 +363,9 @@ class BasePage(object):
         try:
             self.driver.execute_script(script)
             self.log_debug(
-                "{0} Execute javascript scripts: {1}, Spend {2} seconds".format(success, script, time.time() - t1))
+                "{0} Execute javascript utils: {1}, Spend {2} seconds".format(success, script, time.time() - t1))
         except Exception:
-            self.log_error("{0} Unable to execute javascript scripts: {1}, Spend {2} seconds".format(fail,
+            self.log_error("{0} Unable to execute javascript utils: {1}, Spend {2} seconds".format(fail,
                                                                                                      script,
                                                                                                      time.time() - t1))
             raise

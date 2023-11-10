@@ -26,7 +26,7 @@ class BaseUtil(unittest.TestCase):
         self.driver = base_page.BasePage(globalparam.browser)
         self.driver.max_window()
         self.driver.open('http://192.168.2.194/console/login')
-        self.driver.send_keys(login_username, '888')
+        self.driver.send_keys(login_username, '3men0001')
         self.driver.send_keys(login_password, 'Aa123456')
         self.driver.send_keys(verifyCode, 'abcd')
         self.driver.click(login_btn)

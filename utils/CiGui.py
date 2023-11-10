@@ -8,7 +8,7 @@
 # @Software:        PyCharm
 # ====/******/=====
 import tkinter as tk
-# from scripts.social_unified_creditcode.succ_utils.sucreditcode import CreditIdentifier
+# from utils.social_unified_creditcode.succ_utils.sucreditcode import CreditIdentifier
 # -*-coding=utf-8-*-
 # 生成、验证社会统一社会信用代码
 

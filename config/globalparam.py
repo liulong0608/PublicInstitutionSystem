@@ -14,7 +14,7 @@ from public.common.readconfig import ReadConfig
 config_file_path = os.path.split(os.path.realpath(__file__))[0]
 read_config = ReadConfig(os.path.join(config_file_path, 'config.ini'))
 # 项目参数设置
-prj_path = read_config.getValue('projectConfig', 'project_path')
+prj_path = read_config.getValue('projectConfig', 'project_path_win')
 # 日志路径
 log_path = os.path.join(prj_path, 'report', 'log')
 # 截图文件路径
@@ -24,7 +24,7 @@ report_path = os.path.join(prj_path, 'report', 'testreport')
 # 默认浏览器
 browser = 'Chrome'
 # 附件地址
-# file_path = os.path.join(prj_path, 'data'+'\\')  # 输出：D:\PublicInstitutionSystem\data
-file_path = os.path.join(prj_path, 'data'+'/')  # 输出：D:\PublicInstitutionSystem\data
+file_path = os.path.join(prj_path, 'data'+'\\')  # 输出：D:\PublicInstitutionSystem\data
+# file_path = os.path.join(prj_path, 'data'+'/')  # 输出：D:\PublicInstitutionSystem\data
 # 测试数据路径
 data_path = os.path.join(prj_path, 'data', 'testdata')
