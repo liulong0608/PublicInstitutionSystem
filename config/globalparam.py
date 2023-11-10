@@ -16,7 +16,7 @@ read_config = ReadConfig(os.path.join(config_file_path, 'config.ini'))
 # 项目参数设置
 prj_path = read_config.getValue('projectConfig', 'project_path_win')
 # 日志路径
-log_path = os.path.join(prj_path, 'report', 'log')
+log_path = os.path.join(prj_path, 'report', 'log\\run.log')
 # 截图文件路径
 img_path = os.path.join(prj_path, 'report', 'image')
 # 测试报告路径
