@@ -9,7 +9,6 @@
 # ====/******/=====
 import sys
 from typing import Text
-
 from config import globalparam
 from loguru import logger
 
