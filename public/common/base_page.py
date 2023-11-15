@@ -19,9 +19,7 @@ from selenium.common.exceptions import TimeoutException, InvalidSelectorExceptio
 from public.common.log import LoguruLogger
 from config import globalparam
 
-success = "SUCCESS   "
-fail = "FAIL   "
-logger = LoguruLogger()
+log = LoguruLogger(stream=True).get_logger()
 
 
 class BasePage(object):
@@ -39,16 +37,16 @@ class BasePage(object):
             driver = webdriver.Chrome(chrome_options=options)
         try:
             self.driver = driver
-            self.log_debug("{0} Start a new browser: {1}, Spend {2} seconds".format(success, browser, time.time() - t1))
+            log.success("Start a new browser: {0}, Spend {1} seconds".format(browser, time.time() - t1))
         except Exception:
             raise NameError("Not found {0} browser,You can enter 'ie','ff',"
                             "'chrome','RChrome','RIe' or 'RFirefox'.".format(browser))
-        # self.wait: WebDriverWait = WebDriverWait(self.driver, timeout=15, poll_frequency=0.8)
 
     def wait(self, timeout=15, poll=0.8):
         return WebDriverWait(self.driver, timeout=timeout, poll_frequency=poll)
 
-    def get_by_value(self, loc):
+    @staticmethod
+    def get_by_value(loc):
         """"""
         if "->" not in loc:
             raise ValueError("Invalid positioning syntax. Expected format: 'by->value'")
@@ -58,22 +56,27 @@ class BasePage(object):
         return locator
 
     def quit(self):
+        """
+        退出当前窗口
+        :return:
+        """
+        t1 = time.time()
         if self.driver is not None:
             self.driver.quit()
-            self.log_debug("Browser closed.")
+            log.success("Quit current window, Spend {0} seconds".format(time.time() - t1))
 
-    def log_debug(self, msg):
-        logger.info(msg)
-
-    def log_error(self, msg):
-        logger.error(msg)
-        timestamp = str(int(time.time()))  # 使用时间戳作为文件名
-        self.take_screenshot(f"FAIL_{timestamp}.png")
+    def close(self):
+        """
+        关闭当前窗口
+        :return:
+        """
+        t1 = time.time()
+        self.driver.close()
+        log.success("Closed current window, Spend {0} seconds".format(time.time() - t1))
 
     def element_dyeing(self, element) -> None:
         """
         将被操作的元素染色
-        :rollback: 是否将元素回滚
         :return: None
         """
         self.driver.execute_script("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');",
@@ -85,34 +88,31 @@ class BasePage(object):
         Usage:
         driver.element_wait("id->kw",10)
         """
+        if "->" not in loc:
+            log.error("Invalid positioning syntax. Expected format: 'by->value'")
+            raise ValueError(loc)
+
+        by = loc.split("->")[0].strip()
+        value = loc.split("->")[1].strip()
+        selector_map = {
+            "id": By.ID,
+            "name": By.NAME,
+            "class": By.CLASS_NAME,
+            "link_text": By.LINK_TEXT,
+            "xpath": By.XPATH,
+            "css": By.CSS_SELECTOR
+        }
+
         try:
             locator = self.get_by_value(loc)
             self.wait().until(EC.visibility_of_element_located(locator))
-            self.log_debug("Element {0} is visible".format(loc))
+            log.success("Element {0} is visible".format(loc))
+            locator = (selector_map[by], value)
+            self.__wait_element_visible(EC.visibility_of_element_located(locator))
+            log.success("Element {0} is visible".format(loc))
         except TimeoutException:
-            self.log_error("Wait element {0} timed out!".format(loc))
+            log.error("Wait element {0} timed out!".format(loc))
             raise TimeoutException('元素等待超时')
-        # if "->" not in loc:
-        #     raise ValueError("Invalid positioning syntax. Expected format: 'by->value'")
-        #
-        # by = loc.split("->")[0].strip()
-        # value = loc.split("->")[1].strip()
-        # selector_map = {
-        #     "id": By.ID,
-        #     "name": By.NAME,
-        #     "class": By.CLASS_NAME,
-        #     "link_text": By.LINK_TEXT,
-        #     "xpath": By.XPATH,
-        #     "css": By.CSS_SELECTOR
-        # }
-        #
-        # try:
-        #     locator = (selector_map[by], value)
-        #     self.wait.until(EC.visibility_of_element_located(locator))
-        #     self.log_debug("Element {0} is visible".format(loc))
-        # except TimeoutException:
-        #     self.log_error("Wait element {0} timed out!".format(loc))
-        #     raise TimeoutException('元素等待超时')
 
     def get_element(self, loc):
         """
@@ -125,27 +125,6 @@ class BasePage(object):
             return self.wait().until(lambda x: x.find_element(*locator))
         except NoSuchElementException:
             raise NoSuchElementException(f"Element {loc} not found")
-        # if "->" not in loc:
-        #     raise ValueError("Invalid positioning syntax. Expected format: 'by->value'")
-        #
-        # by, value = loc.split("->")
-        # by = by.strip()
-        # value = value.strip()
-        #
-        # selector_map = {
-        #     "id": By.ID,
-        #     "name": By.NAME,
-        #     "class": By.CLASS_NAME,
-        #     "link_text": By.LINK_TEXT,
-        #     "xpath": By.XPATH,
-        #     "css": By.CSS_SELECTOR
-        # }
-        # try:
-        #     locator = (selector_map[by], value)
-        #     element = self.driver.find_element(*locator)
-        #     return element
-        # except NoSuchElementException:
-        #     raise NoSuchElementException(f"Element {loc} not found")
 
     def get_elements(self, loc) -> list:
         """
@@ -158,35 +137,14 @@ class BasePage(object):
             return self.wait().until(lambda x: x.find_elements(*locator))
         except NoSuchElementException:
             raise NoSuchElementException(f"Element {loc} not found")
-        # if "->" not in loc:
-        #     raise ValueError("Invalid positioning syntax. Expected format: 'by->value'")
-        #
-        # by, value = loc.split("->")
-        # by = by.strip()
-        # value = value.strip()
-        #
-        # selector_map = {
-        #     "id": By.ID,
-        #     "name": By.NAME,
-        #     "class": By.CLASS_NAME,
-        #     "link_text": By.LINK_TEXT,
-        #     "xpath": By.XPATH,
-        #     "css": By.CSS_SELECTOR
-        # }
-        # try:
-        #     locator = (selector_map[by], value)
-        #     elements = self.driver.find_elements(*locator)
-        #     return elements
-        # except NoSuchElementException:
-        #     raise NoSuchElementException(f"Element {loc} not found")
 
     def open(self, url):
         t1 = time.time()
         try:
             self.driver.get(url)
-            self.log_debug("{0} Navigated to {1}, Spend {2} seconds".format(success, url, time.time() - t1))
+            log.success("Navigated to {0}, Spend {1} seconds".format(url, time.time() - t1))
         except Exception:
-            self.log_error("{0} Unable to load {1}, Spend {2} seconds".format(fail, url, time.time() - t1))
+            log.error("Unable to load {0}, Spend {1} seconds".format(url, time.time() - t1))
             raise
 
     def max_window(self):
@@ -196,7 +154,7 @@ class BasePage(object):
         """
         t1 = time.time()
         self.driver.maximize_window()
-        self.log_debug("{0} Set browser window maximized, Spend {1} seconds".format(success, time.time() - t1))
+        log.success("Set browser window maximized, Spend {0} seconds".format(time.time() - t1))
 
     def set_window(self, wide, high):
         """
@@ -204,9 +162,7 @@ class BasePage(object):
         """
         t1 = time.time()
         self.driver.set_window_size(wide, high)
-        self.log_debug("{0} Set browser window wide: {1},high: {2}, Spend {3} seconds".format(success,
-                                                                                              wide, high,
-                                                                                              time.time() - t1))
+        log.success("Set browser window wide: {0},high: {1}, Spend {2} seconds".format(wide, high, time.time() - t1))
 
     def send_keys(self, loc, value):
         """
@@ -220,13 +176,10 @@ class BasePage(object):
             el = self.get_element(loc)
             self.__wait_element_visible(loc)
             el.send_keys(value)
-            self.log_debug("{0} Typed element: <{1}> content: {2}, Spend {3} seconds".format(success,
-                                                                                             loc, value,
-                                                                                             time.time() - t1))
+            log.success("Typed element: <{0}> content: {1}, Spend {2} seconds".format(loc, value, time.time() - t1))
         except Exception as e:
-            self.log_error("{0} Unable to type element: <{1}> content: {2}, Spend {3} seconds".format(fail,
-                                                                                                      loc, value,
-                                                                                                      time.time() - t1))
+            log.error(
+                "Unable to type element: <{0}> content: {1}, Spend {2} seconds".format(loc, value, time.time() - t1))
             raise e
 
     def clear_type(self, loc, value):
@@ -243,14 +196,11 @@ class BasePage(object):
             el.send_keys(Keys.CONTROL, 'a')
             el.send_keys(value)
             el.send_keys(Keys.TAB)
-            self.log_debug("{0} Clear and type element: <{1}> content: {2}, Spend {3} seconds".format(success,
-                                                                                                      loc, value,
-                                                                                                      time.time() - t1))
+            log.success(
+                "Clear and type element: <{0}> content: {1}, Spend {2} seconds".format(loc, value, time.time() - t1))
         except Exception as e:
-            self.log_error("{0} Unable to clear and type element: <{1}> content: {2}, Spend {3} seconds".format(fail,
-                                                                                                                loc,
-                                                                                                                value,
-                                                                                                                time.time() - t1))
+            log.error("Unable to clear and type element: <{0}> content: {1}, Spend {2} seconds".format(loc, value,
+                                                                                                       time.time() - t1))
             raise e
 
     def click(self, loc):
@@ -264,9 +214,9 @@ class BasePage(object):
             self.__wait_element_visible(loc)
             el = self.get_element(loc)
             el.click()
-            self.log_debug("{0} Clicked element: <{1}>, Spend {2} seconds".format(success, loc, time.time() - t1))
+            log.success("Clicked element: <{0}>, Spend {1} seconds".format(loc, time.time() - t1))
         except Exception as e:
-            self.log_error("{0} Unable to click element: <{1}>, Spend {2} seconds".format(fail, loc, time.time() - t1))
+            log.error("Unable to click element: <{0}>, Spend {1} seconds".format(loc, time.time() - t1))
             raise e
 
     def right_click(self, loc):
@@ -281,10 +231,10 @@ class BasePage(object):
             el = self.get_element(loc)
             self.__wait_element_visible(loc)
             ActionChains(self.driver).context_click(el).perform()
-            self.log_debug("{0} Right click element: <{1}>, Spend {2} seconds".format(success, loc, time.time() - t1))
+            log.success("Right click element: <{0}>, Spend {1} seconds".format(loc, time.time() - t1))
         except Exception:
-            self.log_error(
-                "{0} Unable to right click element: <{1}>, Spend {2} seconds".format(fail, loc, time.time() - t1))
+            log.error(
+                "Unable to right click element: <{0}>, Spend {1} seconds".format(loc, time.time() - t1))
             raise
 
     def hover_and_click(self, hover_loc, click_loc):
@@ -299,16 +249,15 @@ class BasePage(object):
             self.__wait_element_visible(hover_loc)
             el = self.get_element(hover_loc)
             ActionChains(self.driver).move_to_element(el).perform()
-            self.log_debug("{0} Move to element: <{1}>, Spend {2} seconds".format(success, hover_loc, time.time() - t1))
+            log.success("Move to element: <{0}>, Spend {1} seconds".format(hover_loc, time.time() - t1))
             el = self.get_element(click_loc)
             el.click()
-            self.log_debug(
-                "{0} Move to element: <{1}> click element: <{2}>, Spend {3} seconds".format(success, hover_loc,
-                                                                                            click_loc,
-                                                                                            time.time() - t1))
+            log.success(
+                "Move to element: <{0}> click element: <{1}>, Spend {2} seconds".format(hover_loc, click_loc,
+                                                                                        time.time() - t1))
         except Exception as e:
-            self.log_error(
-                "{0} unable move to element: <{1}>, Spend {2} seconds".format(fail, hover_loc, time.time() - t1))
+            log.error(
+                "Unable move to element: <{0}>, Spend {1} seconds".format(hover_loc, time.time() - t1))
             raise e
 
     def double_click(self, loc):
@@ -322,10 +271,10 @@ class BasePage(object):
             el = self.get_element(loc)
             self.__wait_element_visible(loc)
             ActionChains(self.driver).double_click(el).perform()
-            self.log_debug("{0} Double click element: <{1}>, Spend {2} seconds".format(success, loc, time.time() - t1))
+            log.success("Double click element: <{0}>, Spend {1} seconds".format(loc, time.time() - t1))
         except Exception:
-            self.log_error(
-                "{0} Unable to double click element: <{1}>, Spend {2} seconds".format(fail, loc, time.time() - t1))
+            log.error(
+                "Unable to double click element: <{0}>, Spend {1} seconds".format(loc, time.time() - t1))
             raise
 
     def drag_and_drop(self, el_loc, ta_loc):
@@ -339,16 +288,12 @@ class BasePage(object):
             self.__wait_element_visible(ta_loc)
             target = self.get_element(ta_loc)
             ActionChains(self.driver).drag_and_drop(element, target).perform()
-            self.log_debug("{0} Drag and drop element: <{1}> to element: <{2}>, Spend {3} seconds".format(success,
-                                                                                                          el_loc,
-                                                                                                          ta_loc,
-                                                                                                          time.time() - t1))
+            log.success("Drag and drop element: <{0}> to element: <{1}>, Spend {2} seconds".format(el_loc, ta_loc,
+                                                                                                   time.time() - t1))
         except Exception:
-            self.log_error(
-                "{0} Unable to drag and drop element: <{1}> to element: <{2}>, Spend {3} seconds".format(fail,
-                                                                                                         el_loc,
-                                                                                                         ta_loc,
-                                                                                                         time.time() - t1))
+            log.error(
+                "Unable to drag and drop element: <{0}> to element: <{1}>, Spend {2} seconds".format(el_loc, ta_loc,
+                                                                                                     time.time() - t1))
             raise
 
     def click_linkText(self, value):
@@ -361,28 +306,20 @@ class BasePage(object):
         t1 = time.time()
         try:
             self.driver.find_element(By.PARTIAL_LINK_TEXT, value).click()
-            self.log_debug(
-                "{0} Click by LinkText content: {1}, Spend {2} seconds".format(success, value, time.time() - t1))
+            log.success(
+                "Click by LinkText content: {0}, Spend {1} seconds".format(value, time.time() - t1))
         except Exception:
-            self.log_error(
-                "{0} Unable to Click by LinkText content: {1}, Spend {2} seconds".format(fail, value, time.time() - t1))
+            log.error(
+                "Unable to Click by LinkText content: {0}, Spend {1} seconds".format(value, time.time() - t1))
             raise
-
-    def close(self):
-        """
-        关闭当前窗口
-        """
-        t1 = time.time()
-        self.driver.close()
-        self.log_debug("{0} Closed current window, Spend {1} seconds".format(success, time.time() - t1))
 
     def refresh(self):
         """
         刷新浏览器页面
         """
-        t1 = time
+        t1 = time.time()
         self.driver.refresh()
-        self.log_debug("{0} Refresh the current page, Spend {1} seconds".format(success, time.time() - t1))
+        log.success("Refresh the current page, Spend {0} seconds".format(time.time() - t1))
 
     def execute_js(self, script):
         """
@@ -391,12 +328,11 @@ class BasePage(object):
         t1 = time.time()
         try:
             self.driver.execute_script(script)
-            self.log_debug(
-                "{0} Execute javascript utils: {1}, Spend {2} seconds".format(success, script, time.time() - t1))
+            log.success(
+                "Execute javascript utils: {0}, Spend {1} seconds".format(script, time.time() - t1))
         except Exception:
-            self.log_error("{0} Unable to execute javascript utils: {1}, Spend {2} seconds".format(fail,
-                                                                                                     script,
-                                                                                                     time.time() - t1))
+            log.error("Unable to execute javascript utils: {0}, Spend {1} seconds".format(script,
+                                                                                          time.time() - t1))
             raise
 
     def get_attribute(self, loc, attribute):
@@ -407,15 +343,12 @@ class BasePage(object):
         try:
             el = self.get_element(loc)
             attr = el.get_attribute(attribute)
-            self.log_debug("{0} Get attribute element: <{1}>,attribute: {2}, Spend {3} seconds".format(success,
-                                                                                                       loc, attribute,
-                                                                                                       time.time() - t1))
+            log.success("Get attribute element: <{0}>,attribute: {1}, Spend {2} seconds".format(loc, attribute,
+                                                                                                time.time() - t1))
             return attr
         except Exception:
-            self.log_error("{0} Unable to get attribute element: <{1}>,attribute: {2}, Spend {3} seconds".format(fail,
-                                                                                                                 loc,
-                                                                                                                 attribute,
-                                                                                                                 time.time() - t1))
+            log.error("Unable to get attribute element: <{0}>,attribute: {1}, Spend {2} seconds".format(loc, attribute,
+                                                                                                        time.time() - t1))
             raise
 
     def get_element_text(self, loc):
@@ -428,12 +361,12 @@ class BasePage(object):
         try:
             self.__wait_element_visible(loc)
             value = self.get_element(loc).text
-            self.log_debug(
-                "{0} Get element text element: <{1}>, Spend {2} seconds".format(success, loc, time.time() - t1))
+            log.success(
+                "Get element text element: <{0}>, Spend {1} seconds".format(loc, time.time() - t1))
             return value
         except Exception as e:
-            self.log_error(
-                "{0} Unable to get element text element: <{1}>, Spend {2} seconds".format(fail, loc, time.time() - t1))
+            log.error(
+                "Unable to get element text element: <{0}>, Spend {1} seconds".format(loc, time.time() - t1))
             raise e
 
     def get_title(self):
@@ -443,7 +376,7 @@ class BasePage(object):
         """
         t1 = time.time()
         title = self.driver.title
-        self.log_debug("{0} Get current window title, Spend {1} seconds".format(success, time.time() - t1))
+        log.success("Get current window title, Spend {0} seconds".format(time.time() - t1))
         return title
 
     def get_url(self):
@@ -454,7 +387,7 @@ class BasePage(object):
         t1 = time.time()
         time.sleep(1)
         url = self.driver.current_url
-        self.log_debug("{0} Get current window url, Spend {1} seconds".format(success, time.time() - t1))
+        log.success("Get current window url, Spend {0} seconds".format(time.time() - t1))
         return url
 
     def __wait(self, secs):
@@ -465,9 +398,7 @@ class BasePage(object):
         """
         t1 = time.time()
         self.driver.implicitly_wait(secs)
-        self.log_debug("{0} Set wait all element display in {1} seconds, Spend {2} seconds".format(success,
-                                                                                                   secs,
-                                                                                                   time.time() - t1))
+        log.success("Set wait all element display in {0} seconds, Spend {1} seconds".format(secs, time.time() - t1))
 
     def accept_alert(self):
         """
@@ -476,7 +407,7 @@ class BasePage(object):
         """
         t1 = time.time()
         self.driver.switch_to.alert.accept()
-        self.log_debug("{0} Accept warning box, Spend {1} seconds".format(success, time.time() - t1))
+        log.success("Accept warning box, Spend {0} seconds".format(time.time() - t1))
 
     def dismiss_alert(self):
         """
@@ -485,7 +416,7 @@ class BasePage(object):
         """
         t1 = time.time()
         self.driver.switch_to.alert.dismiss()
-        self.log_debug("{0} Dismisses the alert available, Spend {1} seconds".format(success, time.time() - t1))
+        log.success("Dismisses the alert available, Spend {0} seconds".format(time.time() - t1))
 
     def switch_to_frame(self, loc):
         """
@@ -498,11 +429,11 @@ class BasePage(object):
             self.__wait_element_visible(loc)
             iframe_el = self.get_element(loc)
             self.driver.switch_to.frame(iframe_el)
-            self.log_debug(
-                "{0} Switch to frame element: <{1}>, Spend {2} seconds".format(success, loc, time.time() - t1))
+            log.success(
+                "Switch to frame element: <{0}>, Spend {1} seconds".format(loc, time.time() - t1))
         except Exception:
-            self.log_error(
-                "{0} Unable switch to frame element: <{1}>, Spend {2} seconds".format(fail, loc, time.time() - t1))
+            log.error(
+                "Unable switch to frame element: <{0}>, Spend {1} seconds".format(loc, time.time() - t1))
             raise
 
     def switch_to_frame_out(self):
@@ -512,7 +443,7 @@ class BasePage(object):
         """
         t1 = time.time()
         self.driver.switch_to.default_content()
-        self.log_debug("{0} Switch to frame out, Spend {1} seconds".format(success, time.time() - t1))
+        log.success("Switch to frame out, Spend {0} seconds".format(time.time() - t1))
 
     def open_new_window(self, loc):
         """
@@ -529,14 +460,11 @@ class BasePage(object):
             for handle in all_handles:
                 if handle != original_windows:
                     self.driver.switch_to.window(handle)
-            self.log_debug(
-                "{0} Click element: <{1}> open a new window and swich into, Spend {2} seconds".format(success,
-                                                                                                      loc,
-                                                                                                      time.time() - t1))
+            log.success(
+                "Click element: <{0}> open a new window and swich into, Spend {1} seconds".format(loc,
+                                                                                                  time.time() - t1))
         except Exception as e:
-            self.log_error("{0} Click element: <{1}> open a new window and swich into, Spend {2} seconds".format(fail,
-                                                                                                                 loc,
-                                                                                                                 time.time() - t1))
+            log.error("Failed to open a new window, Spend {0} seconds".format(loc, time.time() - t1))
             raise e
 
     def element_exist(self, loc):
@@ -546,10 +474,10 @@ class BasePage(object):
         t1 = time.time()
         try:
             self.__wait_element_visible(loc)
-            self.log_debug("{0} Element: <{1}> is exist, Spend {2} seconds".format(success, loc, time.time() - t1))
+            log.success("Element: <{0}> is exist, Spend {1} seconds".format(loc, time.time() - t1))
             return True
         except TimeoutException:
-            self.log_error("{0} Element: <{1}> is not exist, Spend {2} seconds".format(fail, loc, time.time() - t1))
+            log.error("Element: <{0}> is not exist, Spend {1} seconds".format(loc, time.time() - t1))
             return False
 
     def take_screenshot(self, filename):
@@ -559,13 +487,11 @@ class BasePage(object):
         t1 = time.time()
         try:
             self.driver.get_screenshot_as_file(globalparam.img_path + '\\' + filename)
-            self.log_debug("{0} Get the current window screenshot,path: {1}, Spend {2} seconds".format(success,
-                                                                                                       filename,
-                                                                                                       time.time() - t1))
+            log.success("Get the current window screenshot,path: {0}, Spend {1} seconds".format(filename,
+                                                                                                time.time() - t1))
         except Exception:
-            self.log_error("{0} Unable to get the current window screenshot,path: {1}, Spend {2} seconds".format(fail,
-                                                                                                                 filename,
-                                                                                                                 time.time() - t1))
+            log.error("Unable to get the current window screenshot,path: {0}, Spend {1} seconds".format(filename,
+                                                                                                        time.time() - t1))
             raise
 
     def into_new_window(self):
@@ -583,14 +509,13 @@ class BasePage(object):
                     # 切换到新窗口
                     self.driver.switch_to.window(handle)
                     break
-            self.log_debug("{0} Switch to the new window,new window's url: {1}, Spend {2} seconds".format(success,
-                                                                                                          self.get_title(),
-                                                                                                          time.time() - t1))
+            log.success("Switch to the new window,new window's url: {0}, Spend {1} seconds".format(self.get_title(),
+                                                                                                   time.time() - t1))
         except Exception:
-            self.log_error("{0} Unable switch to the new window, Spend {1} seconds".format(fail, time.time() - t1))
+            log.error("Unable switch to the new window, Spend {0} seconds".format(time.time() - t1))
             raise
 
-    def input_and_enter(self, loc, value, secs = 0.5):
+    def input_and_enter(self, loc, value, secs=0.5):
         """
         Operation input box. 1、input message,sleep 0.5s;2、input ENTER.
 
@@ -604,13 +529,13 @@ class BasePage(object):
             ele.send_keys(value)
             time.sleep(secs)
             ele.send_keys(Keys.ENTER)
-            self.log_debug(
-                "{0} Element <{1}> type content: {2},and sleep {3} seconds,input ENTER key, Spend {4} seconds".format(
-                    success, loc, value, secs, time.time() - t1))
+            log.success(
+                "Element <{0}> type content: {1},and sleep {2} seconds,input ENTER key, Spend {3} seconds".format(
+                    loc, value, secs, time.time() - t1))
         except Exception:
-            self.log_error(
-                "{0} Unable element <{1}> type content: {2},and sleep {3} seconds,input ENTER key, Spend {4} seconds".
-                format(fail, loc, value, secs, time.time() - t1))
+            log.error(
+                "Unable element <{0}> type content: {1},and sleep {2} seconds,input ENTER key, Spend {3} seconds".
+                format(loc, value, secs, time.time() - t1))
             raise
 
     def htmlSelect(self, select_loc, option_value):
@@ -632,13 +557,13 @@ class BasePage(object):
                 if attribute == option_value:
                     self.click(f'xpath->//nz-option-item[@title="{attribute}"]')
                     break
-            self.log_debug(
-                "{0}HtmlSelect element <{1}> is selected successfully, Spend {2} seconds".format(success,
-                                                                                                 f'xpath->//nz-option-item[@title="{option_value}"]',
-                                                                                                 time.time() - t1))
+            log.success(
+                "HtmlSelect element <{0}> is selected successfully, Spend {1} seconds".format(
+                    f'xpath->//nz-option-item[@title="{option_value}"]',
+                    time.time() - t1))
         except Exception as e:
-            self.log_error(
-                "{0}HtmlSelect element <{1}> not found, Spend {2} seconds".format(fail, option_value, time.time() - t1))
+            log.error(
+                "HtmlSelect element <{0}> not found, Spend {1} seconds".format(option_value, time.time() - t1))
             raise e
 
     def js_click(self, loc):
@@ -652,12 +577,11 @@ class BasePage(object):
         js_str = "$('{0}').click()".format(loc)
         try:
             self.driver.execute_script(js_str)
-            self.log_debug(
-                "{0} Use javascript click element: {1}, Spend {2} seconds".format(success, js_str, time.time() - t1))
+            log.success(
+                "Use javascript click element: {0}, Spend {1} seconds".format(js_str, time.time() - t1))
         except Exception:
-            self.log_error("{0} Unable to use javascript click element: {1}, Spend {2} seconds".format(fail,
-                                                                                                       js_str,
-                                                                                                       time.time() - t1))
+            log.error("Unable to use javascript click element: {0}, Spend {1} seconds".format(js_str,
+                                                                                              time.time() - t1))
             raise
 
     @property
@@ -679,9 +603,9 @@ class BasePage(object):
             time.sleep(1.5)
             self.get_element(loc).send_keys(filepath)
             time.sleep(3)
-            self.log_debug("{0} File uploaded successfully, Spend {1} seconds".format(success, time.time() - t1))
+            log.success("File uploaded successfully, Spend {0} seconds".format(time.time() - t1))
         except Exception as e:
-            self.log_error("{0} File uploaded fail, Spend {1} seconds".format(fail, time.time() - t1))
+            log.error("File uploaded fail, Spend {0} seconds".format(time.time() - t1))
             raise e
 
     def fuzzy_assert(self, expect, practical_loc):
@@ -696,17 +620,15 @@ class BasePage(object):
             self.__wait_element_visible(practical_loc)
             practical = self.get_element_text(practical_loc)
             assert expect in practical
-            self.log_debug(
-                "{0}Assertion success, expected result 【{1}】, actual result 【{2}】, Spend {3} seconds".format(success,
-                                                                                                             expect,
-                                                                                                             practical,
-                                                                                                             time.time() - t1))
+            log.success(
+                "Assertion success, expected result 【{0}】, actual result 【{1}】, Spend {2} seconds".format(expect,
+                                                                                                          practical,
+                                                                                                          time.time() - t1))
         except Exception:
-            logger.error(
-                "{0}Assertion failure, expected result 【{1}】, actual result 【{2}】, Spend {3} seconds".format(fail,
-                                                                                                             expect,
-                                                                                                             practical,
-                                                                                                             time.time() - t1))
+            log.error(
+                "Assertion failure, expected result 【{0}】, actual result 【{1}】, Spend {2} seconds".format(expect,
+                                                                                                          practical,
+                                                                                                          time.time() - t1))
             raise
         finally:
             timestamp = str(int(time.time()))  # 使用时间戳作为文件名
@@ -724,15 +646,13 @@ class BasePage(object):
             self.__wait_element_visible(practical_loc)
             practical = self.get_element_text(practical_loc)
             assert expect == practical
-            self.log_debug(
-                "{0}Assertion success, expected result 【{1}】, actual result 【{2}】, Spend {3} seconds".format(success,
-                                                                                                             expect,
-                                                                                                             practical,
-                                                                                                             time.time() - t1))
+            log.success(
+                "Assertion success, expected result 【{0}】, actual result 【{1}】, Spend {2} seconds".format(expect,
+                                                                                                          practical,
+                                                                                                          time.time() - t1))
         except AssertionError:
-            logger.error(
-                "{0}Assertion failure, expected result 【{1}】, actual result 【{2}】, Spend {3} seconds".format(fail,
-                                                                                                             expect,
+            log.error(
+                "Assertion failure, expected result 【{0}】, actual result 【{1}】, Spend {2} seconds".format(expect,
                                                                                                              practical,
                                                                                                              time.time() - t1))
             raise
