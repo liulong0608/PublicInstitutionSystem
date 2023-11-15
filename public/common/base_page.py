@@ -16,12 +16,12 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import TimeoutException, InvalidSelectorException, NoSuchElementException
-from public.common.log import Log
+from public.common.log import LoguruLogger
 from config import globalparam
 
 success = "SUCCESS   "
 fail = "FAIL   "
-logger = Log()
+logger = LoguruLogger()
 
 
 class BasePage(object):
@@ -43,7 +43,19 @@ class BasePage(object):
         except Exception:
             raise NameError("Not found {0} browser,You can enter 'ie','ff',"
                             "'chrome','RChrome','RIe' or 'RFirefox'.".format(browser))
-        self.wait: WebDriverWait = WebDriverWait(self.driver, timeout=15, poll_frequency=0.8)
+        # self.wait: WebDriverWait = WebDriverWait(self.driver, timeout=15, poll_frequency=0.8)
+
+    def wait(self, timeout=15, poll=0.8):
+        return WebDriverWait(self.driver, timeout=timeout, poll_frequency=poll)
+
+    def get_by_value(self, loc):
+        """"""
+        if "->" not in loc:
+            raise ValueError("Invalid positioning syntax. Expected format: 'by->value'")
+        by = loc.split("->")[0].strip()
+        value = loc.split("->")[1].strip()
+        locator = (by, value)
+        return locator
 
     def quit(self):
         if self.driver is not None:
@@ -73,27 +85,34 @@ class BasePage(object):
         Usage:
         driver.element_wait("id->kw",10)
         """
-        if "->" not in loc:
-            raise ValueError("Invalid positioning syntax. Expected format: 'by->value'")
-
-        by = loc.split("->")[0].strip()
-        value = loc.split("->")[1].strip()
-        selector_map = {
-            "id": By.ID,
-            "name": By.NAME,
-            "class": By.CLASS_NAME,
-            "link_text": By.LINK_TEXT,
-            "xpath": By.XPATH,
-            "css": By.CSS_SELECTOR
-        }
-
         try:
-            locator = (selector_map[by], value)
-            self.wait.until(EC.visibility_of_element_located(locator))
+            locator = self.get_by_value(loc)
+            self.wait().until(EC.visibility_of_element_located(locator))
             self.log_debug("Element {0} is visible".format(loc))
         except TimeoutException:
             self.log_error("Wait element {0} timed out!".format(loc))
             raise TimeoutException('元素等待超时')
+        # if "->" not in loc:
+        #     raise ValueError("Invalid positioning syntax. Expected format: 'by->value'")
+        #
+        # by = loc.split("->")[0].strip()
+        # value = loc.split("->")[1].strip()
+        # selector_map = {
+        #     "id": By.ID,
+        #     "name": By.NAME,
+        #     "class": By.CLASS_NAME,
+        #     "link_text": By.LINK_TEXT,
+        #     "xpath": By.XPATH,
+        #     "css": By.CSS_SELECTOR
+        # }
+        #
+        # try:
+        #     locator = (selector_map[by], value)
+        #     self.wait.until(EC.visibility_of_element_located(locator))
+        #     self.log_debug("Element {0} is visible".format(loc))
+        # except TimeoutException:
+        #     self.log_error("Wait element {0} timed out!".format(loc))
+        #     raise TimeoutException('元素等待超时')
 
     def get_element(self, loc):
         """
@@ -101,27 +120,32 @@ class BasePage(object):
         :param loc: 元素定位
         :return: 一个元素
         """
-        if "->" not in loc:
-            raise ValueError("Invalid positioning syntax. Expected format: 'by->value'")
-
-        by, value = loc.split("->")
-        by = by.strip()
-        value = value.strip()
-
-        selector_map = {
-            "id": By.ID,
-            "name": By.NAME,
-            "class": By.CLASS_NAME,
-            "link_text": By.LINK_TEXT,
-            "xpath": By.XPATH,
-            "css": By.CSS_SELECTOR
-        }
         try:
-            locator = (selector_map[by], value)
-            element = self.driver.find_element(*locator)
-            return element
+            locator = self.get_by_value(loc)
+            return self.wait().until(lambda x: x.find_element(*locator))
         except NoSuchElementException:
             raise NoSuchElementException(f"Element {loc} not found")
+        # if "->" not in loc:
+        #     raise ValueError("Invalid positioning syntax. Expected format: 'by->value'")
+        #
+        # by, value = loc.split("->")
+        # by = by.strip()
+        # value = value.strip()
+        #
+        # selector_map = {
+        #     "id": By.ID,
+        #     "name": By.NAME,
+        #     "class": By.CLASS_NAME,
+        #     "link_text": By.LINK_TEXT,
+        #     "xpath": By.XPATH,
+        #     "css": By.CSS_SELECTOR
+        # }
+        # try:
+        #     locator = (selector_map[by], value)
+        #     element = self.driver.find_element(*locator)
+        #     return element
+        # except NoSuchElementException:
+        #     raise NoSuchElementException(f"Element {loc} not found")
 
     def get_elements(self, loc) -> list:
         """
@@ -129,27 +153,32 @@ class BasePage(object):
         :param loc: 元素定位
         :return: 一组元素
         """
-        if "->" not in loc:
-            raise ValueError("Invalid positioning syntax. Expected format: 'by->value'")
-
-        by, value = loc.split("->")
-        by = by.strip()
-        value = value.strip()
-
-        selector_map = {
-            "id": By.ID,
-            "name": By.NAME,
-            "class": By.CLASS_NAME,
-            "link_text": By.LINK_TEXT,
-            "xpath": By.XPATH,
-            "css": By.CSS_SELECTOR
-        }
         try:
-            locator = (selector_map[by], value)
-            elements = self.driver.find_elements(*locator)
-            return elements
+            locator = self.get_by_value(loc)
+            return self.wait().until(lambda x: x.find_elements(*locator))
         except NoSuchElementException:
             raise NoSuchElementException(f"Element {loc} not found")
+        # if "->" not in loc:
+        #     raise ValueError("Invalid positioning syntax. Expected format: 'by->value'")
+        #
+        # by, value = loc.split("->")
+        # by = by.strip()
+        # value = value.strip()
+        #
+        # selector_map = {
+        #     "id": By.ID,
+        #     "name": By.NAME,
+        #     "class": By.CLASS_NAME,
+        #     "link_text": By.LINK_TEXT,
+        #     "xpath": By.XPATH,
+        #     "css": By.CSS_SELECTOR
+        # }
+        # try:
+        #     locator = (selector_map[by], value)
+        #     elements = self.driver.find_elements(*locator)
+        #     return elements
+        # except NoSuchElementException:
+        #     raise NoSuchElementException(f"Element {loc} not found")
 
     def open(self, url):
         t1 = time.time()
