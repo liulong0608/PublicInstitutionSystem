@@ -88,31 +88,7 @@ class BasePage(object):
         Usage:
         driver.element_wait("id->kw",10)
         """
-        if "->" not in loc:
-            log.error("Invalid positioning syntax. Expected format: 'by->value'")
-            raise ValueError(loc)
-
-        by = loc.split("->")[0].strip()
-        value = loc.split("->")[1].strip()
-        selector_map = {
-            "id": By.ID,
-            "name": By.NAME,
-            "class": By.CLASS_NAME,
-            "link_text": By.LINK_TEXT,
-            "xpath": By.XPATH,
-            "css": By.CSS_SELECTOR
-        }
-
-        try:
-            locator = self.get_by_value(loc)
-            self.wait().until(EC.visibility_of_element_located(locator))
-            log.success("Element {0} is visible".format(loc))
-            locator = (selector_map[by], value)
-            self.__wait_element_visible(EC.visibility_of_element_located(locator))
-            log.success("Element {0} is visible".format(loc))
-        except TimeoutException:
-            log.error("Wait element {0} timed out!".format(loc))
-            raise TimeoutException('元素等待超时')
+        pass
 
     def get_element(self, loc):
         """

@@ -11,7 +11,7 @@ import time
 import unittest
 from public.common import base_page
 from config import globalparam
-from public.common.log import Log
+from public.common.log import LoguruLogger
 from public.pages import *
 
 
@@ -21,7 +21,7 @@ class BaseUtil(unittest.TestCase):
     """
 
     def setUp(self):
-        self.logger = Log()
+        self.logger = LoguruLogger().get_logger()
         self.logger.info('############################### START ###############################')
         self.driver = base_page.BasePage(globalparam.browser)
         self.driver.max_window()
