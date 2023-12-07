@@ -43,7 +43,7 @@ class BasePageABC(ABC):
         pass
 
     @abstractmethod
-    def __wait_visible(self, locator: Tuple[Text, Text]) -> None:
+    def wait_visible(self, locator: Text) -> None:
         """
         等待元素可见
         :param locator: 元素路径
@@ -52,10 +52,11 @@ class BasePageABC(ABC):
         pass
 
     @abstractmethod
-    def get_element(self, locator: Tuple[Text, Text]) -> WebElement:
+    def get_element(self, locator: Tuple[Text, Text], whetherWait: bool = True) -> WebElement:
         """
         获取元素
         :param locator: 元素路径
+        :param whetherWait: 是否等待
         :return:
         """
         pass
@@ -69,10 +70,11 @@ class BasePageABC(ABC):
         """
         pass
 
-    def click(self, locator: Tuple[Text, Text]) -> None:
+    def click(self, locator: Tuple[Text, Text], whetherWait: bool = True) -> None:
         """
         点击元素
         :param locator: 元素路径
+        :param whetherWait: 是否等待
         :return:
         """
         self.get_element(locator).click()
