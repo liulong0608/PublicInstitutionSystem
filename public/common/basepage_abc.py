@@ -19,62 +19,97 @@ class BasePageABC(ABC):
 
     @abstractmethod
     def open_url(self, url: Text) -> None:
-        """
-        open url
-        :param url: 打开网页
-        :return:
-        """
+        pass
+
+    @abstractmethod
+    def max_window(self) -> None:
+        pass
+
+    @abstractmethod
+    def set_window(self, width: int, height: int) -> None:
+        pass
+
+    @abstractmethod
+    def refresh(self) -> None:
         pass
 
     @abstractmethod
     def close(self) -> None:
-        """
-        close browser
-        :return:
-        """
         pass
 
     @abstractmethod
     def quit(self) -> None:
-        """
-        quit browser
-        :return:
-        """
         pass
 
     @abstractmethod
     def wait_visible(self, locator: Text) -> None:
-        """
-        等待元素可见
-        :param locator: 元素路径
-        :return:
-        """
         pass
 
     @abstractmethod
     def get_element(self, locator: Tuple[Text, Text], whetherWait: bool = True) -> WebElement:
-        """
-        获取元素
-        :param locator: 元素路径
-        :param whetherWait: 是否等待
-        :return:
-        """
         pass
 
     @abstractmethod
-    def get_elements(self, locator: Tuple[Text, Text]) -> List[WebElement]:
-        """
-        获取一组元素
-        :param locator: 元素路径
-        :return:
-        """
+    def get_elements(self, locator: Text, whetherWait: bool = True) -> List[WebElement]:
         pass
 
-    def click(self, locator: Tuple[Text, Text], whetherWait: bool = True) -> None:
-        """
-        点击元素
-        :param locator: 元素路径
-        :param whetherWait: 是否等待
-        :return:
-        """
-        self.get_element(locator).click()
+    @abstractmethod
+    def click(self, locator: Text, whetherWait: bool = True) -> None:
+        pass
+
+    @abstractmethod
+    def input(self, locator: Text, text: Text, whetherWait: bool = True) -> None:
+        pass
+
+    @abstractmethod
+    def clear(self, locator: Text, whetherWait: bool = True) -> None:
+        pass
+
+    @abstractmethod
+    def clear_and_input(self, locator: Text, text: Text, whetherWait: bool = True) -> None:
+        pass
+
+    @abstractmethod
+    def get_text(self, locator: Text, whetherWait: bool = True) -> Text:
+        pass
+
+    @abstractmethod
+    def get_url(self) -> Text:
+        pass
+
+    @abstractmethod
+    def get_attribute(self, locator: Text, attribute: Text, whetherWait: bool = True) -> Text:
+        pass
+
+    @abstractmethod
+    def move_to_element(self, locator: Text, whetherWait: bool = True) -> None:
+        pass
+
+    @abstractmethod
+    def switch_to_frame(self, locator: Text, whetherWait: bool = True) -> None:
+        pass
+
+    @abstractmethod
+    def switch_to_default_content(self) -> None:
+        pass
+
+    @abstractmethod
+    def click_hyperlink(self, locator: Text, whetherWait: bool = True) -> None:
+        pass
+
+    @abstractmethod
+    def switch_to_new_window(self) -> None:
+        pass
+
+    @abstractmethod
+    def select(self, locator: Text, text: Text, whetherWait: bool = True) -> None:
+        pass
+
+    @abstractmethod
+    def get_selected(self, locator: Text, whetherWait: bool = True) -> Text:
+        pass
+
+    # 获取下拉框中所有的选项
+    @abstractmethod
+    def get_options(self, locator: Text, whetherWait: bool = True) -> List[Text]:
+        pass
