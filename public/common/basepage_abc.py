@@ -113,3 +113,27 @@ class BasePageABC(ABC):
     @abstractmethod
     def get_options(self, locator: Text, whetherWait: bool = True) -> List[Text]:
         pass
+
+    @abstractmethod
+    def assert_text(self, locator: Text, text: Text, whetherWait: bool = True) -> None:
+        pass
+
+    @abstractmethod
+    def assert_text_contains(self, locator: Text, expected_text: Text, whetherWait: bool = True) -> None:
+        pass
+
+    @abstractmethod
+    def submit(self, locator: Text, whetherWait: bool = True) -> None:
+        pass
+
+    @abstractmethod
+    def execute_script(self, script: Text) -> None:
+        pass
+
+    @abstractmethod
+    def accept_alert(self) -> None:
+        pass
+
+    @abstractmethod
+    def take_screenshot(self) -> None:
+        pass

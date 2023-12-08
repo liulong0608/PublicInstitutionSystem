@@ -1,0 +1,67 @@
+2023-12-08 22:32:48 - MainProcess | MainThread | base_page.__init__:45 - SUCCESS -Start a new browser: chrome, Spend 1.9117531776428223 seconds.
+2023-12-08 22:32:48 - MainProcess | MainThread | base_page.open_url:57 - SUCCESS -Navigated to https://www.baidu.com.
+2023-12-08 22:32:48 - MainProcess | MainThread | base_page.input:195 - SUCCESS -Input 'selenium' to id->kw, Spend 0.29059934616088867 seconds.
+2023-12-08 22:32:49 - MainProcess | MainThread | base_page.click:178 - SUCCESS -Click element id->su, Spend 0.07415461540222168 seconds.
+2023-12-08 22:32:49 - MainProcess | MainThread | base_page.get_text:245 - SUCCESS -Get text:  from id->su, Spend 0.020999908447265625 seconds.
+2023-12-08 22:36:49 - MainProcess | MainThread | base_page.__init__:45 - SUCCESS -Start a new browser: chrome, Spend 1.2760608196258545 seconds.
+2023-12-08 22:36:49 - MainProcess | MainThread | base_page.open_url:57 - SUCCESS -Navigated to https://www.baidu.com.
+2023-12-08 22:36:50 - MainProcess | MainThread | base_page.input:195 - SUCCESS -Input 'selenium' to id->kw, Spend 0.2922093868255615 seconds.
+2023-12-08 22:36:50 - MainProcess | MainThread | base_page.click:178 - SUCCESS -Click element id->su, Spend 0.07000017166137695 seconds.
+2023-12-08 22:36:50 - MainProcess | MainThread | base_page.get_text:245 - SUCCESS -Get text:  from id->su, Spend 0.02101302146911621 seconds.
+2023-12-08 22:37:59 - MainProcess | MainThread | base_page.__init__:45 - SUCCESS -Start a new browser: chrome, Spend 1.3805396556854248 seconds.
+2023-12-08 22:38:00 - MainProcess | MainThread | base_page.open_url:57 - SUCCESS -Navigated to https://www.baidu.com.
+2023-12-08 22:38:00 - MainProcess | MainThread | base_page.input:195 - SUCCESS -Input 'selenium' to id->kw, Spend 0.2768881320953369 seconds.
+2023-12-08 22:38:00 - MainProcess | MainThread | base_page.click:178 - SUCCESS -Click element id->su, Spend 0.08318042755126953 seconds.
+2023-12-08 22:38:00 - MainProcess | MainThread | base_page.get_text:245 - SUCCESS -Get text: 【】 from id->su, Spend 0.03312349319458008 seconds.
+2023-12-08 22:39:12 - MainProcess | MainThread | base_page.__init__:45 - SUCCESS -Start a new browser: chrome, Spend 1.405285120010376 seconds.
+2023-12-08 22:39:12 - MainProcess | MainThread | base_page.open_url:57 - SUCCESS -Navigated to https://www.baidu.com.
+2023-12-08 22:39:12 - MainProcess | MainThread | base_page.input:195 - SUCCESS -Input 'selenium' to id->kw, Spend 0.2737424373626709 seconds.
+2023-12-08 22:39:13 - MainProcess | MainThread | base_page.click:178 - SUCCESS -Click element id->su, Spend 0.07999944686889648 seconds.
+2023-12-08 22:39:13 - MainProcess | MainThread | base_page.get_text:245 - SUCCESS -Get text: 【】 from id->su, Spend 0.028008222579956055 seconds.
+2023-12-08 22:39:13 - MainProcess | MainThread | base_page.assert_text:413 - ERROR -Actual text '' does not match expected text '百度一下，你就知道'
+2023-12-08 22:42:02 - MainProcess | MainThread | base_page.__init__:45 - SUCCESS -Start a new browser: chrome, Spend 1.208245038986206 seconds.
+2023-12-08 22:42:02 - MainProcess | MainThread | base_page.open_url:57 - SUCCESS -Navigated to https://www.baidu.com.
+2023-12-08 22:42:02 - MainProcess | MainThread | base_page.input:195 - SUCCESS -Input 'selenium' to id->kw, Spend 0.28563952445983887 seconds.
+2023-12-08 22:42:02 - MainProcess | MainThread | base_page.click:178 - SUCCESS -Click element id->su, Spend 0.09062314033508301 seconds.
+2023-12-08 22:42:02 - MainProcess | MainThread | base_page.get_text:245 - SUCCESS -Get text: 【】 from id->su, Spend 0.028998851776123047 seconds.
+2023-12-08 22:42:02 - MainProcess | MainThread | base_page.assert_text:413 - ERROR -Actual text '' does not match expected text '百度一下，你就知道'
+2023-12-08 22:42:02 - MainProcess | MainThread | exceptions.__init__:15 - ERROR -Actual text '' does not match expected text '百度一下，你就知道'
+2023-12-08 22:42:39 - MainProcess | MainThread | base_page.__init__:45 - SUCCESS -Start a new browser: chrome, Spend 1.159132719039917 seconds.
+2023-12-08 22:42:39 - MainProcess | MainThread | base_page.open_url:57 - SUCCESS -Navigated to https://www.baidu.com.
+2023-12-08 22:42:39 - MainProcess | MainThread | base_page.input:195 - SUCCESS -Input 'selenium' to id->kw, Spend 0.26575589179992676 seconds.
+2023-12-08 22:42:40 - MainProcess | MainThread | base_page.click:178 - SUCCESS -Click element id->su, Spend 0.0697488784790039 seconds.
+2023-12-08 22:42:40 - MainProcess | MainThread | base_page.get_text:245 - SUCCESS -Get text: 【】 from id->su, Spend 0.022999286651611328 seconds.
+2023-12-08 22:42:40 - MainProcess | MainThread | base_page.assert_text:413 - ERROR -Actual text '' does not match expected text '百度一下，你就知道'
+2023-12-08 22:43:51 - MainProcess | MainThread | base_page.__init__:45 - SUCCESS -Start a new browser: chrome, Spend 1.3497333526611328 seconds.
+2023-12-08 22:43:52 - MainProcess | MainThread | base_page.open_url:57 - SUCCESS -Navigated to https://www.baidu.com.
+2023-12-08 22:43:52 - MainProcess | MainThread | base_page.input:195 - SUCCESS -Input 'selenium' to id->kw, Spend 0.3214304447174072 seconds.
+2023-12-08 22:43:52 - MainProcess | MainThread | base_page.click:178 - SUCCESS -Click element id->su, Spend 0.07236218452453613 seconds.
+2023-12-08 22:43:52 - MainProcess | MainThread | base_page.get_text:245 - SUCCESS -Get text: '' from id->su, Spend 0.022603273391723633 seconds.
+2023-12-08 22:43:52 - MainProcess | MainThread | base_page.assert_text:413 - ERROR -Actual text '' does not match expected text '百度一下，你就知道'
+2023-12-08 22:44:30 - MainProcess | MainThread | base_page.__init__:45 - SUCCESS -Start a new browser: chrome, Spend 1.1921377182006836 seconds.
+2023-12-08 22:44:31 - MainProcess | MainThread | base_page.open_url:57 - SUCCESS -Navigated to https://www.baidu.com.
+2023-12-08 22:44:31 - MainProcess | MainThread | base_page.input:195 - SUCCESS -Input 'selenium' to id->kw, Spend 0.2683677673339844 seconds.
+2023-12-08 22:44:31 - MainProcess | MainThread | base_page.click:178 - SUCCESS -Click element id->su, Spend 0.08800435066223145 seconds.
+2023-12-08 22:44:31 - MainProcess | MainThread | base_page.get_text:245 - SUCCESS -Get text: '' from id->su, Spend 0.02803778648376465 seconds.
+2023-12-08 22:44:31 - MainProcess | MainThread | base_page.assert_text:413 - ERROR -Actual text '' does not match expected text '百度一下'
+2023-12-08 22:55:27 - MainProcess | MainThread | base_page.__init__:46 - SUCCESS -Start a new browser: chrome, Spend 1.2822191715240479 seconds.
+2023-12-08 22:55:27 - MainProcess | MainThread | base_page.open_url:58 - SUCCESS -Navigated to https://www.baidu.com.
+2023-12-08 22:55:28 - MainProcess | MainThread | base_page.input:196 - SUCCESS -Input 'selenium' to id->kw, Spend 0.2849445343017578 seconds.
+2023-12-08 22:55:28 - MainProcess | MainThread | base_page.click:179 - SUCCESS -Click element id->su, Spend 0.06599974632263184 seconds.
+2023-12-08 22:55:28 - MainProcess | MainThread | base_page.get_text:246 - SUCCESS -Get text: '' from id->su, Spend 0.031113624572753906 seconds.
+2023-12-08 22:55:28 - MainProcess | MainThread | base_page.assert_text:414 - ERROR -Actual text '' does not match expected text '百度一下'
+2023-12-08 22:55:28 - MainProcess | MainThread | base_page.take_screenshot:500 - SUCCESS -Get the current window screenshot,path: D:\PublicInstitutionSystem\report\image\screenshot_20231208-225528.png, Spend 0.0 seconds.
+2023-12-08 22:57:27 - MainProcess | MainThread | base_page.__init__:46 - SUCCESS -Start a new browser: chrome, Spend 1.1363496780395508 seconds.
+2023-12-08 22:57:27 - MainProcess | MainThread | base_page.open_url:58 - SUCCESS -Navigated to https://www.baidu.com.
+2023-12-08 22:57:28 - MainProcess | MainThread | base_page.input:196 - SUCCESS -Input 'selenium' to id->kw, Spend 0.280703067779541 seconds.
+2023-12-08 22:57:28 - MainProcess | MainThread | base_page.click:179 - SUCCESS -Click element id->su, Spend 0.07999801635742188 seconds.
+2023-12-08 22:57:28 - MainProcess | MainThread | base_page.get_text:246 - SUCCESS -Get text: '' from id->su, Spend 0.02301311492919922 seconds.
+2023-12-08 22:57:28 - MainProcess | MainThread | base_page.assert_text:414 - ERROR -Actual text '' does not match expected text '百度一下'
+2023-12-08 22:57:28 - MainProcess | MainThread | base_page.take_screenshot:500 - SUCCESS -Get the current window screenshot,path: D:\PublicInstitutionSystem\report\image\screenshot_20231208-225728.png, Spend 0.0 seconds.
+2023-12-08 22:58:19 - MainProcess | MainThread | base_page.__init__:46 - SUCCESS -Start a new browser: chrome, Spend 0.934906005859375 seconds.
+2023-12-08 22:58:20 - MainProcess | MainThread | base_page.open_url:58 - SUCCESS -Navigated to https://www.baidu.com.
+2023-12-08 22:58:20 - MainProcess | MainThread | base_page.input:196 - SUCCESS -Input 'selenium' to id->kw, Spend 0.27469825744628906 seconds.
+2023-12-08 22:58:20 - MainProcess | MainThread | base_page.click:179 - SUCCESS -Click element id->su, Spend 0.08999943733215332 seconds.
+2023-12-08 22:58:20 - MainProcess | MainThread | base_page.get_text:246 - SUCCESS -Get text: '' from id->su, Spend 0.025667905807495117 seconds.
+2023-12-08 22:58:20 - MainProcess | MainThread | base_page.assert_text:414 - ERROR -Actual text '' does not match expected text '百度一下'
+2023-12-08 22:58:20 - MainProcess | MainThread | base_page.take_screenshot:501 - SUCCESS -Get the current window screenshot,path: D:\PublicInstitutionSystem\report\image\screenshot_20231208-225820.png, Spend 0.07363772392272949 seconds.

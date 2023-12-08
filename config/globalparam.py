@@ -12,7 +12,7 @@ from public.common.readconfig import ReadConfig
 # 项目根路径
 prj_path = os.path.dirname(os.path.split(os.path.realpath(__file__))[0])
 # 日志路径
-log_path = os.path.join(prj_path, 'report', 'log', 'run.log')
+log_path = os.path.join(prj_path, 'report', 'logs', 'run.log')
 # 截图文件路径
 img_path = os.path.join(prj_path, 'report', 'image')
 # 测试报告路径
@@ -25,3 +25,5 @@ driver_path = os.path.join(prj_path, 'config', 'chromedriver.exe')
 file_path = os.path.join(prj_path, 'data', '附件示例.png')  # 输出：D:\PublicInstitutionSystem\data
 # 测试数据路径
 data_path = os.path.join(prj_path, 'data', 'testdata')
+# 测试截图
+screenshot_path = os.path.join(prj_path, 'report', 'image')

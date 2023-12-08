@@ -46,8 +46,14 @@ class NoSuchElementException(BaseFailure):
 class TimeoutException(BaseFailure):
     pass
 
+
 class ElementNotInteractableException(BaseFailure):
     pass
 
+
 class ElementNotSelectableException(BaseFailure):
+    pass
+
+
+class AssertionError(BaseFailure):
     pass
