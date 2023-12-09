@@ -14,9 +14,7 @@ from config import globalparam
 
 
 def run():
-    test_dir = './testcase'
-    suite = unittest.defaultTestLoader.discover(start_dir=test_dir, pattern='test*.py')
-
+    suite = unittest.defaultTestLoader.discover(start_dir=globalparam.case_path, pattern='test*.py')
     now = time.strftime('%Y-%m-%d')
     reportname = globalparam.report_path + '\\' + 'TestResult' + now + '.html'
     with open(reportname, 'w', encoding='utf-8') as f:

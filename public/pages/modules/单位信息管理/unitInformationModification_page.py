@@ -25,13 +25,12 @@ class UnitInformationModificationPage(BasePage):
                                            publicInstitutionIndustry, defaultSurveyStandard, sourceOfFunds
                                            ):
 
-        self.open('http://192.168.2.194/console/home')  # 打开控制台
-        self.click(dwxxgl_loc)  # 点击单位信息管理
-        time.sleep(3)
+        self.open_url('http://192.168.2.194/console/home')  # 打开控制台
+        self.click(dwxxgl_loc, True)  # 点击单位信息管理
         # 因为单位比较多，为了方便先进行单位搜索
-        self.send_keys(query_loc, grassrootsUnitsID)  # 搜索单位
-        self.click(queryBtn_loc)  # 点击查询按钮
-        time.sleep(2)
+        self.input(query_loc, grassrootsUnitsID)  # 搜索单位
+        self.click(queryBtn_loc)  #
+        self.assert_text(dw_loc, newGrassrootsUnitsID)
         self.click(dw_loc)  # 选择单位
         self.click(dwxxBtn_loc)  # 点击单位信息管理
 
@@ -46,7 +45,7 @@ class UnitInformationModificationPage(BasePage):
         }
         for loc, value in fields.items():
             if value is not None:
-                self.clear_type(loc, value)
+                self.clear_and_input(loc, value)
             else:
                 pass
         self.htmlSelect(czgy_loc, financialSupport)  # 修改财政供养
@@ -58,7 +57,7 @@ class UnitInformationModificationPage(BasePage):
         self.htmlSelect(dwjb_loc, unitLevel)  # 选择单位级别
         if whetherManager == '否':
             self.click(no_zg_loc)  # 选择是否主管单位
-            self.send_keys(query_zgdw_loc, competentUnit)
+            self.input(query_zgdw_loc, competentUnit)
             self.htmlSelect(zgdw_loc, competentUnit)  # 选择主管单位
         elif whetherManager == '是':
             self.click(is_zg_loc)
@@ -77,18 +76,18 @@ class UnitInformationModificationPage(BasePage):
 
         if unitProperty == '事业单位' and enforceTheWageSystem == '事业单位工资制度':
             self.htmlSelect(sydwlx_loc, typeOfPublicInstitution)  # 事业单位类型
-            self.send_keys(sydwhy_loc, publicInstitutionIndustry)  # 事业单位行业
+            self.input(sydwhy_loc, publicInstitutionIndustry)  # 事业单位行业
             self.click(f'xpath->//nz-tree-node-title[@title="{publicInstitutionIndustry}"]')
             self.htmlSelect(sfdkdw_loc, defaultSurveyStandard)  # 是否地勘单位
             self.htmlSelect(jfly_loc,  sourceOfFunds)  # 经费来源
         elif unitProperty == '参公单位' and enforceTheWageSystem == '机关工资制度' or enforceTheWageSystem == '机关、事业两种制度并存':
             self.htmlSelect(sydwlx_loc, typeOfPublicInstitution)  # 事业单位类型
-            self.send_keys(sydwhy_loc, publicInstitutionIndustry)  # 事业单位行业
+            self.input(sydwhy_loc, publicInstitutionIndustry)  # 事业单位行业
         elif unitProperty == '机关服务中心' and enforceTheWageSystem == '机关、事业两种制度并存':
             self.htmlSelect(sydwlx_loc, typeOfPublicInstitution)  # 事业单位类型
-            self.send_keys(sydwhy_loc, publicInstitutionIndustry)  # 事业单位行业
+            self.input(sydwhy_loc, publicInstitutionIndustry)  # 事业单位行业
             self.htmlSelect(jfly_loc,  sourceOfFunds)  # 经费来源
         else:
             pass
         self.click(dwjcxx_saveBtn_loc)  # 点击保存
-        self.fuzzy_assert('保存成功，稍后请在单位信息查看', sava_msg_loc)
+        self.assert_text('保存成功，稍后请在单位信息查看', sava_msg_loc)

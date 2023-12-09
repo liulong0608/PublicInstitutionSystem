@@ -65,3 +65,10 @@
 2023-12-08 22:58:20 - MainProcess | MainThread | base_page.get_text:246 - SUCCESS -Get text: '' from id->su, Spend 0.025667905807495117 seconds.
 2023-12-08 22:58:20 - MainProcess | MainThread | base_page.assert_text:414 - ERROR -Actual text '' does not match expected text '百度一下'
 2023-12-08 22:58:20 - MainProcess | MainThread | base_page.take_screenshot:501 - SUCCESS -Get the current window screenshot,path: D:\PublicInstitutionSystem\report\image\screenshot_20231208-225820.png, Spend 0.07363772392272949 seconds.
+2023-12-09 23:36:58 - MainProcess | MainThread | base_util.setUp:25 - INFO -############################### START ###############################
+2023-12-09 23:37:00 - MainProcess | MainThread | base_page.__init__:46 - SUCCESS -Start a new browser: chrome, Spend 1.680046558380127 seconds.
+2023-12-09 23:37:00 - MainProcess | MainThread | base_page.max_window:69 - SUCCESS -Maximized the window.
+2023-12-09 23:37:29 - MainProcess | MainThread | base_page.open_url:58 - SUCCESS -Navigated to http://192.168.2.194/console/login.
+2023-12-09 23:37:29 - MainProcess | MainThread | base_util.setUp:25 - INFO -############################### START ###############################
+2023-12-09 23:37:31 - MainProcess | MainThread | base_page.__init__:46 - SUCCESS -Start a new browser: chrome, Spend 1.3103020191192627 seconds.
+2023-12-09 23:37:31 - MainProcess | MainThread | base_page.max_window:69 - SUCCESS -Maximized the window.

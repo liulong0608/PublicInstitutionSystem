@@ -17,6 +17,8 @@ log_path = os.path.join(prj_path, 'report', 'logs', 'run.log')
 img_path = os.path.join(prj_path, 'report', 'image')
 # 测试报告路径
 report_path = os.path.join(prj_path, 'report', 'testreport')
+# 测试用例路径
+case_path = os.path.join(prj_path, 'testcase')
 # 默认浏览器
 browser = 'Chrome'
 # 浏览器驱动路径
