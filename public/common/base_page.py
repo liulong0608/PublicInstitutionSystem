@@ -502,6 +502,22 @@ class BasePage(BasePageABC):
         except Exception:
             raise Exception(f"Unable to take screenshot, Spend {time.time() - t1} seconds.")
 
+    def htmlSelect(self, select_locator: Text, option_locator: Text, whetherWait: bool = True) -> None:
+        """
+        特殊下拉框
+        :param select_locator: 下拉框元素路径
+        :param option_locator: 选项元素路径
+        :param whetherWait: 是否等待
+        :return:
+        """
+        t1 = time.time()
+        try:
+            self.click(select_locator, whetherWait)
+            self.click(f"xpath->//nz-option-item[@title='{option_locator}']", whetherWait)
+            self.log.success(f"Special select option: {option_locator} from {select_locator}, Spend {time.time() - t1} seconds.")
+        except Exception:
+            raise Exception(f"Unable to select option: {option_locator} from {select_locator}, Spend {time.time() - t1} seconds.")
+
     @staticmethod
     def by_value(locator: Text) -> Tuple[Text, Text]:
         """
