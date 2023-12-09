@@ -7,16 +7,14 @@
 # @editsession      2023/6/9
 # @Software:        PyCharm
 # ====/******/=====
-import unittest
 
 from ddt import ddt, data
 from public.common.datainfo import get_xls_to_dict
 from public.common.base_util import BaseUtil
-from public.pages.makeUnit_page import MakeUnitPage
 from public.pages.personnelAdd_page import *
-from scripts.RandomlyGeneratePersonnelInformation import *
-from public.pages.unitInformationModification_page import UnitInformationModificationPage
-from scripts.social_unified_creditcode.succ_utils.sucreditcode import generateUnifiedSocialCreditCode
+from utils.RandomlyGeneratePersonnelInformation import *
+from public.pages.modules.informationManagement.unitInformationModification_page import UnitInformationModificationPage
+from utils.social_unified_creditcode.succ_utils.sucreditcode import generateUnifiedSocialCreditCode
 
 
 

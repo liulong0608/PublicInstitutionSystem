@@ -8,23 +8,22 @@
 # @Software:        PyCharm
 # ====/******/=====
 import os
-import time
-
 from public.common.readconfig import ReadConfig
-
-# 读取配置文件
-config_file_path = os.path.split(os.path.realpath(__file__))[0]
-read_config = ReadConfig(os.path.join(config_file_path, 'config.ini'))
-# 项目参数设置
-prj_path = read_config.getValue('projectConfig', 'project_path')
+# 项目根路径
+prj_path = os.path.dirname(os.path.split(os.path.realpath(__file__))[0])
 # 日志路径
-log_path = os.path.join(prj_path, 'report', 'logs', f'UiTest_{time.strftime("%Y-%m-%d")}.log')
+log_path = os.path.join(prj_path, 'report', 'logs', 'run.log')
 # 截图文件路径
 img_path = os.path.join(prj_path, 'report', 'image')
 # 测试报告路径
 report_path = os.path.join(prj_path, 'report', 'testreport')
 # 默认浏览器
-browser = 'Chrome1'
-
+browser = 'Chrome'
+# 浏览器驱动路径
+driver_path = os.path.join(prj_path, 'config', 'chromedriver.exe')
+# 附件地址
+file_path = os.path.join(prj_path, 'data', '附件示例.png')  # 输出：D:\PublicInstitutionSystem\data
 # 测试数据路径
 data_path = os.path.join(prj_path, 'data', 'testdata')
+# 测试截图
+screenshot_path = os.path.join(prj_path, 'report', 'image')

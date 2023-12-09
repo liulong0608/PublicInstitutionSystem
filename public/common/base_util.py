@@ -11,7 +11,7 @@ import time
 import unittest
 from public.common import base_page
 from config import globalparam
-from public.common.log import Log
+from public.common.log import LoguruLogger
 from public.pages import *
 
 
@@ -21,12 +21,12 @@ class BaseUtil(unittest.TestCase):
     """
 
     def setUp(self):
-        self.logger = Log()
+        self.logger = LoguruLogger().get_logger()
         self.logger.info('############################### START ###############################')
         self.driver = base_page.BasePage(globalparam.browser)
         self.driver.max_window()
         self.driver.open('http://192.168.2.194/console/login')
-        self.driver.send_keys(login_username, '888')
+        self.driver.send_keys(login_username, '3men0001')
         self.driver.send_keys(login_password, 'Aa123456')
         self.driver.send_keys(verifyCode, 'abcd')
         self.driver.click(login_btn)

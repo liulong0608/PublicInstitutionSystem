@@ -15,12 +15,12 @@ from config import globalparam
 from public.common.base_page import BasePage
 from public.pages import *
 
-TYSHXYID = '9153262422416699BG'
+TYSHXYID = 'test011'
 
 
 class PersonnelAddPage(BasePage):
 
-    def preposition(self, grassrootsUnitsID = TYSHXYID):
+    def preposition(self, grassrootsUnitsID=TYSHXYID):
         self.open('http://192.168.2.194/console/home')  # 打开控制台
         time.sleep(1)
         self.click(glbBtn_loc)  # 点击管理版

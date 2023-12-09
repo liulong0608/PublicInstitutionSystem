@@ -29,3 +29,31 @@ class UnsupportedBrowserException(BaseFailure):
 
 class NameError(BaseFailure):
     pass
+
+
+class TypeError(BaseFailure):
+    pass
+
+
+class ValueError(BaseFailure):
+    pass
+
+
+class NoSuchElementException(BaseFailure):
+    pass
+
+
+class TimeoutException(BaseFailure):
+    pass
+
+
+class ElementNotInteractableException(BaseFailure):
+    pass
+
+
+class ElementNotSelectableException(BaseFailure):
+    pass
+
+
+class AssertionError(BaseFailure):
+    pass
