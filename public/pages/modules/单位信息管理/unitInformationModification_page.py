@@ -13,7 +13,6 @@ from selenium.webdriver.common.by import By
 
 from config import globalparam
 from public.common.base_page import BasePage
-from public.pages import *
 
 
 class UnitInformationModificationPage(BasePage):
@@ -29,6 +28,43 @@ class UnitInformationModificationPage(BasePage):
                                            typeOfPublicInstitution,
                                            publicInstitutionIndustry, defaultSurveyStandard, sourceOfFunds
                                            ):
+
+        dwxxgl_loc = 'css->.ant-card:nth-child(3) .home_auto_btn__LBhkK:nth-child(2)'
+        query_loc = 'name->queryStr'
+        queryBtn_loc = 'xpath->//div[@class="ant-row"]/nz-form-item[7]/nz-form-control/div/div/nz-button-group/button[1]'
+        dw_loc = 'xpath->//tbody[@class="ant-table-tbody"]/tr[2]/td[2]'
+        dwxxBtn_loc = 'xpath->//div[@class="btn"]/button[1]'
+        tyshxydm_loc = 'xpath->//input[@formcontrolname="organizationCode"]'
+        dwmc_loc = 'xpath->//input[@formcontrolname="organizationName"]'
+        dwfzr_loc = 'xpath->//input[@formcontrolname="head"]'
+        dwdh_loc = 'xpath->//input[@formcontrolname="telephone"]'
+        dwdz_loc = 'xpath->//input[@formcontrolname="address"]'
+        yb_loc = 'xpath->//input[@formcontrolname="zipCode"]'
+        czgy_loc = 'xpath->//nz-select[@formcontrolname="financialSupportType"]'
+        cztf_loc = 'xpath->//nz-select[@formcontrolname="financialPaymentType"]'
+        dwczbm_loc = 'xpath->//input[@formcontrolname="financialCode"]'
+        tfryglBtn_loc = 'xpath->////div[@class="ant-tabs-content-holder"]/div/div/lib-unit-basis/div/div[2]/lib-fiscal/form/nz-form-item[3]/nz-form-control/div/div/button'
+        dwxz_loc = 'xpath->//nz-select[@formcontrolname="organizationTypeId"]'
+        zxgzzd_loc = 'xpath->//nz-select[@formcontrolname="salarySystemType"]'
+        dwjb_loc = 'xpath->//nz-select[@formcontrolname="gradeId"]'
+        is_zg_loc = 'xpath->//nz-radio-group[@formcontrolname="supervisor"]/label[1]/span[1]/input'
+        no_zg_loc = 'xpath->//nz-radio-group[@formcontrolname="supervisor"]/label[2]/span[1]/input'
+        query_zgdw_loc = 'xpath->//nz-select[@formcontrolname="supervisorOrganizationId"]/nz-select-top-control/nz-select-search/input'
+        zgdw_loc = 'xpath->//nz-select[@formcontrolname="supervisorOrganizationId"]'
+        shlc_loc = 'xpath->//nz-select[@formcontrolname="auditProcess"]'
+        jblb_loc = 'xpath->//nz-select[@formcontrolname="hardshipAreaTypeId"]'
+        gwygfjtzd_loc = 'xpath->//lib-cascader-wrap[@formcontrolname="subsidyStandardTypeLocaleId"]'
+        lsgx_loc = 'xpath->//nz-select[@formcontrolname="subordinationCodeId"]'
+        dwzd_loc = 'xpath->//lib-cascader-wrap[@formcontrolname="localeId"]'
+        pjhb_loc = 'xpath->//nz-select[@formcontrolname="localeAverageElevationId"]'
+        zdhb_loc = 'xpath->//nz-select[@formcontrolname="localeElevationId"]'
+        sydwlx_loc = 'xpath->//nz-select[@formcontrolname="institutionTypeId"]'
+        sydwhy_loc = 'xpath->//nz-tree-select[@formcontrolname="institutionIndustryId"]/div/nz-select-search/input'
+        sfdkdw_loc = 'xpath->//nz-select[@formcontrolname="defaultSurveyStandard"]'
+        jfly_loc = 'xpath->//nz-select[@formcontrolname="financialSourceTypeId"]'
+        dwjcxx_saveBtn_loc = 'xpath->//div[@class="ant-tabs-content-holder"]/div/div/lib-unit-basis/button'
+        sava_msg_loc = 'css->.ant-message span'
+
         self.open_url('http://192.168.2.209/console/home')  # 打开控制台
         self.click(dwxxgl_loc)  # 点击单位信息管理
         # 因为单位比较多，为了方便先进行单位搜索
@@ -54,8 +90,7 @@ class UnitInformationModificationPage(BasePage):
         #         pass
 
         self.clear_and_input(tyshxydm_loc, newGrassrootsUnitsID)  # 修改统一社会信用代码
-        self.clear_and_input(dwmc_loc, "测试danw")  # 修改单位名称
-        # self.input(dwmc_loc, unitName)
+        self.clear_and_input(dwmc_loc, unitName)  # 修改单位名称
         self.clear_and_input(dwfzr_loc, headOfUnit)  # 修改单位负责人
         self.clear_and_input(dwdh_loc, officeTel)  # 修改单位电话
         self.clear_and_input(dwdz_loc, unitAddress)  # 修改单位地址

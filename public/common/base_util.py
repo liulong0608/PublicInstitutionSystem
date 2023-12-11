@@ -16,6 +16,12 @@ from public.common.log import Log
 from public.pages import *
 from public.common import browser
 
+login_username = 'id->username'
+login_password = 'id->password'
+verifyCode = 'id->captcha'
+login_btn = 'xpath->//*[@id="root"]/div/div[2]/div[1]/div/form/div[5]/div/div/div/div/button'
+asert_text = 'css->.home_personTitle__cQ0jt'
+
 
 class BaseUtil(unittest.TestCase, BasePage):
     """
@@ -30,7 +36,7 @@ class BaseUtil(unittest.TestCase, BasePage):
         self.open_url('http://192.168.2.209/console/login')
         self.input(login_username, '888')
         self.input(login_password, 'Aa123456')
-        self.input(verifyCode, '1abcd')
+        self.input(verifyCode, 'abcd')
         self.click(login_btn)
         time.sleep(1.5)
 

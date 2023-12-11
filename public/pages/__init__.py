@@ -8,11 +8,7 @@
 # @Software:        PyCharm
 # ====/******/=====
 # 登录
-login_username = 'id->username'
-login_password = 'id->password'
-verifyCode = 'id->captcha'
-login_btn = 'xpath->//*[@id="root"]/div/div[2]/div[1]/div/form/div[5]/div/div/div/div/button'
-asert_text = 'css->.home_personTitle__cQ0jt'
+
 
 # 新建单位
 makeUnit_btn_loc = 'xpath->//*[@id="root"]/section/section/main/div[1]/div[3]/div/div/div[2]/div[1]'
@@ -107,40 +103,3 @@ cjmcDate_loc = 'xpath->//lib-date-input[@formcontrolname="rankingDate"]/div/nz-i
 
 # 新增机关普通工人
 
-# 单位基础信息修改
-dwxxgl_loc = 'css->.ant-card:nth-child(3) .home_auto_btn__LBhkK:nth-child(2)'
-query_loc = 'name->queryStr'
-queryBtn_loc = 'xpath->//div[@class="ant-row"]/nz-form-item[7]/nz-form-control/div/div/nz-button-group/button[1]'
-dw_loc = 'xpath->//tbody[@class="ant-table-tbody"]/tr[2]/td[2]'
-dwxxBtn_loc = 'xpath->//div[@class="btn"]/button[1]'
-tyshxydm_loc = 'xpath->//input[@formcontrolname="organizationCode"]'
-dwmc_loc = 'xpath->//input[@formcontrolname="organizationName"]'
-dwfzr_loc = 'xpath->//input[@formcontrolname="head"]'
-dwdh_loc = 'xpath->//input[@formcontrolname="telephone"]'
-dwdz_loc = 'xpath->//input[@formcontrolname="address"]'
-yb_loc = 'xpath->//input[@formcontrolname="zipCode"]'
-czgy_loc = 'xpath->//nz-select[@formcontrolname="financialSupportType"]'
-cztf_loc = 'xpath->//nz-select[@formcontrolname="financialPaymentType"]'
-dwczbm_loc = 'xpath->//input[@formcontrolname="financialCode"]'
-tfryglBtn_loc = 'xpath->////div[@class="ant-tabs-content-holder"]/div/div/lib-unit-basis/div/div[2]/lib-fiscal/form/nz-form-item[3]/nz-form-control/div/div/button'
-dwxz_loc = 'xpath->//nz-select[@formcontrolname="organizationTypeId"]'
-zxgzzd_loc = 'xpath->//nz-select[@formcontrolname="salarySystemType"]'
-dwjb_loc = 'xpath->//nz-select[@formcontrolname="gradeId"]'
-is_zg_loc = 'xpath->//nz-radio-group[@formcontrolname="supervisor"]/label[1]/span[1]/input'
-no_zg_loc = 'xpath->//nz-radio-group[@formcontrolname="supervisor"]/label[2]/span[1]/input'
-query_zgdw_loc = 'xpath->//nz-select[@formcontrolname="supervisorOrganizationId"]/nz-select-top-control/nz-select-search/input'
-zgdw_loc = 'xpath->//nz-select[@formcontrolname="supervisorOrganizationId"]'
-shlc_loc = 'xpath->//nz-select[@formcontrolname="auditProcess"]'
-jblb_loc = 'xpath->//nz-select[@formcontrolname="hardshipAreaTypeId"]'
-gwygfjtzd_loc = 'xpath->//lib-cascader-wrap[@formcontrolname="subsidyStandardTypeLocaleId"]'
-lsgx_loc = 'xpath->//nz-select[@formcontrolname="subordinationCodeId"]'
-dwzd_loc = 'xpath->//lib-cascader-wrap[@formcontrolname="localeId"]'
-pjhb_loc = 'xpath->//nz-select[@formcontrolname="localeAverageElevationId"]'
-zdhb_loc = 'xpath->//nz-select[@formcontrolname="localeElevationId"]'
-sydwlx_loc = 'xpath->//nz-select[@formcontrolname="institutionTypeId"]'
-sydwhy_loc = 'xpath->//nz-tree-select[@formcontrolname="institutionIndustryId"]/div/nz-select-search/input'
-sfdkdw_loc = 'xpath->//nz-select[@formcontrolname="defaultSurveyStandard"]'
-jfly_loc = 'xpath->//nz-select[@formcontrolname="financialSourceTypeId"]'
-
-dwjcxx_saveBtn_loc = 'xpath->//div[@class="ant-tabs-content-holder"]/div/div/lib-unit-basis/button'
-sava_msg_loc = 'css->.ant-message span'
