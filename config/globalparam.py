@@ -8,11 +8,13 @@
 # @Software:        PyCharm
 # ====/******/=====
 import os
+import time
+
 from public.common.readconfig import ReadConfig
 # 项目根路径
 prj_path = os.path.dirname(os.path.split(os.path.realpath(__file__))[0])
 # 日志路径
-log_path = os.path.join(prj_path, 'report', 'logs', 'run.log')
+log_path = os.path.join(prj_path, 'report', 'logs', f'{time.strftime("%Y%m%d")}_run.log')
 # 截图文件路径
 img_path = os.path.join(prj_path, 'report', 'image')
 # 测试报告路径
