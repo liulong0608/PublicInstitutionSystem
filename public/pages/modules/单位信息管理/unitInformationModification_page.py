@@ -8,12 +8,16 @@
 # @Software:        PyCharm
 # ====/******/=====
 import time
+
+from selenium.webdriver.common.by import By
+
 from config import globalparam
 from public.common.base_page import BasePage
 from public.pages import *
 
 
 class UnitInformationModificationPage(BasePage):
+
     # 单位基础信息修改
     def modification_unit_base_information(self, grassrootsUnitsID, newGrassrootsUnitsID, unitName, headOfUnit,
                                            officeTel,
@@ -21,12 +25,12 @@ class UnitInformationModificationPage(BasePage):
                                            unitFinancialCode, unitProperty, enforceTheWageSystem, unitLevel,
                                            whetherManager,
                                            competentUnit, auditProcess, difficultCategory, subsidyStandardTypeArea,
-                                           membership, unitStation, meanAltitude, stationElevation, typeOfPublicInstitution,
+                                           membership, unitStation, meanAltitude, stationElevation,
+                                           typeOfPublicInstitution,
                                            publicInstitutionIndustry, defaultSurveyStandard, sourceOfFunds
                                            ):
-
-        self.open_url('http://192.168.2.194/console/home')  # 打开控制台
-        self.click(dwxxgl_loc, True)  # 点击单位信息管理
+        self.open_url('http://192.168.2.209/console/home')  # 打开控制台
+        self.click(dwxxgl_loc)  # 点击单位信息管理
         # 因为单位比较多，为了方便先进行单位搜索
         self.input(query_loc, grassrootsUnitsID)  # 搜索单位
         self.click(queryBtn_loc)  #
@@ -34,20 +38,29 @@ class UnitInformationModificationPage(BasePage):
         self.click(dw_loc)  # 选择单位
         self.click(dwxxBtn_loc)  # 点击单位信息管理
 
-        fields = {
-            tyshxydm_loc: newGrassrootsUnitsID,  # 修改统一社会信用代码
-            dwmc_loc: unitName,  # 修改单位名称
-            dwfzr_loc: headOfUnit,  # 修改单位负责人
-            dwdh_loc: officeTel,  # 修改单位电话
-            dwdz_loc: unitAddress,  # 修改单位地址
-            yb_loc: postcode,  # 修改邮编
-            dwczbm_loc: unitFinancialCode,  # 修改单位财政编码
-        }
-        for loc, value in fields.items():
-            if value is not None:
-                self.clear_and_input(loc, value)
-            else:
-                pass
+        # fields = {
+        #     tyshxydm_loc: newGrassrootsUnitsID,  # 修改统一社会信用代码
+        #     dwmc_loc: unitName,  # 修改单位名称
+        #     dwfzr_loc: headOfUnit,  # 修改单位负责人
+        #     dwdh_loc: officeTel,  # 修改单位电话
+        #     dwdz_loc: unitAddress,  # 修改单位地址
+        #     yb_loc: postcode,  # 修改邮编
+        #     dwczbm_loc: unitFinancialCode,  # 修改单位财政编码
+        # }
+        # for loc, value in fields.items():
+        #     if value is not None:
+        #         self.clear_and_input(loc, value)
+        #     else:
+        #         pass
+
+        self.clear_and_input(tyshxydm_loc, newGrassrootsUnitsID)  # 修改统一社会信用代码
+        self.clear_and_input(dwmc_loc, "测试danw")  # 修改单位名称
+        # self.input(dwmc_loc, unitName)
+        self.clear_and_input(dwfzr_loc, headOfUnit)  # 修改单位负责人
+        self.clear_and_input(dwdh_loc, officeTel)  # 修改单位电话
+        self.clear_and_input(dwdz_loc, unitAddress)  # 修改单位地址
+        self.clear_and_input(yb_loc, postcode)  # 修改邮编
+        self.clear_and_input(dwczbm_loc, unitFinancialCode)  # 修改单位财政编码
         self.htmlSelect(czgy_loc, financialSupport)  # 修改财政供养
         self.htmlSelect(cztf_loc, financialRegulation)  # 修改财政统发
         # self.click(tfryglBtn_loc)    # 点击统发人员管理按钮
@@ -79,14 +92,14 @@ class UnitInformationModificationPage(BasePage):
             self.input(sydwhy_loc, publicInstitutionIndustry)  # 事业单位行业
             self.click(f'xpath->//nz-tree-node-title[@title="{publicInstitutionIndustry}"]')
             self.htmlSelect(sfdkdw_loc, defaultSurveyStandard)  # 是否地勘单位
-            self.htmlSelect(jfly_loc,  sourceOfFunds)  # 经费来源
+            self.htmlSelect(jfly_loc, sourceOfFunds)  # 经费来源
         elif unitProperty == '参公单位' and enforceTheWageSystem == '机关工资制度' or enforceTheWageSystem == '机关、事业两种制度并存':
             self.htmlSelect(sydwlx_loc, typeOfPublicInstitution)  # 事业单位类型
             self.input(sydwhy_loc, publicInstitutionIndustry)  # 事业单位行业
         elif unitProperty == '机关服务中心' and enforceTheWageSystem == '机关、事业两种制度并存':
             self.htmlSelect(sydwlx_loc, typeOfPublicInstitution)  # 事业单位类型
             self.input(sydwhy_loc, publicInstitutionIndustry)  # 事业单位行业
-            self.htmlSelect(jfly_loc,  sourceOfFunds)  # 经费来源
+            self.htmlSelect(jfly_loc, sourceOfFunds)  # 经费来源
         else:
             pass
         self.click(dwjcxx_saveBtn_loc)  # 点击保存

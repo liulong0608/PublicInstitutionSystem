@@ -137,3 +137,7 @@ class BasePageABC(ABC):
     @abstractmethod
     def take_screenshot(self) -> None:
         pass
+
+    @abstractmethod
+    def tab(self, locator: Text, whetherWait: bool = True) -> None:
+        pass

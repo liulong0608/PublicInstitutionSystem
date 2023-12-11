@@ -8,7 +8,7 @@
 import os
 from typing import *
 import selenium.common.exceptions
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
@@ -19,16 +19,23 @@ from config import globalparam
 from public.common.basepage_abc import BasePageABC
 from selenium import webdriver
 from public.common.exceptions import InvalidArgumentException, UnsupportedBrowserException, NameError, ValueError, \
-    NoSuchElementException, TimeoutException, ElementNotInteractableException, AssertionError, ElementNotSelectableException
+    NoSuchElementException, TimeoutException, ElementNotInteractableException, AssertionError, \
+    ElementNotSelectableException
 
 import time
 
 
 class BasePage(BasePageABC):
 
-    def __init__(self):
+    def __init__(self, selenium_driver: webdriver):
+        self.driver = selenium_driver
+
+    def select_browser(self, browser: Text = globalparam.browser.lower()) -> None:
+        """
+        select browser
+        :param browser: 浏览器
+        """
         t1 = time.time()
-        browser = globalparam.browser.lower()
         browser_drivers = {
             "firefox": webdriver.Firefox,
             "chrome": webdriver.Chrome,
@@ -42,7 +49,6 @@ class BasePage(BasePageABC):
                 self.driver: webdriver = browser_drivers[browser](options=options, service=service)
             else:
                 self.driver = browser_drivers[browser]()
-            self.wait: WebDriverWait = WebDriverWait(self.driver, timeout=20, poll_frequency=0.8)
             self.log.success(f"Start a new browser: {browser}, Spend {time.time() - t1} seconds.")
         else:
             raise UnsupportedBrowserException(f"Browser {browser} is not supported.")
@@ -122,7 +128,8 @@ class BasePage(BasePageABC):
         :param locator: 元素路径
         :return:
         """
-        self.wait.until(EC.visibility_of_element_located(self.by_value(locator)))
+        wait: WebDriverWait = WebDriverWait(self.driver, timeout=30, poll_frequency=0.8)
+        wait.until(EC.visibility_of_element_located(self.by_value(locator)))
 
     def get_element(self, locator: Text, whetherWait: bool = True) -> WebElement:
         """
@@ -178,9 +185,9 @@ class BasePage(BasePageABC):
             self.get_element(locator, whetherWait).click()
             self.log.success(f"Click element {locator}, Spend {time.time() - t1} seconds.")
         except ElementNotInteractableException:
-            ElementNotInteractableException(f"Element {locator} is not interactable.")
+            raise ElementNotInteractableException(f"Element {locator} is not interactable.")
         except ElementNotSelectableException:
-            ElementNotSelectableException(f"Element {locator} is not selectable.")
+            raise ElementNotSelectableException(f"Element {locator} is not selectable.")
 
     def input(self, locator, text: Text, whetherWait: bool = True) -> None:
         """
@@ -195,9 +202,29 @@ class BasePage(BasePageABC):
             self.get_element(locator, whetherWait).send_keys(text)
             self.log.success(f"Input '{text}' to {locator}, Spend {time.time() - t1} seconds.")
         except ElementNotInteractableException:
-            ElementNotInteractableException(f"Element {locator} is not interactable.")
+            raise ElementNotInteractableException(f"Element {locator} is not interactable.")
         except ElementNotSelectableException:
-            ElementNotSelectableException(f"Element {locator} is not selectable.")
+            raise ElementNotSelectableException(f"Element {locator} is not selectable.")
+        except Exception as e:
+            raise e
+
+    def tab(self, locator: Text, whetherWait: bool = True) -> None:
+        """
+        模拟键盘TAB
+        :param locator: 元素路径
+        :param whetherWait: 是否等待
+        :return:
+        """
+        t1 = time.time()
+        try:
+            self.driver.find_element(*self.by_value(locator)).send_keys(Keys.TAB)
+            self.log.success(f"Input '{Keys.TAB}' to {locator}, Spend {time.time() - t1} seconds.")
+        except ElementNotInteractableException:
+            raise ElementNotInteractableException(f"Element {locator} is not interactable.")
+        except ElementNotSelectableException:
+            raise ElementNotSelectableException(f"Element {locator} is not selectable.")
+        except Exception as e:
+            raise e
 
     def clear(self, locator: Text, whetherWait: bool = True) -> None:
         """
@@ -214,6 +241,8 @@ class BasePage(BasePageABC):
             ElementNotInteractableException(f"Element {locator} is not interactable.")
         except ElementNotSelectableException:
             ElementNotSelectableException(f"Element {locator} is not selectable.")
+        except Exception as e:
+            raise e
 
     def clear_and_input(self, locator: Text, text: Text, whetherWait: bool = True) -> None:
         """
@@ -223,15 +252,17 @@ class BasePage(BasePageABC):
         :param whetherWait: 是否等待
         :return:
         """
-        t1 = time.time()
         try:
-            self.get_element(locator, whetherWait).clear()
-            self.get_element(locator, whetherWait).send_keys(text)
-            self.log.success(f"Clear and input '{text}' to {locator}, Spend {time.time() - t1} seconds.")
+            self.clear(locator, whetherWait)
+            time.sleep(3)
+            self.input(locator, text)
+            self.tab(locator)
         except ElementNotInteractableException:
-            ElementNotInteractableException(f"Element {locator} is not interactable.")
+            raise ElementNotInteractableException(f"Element {locator} is not interactable.")
         except ElementNotSelectableException:
-            ElementNotSelectableException(f"Element {locator} is not selectable.")
+            raise ElementNotSelectableException(f"Element {locator} is not selectable.")
+        except Exception as e:
+            raise e
 
     def get_text(self, locator: Text, whetherWait: bool = True) -> Text:
         """
@@ -246,9 +277,9 @@ class BasePage(BasePageABC):
             self.log.success(f"Get text: '{text}' from {locator}, Spend {time.time() - t1} seconds.")
             return text
         except ElementNotInteractableException:
-            ElementNotInteractableException(f"Element {locator} is not interactable.")
+            raise ElementNotInteractableException(f"Element {locator} is not interactable.")
         except ElementNotSelectableException:
-            ElementNotSelectableException(f"Element {locator} is not selectable.")
+            raise ElementNotSelectableException(f"Element {locator} is not selectable.")
 
     def get_url(self) -> Text:
         """
@@ -273,9 +304,9 @@ class BasePage(BasePageABC):
             self.log.success(f"Get attribute: {text} from {locator}, Spend {time.time() - t1} seconds.")
             return text
         except ElementNotInteractableException:
-            ElementNotInteractableException(f"Element {locator} is not interactable.")
+            raise ElementNotInteractableException(f"Element {locator} is not interactable.")
         except ElementNotSelectableException:
-            ElementNotSelectableException(f"Element {locator} is not selectable.")
+            raise ElementNotSelectableException(f"Element {locator} is not selectable.")
 
     def move_to_element(self, locator: Text, whetherWait: bool = True) -> None:
         """
@@ -289,9 +320,9 @@ class BasePage(BasePageABC):
             ActionChains(self.driver).move_to_element(self.get_element(locator, whetherWait)).perform()
             self.log.success(f"Move to element {locator}, Spend {time.time() - t1} seconds.")
         except ElementNotInteractableException:
-            ElementNotInteractableException(f"Element {locator} is not interactable.")
+            raise ElementNotInteractableException(f"Element {locator} is not interactable.")
         except ElementNotSelectableException:
-            ElementNotSelectableException(f"Element {locator} is not selectable.")
+            raise ElementNotSelectableException(f"Element {locator} is not selectable.")
 
     def switch_to_frame(self, locator: Text, whetherWait: bool = True) -> None:
         """
@@ -305,9 +336,9 @@ class BasePage(BasePageABC):
             self.driver.switch_to.frame(self.get_element(locator, whetherWait))
             self.log.success(f"Switch to frame {locator}, Spend {time.time() - t1} seconds.")
         except ElementNotInteractableException:
-            ElementNotInteractableException(f"Element {locator} is not interactable.")
+            raise ElementNotInteractableException(f"Element {locator} is not interactable.")
         except ElementNotSelectableException:
-            ElementNotSelectableException(f"Element {locator} is not selectable.")
+            raise ElementNotSelectableException(f"Element {locator} is not selectable.")
 
     def switch_to_default_content(self) -> None:
         """
@@ -333,9 +364,9 @@ class BasePage(BasePageABC):
             self.get_element(locator, whetherWait).click()
             self.log.success(f"Click hyperlink {locator}, Spend {time.time() - t1} seconds.")
         except ElementNotInteractableException:
-            ElementNotInteractableException(f"Element {locator} is not interactable.")
+            raise ElementNotInteractableException(f"Element {locator} is not interactable.")
         except ElementNotSelectableException:
-            ElementNotSelectableException(f"Element {locator} is not selectable.")
+            raise ElementNotSelectableException(f"Element {locator} is not selectable.")
 
     def switch_to_new_window(self) -> None:
         """
@@ -379,9 +410,9 @@ class BasePage(BasePageABC):
             self.log.success(f"Get selected value: {text} from {locator}, Spend {time.time() - t1} seconds.")
             return text
         except ElementNotInteractableException:
-            ElementNotInteractableException(f"Element {locator} is not interactable.")
+            raise ElementNotInteractableException(f"Element {locator} is not interactable.")
         except ElementNotSelectableException:
-            ElementNotSelectableException(f"Element {locator} is not selectable.")
+            raise ElementNotSelectableException(f"Element {locator} is not selectable.")
 
     def get_options(self, locator: Text, whetherWait: bool = True) -> List[Text]:
         """
@@ -396,9 +427,9 @@ class BasePage(BasePageABC):
             self.log.success(f"Get options: {text} from {locator}, Spend {time.time() - t1} seconds.")
             return text
         except ElementNotInteractableException:
-            ElementNotInteractableException(f"Element {locator} is not interactable.")
+            raise ElementNotInteractableException(f"Element {locator} is not interactable.")
         except ElementNotSelectableException:
-            ElementNotSelectableException(f"Element {locator} is not selectable.")
+            raise ElementNotSelectableException(f"Element {locator} is not selectable.")
 
     def assert_text(self, locator: Text, expected_text: Text, whetherWait: bool = True) -> None:
         """
@@ -411,7 +442,8 @@ class BasePage(BasePageABC):
         t1 = time.time()
         try:
             actualResult = self.get_text(locator, whetherWait)
-            assert actualResult == expected_text, self.log.error(f"Actual text '{actualResult}' does not match expected text '{expected_text}'")
+            assert actualResult == expected_text, self.log.error(
+                f"Actual text '{actualResult}' does not match expected text '{expected_text}'")
             self.log.success(
                 f"Successfully asserted text: {expected_text} from {locator}, Spend {time.time() - t1} seconds.")
         except ElementNotInteractableException:
@@ -498,7 +530,8 @@ class BasePage(BasePageABC):
             timestamp = time.strftime("%Y%m%d-%H%M%S")
             screenshot_name = os.path.join(globalparam.screenshot_path, f"screenshot_{timestamp}.png")
             self.driver.save_screenshot(screenshot_name)
-            self.log.success(f"Get the current window screenshot,path: {screenshot_name}, Spend {time.time() - t1} seconds.")
+            self.log.success(
+                f"Get the current window screenshot,path: {screenshot_name}, Spend {time.time() - t1} seconds.")
         except Exception:
             raise Exception(f"Unable to take screenshot, Spend {time.time() - t1} seconds.")
 
@@ -514,9 +547,11 @@ class BasePage(BasePageABC):
         try:
             self.click(select_locator, whetherWait)
             self.click(f"xpath->//nz-option-item[@title='{option_locator}']", whetherWait)
-            self.log.success(f"Special select option: {option_locator} from {select_locator}, Spend {time.time() - t1} seconds.")
+            self.log.success(
+                f"Special select option: {option_locator} from {select_locator}, Spend {time.time() - t1} seconds.")
         except Exception:
-            raise Exception(f"Unable to select option: {option_locator} from {select_locator}, Spend {time.time() - t1} seconds.")
+            raise Exception(
+                f"Unable to select option: {option_locator} from {select_locator}, Spend {time.time() - t1} seconds.")
 
     @staticmethod
     def by_value(locator: Text) -> Tuple[Text, Text]:
@@ -546,14 +581,3 @@ class BasePage(BasePageABC):
             raise NameError(f"Locator type '{by}' not supported.")
         locator = (by_string[by], value)
         return locator
-
-
-if __name__ == '__main__':
-    b = BasePage()
-    b.open_url("https://www.baidu.com")
-    baidu_loc = "id->kw"
-    baidu_click_loc = "id->su"
-    b.input(baidu_loc, "selenium")
-    b.click(baidu_click_loc)
-    b.assert_text(baidu_click_loc, "百度一下")
-    time.sleep(3)

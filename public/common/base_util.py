@@ -11,11 +11,13 @@ import time
 import unittest
 from public.common import base_page
 from config import globalparam
+from public.common.base_page import BasePage
 from public.common.log import Log
 from public.pages import *
+from public.common import browser
 
 
-class BaseUtil(unittest.TestCase):
+class BaseUtil(unittest.TestCase, BasePage):
     """
     The base class is for all testcase.
     """
@@ -23,15 +25,15 @@ class BaseUtil(unittest.TestCase):
     def setUp(self):
         self.logger = Log().get_logger()
         self.logger.info('############################### START ###############################')
-        self.driver = base_page.BasePage()
-        self.driver.max_window()
-        self.driver.open_url('http://192.168.2.194/console/login')
-        self.driver.input(login_username, '888')
-        self.driver.input(login_password, 'Aa123456')
-        self.driver.input(verifyCode, 'abcd')
-        self.driver.click(login_btn)
+        self.driver = browser.select_browser()
+        self.max_window()
+        self.open_url('http://192.168.2.209/console/login')
+        self.input(login_username, '888')
+        self.input(login_password, 'Aa123456')
+        self.input(verifyCode, '1abcd')
+        self.click(login_btn)
         time.sleep(1.5)
 
     def tearDown(self):
-        self.driver.quit()
+        self.quit()
         self.logger.info('###############################  End  ###############################')
