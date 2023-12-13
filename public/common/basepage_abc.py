@@ -127,7 +127,7 @@ class BasePageABC(ABC):
         pass
 
     @abstractmethod
-    def execute_script(self, script: Text) -> None:
+    def executeScript(self, script: Text) -> None:
         pass
 
     @abstractmethod

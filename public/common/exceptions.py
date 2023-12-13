@@ -57,3 +57,7 @@ class ElementNotSelectableException(BaseFailure):
 
 class AssertionError(BaseFailure):
     pass
+
+
+class WebDriverException(BaseFailure):
+    pass

@@ -17,7 +17,7 @@ from utils.social_unified_creditcode.succ_utils.sucreditcode import generateUnif
 
 @ddt
 class TestUnitInfomaitionModification(BaseUtil):
-    @data(*get_xls_to_dict('unitInformationModification.xlsx', '单位基础信息修改'))
+    @data(*get_xls_to_dict("unitInformationModification.xlsx", "unitInformationModification"))
     def test_07_modification_unitInformation(self, args):
         um = UnitInformationModificationPage(self.driver)
         um.modification_unit_base_information(grassrootsUnitsID=args['统一社会信用代码'],

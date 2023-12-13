@@ -8,6 +8,7 @@
 # @Software:        PyCharm
 # ====/******/=====
 import codecs
+import csv
 import os
 import pprint
 
@@ -46,5 +47,26 @@ def get_xls_to_dict(xlsname, sheetname):
         result.append(temp)
     return result
 
+
+def get_csv_to_dict(csvname):
+    """
+    读取csv表结果为dict，第一行为dict的key，后面的行为value
+    :param csvname: csv文件名
+    :return: [{'title':'1','user':'root'},{'title':'2','user':'xiaoshitou'}]
+    """
+    datapath = os.path.join(data_path, csvname)
+
+    result = []
+    with open(datapath, 'r') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            temp = {}
+            for key in row:
+                value = row[key]
+                if value == '':
+                    value = None
+                temp[key] = value
+            result.append(temp)
+    return result
 
 

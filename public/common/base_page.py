@@ -20,7 +20,7 @@ from public.common.basepage_abc import BasePageABC
 from selenium import webdriver
 from public.common.exceptions import InvalidArgumentException, UnsupportedBrowserException, NameError, ValueError, \
     NoSuchElementException, TimeoutException, ElementNotInteractableException, AssertionError, \
-    ElementNotSelectableException
+    ElementNotSelectableException, WebDriverException
 
 import time
 
@@ -28,7 +28,7 @@ import time
 class BasePage(BasePageABC):
 
     def __init__(self, selenium_driver: webdriver):
-        self.driver = selenium_driver
+        self.driver: webdriver = selenium_driver
 
     def select_browser(self, browser: Text = globalparam.browser.lower()) -> None:
         """
@@ -254,7 +254,6 @@ class BasePage(BasePageABC):
         """
         try:
             self.clear(locator, whetherWait)
-            time.sleep(3)
             self.input(locator, text)
             self.tab(locator)
         except ElementNotInteractableException:
@@ -454,6 +453,7 @@ class BasePage(BasePageABC):
             raise ElementNotSelectableException(f"Element {locator} is not selectable.")
         except Exception:
             self.take_screenshot()
+            raise
 
     def assert_text_contains(self, locator: Text, expected_text: Text, whetherWait: bool = True) -> None:
         """
@@ -478,6 +478,7 @@ class BasePage(BasePageABC):
             raise ElementNotSelectableException(f"Element {locator} is not selectable.")
         except Exception:
             self.take_screenshot()
+            raise
 
     def submit(self, locator: Text, whetherWait: bool = True) -> None:
         """
@@ -495,7 +496,7 @@ class BasePage(BasePageABC):
         except ElementNotSelectableException:
             raise ElementNotSelectableException(f"Element {locator} is not selectable.")
 
-    def execute_script(self, script: Text) -> None:
+    def executeScript(self, script: Text) -> None:
         """
         执行js代码
         :param script: javascript代码
@@ -505,8 +506,9 @@ class BasePage(BasePageABC):
         try:
             self.driver.execute_script(script)
             self.log.success(f"Execute script: {script}, Spend {time.time() - t1} seconds.")
-        except Exception:
-            raise Exception(f"Unable to execute javascript scripts: {script}, Spend {time.time() - t1} seconds.")
+        except Exception as e:
+            raise e
+            # raise Exception(f"Unable to execute javascript scripts: {script}, Spend {time.time() - t1} seconds.")
 
     def accept_alert(self) -> None:
         """
@@ -552,6 +554,45 @@ class BasePage(BasePageABC):
         except Exception:
             raise Exception(
                 f"Unable to select option: {option_locator} from {select_locator}, Spend {time.time() - t1} seconds.")
+
+    def JsSelect(self, selector, value) -> None:
+        """
+        利用Js通过input输入的方式实现选择下拉框
+        """
+        t1 = time.time()
+        script = """
+        function setInputValue(selector, value) {
+            /**
+             * 设置输入框，触发事件
+             * @param {String} selector ： 输入框的元素路径值*
+             * @param {String} value： 输入框的值
+             */
+            // 获取元素
+            const element = document.querySelector(selector);
+            if (!element) return; // 如果没有找到元素，直接返回
+
+            // 设置值
+            element.value = value;
+
+            // 创建并触发事件
+            const event = new InputEvent('input', {
+                'bubbles': true,
+                'cancelable': true,
+            });
+            element.dispatchEvent(event);
+        }
+        setInputValue("%s", "%s");
+        """ % (selector, value)
+        try:
+            self.executeScript(script)
+            self.log.success(f"Javascript execute code to select option: {value} from {selector}, Spend {time.time() - t1} seconds.")
+        except WebDriverException:
+            raise WebDriverException(f"Unable to execute javascript to select option: {value} from {selector}.")
+
+        except Exception as e:
+            raise e
+
+
 
     @staticmethod
     def by_value(locator: Text) -> Tuple[Text, Text]:
