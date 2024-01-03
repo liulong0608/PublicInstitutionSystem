@@ -20,7 +20,7 @@ from config import globalparam
 from public.common.basepage_abc import BasePageABC
 from selenium import webdriver
 from public.common.exceptions import InvalidArgumentException, UnsupportedBrowserException, NameError, ValueError, \
-    NoSuchElementException, TimeoutException, ElementNotInteractableException, AssertionError, \
+    NoSuchElementException, TimeoutException, ElementNotInteractableException, AssertionException, \
     ElementNotSelectableException, WebDriverException
 
 import time
@@ -471,7 +471,7 @@ class BasePage(BasePageABC):
         except ElementNotInteractableException:
             raise ElementNotInteractableException(f"Element {locator} is not interactable.")
         except AssertionError:
-            raise AssertionError(f"Actual text '{actualResult}' does not match expected text '{expected_text}'")
+            raise AssertionException(f"Actual text '{actualResult}' does not match expected text '{expected_text}'")
         except ElementNotSelectableException:
             raise ElementNotSelectableException(f"Element {locator} is not selectable.")
         except Exception:

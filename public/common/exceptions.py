@@ -55,7 +55,7 @@ class ElementNotSelectableException(BaseFailure):
     pass
 
 
-class AssertionError(BaseFailure):
+class AssertionException(BaseFailure):
     pass
 
 
