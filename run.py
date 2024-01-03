@@ -7,6 +7,7 @@
 # @editsession      2023/4/6
 # @Software:        PyCharm
 # ====/******/=====
+import os.path
 import unittest
 from utils.HTMLTestRunner import *
 import time
@@ -16,7 +17,8 @@ from config import globalparam
 def run():
     suite = unittest.defaultTestLoader.discover(start_dir=globalparam.case_path, pattern='test*.py')
     now = time.strftime('%Y-%m-%d')
-    reportname = globalparam.report_path + '\\' + 'TestResult' + now + '.html'
+    # reportname = globalparam.report_path + '\\' + 'TestResult' + now + '.html'
+    reportname = os.path.join(globalparam.report_path, 'report.html')
     with open(reportname, 'w', encoding='utf-8') as f:
         runner = HTMLTestRunner(
             stream=f, verbosity=2,

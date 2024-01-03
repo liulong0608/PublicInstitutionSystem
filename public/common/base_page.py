@@ -6,6 +6,7 @@
 # @Software:        PyCharm
 # ====/******/=====
 import os
+import sys
 from typing import *
 import selenium.common.exceptions
 from selenium.webdriver import ActionChains, Keys
@@ -24,6 +25,8 @@ from public.common.exceptions import InvalidArgumentException, UnsupportedBrowse
 
 import time
 
+system_driver = sys.platform
+
 
 class BasePage(BasePageABC):
 
@@ -41,17 +44,35 @@ class BasePage(BasePageABC):
             "chrome": webdriver.Chrome,
             "edge": webdriver.Edge
         }
-        if browser in browser_drivers:
-            if browser == "chrome":
-                options = webdriver.ChromeOptions()
-                options.add_argument('ignore-certificate-errors')
-                service = Service(globalparam.driver_path)
-                self.driver: webdriver = browser_drivers[browser](options=options, service=service)
+        if system_driver.lower() == "win32":
+            if browser in browser_drivers:
+                if browser == "chrome":
+                    options = webdriver.ChromeOptions()
+                    options.add_argument('ignore-certificate-errors')
+                    service = Service(globalparam.driver_path)
+                    self.driver: webdriver = browser_drivers[browser](options=options, service=service)
+                else:
+                    self.driver = browser_drivers[browser]()
+                self.log.success(f"Start a new browser: {browser}, Spend {time.time() - t1} seconds.")
             else:
-                self.driver = browser_drivers[browser]()
-            self.log.success(f"Start a new browser: {browser}, Spend {time.time() - t1} seconds.")
+                raise UnsupportedBrowserException(f"Browser {browser} is not supported.")
+        elif system_driver.lower() == "linux":
+            if browser in browser_drivers:
+                if browser == "chrome":
+                    options = webdriver.ChromeOptions()
+                    options.add_argument('no-sandbox')
+                    options.add_argument("headless")  # 配置无头浏览器
+                    options.add_argument('disable-dev-shm-usage')
+                    options.add_argument('disable-gpu')  # 需要加上这个属性来规避bug
+                    service = Service(globalparam.linux_driver_path)
+                    self.driver: webdriver = browser_drivers[browser](options=options, service=service)
+                else:
+                    self.driver = browser_drivers[browser]()
+                self.log.success(f"Start a new browser: {browser}, Spend {time.time() - t1} seconds.")
+            else:
+                raise UnsupportedBrowserException(f"Browser {browser} is not supported.")
         else:
-            raise UnsupportedBrowserException(f"Browser {browser} is not supported.")
+            raise UnsupportedBrowserException(f"System {system_driver} is not supported.")
 
     def open_url(self, url: Text) -> None:
         """
@@ -585,14 +606,13 @@ class BasePage(BasePageABC):
         """ % (selector, value)
         try:
             self.executeScript(script)
-            self.log.success(f"Javascript execute code to select option: {value} from {selector}, Spend {time.time() - t1} seconds.")
+            self.log.success(
+                f"Javascript execute code to select option: {value} from {selector}, Spend {time.time() - t1} seconds.")
         except WebDriverException:
             raise WebDriverException(f"Unable to execute javascript to select option: {value} from {selector}.")
 
         except Exception as e:
             raise e
-
-
 
     @staticmethod
     def by_value(locator: Text) -> Tuple[Text, Text]:

@@ -25,6 +25,7 @@ case_path = os.path.join(prj_path, 'testcase')
 browser = 'Chrome'
 # 浏览器驱动路径
 driver_path = os.path.join(prj_path, 'config', 'chromedriver.exe')
+linux_driver_path = os.path.join(prj_path, 'config', 'chromedriver')
 # 附件地址
 file_path = os.path.join(prj_path, 'data', '附件示例.png')  # 输出：D:\PublicInstitutionSystem\data
 # 测试数据路径
