@@ -45,6 +45,7 @@ class BasePage(BasePageABC):
             "edge": webdriver.Edge
         }
         if system_driver.lower() == "win32":
+            print("判断系统为windows")
             if browser in browser_drivers:
                 if browser == "chrome":
                     options = webdriver.ChromeOptions()
@@ -57,6 +58,7 @@ class BasePage(BasePageABC):
             else:
                 raise UnsupportedBrowserException(f"Browser {browser} is not supported.")
         elif system_driver.lower() == "linux":
+            print("判断系统为linux")
             if browser in browser_drivers:
                 if browser == "chrome":
                     options = webdriver.ChromeOptions()
@@ -72,7 +74,7 @@ class BasePage(BasePageABC):
             else:
                 raise UnsupportedBrowserException(f"Browser {browser} is not supported.")
         else:
-            raise UnsupportedBrowserException(f"System {system_driver} is not supported.")
+            print(f"判断系统为{system_driver}")
 
     def open_url(self, url: Text) -> None:
         """
