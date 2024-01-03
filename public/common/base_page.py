@@ -44,52 +44,37 @@ class BasePage(BasePageABC):
             "chrome": webdriver.Chrome,
             "edge": webdriver.Edge
         }
-        # if system_driver.lower() == "win32":
-        #     print("判断系统为windows")
-        #     if browser in browser_drivers:
-        #         if browser == "chrome":
-        #             options = webdriver.ChromeOptions()
-        #             options.add_argument('ignore-certificate-errors')
-        #             service = Service(globalparam.driver_path)
-        #             self.driver: webdriver = browser_drivers[browser](options=options, service=service)
-        #         else:
-        #             self.driver = browser_drivers[browser]()
-        #         self.log.success(f"Start a new browser: {browser}, Spend {time.time() - t1} seconds.")
-        #     else:
-        #         raise UnsupportedBrowserException(f"Browser {browser} is not supported.")
-        # elif system_driver.lower() == "linux":
-        #     print("判断系统为linux")
-        #     if browser in browser_drivers:
-        #         if browser == "chrome":
-        #             options = webdriver.ChromeOptions()
-        #             options.add_argument('no-sandbox')
-        #             options.add_argument("headless")  # 配置无头浏览器
-        #             options.add_argument('disable-dev-shm-usage')
-        #             options.add_argument('disable-gpu')  # 需要加上这个属性来规避bug
-        #             service = Service(globalparam.linux_driver_path)
-        #             self.driver: webdriver = browser_drivers[browser](options=options, service=service)
-        #         else:
-        #             self.driver = browser_drivers[browser]()
-        #         self.log.success(f"Start a new browser: {browser}, Spend {time.time() - t1} seconds.")
-        #     else:
-        #         raise UnsupportedBrowserException(f"Browser {browser} is not supported.")
-        # else:
-        #     print(f"判断系统为{system_driver}")
-        print("判断系统为linux")
-        if browser in browser_drivers:
-            if browser == "chrome":
-                options = webdriver.ChromeOptions()
-                options.add_argument('no-sandbox')
-                options.add_argument("headless")  # 配置无头浏览器
-                options.add_argument('disable-dev-shm-usage')
-                options.add_argument('disable-gpu')  # 需要加上这个属性来规避bug
-                service = Service(globalparam.linux_driver_path)
-                self.driver: webdriver = browser_drivers[browser](options=options, service=service)
+        if system_driver.lower() == "win32":
+            print("判断系统为windows")
+            if browser in browser_drivers:
+                if browser == "chrome":
+                    options = webdriver.ChromeOptions()
+                    options.add_argument('ignore-certificate-errors')
+                    service = Service(globalparam.driver_path)
+                    self.driver: webdriver = browser_drivers[browser](options=options, service=service)
+                else:
+                    self.driver = browser_drivers[browser]()
+                self.log.success(f"Start a new browser: {browser}, Spend {time.time() - t1} seconds.")
             else:
-                self.driver = browser_drivers[browser]()
-            self.log.success(f"Start a new browser: {browser}, Spend {time.time() - t1} seconds.")
+                raise UnsupportedBrowserException(f"Browser {browser} is not supported.")
+        elif system_driver.lower() == "linux":
+            print("判断系统为linux")
+            if browser in browser_drivers:
+                if browser == "chrome":
+                    options = webdriver.ChromeOptions()
+                    options.add_argument('no-sandbox')
+                    options.add_argument("headless")  # 配置无头浏览器
+                    options.add_argument('disable-dev-shm-usage')
+                    options.add_argument('disable-gpu')  # 需要加上这个属性来规避bug
+                    service = Service(globalparam.linux_driver_path)
+                    self.driver: webdriver = browser_drivers[browser](options=options, service=service)
+                else:
+                    self.driver = browser_drivers[browser]()
+                self.log.success(f"Start a new browser: {browser}, Spend {time.time() - t1} seconds.")
+            else:
+                raise UnsupportedBrowserException(f"Browser {browser} is not supported.")
         else:
-            raise UnsupportedBrowserException(f"Browser {browser} is not supported.")
+            print(f"判断系统为{system_driver}")
 
     def open_url(self, url: Text) -> None:
         """
