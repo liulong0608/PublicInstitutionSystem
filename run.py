@@ -19,9 +19,9 @@ def run():
     suite = unittest.defaultTestLoader.discover(start_dir=globalparam.case_path, pattern='test*.py')
     now = time.strftime('%Y-%m-%d')
     # reportname = globalparam.report_path + '\\' + 'TestResult' + now + '.html'
-    reportname = os.path.join(globalparam.report_path, 'report.html')
+    # reportname = os.path.join(globalparam.report_path, 'report.html')
     run_result = bf(suite)
-    run_result.report(filename=reportname, description='测试报告',
+    run_result.report(filename="report", description='测试报告',
                       report_dir=globalparam.report_path)
     # with open(reportname, 'w', encoding='utf-8') as f:
     #     runner = HTMLTestRunner(
