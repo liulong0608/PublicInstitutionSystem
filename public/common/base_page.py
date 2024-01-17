@@ -418,27 +418,27 @@ class BasePage(BasePageABC):
         except ElementNotSelectableException:
             raise ElementNotSelectableException(f"Element {locator} is not selectable.")
 
-    def assert_text(self, locator: Text, expected_text: Text, whetherWait: bool = True) -> None:
+    def assert_text(self, actualResult: Text, expected_text: Text, whetherWait: bool = True) -> None:
         """
         断言文本
-        :param locator: 元素路径
+        :param actualResult: 实际结果
         :param expected_text: 预期结果
         :param whetherWait: 是否等待
         :return:
         """
         t1 = time.time()
         try:
-            actualResult = self.get_text(locator, whetherWait)
+            actualResult = actualResult
             assert actualResult == expected_text, self.log.error(
                 f"Actual text '{actualResult}' does not match expected text '{expected_text}'")
             self.log.success(
-                f"Successfully asserted text: {expected_text} from {locator}, Spend {time.time() - t1} seconds.")
+                f"Successfully asserted text: {expected_text} from {actualResult}, Spend {time.time() - t1} seconds.")
         except ElementNotInteractableException:
-            raise ElementNotInteractableException(f"Element {locator} is not interactable.")
+            raise ElementNotInteractableException(f"Element {actualResult} is not interactable.")
         except AssertionError:
             raise AssertionException(f"Actual text '{actualResult}' does not match expected text '{expected_text}'")
         except ElementNotSelectableException:
-            raise ElementNotSelectableException(f"Element {locator} is not selectable.")
+            raise ElementNotSelectableException(f"Element {actualResult} is not selectable.")
         except Exception:
             self.take_screenshot()
             raise
