@@ -32,7 +32,8 @@ class CreateUnitPage(BasePage):
         self.input(self._unit_name_loc, unit_name)
 
     def _select_whetherToBeInCharge(self, supervisor):
-        self.htmlSelect(self._supervisor_loc, f"xpath->//div[@title='{supervisor}']")
+        self.click(self._supervisor_loc)
+        self.click(f"xpath->//div[@title='{supervisor}']")
 
     def _click_save(self):
         self.click(self._save_btn_loc)
