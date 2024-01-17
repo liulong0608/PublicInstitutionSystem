@@ -84,6 +84,7 @@ class UnitInformationModificationPage(BasePage):
         org_code = self._get_orgCode()
         self.input(query_loc, org_code)  # 搜索单位
         self.click(queryBtn_loc)  #
+        time.sleep(1)
         self.assert_text(dw_loc, org_code)
         self.click(dw_loc)  # 选择单位
         self.click(dwxxBtn_loc)  # 点击单位信息管理
