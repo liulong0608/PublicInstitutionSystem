@@ -33,49 +33,6 @@ class BasePage(BasePageABC):
     def __init__(self, selenium_driver: webdriver):
         self.driver: webdriver = selenium_driver
 
-    def select_browser(self, browser: Text = globalparam.browser.lower()) -> None:
-        """
-        select browser
-        :param browser: 浏览器
-        """
-        t1 = time.time()
-        browser_drivers = {
-            "firefox": webdriver.Firefox,
-            "chrome": webdriver.Chrome,
-            "edge": webdriver.Edge
-        }
-        if system_driver.lower() == "win32":
-            print("判断系统为windows")
-            if browser in browser_drivers:
-                if browser == "chrome":
-                    options = webdriver.ChromeOptions()
-                    options.add_argument('ignore-certificate-errors')
-                    service = Service(globalparam.driver_path)
-                    self.driver: webdriver = browser_drivers[browser](options=options, service=service)
-                else:
-                    self.driver = browser_drivers[browser]()
-                self.log.success(f"Start a new browser: {browser}, Spend {time.time() - t1} seconds.")
-            else:
-                raise UnsupportedBrowserException(f"Browser {browser} is not supported.")
-        elif system_driver.lower() == "linux":
-            print("判断系统为linux")
-            if browser in browser_drivers:
-                if browser == "chrome":
-                    options = webdriver.ChromeOptions()
-                    options.add_argument('no-sandbox')
-                    options.add_argument("headless")  # 配置无头浏览器
-                    options.add_argument('disable-dev-shm-usage')
-                    options.add_argument('disable-gpu')  # 需要加上这个属性来规避bug
-                    service = Service(globalparam.linux_driver_path)
-                    self.driver: webdriver = browser_drivers[browser](options=options, service=service)
-                else:
-                    self.driver = browser_drivers[browser]()
-                self.log.success(f"Start a new browser: {browser}, Spend {time.time() - t1} seconds.")
-            else:
-                raise UnsupportedBrowserException(f"Browser {browser} is not supported.")
-        else:
-            print(f"判断系统为{system_driver}")
-
     def open_url(self, url: Text) -> None:
         """
         open url
@@ -258,7 +215,9 @@ class BasePage(BasePageABC):
         """
         t1 = time.time()
         try:
-            self.get_element(locator, whetherWait).clear()
+            element = self.get_element(locator, whetherWait)
+            element.send_keys(Keys.CONTROL + "a")
+            element.send_keys(Keys.DELETE)
             self.log.success(f"Clear the text content of {locator}, Spend {time.time() - t1} seconds.")
         except ElementNotInteractableException:
             ElementNotInteractableException(f"Element {locator} is not interactable.")
@@ -390,17 +349,23 @@ class BasePage(BasePageABC):
         except ElementNotSelectableException:
             raise ElementNotSelectableException(f"Element {locator} is not selectable.")
 
-    def switch_to_new_window(self) -> None:
+    def switch_to_new_window(self, timeout: int = 10) -> None:
         """
         切换到新窗口
         :return:
         """
+        current_windows = self.driver.window_handles
         t1 = time.time()
         try:
-            self.driver.switch_to.window(self.driver.window_handles[-1])
-            self.log.success(f"Switch to new window, Spend {time.time() - t1} seconds.")
-        except selenium.common.exceptions.InvalidArgumentException:
-            raise InvalidArgumentException("Unable to switch to new window.")
+            # 等待新窗口出现
+            new_window = WebDriverWait(self.driver, timeout).until(
+                lambda driver: [window for window in driver.window_handles if window not in current_windows]
+            )
+            # 切换到新窗口
+            self.driver.switch_to.window(new_window[0])
+            self.log.success(f"Switched to new window, spent {time.time() - t1} seconds.")
+        except TimeoutException:
+            raise TimeoutException("A new window did not appear within the allotted time.")
 
     def select(self, locator: Text, text: Text, whetherWait: bool = True) -> None:
         """

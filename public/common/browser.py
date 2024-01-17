@@ -16,6 +16,7 @@ from public.common.exceptions import UnsupportedBrowserException
 
 system_driver = sys.platform
 
+
 def select_browser(browser=globalparam.browser.lower()):
     dc = {'platform': 'ANY', 'browserName': 'chrome', 'version': '', 'javascriptEnabled': True}
     dr = None
@@ -25,6 +26,7 @@ def select_browser(browser=globalparam.browser.lower()):
         elif browser == "chrome":
             options = webdriver.ChromeOptions()
             options.add_argument('ignore-certificate-errors')
+            options.add_experimental_option('detach', True)
             service = Service(globalparam.driver_path)
             dr = webdriver.Chrome(options=options, service=service)
         elif browser == "edge":
@@ -36,7 +38,6 @@ def select_browser(browser=globalparam.browser.lower()):
         if browser == "firefox":
             dr = webdriver.Firefox()
         elif browser == "chrome":
-            print("判断系统为linux")
             options = webdriver.ChromeOptions()
             options.add_argument('no-sandbox')
             options.add_argument("headless")  # 配置无头浏览器
@@ -51,4 +52,3 @@ def select_browser(browser=globalparam.browser.lower()):
         return dr
     else:
         raise UnsupportedBrowserException(f"System {system_driver} is not supported.")
-

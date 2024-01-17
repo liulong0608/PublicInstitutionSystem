@@ -18,10 +18,10 @@ from utils.social_unified_creditcode.succ_utils.sucreditcode import generateUnif
 @ddt
 class TestUnitInfomaitionModification(BaseUtil):
     @data(*get_xls_to_dict("unitInformationModification.xlsx", "unitInformationModification"))
-    def test_07_modification_unitInformation(self, args):
+    def test_modification_unitInformation(self, args):
+        """单位基础信息修改"""
         um = UnitInformationModificationPage(self.driver)
-        um.modification_unit_base_information(grassrootsUnitsID=args['统一社会信用代码'],
-                                              newGrassrootsUnitsID=generateUnifiedSocialCreditCode(),
+        um.modification_unit_base_information(newGrassrootsUnitsID=generateUnifiedSocialCreditCode(),
                                               unitName=args['单位名称'],
                                               headOfUnit=args['单位负责人'], officeTel=args['单位电话'],
                                               unitAddress=args['单位地址'],

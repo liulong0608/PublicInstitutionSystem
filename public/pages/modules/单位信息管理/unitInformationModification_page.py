@@ -7,7 +7,9 @@
 # @editsession      2023/7/11
 # @Software:        PyCharm
 # ====/******/=====
+import random
 import time
+from typing import Text
 
 from selenium.webdriver.common.by import By
 
@@ -16,9 +18,17 @@ from public.common.base_page import BasePage
 
 
 class UnitInformationModificationPage(BasePage):
+    """单位基础信息修改"""
 
-    # 单位基础信息修改
-    def modification_unit_base_information(self, grassrootsUnitsID, newGrassrootsUnitsID, unitName, headOfUnit,
+    def _get_orgCode(self) -> Text:
+        _orgCode_loc = f'xpath->//tbody/tr[{random.randint(2, 15)}]/td[2]'
+        orgcode_loc = self.get_element(locator=_orgCode_loc)
+        if orgcode_loc:
+            return orgcode_loc.text
+        else:
+            self._get_orgCode()
+
+    def modification_unit_base_information(self, newGrassrootsUnitsID, unitName, headOfUnit,
                                            officeTel,
                                            unitAddress, postcode, financialSupport, financialRegulation,
                                            unitFinancialCode, unitProperty, enforceTheWageSystem, unitLevel,
@@ -71,9 +81,10 @@ class UnitInformationModificationPage(BasePage):
         self.open_url('http://192.168.2.209/console/home')  # 打开控制台
         self.click(dwxxgl_loc)  # 点击单位信息管理
         # 因为单位比较多，为了方便先进行单位搜索
-        self.input(query_loc, grassrootsUnitsID)  # 搜索单位
+        org_code = self._get_orgCode()
+        self.input(query_loc, org_code)  # 搜索单位
         self.click(queryBtn_loc)  #
-        self.assert_text(dw_loc, grassrootsUnitsID)
+        self.assert_text(dw_loc, org_code)
         self.click(dw_loc)  # 选择单位
         self.click(dwxxBtn_loc)  # 点击单位信息管理
 

@@ -41,5 +41,6 @@ class BaseUtil(unittest.TestCase, BasePage):
         time.sleep(1.5)
 
     def tearDown(self):
+        time.sleep(5)
         self.quit()
         self.logger.info('###############################  End  ###############################')
