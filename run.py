@@ -8,33 +8,36 @@
 # @Software:        PyCharm
 # ====/******/=====
 import os.path
-import unittest
-from utils.HTMLTestRunner import *
 import time
+import unittest
+import unittestreport
 from config import globalparam
-from BeautifulReport import BeautifulReport as bf
 
 
 def run():
     suite = unittest.defaultTestLoader.discover(start_dir=globalparam.case_path, pattern='test*.py')
     now = time.strftime('%Y-%m-%d')
-    reportname = globalparam.report_path + '\\' + 'TestResult' + now + '.html'
-    reportname = os.path.join(globalparam.report_path, 'report.html')
-    # run_result = bf(suite)
-    # run_result.report(filename="report", description='测试报告',
-    #                   report_dir=globalparam.report_path)
-    with open(reportname, 'w', encoding='utf-8') as f:
-        runner = HTMLTestRunner(
-            stream=f, verbosity=2,
-            title='测试报告',
-            description='Test the import testcase'
-        )
-        runner.run(suite)
+    report_path = globalparam.report_path
+    reportname = 'TestResult' + now
+    runner = unittestreport.TestRunner(
+        suite=suite,
+        tester='Echo',
+        report_dir=report_path,
+        filename=reportname,
+        title='事业工资系统-测试报告',
+        templates=1,
+        desc='This is the test report of the business payroll system.'
+    )
+    runner.run(count=3, interval=3)  # 失败重跑3次，每次间隔3秒
     # time.sleep(3)
     # # 发送邮件
-    # mail = sendmail.SendMail()
-    # mail.send()
-    # # 邮件发送需要邮件配置信息
+    # runner.send_email(
+    #     host='smtp.qq.com',    # smtp服务器地址
+    #     port=465,      # smtp服务器端口465,25
+    #     user='tzu-mingliu@qq.com',    # 发送邮箱用户名
+    #     password='Flzx3000c',    # 发送邮箱密码
+    #     to_addrs='liulong@3mencn.com'  # 收件人邮箱地址
+    # )
 
 
 if __name__ == '__main__':

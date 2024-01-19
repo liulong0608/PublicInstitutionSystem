@@ -26,7 +26,7 @@ def select_browser(browser=globalparam.browser.lower()):
         elif browser == "chrome":
             options = webdriver.ChromeOptions()
             options.add_argument('ignore-certificate-errors')
-            options.add_experimental_option('detach', True)
+            # options.add_experimental_option('detach', True)
             service = Service(globalparam.driver_path)
             dr = webdriver.Chrome(options=options, service=service)
         elif browser == "edge":
