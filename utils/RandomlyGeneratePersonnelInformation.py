@@ -17,8 +17,9 @@ from utils.generateRandomIDNumbers import GenerateRandomIDNumbers
 
 def generate_name():
     # Generate random name
-    fake = Factory.create('zh_CN')
-    return fake.name()
+    # fake = Factory.create('zh_CN')
+    fake = Factory.create()
+    return "测试" + fake.name()
 
 
 def generate_idcard():
