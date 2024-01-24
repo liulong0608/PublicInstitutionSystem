@@ -179,7 +179,9 @@ class BasePage(BasePageABC):
         """
         t1 = time.time()
         try:
-            self.get_element(locator, whetherWait).send_keys(text)
+            element = self.get_element(locator, whetherWait)
+            element.clear()
+            element.send_keys(text)
             self.log.success(f"Input '{text}' to {locator}, Spend {time.time() - t1} seconds.")
         except ElementNotInteractableException:
             raise ElementNotInteractableException(f"Element {locator} is not interactable.")

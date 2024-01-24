@@ -23,6 +23,8 @@ report_path = os.path.join(prj_path, 'report', 'testreport')
 case_path = os.path.join(prj_path, 'testcase')
 # 默认浏览器
 browser = 'Chrome'
+# 配置文件根目录
+config_path = os.path.join(prj_path, 'config')
 # 浏览器驱动路径
 driver_path = os.path.join(prj_path, 'config', 'chromedriver.exe')
 linux_driver_path = os.path.join(prj_path, 'config', 'chromedriver')

@@ -14,7 +14,7 @@ from loguru import logger
 
 
 class Log:
-    def __init__(self, log_file_path: Text = globalparam.log_path, stream: bool = False):
+    def __init__(self, log_file_path: Text = globalparam.log_path, stream: bool = True):
         """
         二次封装Loguru日志
         :param log_file_path:  日志文件路径
