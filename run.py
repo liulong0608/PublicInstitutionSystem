@@ -16,9 +16,10 @@ from config import globalparam
 
 def run():
     suite = unittest.defaultTestLoader.discover(start_dir=globalparam.case_path, pattern='test*.py')
-    now = time.strftime('%Y-%m-%d')
+    # now = time.strftime('%Y-%m-%d')
     report_path = globalparam.report_path
-    reportname = 'TestResult' + now
+    # reportname = 'TestResult' + now
+    reportname = 'TestResult'
     runner = unittestreport.TestRunner(
         suite=suite,
         tester='Echo',
@@ -28,7 +29,9 @@ def run():
         templates=1,
         desc='This is the test report of the business payroll system.'
     )
-    runner.run(count=3, interval=3)  # 失败重跑3次，每次间隔3秒
+    runner.run(
+        # count=3, interval=3  # 失败重跑3次，每次间隔3秒
+    )
     # time.sleep(3)
     # # 发送邮件
     # runner.send_email(
