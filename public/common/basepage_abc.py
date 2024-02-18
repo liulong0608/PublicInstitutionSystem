@@ -1,5 +1,5 @@
 """         ==Coding: UTF-8==
-**    @Project :        UIAutomationTestTemplate
+**    @Project :        PublicInstitutionSystem
 **    @fileName         basepage_abc.py
 **    @author           Echo
 **    @EditTime         2023/12/5

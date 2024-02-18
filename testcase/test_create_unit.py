@@ -13,8 +13,10 @@ from utils.social_unified_creditcode.succ_utils.sucreditcode import generateUnif
 
 
 class TestCreateUnit(BaseUtil):
+    """ 创建单位 """
 
     def test_create_unit(self):
+        """ 创建单位 """
         cu = CreateUnitPage(self.driver)
         msg = cu.create_uniit(nest_messages_creditCode=generateUnifiedSocialCreditCode(),
                               unit_name="测试" + Faker().company(),
