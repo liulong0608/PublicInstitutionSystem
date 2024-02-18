@@ -541,6 +541,7 @@ class BasePage(BasePageABC):
             self.click(f"xpath->//nz-option-item[@title='{option_locator}']", whetherWait)
             self.log.success(
                 f"Special select option: {option_locator} from {select_locator}, Spend {time.time() - t1} seconds.")
+            time.sleep(0.5)
         except Exception:
             raise Exception(
                 f"Unable to select option: {option_locator} from {select_locator}, Spend {time.time() - t1} seconds.")
