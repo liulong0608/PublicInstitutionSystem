@@ -20,7 +20,7 @@ class CreateUnitPage(BasePage):
     _createUnit_msg = 'xpath->//div[@class="ant-modal-content"]/div/div/div/div'  # 保存成功断言信息
 
     def _swith_to_home(self):
-        self.open_url('http://192.168.2.209/console/home')
+        self.open_url('http://192.168.2.194/console/home')
 
     def _switch_to_creat(self):
         self.click(self._makeUnit_btn_loc)
