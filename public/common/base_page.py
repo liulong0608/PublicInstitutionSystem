@@ -445,16 +445,15 @@ class BasePage(BasePageABC):
             self.take_screenshot()
             raise
 
-    def assert_text_contains(self, locator: Text, expected_text: Text, whetherWait: bool = True) -> None:
+    def assert_text_contains(self, actual_text: Text, expected_text: Text, whetherWait: bool = True) -> None:
         """
         模糊断言
-        :param locator: 元素路径
+        :param actual_text: 实际结果
         :param expected_text: 预期结果
         :param whetherWait: 是否等待
         """
         t1 = time.time()
         try:
-            actual_text = self.get_text(locator, whetherWait)
             assert expected_text in actual_text, self.log.error(
                 f"Actual text '{actual_text}' does not match expected text '{expected_text}'"
             )
