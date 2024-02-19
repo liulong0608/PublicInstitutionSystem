@@ -290,6 +290,7 @@ class CreateUnitPage(BasePage):
         """
         新建经办人
         """
+        time.sleep(1)
         self._switch_to_operator()
         self._click_createOperator_btn()
         self._input_username(username)
