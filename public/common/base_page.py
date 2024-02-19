@@ -541,6 +541,7 @@ class BasePage(BasePageABC):
         t1 = time.time()
         try:
             self.click(select_locator, whetherWait)
+            time.sleep(0.5)
             self.click(f"xpath->//nz-option-item[@title='{option_locator}']", whetherWait)
             self.log.success(
                 f"Special select option: {option_locator} from {select_locator}, Spend {time.time() - t1} seconds.")
