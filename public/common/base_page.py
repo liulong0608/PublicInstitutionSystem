@@ -420,54 +420,58 @@ class BasePage(BasePageABC):
         except ElementNotSelectableException:
             raise ElementNotSelectableException(f"Element {locator} is not selectable.")
 
-    def assert_text(self, actualResult: Text, expected_text: Text, whetherWait: bool = True) -> None:
+    def assert_text(self, actual_result: str, expected_text: str, whether_wait: bool = True) -> None:
         """
-        断言文本
-        :param actualResult: 实际结果
-        :param expected_text: 预期结果
-        :param whetherWait: 是否等待
-        :return:
-        """
-        t1 = time.time()
-        try:
-            actualResult = actualResult
-            assert actualResult == expected_text, self.log.error(
-                f"Actual text '{actualResult}' does not match expected text '{expected_text}'")
-            self.log.success(
-                f"Successfully asserted text: {expected_text} from {actualResult}, Spend {time.time() - t1} seconds.")
-        except ElementNotInteractableException:
-            raise ElementNotInteractableException(f"Element {actualResult} is not interactable.")
-        except AssertionError:
-            raise AssertionException(f"Actual text '{actualResult}' does not match expected text '{expected_text}'")
-        except ElementNotSelectableException:
-            raise ElementNotSelectableException(f"Element {actualResult} is not selectable.")
-        except Exception:
-            self.take_screenshot()
-            raise
+        断言文本相等。
 
-    def assert_text_contains(self, actual_text: Text, expected_text: Text, whetherWait: bool = True) -> None:
+        :param actual_result: 实际结果的文本。
+        :param expected_text: 预期的文本。
+        :param whether_wait: 是否等待断言之前的某些条件。
         """
-        模糊断言
-        :param actual_text: 实际结果
-        :param expected_text: 预期结果
-        :param whetherWait: 是否等待
-        """
-        t1 = time.time()
+        assert isinstance(actual_result, str), "actual_result 必须是一个字符串"
+        assert isinstance(expected_text, str), "expected_text 必须是一个字符串"
+        start_time = time.time()
         try:
-            assert expected_text in actual_text, self.log.error(
-                f"Actual text '{actual_text}' does not match expected text '{expected_text}'"
-            )
-            self.log.success(
-                f"Successfully asserted that text: {expected_text} is in {locator}, Spend {time.time() - t1} seconds.")
-        except AssertionError:
-            raise AssertionError(f"Actual text '{actual_text}' does not match expected text '{expected_text}'")
+            assert actual_result == expected_text, f"The actual text '{actual_result}' does not match the expected text '{expected_text}'."
         except ElementNotInteractableException:
-            raise ElementNotInteractableException(f"Element {locator} is not interactable.")
-        except ElementNotSelectableException:
-            raise ElementNotSelectableException(f"Element {locator} is not selectable.")
-        except Exception:
             self.take_screenshot()
             raise
+        except ElementNotSelectableException:
+            self.take_screenshot()
+            raise
+        except AssertionError as e:
+            self.log.error(e.args[0])
+            self.take_screenshot()
+            raise AssertionException(e.args[0])
+        except Exception:  # 其他意外异常仍应记录和截图
+            self.take_screenshot()
+            raise
+        else:
+            elapsed_time = time.time() - start_time
+            self.log.success(f"The successful assertion text: '{expected_text}' is from '{actual_result}' and takes {elapsed_time:.2f} seconds.")
+
+    def assert_text_contains(self, actual_text: str, expected_text: str, whetherWait: bool = True) -> None:
+        """
+        断言实际文本包含预期的子字符串。
+
+        :param actual_text: 需要检查的实际文本。
+        :param expected_text: 预期的子字符串，用于断言其是否在实际文本中。
+        :param whetherWait: 是否在断言前等待
+        """
+        assert isinstance(actual_text, str), "实际文本必须是字符串"
+        assert isinstance(expected_text, str), "预期文本必须是字符串"
+
+        start_time = time.time()
+        try:
+            assert expected_text in actual_text, f"Expect '{expected_text}' to appear in '{actual_text}'."
+        except AssertionError as e:
+            self.log.error(f"Assertion failure: {e}")
+            self.take_screenshot()
+            raise
+        else:
+            elapsed_time = time.time() - start_time
+            self.log.success(
+                f"Assertions are present in the actual text with: '{expected_text}'. Time taken {elapsed_time:.2f} seconds.")
 
     def submit(self, locator: Text, whetherWait: bool = True) -> None:
         """
