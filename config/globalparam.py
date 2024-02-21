@@ -28,8 +28,10 @@ config_path = os.path.join(prj_path, 'config')
 # 浏览器驱动路径
 driver_path = os.path.join(prj_path, 'config', 'chromedriver.exe')
 linux_driver_path = os.path.join(prj_path, 'config', 'chromedriver')
+# 数据目录
+datas_path = os.path.join(prj_path, 'data')
 # 附件地址
-file_path = os.path.join(prj_path, 'data', '附件示例.png')  # 输出：D:\PublicInstitutionSystem\data
+file_path = os.path.join(datas_path, '附件示例.png')  # 输出：D:\PublicInstitutionSystem\data
 # 测试数据路径
 data_path = os.path.join(prj_path, 'data', 'testdata')
 # 测试截图
