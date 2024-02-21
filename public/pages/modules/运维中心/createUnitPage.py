@@ -10,8 +10,9 @@ from typing import *
 
 from selenium.webdriver.common.by import By
 
-from config.globalparam import file_path
+from config.globalparam import file_path, datas_path
 from public.common.base_page import BasePage
+from utils.files_upload import upload_file
 
 
 class CreateUnitPage(BasePage):
@@ -58,9 +59,8 @@ class CreateUnitPage(BasePage):
     _select_defaultSurveyStandard_loc = 'xpath->//nz-select[@formcontrolname="defaultSurveyStandard"]'
     _select_sourceOfFunds_loc = 'xpath->//nz-select[@formcontrolname="financialSourceTypeId"]'
     _attachment_btn_loc = 'xpath->//span[contains(text(),"附件上传")]'
-    _input_attachment_loc = ("xpath->/html/body/div/div[3]/div/nz-modal-container/div/div/div["
-                             "2]/nz-space/nz-space-item[1]/lib-attach-list/nz-list/nz-list-header/div/div["
-                             "2]/nz-space/nz-space-item[1]/nz-upload/div/div/input")
+    _upload_btn_loc = 'xpath->//div[contains(text(),"其它附件")]/ancestor::div[@class="header ng-star-inserted"]/div[2]/nz-space/nz-space-item[1]/nz-upload/div/div/button'
+    _upload_file_msg_loc = "xpath->//div/span[contains(text(),'附件示例.png')]"
     _save_attachment_btn_loc = 'css->div.ant-modal-footer button.ant-btn-primary'
     _save_modify_btn_loc = 'xpath->//div[@class="ant-tabs-content-holder"]/div/div/lib-unit-basis/button'
     _save_msg_loc = 'css->.ant-message span'
@@ -201,8 +201,9 @@ class CreateUnitPage(BasePage):
 
     def _upload_attachment(self):
         self.click(self._attachment_btn_loc)
-        ele = self.get_element(self._input_attachment_loc)
-        ele.send_keys(file_path)
+        self.click(self._upload_btn_loc)
+        upload_file(datas_path, "附件示例.png")
+        assert "附件示例.png" == self.get_text(self._upload_file_msg_loc), "上传附件失败."
         self.click(self._save_attachment_btn_loc)
 
     def _click_save_modify_btn(self):
@@ -218,11 +219,11 @@ class CreateUnitPage(BasePage):
         self.click(self._create_btn_loc)
 
     def _input_username(self, username):
+        time.sleep(1)
         self.input(self._input_username_loc, username)
         self.tab(self._input_username_loc)
 
     def _input_name(self):
-        # self.driver.find_element(By.XPATH, "//input[@formcontrolname='userNickName']").send_keys("test")
         self.input(self._input_name_loc, "test")
 
     def _select_gender(self, gender):
@@ -282,7 +283,7 @@ class CreateUnitPage(BasePage):
         self._select_publicInstitutionIndustry("11.其他行业")  # 选择事业单位行业
         self._select_defaultSurveyStandard("否")  # 选择是否地勘单位
         self._select_sourceOfFunds("核定收支、定额补助")  # 选择经费来源
-        # self._upload_attachment()  # 附件上传
+        self._upload_attachment()  # 附件上传
         self._click_save_modify_btn()  # 点击保存
         return self._get_save_msg()
 

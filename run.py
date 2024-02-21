@@ -32,15 +32,15 @@ def run():
     runner.run(
         # count=3, interval=3  # 失败重跑3次，每次间隔3秒
     )
-    # time.sleep(3)
+    time.sleep(3)
     # # 发送邮件
-    # runner.send_email(
-    #     host='smtp.qq.com',    # smtp服务器地址
-    #     port=465,      # smtp服务器端口465,25
-    #     user='tzu-mingliu@qq.com',    # 发送邮箱用户名
-    #     password='Flzx3000c',    # 发送邮箱密码
-    #     to_addrs='liulong@3mencn.com'  # 收件人邮箱地址
-    # )
+    runner.send_email(
+        host='smtp.exmail.qq.com',    # smtp服务器地址
+        port=465,      # smtp服务器端口465,25
+        user='liulong@3mencn.com',    # 发送邮箱用户名
+        password='Flzx3000c',    # 发送邮箱密码
+        to_addrs='liulong@3mencn.com'  # 收件人邮箱地址
+    )
 
 
 if __name__ == '__main__':
