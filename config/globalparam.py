@@ -11,6 +11,9 @@ import os
 import time
 
 from public.common.readconfig import ReadConfig
+
+# 环境
+env = "http://192.168.2.209/test_console"
 # 项目根路径
 prj_path = os.path.dirname(os.path.split(os.path.realpath(__file__))[0])
 # 日志路径

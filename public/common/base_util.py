@@ -33,7 +33,7 @@ class BaseUtil(unittest.TestCase, BasePage):
         self.logger.info('############################### START ###############################')
         self.driver = browser.select_browser()
         self.max_window()
-        self.open_url('http://192.168.2.194/console/login')
+        self.open_url(f'{globalparam.env}/login')
         self.input(login_username, '888')
         self.input(login_password, 'Aa123456')
         self.input(verifyCode, 'abcd')

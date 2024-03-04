@@ -6,6 +6,7 @@
 """
 from typing import *
 
+from config import globalparam
 from public.common.base_page import BasePage
 
 
@@ -18,7 +19,7 @@ class LoginPage(BasePage):
 
     def login(self):
         self.driver.max_window()
-        self.driver.open_url('http://192.168.2.194/console/login')
+        self.driver.open_url(f'{globalparam.env}/login')
         self.driver.input(self.login_username, '888')
         self.driver.input(self.login_password, 'Aa123456')
         self.driver.input(self.verifyCode, 'abcd')

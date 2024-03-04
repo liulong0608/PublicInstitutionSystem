@@ -10,6 +10,7 @@ from typing import *
 
 from selenium.webdriver.common.by import By
 
+from config import globalparam
 from config.globalparam import file_path, datas_path
 from public.common.base_page import BasePage
 from utils.files_upload import upload_file
@@ -77,7 +78,7 @@ class CreateUnitPage(BasePage):
     _save_operator_msg_loc = "css->.ant-modal-footer span.foot_msg"
 
     def _swith_to_home(self):
-        self.open_url('http://192.168.2.194/console/home')
+        self.open_url(f'{globalparam.env}/home')
 
     def _switch_to_creat(self):
         """
