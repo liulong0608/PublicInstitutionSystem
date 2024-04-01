@@ -11,15 +11,9 @@
 
 
 # 新建单位
-makeUnit_btn_loc = 'xpath->//*[@id="root"]/section/section/main/div[1]/div[3]/div/div/div[2]/div[1]'
-tyxy_code_loc = 'id->nest-messages_creditCode'
-unit_name_loc = 'id->nest-messages_organizationName'
-supervisor_loc = 'xpath->//div[@class="ant-select-selector"]'
 supervisor_yes = 'xpath->//div[@title="是"]'  # 是主管
 supervisor_no = 'xpath->//div[@title="否"]'  # 否主管
-sava_btn = 'xpath->//div[@class="unit_add_head__fNOk6"]/button[1]'  # 保存
 closs_btn = 'xpath->//div[@class="unit_add_head__fNOk6"]/button[2]'  # 关闭
-makeUnit_msg = 'xpath->//div[@class="ant-modal-content"]/div/div/div/div'  # 保存成功断言信息
 qwwh_btn = 'xpath->//div[@class="ant-modal-confirm-btns"]/button[2]'  # 前往维护
 
 # 新增人员元素

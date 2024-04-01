@@ -7,18 +7,17 @@
 # @editsession      2023/4/6
 # @Software:        PyCharm
 # ====/******/=====
-import os.path
 import time
 import unittest
+
 import unittestreport
+
 from config import globalparam
 
 
 def run():
     suite = unittest.defaultTestLoader.discover(start_dir=globalparam.case_path, pattern='test*.py')
-    # now = time.strftime('%Y-%m-%d')
     report_path = globalparam.report_path
-    # reportname = 'TestResult' + now
     reportname = 'TestResult'
     runner = unittestreport.TestRunner(
         suite=suite,

@@ -60,7 +60,7 @@ class CreateUnitPage(BasePage):
     _select_defaultSurveyStandard_loc = 'xpath->//nz-select[@formcontrolname="defaultSurveyStandard"]'
     _select_sourceOfFunds_loc = 'xpath->//nz-select[@formcontrolname="financialSourceTypeId"]'
     _attachment_btn_loc = 'xpath->//span[contains(text(),"附件上传")]'
-    _upload_btn_loc = 'xpath->//div[contains(text(),"其它附件")]/ancestor::div[@class="header ng-star-inserted"]/div[2]/nz-space/nz-space-item[1]/nz-upload/div/div/button'
+    _upload_btn_loc = 'xpath->//div[contains(text(),"单位信用代码证书")]/ancestor::div[@class="header ng-star-inserted"]/div[2]/nz-space/nz-space-item[1]/nz-upload/div/div/button'
     _upload_file_msg_loc = "xpath->//div/span[contains(text(),'附件示例.png')]"
     _save_attachment_btn_loc = 'css->div.ant-modal-footer button.ant-btn-primary'
     _save_modify_btn_loc = 'xpath->//div[@class="ant-tabs-content-holder"]/div/div/lib-unit-basis/button'
@@ -273,7 +273,7 @@ class CreateUnitPage(BasePage):
         self._select_salarySystem("事业单位工资制度")  # 选择工资制度
         self._select_unitLevel("正区科级")  # 选择单位级别
         self._select_isManager("否")  # 选择是否为主管
-        self._input_managerUnit("测试主管单位")  # 输入主管单位,点击主管单位
+        self._input_managerUnit("玻璃娃娃有限公司")  # 输入主管单位,点击主管单位
         self._select_auditProcess("2级审核（基层-终审）")  # 选择审核流程
         self._select_hardshipArea("无")  # 选择艰边类别
         self._select_membership("县、市、区")  # 选择隶属关系
