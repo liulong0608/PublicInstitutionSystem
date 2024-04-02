@@ -616,3 +616,19 @@ class BasePage(BasePageABC):
             raise NameError(f"Locator type '{by}' not supported.")
         locator = (by_string[by], value)
         return locator
+
+    def click_manager(self) -> None:
+        _manager_menu_loc = 'xpath->//div[contains(text(),"管理版")]'
+        self.click(_manager_menu_loc)
+
+    def business_guidance_grass_roots(self, org_code) -> None:
+        _businessAudit_menu_loc = 'xpath->//span[contains(text(),"业务审核")]'
+        _businessGuidance_menu_loc = 'xpath->//div[@class="menu-sub ng-star-inserted"]/ul/li[3]/a'
+        _query_org_input_loc = 'xpath->//input[@placeholder="输入统一社会信用代码/单位名称/主管单位查询"]'
+        _orgcode_link_loc = 'xpath->//tbody[@class="ant-table-tbody"]/tr[2]/td[1]/a'
+        self.click_manager()
+        self.move_to_element(_businessAudit_menu_loc)  # 悬停在业务审核
+        self.click(_businessGuidance_menu_loc)  # 点击业务指导基层
+        self.input(_query_org_input_loc, org_code)  # 输入查询统一社会信用代码
+        self.click(_orgcode_link_loc)  # 点击统一社会信用代码进入基层单位
+        self.switch_to_new_window()
