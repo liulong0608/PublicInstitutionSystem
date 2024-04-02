@@ -13,6 +13,8 @@ import os
 import pprint
 
 import xlrd
+import yaml
+
 from config import globalparam
 
 data_path = globalparam.data_path
@@ -70,3 +72,19 @@ def get_csv_to_dict(csvname):
     return result
 
 
+class YamlUtil(object):
+    def __init__(self, yaml_file):
+        """
+        通过init把文件传入到这个类中
+        :param yaml_file
+        """
+        self.yaml_file = yaml_file
+
+    def read_yaml(self):
+        """
+        读取yaml，将yaml反序列化，就是把yaml格式转换为dict格式
+        """
+        with open(self.yaml_file, encoding="utf-8") as f:
+            value = yaml.load(stream=f, Loader=yaml.FullLoader)  # 文件流，加载方式
+            print(value)
+            return value
