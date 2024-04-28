@@ -17,30 +17,37 @@ from public.pages import *
 from public.common import browser
 
 
-class BaseUtil(unittest.TestCase, BasePage):
+class BaseUtil(unittest.TestCase):
     """
     The base class is for all testcase.
     """
 
+    driver = None
+    logger = None
     login_username = 'id->username'
     login_password = 'id->password'
     verifyCode = 'id->captcha'
     login_btn = 'xpath->//*[@id="root"]/div/div[2]/div[1]/div/form/div[5]/div/div/div/div/button'
     asert_text = 'css->.home_personTitle__cQ0jt'
 
-    def setUp(self):
-        self.logger = Log().get_logger()
-        self.logger.info('############################### START ###############################')
-        self.driver = browser.select_browser()
-        self.max_window()
-        self.open_url(f'{globalparam.env}/login')
-        self.input(self.login_username, 'qyqzs')
-        self.input(self.login_password, 'Aa123456')
-        self.input(self.verifyCode, 'abcd')
-        self.click(self.login_btn)
+    @classmethod
+    def setUpClass(cls):
+        cls.logger = Log().get_logger()
+        cls.logger.info('############################### START ###############################')
+        driver = browser.select_browser()
+        cls.driver = BasePage(driver)
+        cls.driver.max_window()
+        cls.driver.open_url(f'{globalparam.env}/login')
+        cls.driver.input(cls.login_username, 'qyqzs')
+        cls.driver.input(cls.login_password, 'Aa123456')
+        cls.driver.input(cls.verifyCode, 'abcd')
+        cls.driver.click(cls.login_btn)
         time.sleep(1.5)
 
-    def tearDown(self):
+    @classmethod
+    def tearDownClass(cls):
         time.sleep(5)
-        self.quit()
-        self.logger.info('###############################  End  ###############################')
+        cls.driver.quit()
+        cls.logger.info('###############################  End  ###############################')
+
+
