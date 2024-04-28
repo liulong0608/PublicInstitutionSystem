@@ -47,4 +47,4 @@ class TestUnitInfomaitionModification(BaseUtil):
                                                     publicInstitutionIndustry=args['事业单位行业'],
                                                     defaultSurveyStandard=args['是否地勘单位'],
                                                     sourceOfFunds=args['经费来源'])
-        self.assert_text(msg, "保存成功，稍后请在单位信息查看")
+        self.driver.assert_text(msg, "保存成功，稍后请在单位信息查看")

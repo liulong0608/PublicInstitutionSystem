@@ -60,7 +60,7 @@ class CreateUnitPage(BasePage):
     _select_defaultSurveyStandard_loc = 'xpath->//nz-select[@formcontrolname="defaultSurveyStandard"]'
     _select_sourceOfFunds_loc = 'xpath->//nz-select[@formcontrolname="financialSourceTypeId"]'
     _attachment_btn_loc = 'xpath->//span[contains(text(),"附件上传")]'
-    _upload_btn_loc = 'xpath->//div[contains(text(),"单位信用代码证书")]/ancestor::div[@class="header ng-star-inserted"]/div[2]/nz-space/nz-space-item[1]/nz-upload/div/div/button'
+    _upload_btn_loc = "xpath->(//button[@class='ant-btn ng-star-inserted'])[1]"
     _upload_file_msg_loc = "xpath->//div/span[contains(text(),'附件示例.png')]"
     _save_attachment_btn_loc = 'css->div.ant-modal-footer button.ant-btn-primary'
     _save_modify_btn_loc = 'xpath->//div[@class="ant-tabs-content-holder"]/div/div/lib-unit-basis/button'
@@ -78,172 +78,172 @@ class CreateUnitPage(BasePage):
     _save_operator_msg_loc = "css->.ant-modal-footer span.foot_msg"
 
     def _swith_to_home(self):
-        self.open_url(f'{globalparam.env}/home')
+        self.driver.open_url(f'{globalparam.env}/home')
 
     def _switch_to_creat(self):
         """
         点击新建单位按钮
         """
-        self.click(self._makeUnit_btn_loc)
+        self.driver.click(self._makeUnit_btn_loc)
 
     def _input_unit_code(self, nest_messages_creditCode):
         """
         输入单位社会信用代码
         """
-        self.input(self._orgcode_loc, nest_messages_creditCode)
+        self.driver.input(self._orgcode_loc, nest_messages_creditCode)
 
     def _input_unit_name(self, unit_name):
         """
         输入单位名称
         """
-        self.input(self._unit_name_loc, unit_name)
+        self.driver.input(self._unit_name_loc, unit_name)
 
     def _select_whetherToBeInCharge(self, supervisor):
         """
         选择是否主管单位
         """
-        self.click(self._supervisor_loc)
-        self.click(f"xpath->//div[@title='{supervisor}']")
+        self.driver.click(self._supervisor_loc)
+        self.driver.click(f"xpath->//div[@title='{supervisor}']")
 
     def _click_save(self):
         """
         点击保存
         """
-        self.click(self._save_btn_loc)
+        self.driver.click(self._save_btn_loc)
 
     def _get_createUnit_msg(self):
         """
         获取保存成功提示
         """
-        return self.get_text(self._createUnit_msg)
+        return self.driver.get_text(self._createUnit_msg)
 
     def _swith_to_maintain(self):
         """
         点击维护单位信息按钮
         """
-        self.click(self._maintain_btn_loc)
+        self.driver.click(self._maintain_btn_loc)
 
     def _input_headOfUnit(self, headOfUnit):
-        self.input(self._input_headOfUnit_loc, headOfUnit)
+        self.driver.input(self._input_headOfUnit_loc, headOfUnit)
 
     def _input_phone(self, officeTel):
-        self.input(self._input_phone_loc, officeTel)
+        self.driver.input(self._input_phone_loc, officeTel)
 
     def _input_address(self, unitAddress):
-        self.input(self._input_address_loc, unitAddress)
+        self.driver.input(self._input_address_loc, unitAddress)
 
     def _input_postcode(self, postcode):
-        self.input(self._input_postcode_loc, postcode)
+        self.driver.input(self._input_postcode_loc, postcode)
 
     def _select_financialSupport(self, financialSupportType):
-        self.htmlSelect(self._select_financialSupport_loc, financialSupportType)
+        self.driver.htmlSelect(self._select_financialSupport_loc, financialSupportType)
 
     def _select_financialRegulation(self, financialRegulation):
-        self.htmlSelect(self._select_financialRegulation_loc, financialRegulation)
+        self.driver.htmlSelect(self._select_financialRegulation_loc, financialRegulation)
 
     def _input_unitFinancialCode(self, financialCode):
         if financialCode is not None:
-            self.input(self._input_unitFinancialCode_loc, financialCode)
+            self.driver.input(self._input_unitFinancialCode_loc, financialCode)
 
     def _select_unitProperty(self, unitProperty):
-        self.htmlSelect(self._select_unitProperty_loc, unitProperty)
+        self.driver.htmlSelect(self._select_unitProperty_loc, unitProperty)
 
     def _select_typeOfPublicInstitution(self, institutionType):
-        self.htmlSelect(self._select_typeOfPublicInstitution_loc, institutionType)
+        self.driver.htmlSelect(self._select_typeOfPublicInstitution_loc, institutionType)
 
     def _select_publicInstitutionIndustry(self, industry):
-        self.input(self._select_publicInstitutionIndustry_loc, industry)
-        self.click(f'xpath->//nz-tree-node-title[@title="{industry}"]')
+        self.driver.input(self._select_publicInstitutionIndustry_loc, industry)
+        self.driver.click(f'xpath->//nz-tree-node-title[@title="{industry}"]')
 
     def _select_defaultSurveyStandard(self, surveyStandard):
-        self.htmlSelect(self._select_defaultSurveyStandard_loc, surveyStandard)
+        self.driver.htmlSelect(self._select_defaultSurveyStandard_loc, surveyStandard)
 
     def _select_sourceOfFunds(self, fundsSource):
-        self.htmlSelect(self._select_sourceOfFunds_loc, fundsSource)
+        self.driver.htmlSelect(self._select_sourceOfFunds_loc, fundsSource)
 
     def _select_salarySystem(self, salarySystemType):
         """
         选择工资制度
         :param salarySystemType:
         """
-        self.htmlSelect(self._select_salarySystem_loc, salarySystemType)
+        self.driver.htmlSelect(self._select_salarySystem_loc, salarySystemType)
 
     def _select_unitLevel(self, unitLevel):
-        self.htmlSelect(self._select_unitLevel_loc, unitLevel)
+        self.driver.htmlSelect(self._select_unitLevel_loc, unitLevel)
 
     def _select_isManager(self, whetherManager):
         if whetherManager == '是':
-            self.click(self._click_isManager_loc, False)
+            self.driver.click(self._click_isManager_loc, False)
         else:
-            self.click(self._click_noManager_loc, False)
+            self.driver.click(self._click_noManager_loc, False)
 
     def _input_managerUnit(self, managerUnit):
-        self.input(self._input_managerUnit_loc, managerUnit)
-        self.click(f"xpath->//nz-option-item[@title='{managerUnit}']")
+        self.driver.input(self._input_managerUnit_loc, managerUnit)
+        self.driver.click(f"xpath->//nz-option-item[@title='{managerUnit}']")
 
     def _select_auditProcess(self, auditProcess):
-        self.htmlSelect(self._select_auditProcess_loc, auditProcess)
+        self.driver.htmlSelect(self._select_auditProcess_loc, auditProcess)
 
     def _select_hardshipArea(self, hardshipAreaType):
-        self.htmlSelect(self._select_hardshipArea_loc, hardshipAreaType)
+        self.driver.htmlSelect(self._select_hardshipArea_loc, hardshipAreaType)
 
     def _select_membership(self, membership):
-        self.htmlSelect(self._select_membership_loc, membership)
+        self.driver.htmlSelect(self._select_membership_loc, membership)
 
     def _select_unitStation(self, unitStation):
-        self.click(self._click_unitStation_loc)
-        self.click(f"xpath->//li[@title='{unitStation}']")
+        self.driver.click(self._click_unitStation_loc)
+        self.driver.click(f"xpath->//li[@title='{unitStation}']")
 
     def _select_averageElevation(self, averageElevation):
-        self.htmlSelect(self._select_averageElevation_loc, averageElevation)
+        self.driver.htmlSelect(self._select_averageElevation_loc, averageElevation)
 
     def _select_stationElevation(self, stationElevation):
-        self.htmlSelect(self._select_stationElevation_loc, stationElevation)
+        self.driver.htmlSelect(self._select_stationElevation_loc, stationElevation)
 
     def _upload_attachment(self):
-        self.click(self._attachment_btn_loc)
-        self.click(self._upload_btn_loc)
+        self.driver.click(self._attachment_btn_loc)
+        self.driver.click(self._upload_btn_loc)
         upload_file(datas_path, "附件示例.png")
-        assert "附件示例.png" == self.get_text(self._upload_file_msg_loc), "上传附件失败."
-        self.click(self._save_attachment_btn_loc)
+        assert "附件示例.png" == self.driver.get_text(self._upload_file_msg_loc), "上传附件失败."
+        self.driver.click(self._save_attachment_btn_loc)
 
     def _click_save_modify_btn(self):
-        self.click(self._save_modify_btn_loc)
+        self.driver.click(self._save_modify_btn_loc)
 
     def _get_save_msg(self):
-        return self.get_text(self._save_msg_loc)
+        return self.driver.get_text(self._save_msg_loc)
 
     def _switch_to_operator(self):
-        self.click(self._operator_btn_loc)
+        self.driver.click(self._operator_btn_loc)
 
     def _click_createOperator_btn(self):
-        self.click(self._create_btn_loc)
+        self.driver.click(self._create_btn_loc)
 
     def _input_username(self, username):
         time.sleep(1)
-        self.input(self._input_username_loc, username)
-        self.tab(self._input_username_loc)
+        self.driver.input(self._input_username_loc, username)
+        self.driver.tab(self._input_username_loc)
 
     def _input_name(self):
-        self.input(self._input_name_loc, "test")
+        self.driver.input(self._input_name_loc, "test")
 
     def _select_gender(self, gender):
-        self.htmlSelect(self._select_gender_loc, gender)
+        self.driver.htmlSelect(self._select_gender_loc, gender)
 
     def _input_identityCard(self, identityCard):
-        self.input(self._input_identityCard_loc, identityCard)
+        self.driver.input(self._input_identityCard_loc, identityCard)
 
     def _input_phoneNumber(self, phoneNumber):
-        self.input(self._input_phoneNumber_loc, phoneNumber)
+        self.driver.input(self._input_phoneNumber_loc, phoneNumber)
 
     def _choice_jurisdiction(self):
-        self.click(self._set_jurisdiction_loc)
+        self.driver.click(self._set_jurisdiction_loc)
 
     def _click_save_operator(self):
-        self.click(self._save_operator_btn_loc)
+        self.driver.click(self._save_operator_btn_loc)
 
     def _get_create_operator_msg(self):
-        return self.get_text(self._save_operator_msg_loc)
+        return self.driver.get_text(self._save_operator_msg_loc)
 
     def create_uniit(self, nest_messages_creditCode, unit_name, supervisor):
         """

@@ -34,43 +34,43 @@ class PersonnelAddPage(BasePage):
     _gender_input_loc = 'css->nz-select[formcontrolname="gender"]'
 
     def _click_manager_menu(self):
-        self.click(self._manager_menu_loc)  # 点击管理版按钮
+        self.driver.click(self._manager_menu_loc)  # 点击管理版按钮
 
     def _click_businessGuidance_menu(self):
-        self.move_to_element(self._businessAudit_menu_loc)  # 悬停在业务审核
-        self.click(self._businessGuidance_menu_loc)  # 点击业务指导基层
+        self.driver.move_to_element(self._businessAudit_menu_loc)  # 悬停在业务审核
+        self.driver.click(self._businessGuidance_menu_loc)  # 点击业务指导基层
 
     def switch_to_basicUnit(self, org_code):
-        self.input(self._query_org_input_loc, org_code)  # 输入查询统一社会信用代码
-        self.click(self._orgcode_link_loc)  # 点击统一社会信用代码进入基层单位
+        self.driver.input(self._query_org_input_loc, org_code)  # 输入查询统一社会信用代码
+        self.driver.click(self._orgcode_link_loc)  # 点击统一社会信用代码进入基层单位
 
     def _click_addstaff_menu(self):
-        self.switch_to_new_window()  # 跳转新窗口
-        self.move_to_element(self._add_decrease_loc)  # 悬停在人员新增减少菜单上
-        self.click(self._add_menu_loc)  # 点击人员新增
+        self.driver.switch_to_new_window()  # 跳转新窗口
+        self.driver.move_to_element(self._add_decrease_loc)  # 悬停在人员新增减少菜单上
+        self.driver.click(self._add_menu_loc)  # 点击人员新增
 
     def _select_stafftype(self, identity):
-        self.htmlSelect(self._personnel_identity_loc, identity)  # 选择人员身份
+        self.driver.htmlSelect(self._personnel_identity_loc, identity)  # 选择人员身份
 
     def _input_qxDate(self, qxDate):
-        self.clear_and_input(self._qxDate_input_loc, qxDate)  # 输入起薪时间
+        self.driver.clear_and_input(self._qxDate_input_loc, qxDate)  # 输入起薪时间
 
     def _input_bySymbol(self, msg):
-        # self.input(self._bySymbol_input_loc, msg)   # 输入依据文号
-        self.driver.find_element(By.XPATH, "//lib-staff-head/form[1]/nz-form-item[3]/nz-form-control[1]/div[1]/div[1]/input[1]").send_keys(msg)
+        self.driver.input(self._bySymbol_input_loc, msg)   # 输入依据文号
+        # self.driver.find_element(By.XPATH, "//lib-staff-head/form[1]/nz-form-item[3]/nz-form-control[1]/div[1]/div[1]/input[1]").send_keys(msg)
 
     def _input_change_remarks(self, msg):
-        self.input(self._changeRemarks_input_loc, msg)
+        self.driver.input(self._changeRemarks_input_loc, msg)
 
     def _uploadAttachment(self):
-        self.click(self._attachment_btn_loc)
+        self.driver.click(self._attachment_btn_loc)
 
     def _input_staffName(self, name):
         """输入人员姓名"""
-        self.input(self._staffName_input_loc, name)
+        self.driver.input(self._staffName_input_loc, name)
 
     def _select_gender(self, gender):
-        self.htmlSelect(self._gender_input_loc, gender)
+        self.driver.htmlSelect(self._gender_input_loc, gender)
 
     def add_staff(self, org_code, identity, qxDate, name, gender):
         self._click_manager_menu()  # 点击管理版按钮

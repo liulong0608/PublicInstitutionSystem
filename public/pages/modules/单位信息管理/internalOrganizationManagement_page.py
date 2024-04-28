@@ -35,42 +35,42 @@ class InternalOrganizationManagementPage(BasePage):
         """
         进入内设机构管理
         """
-        self.move_to_element(self._org_manager_btn_loc)
-        self.click(self._internal_org_manager_btn_loc)
+        self.driver.move_to_element(self._org_manager_btn_loc)
+        self.driver.click(self._internal_org_manager_btn_loc)
 
     def _input_internal_name(self, name):
         """输入内设机构名称"""
-        self.input(self._input_internal_name_loc, name)
+        self.driver.input(self._input_internal_name_loc, name)
 
     def _input_internal_phone(self, phone):
         """输入内设机构电话"""
-        self.input(self._input_internal_phone_loc, phone)
+        self.driver.input(self._input_internal_phone_loc, phone)
 
     def _create_internal_organization(self):
         """创建内设机构"""
-        self.click(self._create_btn_loc)
+        self.driver.click(self._create_btn_loc)
 
     def _get_create_msg(self):
         """获取创建成功的提示信息"""
-        return self.get_text(self._create_success_msg_loc)
+        return self.driver.get_text(self._create_success_msg_loc)
 
     def _click_modify_btn(self):
-        self.click(self._modify_btn_loc)
+        self.driver.click(self._modify_btn_loc)
 
     def _edit_internal_name(self, name):
-        self.clear_and_input(self._edit_internal_name_loc, name)
+        self.driver.clear_and_input(self._edit_internal_name_loc, name)
 
     def _edit_internal_phone(self, phone):
-        self.clear_and_input(self._edit_internal_phone_loc, phone)
+        self.driver.clear_and_input(self._edit_internal_phone_loc, phone)
 
     def _save_modify_btn(self):
-        self.click(self._save_modify_btn_loc)
+        self.driver.click(self._save_modify_btn_loc)
 
     def _click_del_btn(self):
-        self.click(self._del_btn_loc)
+        self.driver.click(self._del_btn_loc)
 
     def _ensure_del_internal_organization(self):
-        self.click(self._ensure_del_btn_loc)
+        self.driver.click(self._ensure_del_btn_loc)
 
     def add_internal_organization(self, org_code, name, phone):
         """

@@ -57,117 +57,117 @@ class UnitInformationModificationPage(BasePage):
 
     def _get_orgCode(self) -> Text:
         _orgCode_loc = f'xpath->//tbody/tr[{random.randint(2, 15)}]/td[2]'
-        orgcode_loc = self.get_element(locator=_orgCode_loc)
+        orgcode_loc = self.driver.get_element(locator=_orgCode_loc)
         if orgcode_loc:
             return orgcode_loc.text
         else:
             self._get_orgCode()
 
     def _swith_to_home(self):
-        self.open_url(f'{globalparam.env}/home')
+        self.driver.open_url(f'{globalparam.env}/home')
 
     def _switch_to_unitInformationManagement(self):
-        self.click(self._unitInformationManagement__btn_loc)
+        self.driver.click(self._unitInformationManagement__btn_loc)
 
     def _org_code(self):
         return self._get_orgCode()
 
     def _query_unit(self):
-        self.input(self._query_loc, self._org_code())
-        self.click(self._queryBtn_loc)
+        self.driver.input(self._query_loc, self._org_code())
+        self.driver.click(self._queryBtn_loc)
 
     def _select_unit(self):
-        self.click(self._orgCode_loc)
+        self.driver.click(self._orgCode_loc)
 
     def _click_orgInfo_btn(self):
-        self.click(self._orgInfo_btn_loc)
+        self.driver.click(self._orgInfo_btn_loc)
 
     def _input_orgCode(self, newGrassrootsUnitsID):
-        self.input(self._input_orgcode_loc, newGrassrootsUnitsID)
+        self.driver.input(self._input_orgcode_loc, newGrassrootsUnitsID)
 
     def _input_orgName(self, unitName):
-        self.input(self._input_orgName_loc, unitName)
+        self.driver.input(self._input_orgName_loc, unitName)
 
     def _input_headOfUnit(self, headOfUnit):
-        self.input(self._input_headOfUnit_loc, headOfUnit)
+        self.driver.input(self._input_headOfUnit_loc, headOfUnit)
 
     def _input_phone(self, officeTel):
-        self.input(self._input_phone_loc, officeTel)
+        self.driver.input(self._input_phone_loc, officeTel)
 
     def _input_address(self, unitAddress):
-        self.input(self._input_address_loc, unitAddress)
+        self.driver.input(self._input_address_loc, unitAddress)
 
     def _input_postcode(self, postcode):
-        self.input(self._input_postcode_loc, postcode)
+        self.driver.input(self._input_postcode_loc, postcode)
 
     def _select_financialSupport(self, financialSupportType):
-        self.htmlSelect(self._select_financialSupport_loc, financialSupportType)
+        self.driver.htmlSelect(self._select_financialSupport_loc, financialSupportType)
 
     def _select_financialRegulation(self, financialRegulation):
-        self.htmlSelect(self._select_financialRegulation_loc, financialRegulation)
+        self.driver.htmlSelect(self._select_financialRegulation_loc, financialRegulation)
 
     def _input_unitFinancialCode(self, financialCode):
-        self.input(self._input_unitFinancialCode_loc, financialCode)
+        self.driver.input(self._input_unitFinancialCode_loc, financialCode)
 
     def _select_unitProperty(self, unitProperty):
-        self.htmlSelect(self._select_unitProperty_loc, unitProperty)
+        self.driver.htmlSelect(self._select_unitProperty_loc, unitProperty)
 
     def _select_typeOfPublicInstitution(self, institutionType):
-        self.htmlSelect(self._select_typeOfPublicInstitution_loc, institutionType)
+        self.driver.htmlSelect(self._select_typeOfPublicInstitution_loc, institutionType)
 
     def _select_publicInstitutionIndustry(self, industry):
-        self.input(self._select_publicInstitutionIndustry_loc, industry)
-        self.click(f'xpath->//nz-tree-node-title[@title="{industry}"]')
+        self.driver.input(self._select_publicInstitutionIndustry_loc, industry)
+        self.driver.click(f'xpath->//nz-tree-node-title[@title="{industry}"]')
 
     def _select_defaultSurveyStandard(self, surveyStandard):
-        self.htmlSelect(self._select_defaultSurveyStandard_loc, surveyStandard)
+        self.driver.htmlSelect(self._select_defaultSurveyStandard_loc, surveyStandard)
 
     def _select_sourceOfFunds(self, fundsSource):
-        self.htmlSelect(self._select_sourceOfFunds_loc, fundsSource)
+        self.driver.htmlSelect(self._select_sourceOfFunds_loc, fundsSource)
 
     def _select_salarySystem(self, salarySystemType, subsidyStandardTypeArea):
-        self.htmlSelect(self._select_salarySystem_loc, salarySystemType)
+        self.driver.htmlSelect(self._select_salarySystem_loc, salarySystemType)
         if salarySystemType == "机关工资制度" or salarySystemType == "机关、事业两种制度并存":
-            self.click(self._select_subsidyStandardTypeLocale_loc)
-            self.click(f'//li[@title="{subsidyStandardTypeArea}"]')
+            self.driver.click(self._select_subsidyStandardTypeLocale_loc)
+            self.driver.click(f'//li[@title="{subsidyStandardTypeArea}"]')
 
     def _select_unitLevel(self, unitLevel):
-        self.htmlSelect(self._select_unitLevel_loc, unitLevel)
+        self.driver.htmlSelect(self._select_unitLevel_loc, unitLevel)
 
     def _select_isManager(self, whetherManager):
         if whetherManager == '是':
-            self.click(self._click_isManager_loc, False)
+            self.driver.click(self._click_isManager_loc, False)
         else:
-            self.click(self._click_noManager_loc, False)
+            self.driver.click(self._click_noManager_loc, False)
 
     def _input_managerUnit(self, managerUnit):
-        self.input(self._input_managerUnit_loc, managerUnit)
-        self.click(f"xpath->//nz-option-item[@title='{managerUnit}']")
+        self.driver.input(self._input_managerUnit_loc, managerUnit)
+        self.driver.click(f"xpath->//nz-option-item[@title='{managerUnit}']")
 
     def _select_auditProcess(self, auditProcess):
-        self.htmlSelect(self._select_auditProcess_loc, auditProcess)
+        self.driver.htmlSelect(self._select_auditProcess_loc, auditProcess)
 
     def _select_hardshipArea(self, hardshipAreaType):
-        self.htmlSelect(self._select_hardshipArea_loc, hardshipAreaType)
+        self.driver.htmlSelect(self._select_hardshipArea_loc, hardshipAreaType)
 
     def _select_membership(self, membership):
-        self.htmlSelect(self._select_membership_loc, membership)
+        self.driver.htmlSelect(self._select_membership_loc, membership)
 
     def _select_unitStation(self, unitStation):
-        self.click(self._click_unitStation_loc)
-        self.click(f"xpath->//li[@title='{unitStation}']")
+        self.driver.click(self._click_unitStation_loc)
+        self.driver.click(f"xpath->//li[@title='{unitStation}']")
 
     def _select_averageElevation(self, averageElevation):
-        self.htmlSelect(self._select_averageElevation_loc, averageElevation)
+        self.driver.htmlSelect(self._select_averageElevation_loc, averageElevation)
 
     def _select_stationElevation(self, stationElevation):
-        self.htmlSelect(self._select_stationElevation_loc, stationElevation)
+        self.driver.htmlSelect(self._select_stationElevation_loc, stationElevation)
 
     def _click_save_modify_btn(self):
-        self.click(self._save_modify_btn_loc)
+        self.driver.click(self._save_modify_btn_loc)
 
     def _get_save_msg(self):
-        return self.get_text(self._save_msg_loc)
+        return self.driver.get_text(self._save_msg_loc)
 
     def modification_unit_base_information(self, newGrassrootsUnitsID, unitName, headOfUnit, officeTel, unitAddress,
                                            postcode, financialSupport, financialRegulation, unitFinancialCode,
