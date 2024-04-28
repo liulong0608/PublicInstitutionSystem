@@ -5,86 +5,79 @@
 **    @EditTime         2023/12/11
 """
 import sys
-from typing import *
-
-from selenium.common import WebDriverException
-from selenium.webdriver.chrome.service import Service
-
-from config import globalparam
 from selenium import webdriver
-
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.edge.options import Options as EdgeOptions
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from config import globalparam
 from public.common.exceptions import UnsupportedBrowserException
 from utils.download_driver import download_driver
 
-system_driver = sys.platform
+
+def setup_driver_options(browser):
+    """
+    根据浏览器类型设置WebDriver的选项。
+    :param browser: 浏览器名称
+    :return: WebDriver选项对象
+    """
+    options_map = {
+        'chrome': ChromeOptions,
+        'edge': EdgeOptions,
+        'firefox': FirefoxOptions
+    }
+
+    if browser in options_map:
+        options_class = options_map[browser]
+        options = options_class()
+        options.add_argument('ignore-certificate-errors')
+        return options
+    else:
+        raise UnsupportedBrowserException(f"不支持的浏览器: {browser}")
 
 
-def select_browser(browser=globalparam.browser.lower()):
+def create_service(browser, driver_path):
+    """
+    为WebDriver创建Service对象。
+    :param browser: 浏览器名称
+    :param driver_path: WebDriver驱动程序的路径
+    :return: Service对象
+    """
+    if browser == 'chrome':
+        service = Service(driver_path)
+        return service
+    else:  # 其他浏览器的驱动暂未实现
+        return None
+
+
+def initialize_driver(browser, options, service, system_driver):
+    """
+    初始化WebDriver，传入选项和浏览器驱动地址。
+    :param browser: 浏览器名称
+    :param options: WebDriver选项对象
+    :param service: Service对象
+    :param system_driver: 系统平台
+    :return: WebDriver实例
+    """
     try:
-        if system_driver.lower() == "win32":
-            if browser == "firefox":
-                dr = webdriver.Firefox()
-            elif browser == "chrome":
-                options = webdriver.ChromeOptions()
-                options.add_argument('ignore-certificate-errors')
-                # options.add_experimental_option('detach', True)
-                service = Service(globalparam.driver_path)
-                dr = webdriver.Chrome(options=options, service=service)
-            elif browser == "edge":
-                dr = webdriver.Edge()
-            else:
-                raise UnsupportedBrowserException(f"Browser {browser} is not supported.")
-            return dr
-        elif system_driver.lower() == "linux":
-            if browser == "firefox":
-                dr = webdriver.Firefox()
-            elif browser == "chrome":
-                options = webdriver.ChromeOptions()
-                options.add_argument('no-sandbox')
-                options.add_argument("headless")  # 配置无头浏览器
-                options.add_argument('disable-dev-shm-usage')
-                options.add_argument('disable-gpu')  # 需要加上这个属性来规避bug
-                service = Service(globalparam.linux_driver_path)
-                dr = webdriver.Chrome(options=options, service=service)
-            elif browser == "edge":
-                dr = webdriver.Edge()
-            else:
-                raise UnsupportedBrowserException(f"Browser {browser} is not supported.")
-            return dr
-        else:
-            raise UnsupportedBrowserException(f"System {system_driver} is not supported.")
-    except WebDriverException:
+        driver_class = getattr(webdriver, browser.capitalize())
+        driver = driver_class(options=options, service=service)
+        return driver
+    except Exception as e:
+        print(f"初始化驱动程序时发生错误: {e}")
         download_driver(browser=browser)
-        if system_driver.lower() == "win32":
-            if browser == "firefox":
-                dr = webdriver.Firefox()
-            elif browser == "chrome":
-                options = webdriver.ChromeOptions()
-                options.add_argument('ignore-certificate-errors')
-                # options.add_experimental_option('detach', True)
-                service = Service(globalparam.driver_path)
-                dr = webdriver.Chrome(options=options, service=service)
-            elif browser == "edge":
-                dr = webdriver.Edge()
-            else:
-                raise UnsupportedBrowserException(f"Browser {browser} is not supported.")
-            return dr
-        elif system_driver.lower() == "linux":
-            if browser == "firefox":
-                dr = webdriver.Firefox()
-            elif browser == "chrome":
-                options = webdriver.ChromeOptions()
-                options.add_argument('no-sandbox')
-                options.add_argument("headless")  # 配置无头浏览器
-                options.add_argument('disable-dev-shm-usage')
-                options.add_argument('disable-gpu')  # 需要加上这个属性来规避bug
-                service = Service(globalparam.linux_driver_path)
-                dr = webdriver.Chrome(options=options, service=service)
-            elif browser == "edge":
-                dr = webdriver.Edge()
-            else:
-                raise UnsupportedBrowserException(f"Browser {browser} is not supported.")
-            return dr
-        else:
-            raise UnsupportedBrowserException(f"System {system_driver} is not supported.")
+        return initialize_driver(browser, options, service, system_driver)
 
+
+def select_browser(browser=globalparam.browser.lower()) -> webdriver:
+    """
+    根据指定的浏览器和系统选择并返回WebDriver实例。
+    :param browser: 浏览器名称
+    :return: WebDriver实例
+    """
+    system_driver = sys.platform
+    options = setup_driver_options(browser)
+    service = create_service(browser,
+                             globalparam.driver_path if system_driver == 'win32' else globalparam.linux_driver_path)
+
+    return initialize_driver(browser, options, service, system_driver)
