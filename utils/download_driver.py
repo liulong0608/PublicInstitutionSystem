@@ -23,6 +23,7 @@ def download_driver(browser):
     download driver
     :return:
     """
+    print('开始下载驱动程序...')
     if browser == 'chrome':
         # 1.使用ChromeDriverManager安装ChromeDriver，并返回驱动程序的路径
         driver_path = ChromeDriverManager().install()

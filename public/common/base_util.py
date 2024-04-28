@@ -35,7 +35,7 @@ class BaseUtil(unittest.TestCase):
         cls.logger = Log().get_logger()
         cls.logger.info('############################### START ###############################')
         driver = browser.select_browser()
-        cls.driver = BasePage(driver)
+        cls.driver: BasePage = BasePage(driver)
         cls.driver.max_window()
         cls.driver.open_url(f'{globalparam.env}/login')
         cls.driver.input(cls.login_username, 'qyqzs')
