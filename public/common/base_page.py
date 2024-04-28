@@ -17,6 +17,7 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from config import globalparam
+from config.globalparam import datas_path
 from public.common.basepage_abc import BasePageABC
 from selenium import webdriver
 from public.common.exceptions import InvalidArgumentException, UnsupportedBrowserException, NameError, ValueError, \
@@ -24,6 +25,8 @@ from public.common.exceptions import InvalidArgumentException, UnsupportedBrowse
     ElementNotSelectableException, WebDriverException
 
 import time
+
+from utils.files_upload import upload_file
 
 system_driver = sys.platform
 
@@ -632,3 +635,20 @@ class BasePage(BasePageABC):
         self.input(_query_org_input_loc, org_code)  # 输入查询统一社会信用代码
         self.click(_orgcode_link_loc)  # 点击统一社会信用代码进入基层单位
         self.switch_to_new_window()
+
+    def upload_attachment(self) -> None:
+        """
+        上传附件
+        """
+        _attachment_btn_loc = "xpath->//span[contains(text(),'工资报审附件')]"
+        _upload_btn_loc = "xpath->(//button[@class='ant-btn ng-star-inserted'])[1]"
+        _upload_file_msg_loc = "xpath->//div/span[contains(text(),'附件示例.png')]"
+        _save_attachment_btn_loc = 'css->div.ant-modal-footer button.ant-btn-primary'
+
+        self.click(_attachment_btn_loc)
+        self.click(_upload_btn_loc)
+        upload_file(datas_path, "附件示例.png")
+        assert "附件示例.png" == self.get_text(_upload_file_msg_loc), "上传附件失败."
+        self.click(_save_attachment_btn_loc)
+
+
