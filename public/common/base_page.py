@@ -7,25 +7,23 @@
 # ====/******/=====
 import os
 import sys
+import time
 from typing import *
+
 import selenium.common.exceptions
+from selenium import webdriver
 from selenium.webdriver import ActionChains, Keys
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+
 from config import globalparam
 from config.globalparam import datas_path
 from public.common.basepage_abc import BasePageABC
-from selenium import webdriver
-from public.common.exceptions import InvalidArgumentException, UnsupportedBrowserException, NameError, ValueError, \
+from public.common.exceptions import InvalidArgumentException, NameError, ValueError, \
     NoSuchElementException, TimeoutException, ElementNotInteractableException, AssertionException, \
     ElementNotSelectableException, WebDriverException
-
-import time
-
 from utils.files_upload import upload_file
 
 system_driver = sys.platform
@@ -34,7 +32,7 @@ system_driver = sys.platform
 class BasePage(BasePageABC):
 
     def __init__(self, selenium_driver: webdriver):
-        self.driver: webdriver = selenium_driver
+        self.driver: Union[BasePage, webdriver] = selenium_driver
 
     def open_url(self, url: Text) -> None:
         """
@@ -423,12 +421,11 @@ class BasePage(BasePageABC):
         except ElementNotSelectableException:
             raise ElementNotSelectableException(f"Element {locator} is not selectable.")
 
-    def assert_text(self, actual_result: str, expected_text: str, whether_wait: bool = True) -> None:
+    def assert_text(self, expected_text: str, actual_result: str, whether_wait: bool = True) -> None:
         """
         断言文本相等。
-
-        :param actual_result: 实际结果的文本。
         :param expected_text: 预期的文本。
+        :param actual_result: 实际结果的文本。
         :param whether_wait: 是否等待断言之前的某些条件。
         """
         assert isinstance(actual_result, str), "actual_result 必须是一个字符串"
@@ -453,12 +450,12 @@ class BasePage(BasePageABC):
             elapsed_time = time.time() - start_time
             self.log.success(f"The successful assertion text: '{expected_text}' is from '{actual_result}' and takes {elapsed_time:.2f} seconds.")
 
-    def assert_text_contains(self, actual_text: str, expected_text: str, whetherWait: bool = True) -> None:
+    def assert_text_contains(self, expected_text: str, actual_text: str, whetherWait: bool = True) -> None:
         """
         断言实际文本包含预期的子字符串。
 
-        :param actual_text: 需要检查的实际文本。
         :param expected_text: 预期的子字符串，用于断言其是否在实际文本中。
+        :param actual_text: 需要检查的实际文本。
         :param whetherWait: 是否在断言前等待
         """
         assert isinstance(actual_text, str), "实际文本必须是字符串"

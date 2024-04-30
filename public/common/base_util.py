@@ -9,6 +9,7 @@
 # ====/******/=====
 import time
 import unittest
+from config.globalparam import username, password
 from public.common import base_page
 from config import globalparam
 from public.common.base_page import BasePage
@@ -38,8 +39,8 @@ class BaseUtil(unittest.TestCase):
         cls.driver: BasePage = BasePage(driver)
         cls.driver.max_window()
         cls.driver.open_url(f'{globalparam.env}/login')
-        cls.driver.input(cls.login_username, 'qyqzs')
-        cls.driver.input(cls.login_password, 'Aa123456')
+        cls.driver.input(cls.login_username, username)
+        cls.driver.input(cls.login_password, password)
         cls.driver.input(cls.verifyCode, 'abcd')
         cls.driver.click(cls.login_btn)
         time.sleep(1.5)
@@ -49,5 +50,3 @@ class BaseUtil(unittest.TestCase):
         time.sleep(5)
         cls.driver.quit()
         cls.logger.info('###############################  End  ###############################')
-
-
