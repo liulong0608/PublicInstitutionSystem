@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试报告</title>
+
+       <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src=" https://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/echarts/5.1.2/echarts.min.js"></script>
+    <!--    页面样式-->
+    <style type="text/css">
+        /*标题样式*/
+        .title {
+            width: auto;
+            height: 60px;
+            text-align: center;
+            font: bolder 38px/60px "Microsoft YaHei UI";
+        }
+
+        /*汇总信息样式*/
+        .summary {
+            width: 90%;
+            position: absolute;
+            top: 120px;
+            margin-left: 5%;
+
+        }
+
+        .text-left {
+            font: bolder 20px/30px "Microsoft YaHei UI";
+        }
+
+        .left {
+            width: 50%;
+            float: left;
+
+        }
+
+        .right {
+            width: 50%;
+            float: right;
+
+        }
+
+        .desc {
+            float: left;
+            width: 100%;
+        }
+
+        .list-group-item span {
+            font: normal 16px/38px "Microsoft YaHei UI";
+            padding: 30px;
+
+        }
+
+        .list-group-item {
+            position: relative;
+            display: block;
+            padding: .4rem 1.25rem;
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, .125);
+        }
+
+        /* 执行信息样式   */
+        .test_info {
+            width: 90%;
+            position: absolute;
+            top: 900px;
+            margin-left: 5%;
+
+            color: #28a745 !important;
+        }
+
+        .table td, th {
+            border: solid 2px rgba(9, 122, 51, 0.11) !important;
+            padding: 0;
+            line-height: 40px;
+            text-align: center;
+
+        }
+
+
+        select {
+            border: 0;
+            padding: 0;
+            margin: 0;
+            height: 2em;
+            width: 8em;
+            margin-left: 2em;
+        }
+
+        option {
+            text-align: center;
+            height: 36px;
+            font: none 18px/36px "Microsoft YaHei UI";
+            color: #28a745 !important;
+        }
+
+        .test_log {
+            background: rgba(163, 171, 189, 0.15);
+            width: 100%;
+            height: 50px;
+            border-top: none;
+            border-bottom: none;
+            display: none;
+            text-align: left;
+        }
+
+        .test_log td {
+            text-align: left;
+            height: 30px;
+            margin: 0;
+            padding-left: 3em;
+            padding-right:3em;
+            font: none 18px/24px "Microsoft YaHei UI";
+            color: #9e141a;
+        }
+
+        pre {
+            margin: 0;
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+            line-height: 22px;
+            font-size: 14px
+        }
+
+        /*    测试图表显示*/
+        .char {
+            width: 90%;
+            position: absolute;
+            top: 450px;
+            margin-left: 5%;
+            color: #28a745 !important;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<!--报告标题-->
+<div class="title text-success">
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">事业工资系统-测试报告</div>
+</div>
+
+<!--汇总信息-->
+<div class="summary">
+    <p class="text-left text-success">测试结果汇总</p>
+    <div class="left">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">测试人员</button>
+                <span class="text-dark">Echo</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">开始时间</button>
+                <span class="text-dark">2024-04-28 11:39:26</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">执行时间</button>
+                <span class="text-dark">63.05 S</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">用例总数</button>
+                <span class="text-dark">5</span>
+            </li>
+
+
+        </ul>
+    </div>
+    <div class="right">
+        <ul class="list-group">
+
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">成功用例</button>
+                <span class="text-success">0</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-warning">失败用例</button>
+                <span class="text-warning">0</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-danger">错误用例</button>
+                <span class="text-danger">4</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-secondary">跳过用例</button>
+                <span class="text-secondary">1</span>
+            </li>
+        </ul>
+    </div>
+    <div class="desc">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">描述信息</button>
+                <span class="text-secondary">This is the test report of the business payroll system.</span>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<!--测试图表-->
+<div class="char">
+    <p class="text-left text-success">图表展示</p>
+    <div id="char2" style="width: 49%;height: 400px;float: left"></div>
+    <div id="char" style="width: 49%;height: 400px ;float: left"></div>
+</div>
+
+<!--详细信息-->
+<div class="test_info">
+
+    <p class="text-left text-success">详细信息</p>
+    <div class="table_data">
+
+        <table class="table">
+            <thead class="bg-success text-light">
+            <tr>
+                <th scope="col" style="width: 5%;padding: 0">编号</th>
+                <th scope="col" style="width: 20%;padding: 0">
+                    <span>测试类</span>
+                    <select id="testClass">
+                        <option>所有</option>
+                        
+                            <option>TestInternalOrganizationManagement</option>
+                        
+                            <option>TestCreateUnit</option>
+                        
+                            <option>TestEstablishmentModification</option>
+                        
+                            <option>TestPersonnelAdd</option>
+                        
+                            <option>_FailedTest</option>
+                        
+                    </select>
+
+                </th>
+
+                <th scope="col" style="width: 15%;padding: 0">测试方法</th>
+                <th scope="col" style="width: 20%;padding: 0">用例描述</th>
+                <th scope="col" style="width: 15%;padding: 0">执行时间</th>
+                <th scope="col" style="width: 20%;padding: 0">
+
+                    <span>执行结果</span>
+                    <select id="testResult">
+                        <option>所有</option>
+                        <option class="text-success">成功</option>
+                        <option class="text-warning">失败</option>
+                        <option class="text-danger">错误</option>
+                        <option class="text-info">跳过</option>
+                    </select>
+
+                </th>
+                <th scope="col" style="width: 10%;padding: 0">详细信息</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+                <tr>
+                    <td>1</td>
+                    <td class="TestCreateUnit">TestCreateUnit</td>
+                    <td>test_create_unit</td>
+                    <td>创建单位</td>
+                    <td>0.215s</td>
+                    
+                        <td class="text-danger">错误</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "C:\python-3.12\Lib\unittest\case.py", line 58, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "C:\python-3.12\Lib\unittest\case.py", line 634, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "C:\python-3.12\Lib\unittest\case.py", line 589, in _callTestMethod
+    if method() is not None:
+       ^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "D:\PublicInstitutionSystem\testcase\test_create_unit.py", line 24, in test_create_unit
+    save_msg = cu.create_uniit(nest_messages_creditCode=orgcode,
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "D:\PublicInstitutionSystem\public\pages\modules\运维中心\createUnitPage.py", line 252, in create_uniit
+    self._swith_to_home()
+</pre>
+                        
+
+                            <pre>  File "D:\PublicInstitutionSystem\public\pages\modules\运维中心\createUnitPage.py", line 81, in _swith_to_home
+    self.open_url(f'{globalparam.env}/home')
+</pre>
+                        
+
+                            <pre>  File "D:\PublicInstitutionSystem\public\common\base_page.py", line 46, in open_url
+    self.driver.get(url)
+    ^^^^^^^^^^^^^^^
+</pre>
+                        
+
+                            <pre>AttributeError: 'BasePage' object has no attribute 'get'
+</pre>
+                        
+
+                            <pre>test_create_unit (test_create_unit.TestCreateUnit.test_create_unit)执行——>【错误Error】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>2</td>
+                    <td class="TestEstablishmentModification">TestEstablishmentModification</td>
+                    <td>test_establishment_modification</td>
+                    <td>修改单位编制信息</td>
+                    <td>0.0195s</td>
+                    
+                        <td class="text-danger">错误</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "C:\python-3.12\Lib\unittest\case.py", line 58, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "C:\python-3.12\Lib\unittest\case.py", line 634, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "C:\python-3.12\Lib\unittest\case.py", line 589, in _callTestMethod
+    if method() is not None:
+       ^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "D:\PublicInstitutionSystem\testcase\test_establishment_modification.py", line 20, in test_establishment_modification
+    msg = em.establishment_modification(establishment=random.randint(1, 50))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "D:\PublicInstitutionSystem\public\pages\modules\单位信息管理\establishmentModification_page.py", line 71, in establishment_modification
+    self._swith_to_unitInformationManagement()
+</pre>
+                        
+
+                            <pre>  File "D:\PublicInstitutionSystem\public\pages\modules\单位信息管理\establishmentModification_page.py", line 37, in _swith_to_unitInformationManagement
+    self.click(self._unitInformationManagement_btn_loc)
+</pre>
+                        
+
+                            <pre>  File "D:\PublicInstitutionSystem\public\common\base_page.py", line 168, in click
+    self.get_element(locator, whetherWait).click()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "D:\PublicInstitutionSystem\public\common\base_page.py", line 127, in get_element
+    self.wait_visible(locator)
+</pre>
+                        
+
+                            <pre>  File "D:\PublicInstitutionSystem\public\common\base_page.py", line 115, in wait_visible
+    wait.until(EC.visibility_of_element_located(self.by_value(locator)))
+</pre>
+                        
+
+                            <pre>  File "C:\python-3.12\Lib\site-packages\selenium\webdriver\support\wait.py", line 92, in until
+    value = method(self._driver)
+            ^^^^^^^^^^^^^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "C:\python-3.12\Lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 150, in _predicate
+    return _element_if_visible(driver.find_element(*locator))
+                               ^^^^^^^^^^^^^^^^^^^
+</pre>
+                        
+
+                            <pre>AttributeError: 'BasePage' object has no attribute 'find_element'. Did you mean: 'get_element'?
+</pre>
+                        
+
+                            <pre>test_establishment_modification (test_establishment_modification.TestEstablishmentModification.test_establishment_modification)执行——>【错误Error】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>3</td>
+                    <td class="TestInternalOrganizationManagement">TestInternalOrganizationManagement</td>
+                    <td>test_add_internalOrganization_1</td>
+                    <td>新增内设机构</td>
+                    <td>0.00906s</td>
+                    
+                        <td class="text-danger">错误</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "C:\python-3.12\Lib\unittest\case.py", line 58, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "C:\python-3.12\Lib\unittest\case.py", line 634, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "C:\python-3.12\Lib\unittest\case.py", line 589, in _callTestMethod
+    if method() is not None:
+       ^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "C:\python-3.12\Lib\site-packages\ddt.py", line 220, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "D:\PublicInstitutionSystem\testcase\test_internalOrganizationManagement.py", line 27, in test_add_internalOrganization
+    m = iom.add_internal_organization(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "D:\PublicInstitutionSystem\public\pages\modules\单位信息管理\internalOrganizationManagement_page.py", line 79, in add_internal_organization
+    self.swith_to_basic_unit(org_code)
+</pre>
+                        
+
+                            <pre>  File "D:\PublicInstitutionSystem\public\pages\modules\单位信息管理\internalOrganizationManagement_page.py", line 32, in swith_to_basic_unit
+    self.business_guidance_grass_roots(org_code)
+</pre>
+                        
+
+                            <pre>  File "D:\PublicInstitutionSystem\public\common\base_page.py", line 632, in business_guidance_grass_roots
+    self.click_manager()
+</pre>
+                        
+
+                            <pre>  File "D:\PublicInstitutionSystem\public\common\base_page.py", line 625, in click_manager
+    self.click(_manager_menu_loc)
+</pre>
+                        
+
+                            <pre>  File "D:\PublicInstitutionSystem\public\common\base_page.py", line 168, in click
+    self.get_element(locator, whetherWait).click()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "D:\PublicInstitutionSystem\public\common\base_page.py", line 127, in get_element
+    self.wait_visible(locator)
+</pre>
+                        
+
+                            <pre>  File "D:\PublicInstitutionSystem\public\common\base_page.py", line 115, in wait_visible
+    wait.until(EC.visibility_of_element_located(self.by_value(locator)))
+</pre>
+                        
+
+                            <pre>  File "C:\python-3.12\Lib\site-packages\selenium\webdriver\support\wait.py", line 92, in until
+    value = method(self._driver)
+            ^^^^^^^^^^^^^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "C:\python-3.12\Lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 150, in _predicate
+    return _element_if_visible(driver.find_element(*locator))
+                               ^^^^^^^^^^^^^^^^^^^
+</pre>
+                        
+
+                            <pre>AttributeError: 'BasePage' object has no attribute 'find_element'. Did you mean: 'get_element'?
+</pre>
+                        
+
+                            <pre>test_add_internalOrganization_1 (test_internalOrganizationManagement.TestInternalOrganizationManagement.test_add_internalOrganization_1)执行——>【错误Error】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>4</td>
+                    <td class="TestPersonnelAdd">TestPersonnelAdd</td>
+                    <td>test_add_staff</td>
+                    <td>人员新增</td>
+                    <td>0.0s</td>
+                    
+                        <td class="text-info">跳过</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre></pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>5</td>
+                    <td class="_FailedTest">_FailedTest</td>
+                    <td>test_unitInfomaitionModification</td>
+                    <td>None</td>
+                    <td>0.00052s</td>
+                    
+                        <td class="text-danger">错误</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "C:\python-3.12\Lib\unittest\case.py", line 58, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "C:\python-3.12\Lib\unittest\case.py", line 634, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "C:\python-3.12\Lib\unittest\case.py", line 589, in _callTestMethod
+    if method() is not None:
+       ^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "C:\python-3.12\Lib\unittest\loader.py", line 33, in testFailure
+    raise self._exception
+</pre>
+                        
+
+                            <pre>ImportError: Failed to import test module: test_unitInfomaitionModification
+Traceback (most recent call last):
+  File "C:\python-3.12\Lib\unittest\loader.py", line 382, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\python-3.12\Lib\unittest\loader.py", line 325, in _get_module_from_name
+    __import__(name)
+  File "D:\PublicInstitutionSystem\testcase\test_unitInfomaitionModification.py", line 21, in <module>
+    class TestUnitInfomaitionModification(BaseUtil):
+  File "D:\PublicInstitutionSystem\testcase\test_unitInfomaitionModification.py", line 25, in TestUnitInfomaitionModification
+    @data(*get_xls_to_dict("unitInformationModification.xlsx", "unitInformationModification"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PublicInstitutionSystem\public\common\datainfo.py", line 31, in get_xls_to_dict
+    xls1 = xlrd.open_workbook(datapath)  # 创建excel对象
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\python-3.12\Lib\site-packages\xlrd\__init__.py", line 111, in open_workbook
+    with open(filename, "rb") as f:
+         ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\PublicInstitutionSystem\\data\\testdata\\unitInformationModification.xlsx'
+
+</pre>
+                        
+
+                            <pre>test_unitInfomaitionModification (unittest.loader._FailedTest.test_unitInfomaitionModification)执行——>【错误Error】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+
+            </tbody>
+        </table>
+    </div>
+
+    <div style="height: 200px"></div>
+</div>
+
+
+<script>
+    var tbodyTr = $('tbody tr');
+    var testResult = $("#testResult");
+    var testClass = $("#testClass");
+    <!--    用例执行详细信息显示切换-->
+    $(".btn_info").click(function () {
+        $(this).parent().parent().next().toggle();
+
+    });
+    // 当选择用例类之后触发
+    testClass.change(function () {
+        var cls = $(this).val();
+        var res = testResult.val();
+        elementDisplay(cls, res);
+        sort()
+    });
+    testResult.change(function () {
+        var res = $(this).val();
+        var cls = testClass.val();
+        elementDisplay(cls, res);
+        sort()
+    });
+
+    function elementDisplay(cls, res) {
+        // 用例数据的显示
+        if (cls === "所有") {
+            if (res === "所有") {
+                tbodyTr.has('button').show();
+            } else if (res === '成功') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-success').show()
+
+            } else if (res === '失败') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-warning').show()
+
+            } else if (res === '错误') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-danger').show()
+
+            } else if (res === '跳过') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-info').show()
+            }
+        } else {
+            if (res === "所有") {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').show()
+            } else if (res === '成功') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-success').show()
+            } else if (res === '失败') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-warning').show()
+            } else if (res === '错误') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-danger').show()
+            } else if (res === '跳过') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-info').show()
+            }
+        }
+    }
+
+    function sort() {
+        //重新排列显示序号
+        // 选择所有可以见的tr
+        var visibleTr = tbodyTr.filter(":visible");
+
+        visibleTr.each(function (index, element) {
+            element.firstElementChild.innerHTML = index + 1;
+
+        })
+
+    }
+
+
+</script>
+
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('char'));
+    var myChart2 = echarts.init(document.getElementById('char2'));
+    // 指定图表的配置项和数据
+    option = {
+        color: ['#00a10a', '#ddb518', 'rgba(204,46,41,0.73)', '#85898c'],
+        tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b}: {c} ({d}%)'
+        },
+        legend: {
+            orient: 'vertical',
+            left: 10,
+            data: ['通过', '失败', '错误', '跳过']
+        },
+        series: [
+            {
+                name: '测试结果',
+                type: 'pie',
+                radius: ['50%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    label: {
+                        show: true,
+                        fontSize: '30',
+                        fontWeight: 'bold'
+                    }
+                },
+                labelLine: {
+                    show: false
+                },
+                data: [
+                    {value: 0, name: '通过'},
+                    {value: 0, name: '失败'},
+                    {value: 4, name: '错误'},
+                    {value: 1, name: '跳过'}
+                ]
+            }
+        ]
+    };
+    option2 = {
+        tooltip: {
+            formatter: '{a} <br/>{b} : {c}%'
+        },
+        toolbox: {
+            feature: {
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        series: [
+            {
+                name: '测试结果',
+                type: 'gauge',
+                detail: {formatter: '0.00%'},
+                data: [{value: '0.00', name: '用例通过率'}],
+                axisLine: {
+                    lineStyle: {
+                        color: [
+                            [0.2, '#c20000'],
+                            [0.8, '#ddb518'],
+                            [1, '#00a10a']]
+                    }
+                }
+            }
+        ]
+    };
+
+
+    myChart2.setOption(option2);
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+
+
+</body>
+</html>

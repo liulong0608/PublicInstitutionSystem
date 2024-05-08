@@ -5,6 +5,7 @@
 # @editsession      2023/6/9
 # @Software:        PyCharm
 # ====/******/=====
+import ast
 import os
 import sys
 import time
@@ -12,7 +13,9 @@ from typing import *
 
 import selenium.common.exceptions
 from selenium import webdriver
+from selenium.common.exceptions import ElementNotVisibleException
 from selenium.webdriver import ActionChains, Keys
+from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
@@ -36,8 +39,8 @@ class BasePage(BasePageABC):
 
     def open_url(self, url: Text) -> None:
         """
-        open url
-        :param url: 打开网页
+        打开网页
+        :param url: url地址
         :return:
         """
         try:
@@ -48,7 +51,7 @@ class BasePage(BasePageABC):
 
     def max_window(self) -> None:
         """
-        maximize window
+        窗口最大化
         :return:
         """
         try:
@@ -59,7 +62,7 @@ class BasePage(BasePageABC):
 
     def set_window(self, width: int, height: int) -> None:
         """
-        set window size
+        设置窗口大小
         :param width: 宽
         :param height: 高
         :return:
@@ -72,7 +75,7 @@ class BasePage(BasePageABC):
 
     def refresh(self) -> None:
         """
-        refresh browser
+        刷新页面
         :return:
         """
         try:
@@ -83,7 +86,7 @@ class BasePage(BasePageABC):
 
     def close(self) -> None:
         """
-        close browser
+        关闭页面
         :return:
         """
         try:
@@ -94,7 +97,7 @@ class BasePage(BasePageABC):
 
     def quit(self) -> None:
         """
-        quit browser
+        退出浏览器
         :return:
         """
         try:
@@ -111,6 +114,18 @@ class BasePage(BasePageABC):
         """
         wait: WebDriverWait = WebDriverWait(self.driver, timeout=30, poll_frequency=0.8)
         wait.until(EC.visibility_of_element_located(self.by_value(locator)))
+
+    def element_exists(self, locator: Text) -> bool:
+        """
+        判断元素是否存在
+        :param locator: 元素路径
+        :return:
+        """
+        try:
+            self.driver.find_element(*self.by_value(locator))
+            return True
+        except selenium.common.exceptions.NoSuchElementException:
+            return False
 
     def get_element(self, locator: Text, whetherWait: bool = True) -> WebElement:
         """
@@ -130,6 +145,7 @@ class BasePage(BasePageABC):
         except selenium.common.exceptions.NoSuchElementException:
             raise NoSuchElementException(f"Element {locator} not found, Spend {time.time() - t1} seconds.")
         except selenium.common.exceptions.TimeoutException:
+            self.take_screenshot()
             raise TimeoutException(
                 f"Wait for element {locator} to be visible timeout, Spend {time.time() - t1} seconds.")
 
@@ -151,6 +167,7 @@ class BasePage(BasePageABC):
         except selenium.common.exceptions.NoSuchElementException:
             raise NoSuchElementException(f"Element {locator} not found, Spend {time.time() - t1} seconds.")
         except selenium.common.exceptions.TimeoutException:
+            self.take_screenshot()
             raise TimeoutException(
                 f"Wait for element {locator} to be visible timeout, Spend {time.time() - t1} seconds.")
 
@@ -165,12 +182,15 @@ class BasePage(BasePageABC):
         try:
             self.get_element(locator, whetherWait).click()
             self.log.success(f"Click element {locator}, Spend {time.time() - t1} seconds.")
-        except ElementNotInteractableException:
+        except ElementNotInteractableException:  # 元素不可交互
+            self.take_screenshot()
             raise ElementNotInteractableException(f"Element {locator} is not interactable.")
-        except ElementNotSelectableException:
+        except ElementNotSelectableException:  # 元素不可选择
             raise ElementNotSelectableException(f"Element {locator} is not selectable.")
+        except ElementNotVisibleException:  # 元素不可见
+            raise ElementNotVisibleException(f"Element {locator} is not visible.")
 
-    def input(self, locator, text: Text, whetherWait: bool = True) -> None:
+    def input(self, locator, text: Any, whetherWait: bool = True) -> None:
         """
         输入文本
         :param locator: 元素路径
@@ -193,7 +213,7 @@ class BasePage(BasePageABC):
 
     def tab(self, locator: Text, whetherWait: bool = True) -> None:
         """
-        模拟键盘TAB
+        模拟键盘TAB键
         :param locator: 元素路径
         :param whetherWait: 是否等待
         :return:
@@ -446,9 +466,10 @@ class BasePage(BasePageABC):
         except Exception:  # 其他意外异常仍应记录和截图
             self.take_screenshot()
             raise
-        else:
+        finally:
             elapsed_time = time.time() - start_time
-            self.log.success(f"The successful assertion text: '{expected_text}' is from '{actual_result}' and takes {elapsed_time:.2f} seconds.")
+            self.log.success(
+                f"The successful assertion text: '{expected_text}' is from '{actual_result}' and takes {elapsed_time:.2f} seconds.")
 
     def assert_text_contains(self, expected_text: str, actual_text: str, whetherWait: bool = True) -> None:
         """
@@ -468,7 +489,7 @@ class BasePage(BasePageABC):
             self.log.error(f"Assertion failure: {e}")
             self.take_screenshot()
             raise
-        else:
+        finally:
             elapsed_time = time.time() - start_time
             self.log.success(
                 f"Assertions are present in the actual text with: '{expected_text}'. Time taken {elapsed_time:.2f} seconds.")
@@ -619,19 +640,19 @@ class BasePage(BasePageABC):
 
     def click_manager(self) -> None:
         _manager_menu_loc = 'xpath->//div[contains(text(),"管理版")]'
-        self.click(_manager_menu_loc)
+        self.driver.click(_manager_menu_loc)
 
     def business_guidance_grass_roots(self, org_code) -> None:
         _businessAudit_menu_loc = 'xpath->//span[contains(text(),"业务审核")]'
-        _businessGuidance_menu_loc = 'xpath->//div[@class="menu-sub ng-star-inserted"]/ul/li[3]/a'
+        _businessGuidance_menu_loc = 'xpath->//div[@class="menu-sub ng-star-inserted"]/ul/li[4]/a'
         _query_org_input_loc = 'xpath->//input[@placeholder="输入统一社会信用代码/单位名称/主管单位查询"]'
-        _orgcode_link_loc = 'xpath->//tbody[@class="ant-table-tbody"]/tr[2]/td[1]/a'
+        _orgcode_link_loc = f'link->{org_code}'
         self.click_manager()
-        self.move_to_element(_businessAudit_menu_loc)  # 悬停在业务审核
-        self.click(_businessGuidance_menu_loc)  # 点击业务指导基层
-        self.input(_query_org_input_loc, org_code)  # 输入查询统一社会信用代码
-        self.click(_orgcode_link_loc)  # 点击统一社会信用代码进入基层单位
-        self.switch_to_new_window()
+        self.driver.move_to_element(_businessAudit_menu_loc)  # 悬停在业务审核
+        self.driver.click(_businessGuidance_menu_loc)  # 点击业务指导基层
+        self.driver.input(_query_org_input_loc, org_code)  # 输入查询统一社会信用代码
+        self.driver.click(_orgcode_link_loc)  # 点击统一社会信用代码进入基层单位
+        self.driver.switch_to_new_window()
 
     def upload_attachment(self) -> None:
         """
@@ -647,5 +668,3 @@ class BasePage(BasePageABC):
         upload_file(datas_path, "附件示例.png")
         assert "附件示例.png" == self.get_text(_upload_file_msg_loc), "上传附件失败."
         self.click(_save_attachment_btn_loc)
-
-

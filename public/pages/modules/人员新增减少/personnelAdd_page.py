@@ -9,18 +9,17 @@
 # ====/******/=====
 import time
 
-import selenium.common.exceptions
 from selenium.webdriver.common.by import By
 
-from config import globalparam
+from config.globalparam import datas_path
 from public.common.base_page import BasePage
-from public.pages import *
+from utils.files_upload import upload_file
 
 
 class PersonnelAddPage(BasePage):
     _manager_menu_loc = 'xpath->//div[contains(text(),"管理版")]'
     _businessAudit_menu_loc = 'xpath->//span[contains(text(),"业务审核")]'
-    _businessGuidance_menu_loc = 'xpath->//div[@class="menu-sub ng-star-inserted"]/ul/li[3]/a'
+    _businessGuidance_menu_loc = "xpath->//span[contains(text(), '业务指导(基层)')]/ancestor::a"
     _add_decrease_loc = 'xpath->//ul[@class="menu-root"]/li[4]/div'
     _add_menu_loc = 'xpath->//div[@class="menu-sub ng-star-inserted"]/ul/li[1]/a'
     _query_org_input_loc = 'name->queryStr'
@@ -30,8 +29,51 @@ class PersonnelAddPage(BasePage):
     _bySymbol_input_loc = 'xpath->//lib-staff-head/form[1]/nz-form-item[3]/nz-form-control[1]/div[1]/div[1]/input[1]'
     _changeRemarks_input_loc = 'xpath->//lib-staff-head/form[1]/nz-form-item[4]/nz-form-control[1]/div[1]/div[1]/input[1]'
     _attachment_btn_loc = "xpath->//span[contains(text(),'工资报审附件')]"
-    _staffName_input_loc = 'xpath->input[@formcontrolname="staffName"]'
+    _upload_btn_loc = "xpath->(//span[contains(text(),'上传附件')])[1]/ancestor::button"
+    _upload_file_msg_loc = "xpath->//div/span[contains(text(),'附件示例.png')]"
+    _save_attachment_btn_loc = 'css->div.ant-modal-footer button.ant-btn-primary'
+    _staffName_input_loc = 'xpath->//input[@formcontrolname="staffName"]'
     _gender_input_loc = 'css->nz-select[formcontrolname="gender"]'
+    _select_nation_loc = 'css->nz-select[formcontrolname="nationId"]'
+    _input_idcard_loc = 'xpath->//input[@formcontrolname="identityCard"]'
+    _input_birthday_loc = 'css->lib-date-input[formcontrolname="birthDate"] input'
+    _select_politicalStatus_loc = 'css->nz-select[formcontrolname="politicalStatusId"]'
+    _select_initialPersonality_loc = 'css->nz-select[formcontrolname="initialPersonalIdentityId"]'
+    _input_nativePlace_loc = 'xpath->//input[@formcontrolname="nativePlace"]'
+    _input_address_loc = 'xpath->//textarea[@formcontrolname="address"]'
+    _select_staffSource_loc = 'css->nz-select[formcontrolname="staffSourceTypeId"]'
+    _input_joinDate_loc = 'css->lib-date-input[formcontrolname="joinDate"] input'
+    _select_department_loc = 'css->nz-select[formcontrolname="departmentId"]'
+    _input_staffRemark_loc = 'xpath->//textarea[@formcontrolname="staffRemark"]'
+    _input_enterDate_loc = 'css->lib-date-input[formcontrolname="enterDate"] input'
+    _select_education_loc = 'css->nz-select[formcontrolname="educationTypeId"]'
+    _select_degree_loc = 'css->nz-select[formcontrolname="degreeTypeId"]'
+    _input_graduateDate_loc = 'css->lib-date-input[formcontrolname="graduateDate"] input'
+    _click_wage_info_btn_loc = 'xpath->//div[contains(text(),"工资信息")]'
+    _select_surveyStandard_loc = 'css->nz-select[formcontrolname="surveyStandard"]'
+    _select_compulsoryEducation_loc = 'css->nz-select[formcontrolname="compulsoryEducation"]'
+    _input_presentOccupation_loc = 'xpath->//input[@formcontrolname="presentOccupation"]'
+    _input_presentOccupationDate_loc = 'css->lib-date-input[formcontrolname="presentOccupationDate"] input'
+    _select_trueProRank_loc = 'css->nz-select[formcontrolname="trueProRankId"]'
+    _select_levelProRank_loc = 'css->nz-select[formcontrolname="levelProRankId"]'
+    _input_levelDate_loc = 'css->lib-date-input[formcontrolname="levelDate"] input'
+    _select_salaryMappingProRank_loc = 'css->nz-select[formcontrolname="salaryMappingProRankId"]'
+    _select_leadership_loc = 'css->nz-select[formcontrolname="leadership"]'
+    _input_jobNowDate_loc = 'css->lib-date-input[formcontrolname="jobNowDate"] input'
+    _select_formerSalaryGrade_loc = 'css->nz-select[formcontrolname="formerSalaryGrade"]'
+    _input_salaryGradeDate_loc = 'css->lib-date-input[formcontrolname="salaryGradeDate"] input'
+    _select_primaryAndHighSchoolTeacher_loc = 'css->nz-select[formcontrolname="primaryAndHighSchoolTeacher"]'
+    _select_nurse_loc = 'css->nz-select[formcontrolname="nurse"]'
+    _select_tg10wage_loc = 'css->nz-select[formcontrolname="tg10wage"]'
+    _select_specialEducation_loc = 'css->nz-select[formcontrolname="specialEducation"]'
+    _input_hgzbl_loc = 'css->.wage-cont:nth-child(2) div.ng-star-inserted:nth-child(1) input'
+    _input_retire_sports_man_hold_loc = 'css->.wage-cont:nth-child(2) div.ng-star-inserted:nth-child(2) input'
+    _input_jh10percent_hold_loc = 'css->.wage-cont:nth-child(2) div.ng-star-inserted:nth-child(3) input'
+    _input_employee_level_retention_loc = 'css->.wage-cont:nth-child(2) div.ng-star-inserted:nth-child(4) input'
+    _click_annual_btn_loc = 'xpath->//span[contains(text(),"年度考核")]/ancestor::button'
+    _click_annual_determine_btn_loc = 'xpath->//span[contains(text(),"确认")]/ancestor::button'
+    _save_addPerson_btn_loc = "xpath->//div[@class='staff-head-warp']//button[@class='ant-btn ant-btn-primary']"
+    _add_msg_loc = 'css->.ant-message span'
 
     def _click_manager_menu(self):
         self.driver.click(self._manager_menu_loc)  # 点击管理版按钮
@@ -40,8 +82,9 @@ class PersonnelAddPage(BasePage):
         self.driver.move_to_element(self._businessAudit_menu_loc)  # 悬停在业务审核
         self.driver.click(self._businessGuidance_menu_loc)  # 点击业务指导基层
 
-    def switch_to_basicUnit(self, org_code):
+    def _switch_to_basicUnit(self, org_code):
         self.driver.input(self._query_org_input_loc, org_code)  # 输入查询统一社会信用代码
+        time.sleep(0.5)
         self.driver.click(self._orgcode_link_loc)  # 点击统一社会信用代码进入基层单位
 
     def _click_addstaff_menu(self):
@@ -50,923 +93,316 @@ class PersonnelAddPage(BasePage):
         self.driver.click(self._add_menu_loc)  # 点击人员新增
 
     def _select_stafftype(self, identity):
+        """ 选择人员身份 """
         self.driver.htmlSelect(self._personnel_identity_loc, identity)  # 选择人员身份
 
     def _input_qxDate(self, qxDate):
+        """ 输入起薪时间 """
         self.driver.clear_and_input(self._qxDate_input_loc, qxDate)  # 输入起薪时间
 
     def _input_bySymbol(self, msg):
-        self.driver.input(self._bySymbol_input_loc, msg)   # 输入依据文号
-        # self.driver.find_element(By.XPATH, "//lib-staff-head/form[1]/nz-form-item[3]/nz-form-control[1]/div[1]/div[1]/input[1]").send_keys(msg)
+        """ 输入依据文号 """
+        self.driver.input(self._bySymbol_input_loc, msg)  # 输入依据文号
 
     def _input_change_remarks(self, msg):
+        """ 变动备注 """
         self.driver.input(self._changeRemarks_input_loc, msg)
 
     def _uploadAttachment(self):
+        """ 上传附件 """
+        file_download_loc = 'xpath->//span[contains(text(),"下载")]'
         self.driver.click(self._attachment_btn_loc)
+        self.driver.click(self._upload_btn_loc)
+        upload_file(datas_path, "附件示例.png")
+        if self.driver.get_element(file_download_loc):
+            self.driver.assert_text("附件示例.png", self.driver.get_text(self._upload_file_msg_loc))
+            self.driver.click(self._save_attachment_btn_loc)
 
     def _input_staffName(self, name):
         """输入人员姓名"""
         self.driver.input(self._staffName_input_loc, name)
 
     def _select_gender(self, gender):
+        """ 选择性别 """
         self.driver.htmlSelect(self._gender_input_loc, gender)
 
-    def add_staff(self, org_code, identity, qxDate, name, gender):
+    def _select_nationality(self, nationality):
+        """ 选择民族 """
+        self.driver.htmlSelect(self._select_nation_loc, nationality)
+
+    def _input_idcard(self, idcard):
+        """ 输入身份证号 """
+        self.driver.input(self._input_idcard_loc, idcard)
+
+    def _input_birthday(self, birthday):
+        """ 输入出生日期 """
+        self.driver.clear_and_input(self._input_birthday_loc, birthday)
+
+    def _select_politicalStatus(self, politicalStatus):
+        """ 选择政治面貌 """
+        self.driver.htmlSelect(self._select_politicalStatus_loc, politicalStatus)
+
+    def _select_initialPersonality(self, initialPersonality):
+        """ 选择初始人员身份 """
+        self.driver.htmlSelect(self._select_initialPersonality_loc, initialPersonality)
+
+    def _input_nativePlace(self, nativePlace):
+        """ 输入籍贯 """
+        self.driver.input(self._input_nativePlace_loc, nativePlace)
+
+    def _input_address(self, address):
+        """ 输入地址 """
+        self.driver.input(self._input_address_loc, address)
+
+    def _select_staffSource(self, staffSource):
+        """ 选择人员来源 """
+        self.driver.htmlSelect(self._select_staffSource_loc, staffSource)
+
+    def _input_joinDate(self, joinDate):
+        """ 进入本单位时间 """
+        self.driver.clear_and_input(self._input_joinDate_loc, joinDate)
+
+    def _select_department(self, department):
+        """ 选择内设机构 """
+        if department is not None:
+            self.driver.htmlSelect(self._select_department_loc, department)
+
+    def _input_staffRemark(self, staffRemark):
+        """ 输入备注 """
+        if staffRemark is not None:
+            self.driver.input(self._input_staffRemark_loc, staffRemark)
+
+    def _input_enterDate(self, enterDate):
+        """ 参公时间 """
+        self.driver.clear_and_input(self._input_enterDate_loc, enterDate)
+
+    def _select_education(self, education):
+        """ 选择学历 """
+        self.driver.htmlSelect(self._select_education_loc, education)
+
+    def _select_degree(self, degree):
+        """ 选择学位 """
+        if degree is not None:
+            self.driver.htmlSelect(self._select_degree_loc, degree)
+
+    def _input_graduateDate(self, graduateDate):
+        """ 毕业时间 """
+        self.driver.clear_and_input(self._input_graduateDate_loc, graduateDate)
+
+    def _click_wage_info(self):
+        """ 点击工资信息 """
+        self.driver.click(self._click_wage_info_btn_loc)
+
+    def _select_surveyStandard(self, surveyStandard):
+        """ 是否地勘标准 """
+        if surveyStandard == "是":
+            self.driver.htmlSelect(self._select_surveyStandard_loc, surveyStandard)
+
+    def _select_compulsoryEducation(self, compulsoryEducation, identity):
+        """ 是否义务教育教师 """
+        if identity == "专业技术人员":
+            self.driver.htmlSelect(self._select_compulsoryEducation_loc, compulsoryEducation)
+
+    def _input_presentOccupation(self, presentOccupation):
+        """ 输入现任职务 """
+        self.driver.input(self._input_presentOccupation_loc, presentOccupation)
+
+    def _input_presentOccupationDate(self, presentOccupationDate):
+        """ 输入现任职务时间 """
+        self.driver.clear_and_input(self._input_presentOccupationDate_loc, presentOccupationDate)
+
+    def _select_trueProRank(self, trueProRank):
+        """ 实际岗位 """
+        self.driver.htmlSelect(self._select_trueProRank_loc, trueProRank)
+
+    def _select_levelProRank(self, levelProRank, identity):
+        """ 职员等级 """
+        if levelProRank is not None and identity == "管理人员" and self.driver.element_exists(self._select_levelProRank_loc):
+            self.driver.htmlSelect(self._select_levelProRank_loc, levelProRank)
+
+    def _input_levelProRankDate(self, levelProRankDate, identity):
+        """ 任职员等级时间 """
+        if levelProRankDate is not None and identity == "管理人员" and self.driver.element_exists(self._input_levelDate_loc):
+            self.driver.clear_and_input(self._input_levelDate_loc, levelProRankDate)
+
+    def _select_salaryMappingProRank(self, salaryMappingProRank):
+        """ 基本工资对应岗位 """
+        self.driver.htmlSelect(self._select_salaryMappingProRank_loc, salaryMappingProRank)
+
+    def _select_leadership(self, leadership, salaryMappingProRank):
+        """ 是否领导工资 """
+        if salaryMappingProRank in ['四级岗位', '五级岗位'] and self.driver.element_exists(self._select_leadership_loc):
+            self.driver.htmlSelect(self._select_leadership_loc, leadership)
+
+    def _input_jobNowDate(self, jobNowDate):
+        """ 任现岗位时间 """
+        self.driver.clear_and_input(self._input_jobNowDate_loc, jobNowDate)
+
+    def _select_formerSalaryGrade(self, formerSalaryGrade):
+        """ 薪级 """
+        self.driver.htmlSelect(self._select_formerSalaryGrade_loc, formerSalaryGrade)
+
+    def _input_salaryGradeDate(self, salaryGradeDate):
+        """ 起薪时间 """
+        self.driver.clear_and_input(self._input_salaryGradeDate_loc, salaryGradeDate)
+
+    def _select_primaryAndHighSchoolTeacher(self, primaryAndHighSchoolTeacher, compulsoryEducation):
+        """ 是否中小学教师 """
+        if primaryAndHighSchoolTeacher is not None and compulsoryEducation == "否":
+            self.driver.htmlSelect(self._select_primaryAndHighSchoolTeacher_loc, primaryAndHighSchoolTeacher)
+
+    def _select_nurse(self, nurse, compulsoryEducation):
+        """ 是否护士 """
+        if nurse is not None and compulsoryEducation == "否":
+            self.driver.htmlSelect(self._select_nurse_loc, nurse)
+
+    def _select_tg10wage(self, tg10wage, primaryAndHighSchoolTeacher, nurse, compulsoryEducation):
+        """ 是否提高10% """
+        if tg10wage is not None and (primaryAndHighSchoolTeacher == "是" or nurse == "是") and compulsoryEducation == "否":
+            self.driver.htmlSelect(self._select_tg10wage_loc, tg10wage)
+
+    def _select_specialEducation(self, specialEducation):
+        """ 是否特殊教育 """
+        if specialEducation is not None:
+            self.driver.htmlSelect(self._select_specialEducation_loc, specialEducation)
+
+    def _input_hgzbl(self, hgzbl):
+        """ 保留原特殊岗位 """
+        if hgzbl is not None:
+            self.driver.input(self._input_hgzbl_loc, int(hgzbl))
+
+    def _input_retireSportsManHold(self, retireSportsManHold):
+        """ 退役运动员保留工资额度 """
+        if retireSportsManHold is not None:
+            self.driver.input(self._input_retire_sports_man_hold_loc, int(retireSportsManHold))
+
+    def _input_jh10percentHold(self, jh10percentHold):
+        """ 中小学教师或护士保留原额10% """
+        if jh10percentHold is not None:
+            self.driver.input(self._input_jh10percent_hold_loc, int(jh10percentHold))
+
+    def _input_employeeLevelRetention(self, employeeLevelRetention):
+        """ 原职员等级保留绝对额 """
+        if employeeLevelRetention is not None:
+            self.driver.input(self._input_employee_level_retention_loc, int(employeeLevelRetention))
+
+    def _click_annual(self):
+        """ 点击年度考核 """
+        self.driver.click(self._click_annual_btn_loc)
+
+    def _determine_annual(self):
+        """ 确定年度考核 """
+        if self.driver.element_exists(self._click_annual_determine_btn_loc):
+            self.driver.click(self._click_annual_determine_btn_loc)
+
+    def _click_save(self):
+        """ 点击保存 """
+        self.driver.click(self._save_addPerson_btn_loc)
+
+    def _get_addPerson_msg(self):
+        """ 获取新增人员提示信息 """
+        return self.driver.get_text(self._add_msg_loc)
+
+    def add_staff(self, org_code, identity, qxDate, bySymbol_msg, change_remarks_msg, name, gender, nationality, idcard,
+                  birthday, politicalStatus, initialPersonality, nativePlace, address, staffSource, joinDate,
+                  department, staffRemark, enterDate, education, degree, graduateDate, surveyStandard, compulsoryEducation,
+                  presentOccupation, presentOccupationDate, trueProRank, levelProRank, levelProRankDate,
+                  salaryMappingProRank, leadership, jobNowDate, formerSalaryGrade,
+                  salaryGradeDate, primaryAndHighSchoolTeacher, nurse, tg10wage, specialEducation, hgzbl,
+                  retireSportsManHold, jh10percentHold, employeeLevelRetention):
+        """
+        人员新增业务组合
+        :param org_code: 统一社会信用代码
+        :param identity: 人员身份
+        :param qxDate: 起薪时间
+        :param bySymbol_msg: 依据文号
+        :param change_remarks_msg: 变更备注
+        :param name: 人员姓名
+        :param gender: 性别
+        :param nationality: 民族
+        :param idcard: 身份证号
+        :param birthday: 出生日期
+        :param politicalStatus: 政治面貌
+        :param initialPersonality: 初始人员身份
+        :param nativePlace: 籍贯
+        :param address: 地址
+        :param staffSource: 人员来源
+        :param joinDate: 进入本单位时间
+        :param department: 内设机构
+        :param staffRemark: 备注
+        :param enterDate: 参公时间
+        :param education: 学历
+        :param degree: 学位
+        :param graduateDate: 毕业时间
+        :param surveyStandard: 是否执行地勘标准
+        :param compulsoryEducation: 是否中小学教师
+        :param presentOccupation: 现任职务
+        :param presentOccupationDate: 现任职务时间
+        :param trueProRank: 实际岗位
+        :param levelProRank: 职员等级
+        :param levelProRankDate: 任职员等级时间
+        :param salaryMappingProRank: 基本工资对应岗位
+        :param leadership: 是否领导工资
+        :param jobNowDate: 任现岗位时间
+        :param formerSalaryGrade: 薪级
+        :param salaryGradeDate: 起薪时间
+        :param primaryAndHighSchoolTeacher: 是否中小学教师
+        :param nurse: 是否护士
+        :param tg10wage: 是否提高10%
+        :param specialEducation: 是否特殊教育
+        :param hgzbl: 保留原特殊岗位
+        :param retireSportsManHold: 退役运动员保留工资额度
+        :param jh10percentHold: 中小学教师或护士保留原额10%
+        :param employeeLevelRetention: 原职员等级保留绝对额
+        """
         self._click_manager_menu()  # 点击管理版按钮
         self._click_businessGuidance_menu()  # 业务审核-业务指导基层
-        self.switch_to_basicUnit(org_code)  # 进入基层单位
+        self._switch_to_basicUnit(org_code)  # 进入基层单位
         self._click_addstaff_menu()
         self._select_stafftype(identity)
         self._input_qxDate(qxDate)
-        # self._input_bySymbol(bySymbol_msg)
-        # self._input_change_remarks(change_remarks_msg)
+        self._input_bySymbol(bySymbol_msg)
+        self._input_change_remarks(change_remarks_msg)
         self._input_staffName(name)
         self._select_gender(gender)
-
-
-
-    # # 新增事业管理人员
-    # def add_manager_page(self, dentityPersonne, salaryDate, name, gender, nationality, idCard, politicalStatus,
-    #                      initialPersonnelIdentity, personnelSource, entryUnitTime, enterDate, personnelFinanceCode,
-    #                      education, graduationTime,
-    #                      position, positionTime, actualPost, rankOfStaff, rankOffStaff_time, postWage, actualPostTime,
-    #                      payScale, payScaleTime, birthplace, address,
-    #                      internalMechanism, remarks, degree,
-    #                      localRankSequence, periodOfStudy, socialSecurityNumber,
-    #                      surveyStandard, primaryAndHighSchoolTeacher, nurse, tg10wage,
-    #                      specialEducation, jbt, jx
-    #                      ):
-    #     """
-    #     :param jx: 绩效
-    #     :param jbt: 津补贴额度
-    #     :param socialSecurityNumber: 社会保障号
-    #     :param personnelFinanceCode: 人员财政编码
-    #     :param dentityPersonne: 人员身份
-    #     :param salaryDate:起薪时间
-    #     :param name:人员姓名
-    #     :param gender:性别
-    #     :param nationality:民族
-    #     :param idCard:身份证号码
-    #     :param politicalStatus:政治面貌
-    #     :param initialPersonnelIdentity:初始人员身份
-    #     :param personnelSource:人员来源
-    #     :param entryUnitTime:进入本单位时间
-    #     :param enterDate:参加工作时间
-    #     :param education:学历
-    #     :param graduationTime:毕业时间
-    #     :param position:现任职务
-    #     :param positionTime:现任职务时间
-    #     :param actualPost:实际岗位
-    #     :param rankOfStaff:职员等级
-    #     :param rankOffStaff_time:现任职员等级时间
-    #     :param postWage:基本工资对应岗位
-    #     :param actualPostTime:任现岗位时间
-    #     :param payScale:薪级
-    #     :param payScaleTime:薪级起考年限
-    #     :param internalMechanism:内设机构
-    #     :param remarks:备注
-    #     :param birthplace:籍贯
-    #     :param address:住址
-    #     :param degree:学位
-    #     :param localRankSequence:地方职级序列
-    #     :param periodOfStudy:学段
-    #     :param surveyStandard:地勘标准
-    #     :param primaryAndHighSchoolTeacher:是否中小学教师
-    #     :param nurse:是否护士
-    #     :param tg10wage:是否提高10%
-    #     :param specialEducation:是否特殊教育
-    #     :return:
-    #     """
-    #     self.preposition()
-    #     self.htmlSelect(rysf_loc, dentityPersonne)  # 选择人员身份
-    #     self.clear_type(qxsj_loc, salaryDate)  # 输入起薪时间
-    #     self.send_keys(name_loc, name)  # 输入人员姓名
-    #     self.htmlSelect(gender_loc, gender)  # 选择性别
-    #     self.htmlSelect(mz_loc, nationality)  # 选择民族
-    #     self.send_keys(idNumber_loc, idCard)  # 输入身份证号码
-    #     self.clear_type(birthday_loc, idCard[6:14])  # 输入出生日期
-    #     self.htmlSelect(zzmm_loc, politicalStatus)  # 选择政治面貌
-    #     if initialPersonnelIdentity is not None:
-    #         self.htmlSelect(csrysf_loc, initialPersonnelIdentity)  # 选择初始人员身份
-    #     else:
-    #         pass
-    #     if birthplace is not None:
-    #         self.send_keys(jg_loc, birthplace)  # 输入籍贯
-    #     else:
-    #         pass
-    #     if address is not None:
-    #         self.send_keys(address_loc, address)  # 输入住址
-    #     else:
-    #         pass
-    #     self.htmlSelect(ryly_loc, personnelSource)  # 选择人员来源
-    #     self.clear_type(jrdwDate_loc, entryUnitTime)  # 输入进入本单位时间
-    #     if internalMechanism is not None:
-    #         try:
-    #             self.htmlSelect(nsjg_loc, internalMechanism)  # 选择所属机构
-    #         except:
-    #             pass
-    #     else:
-    #         pass
-    #     if remarks is not None:
-    #         self.send_keys(rybz_loc, remarks)  # 输入人员备注
-    #     else:
-    #         pass
-    #     self.clear_type(cjgzDate_loc, enterDate)  # 输入参加工作时间
-    #     if personnelFinanceCode is not None:
-    #         self.send_keys(ryczCode_loc, personnelFinanceCode)  # 输入人员财政编码
-    #     else:
-    #         pass
-    #     self.htmlSelect(xl_loc, education)  # 选择学历
-    #     if degree is not None:
-    #         self.htmlSelect(xw_loc, degree)  # 选择学位
-    #     else:
-    #         pass
-    #     self.clear_type(byDate_loc, graduationTime)  # 输入毕业时间
-    #     try:
-    #         if self.get_element(dfzjxl_loc):  # 地方职级序列
-    #             self.htmlSelect(dfzjxl_loc, localRankSequence)
-    #         else:
-    #             pass
-    #     except:
-    #         pass
-    #     try:
-    #         if self.get_element(xd_loc) and periodOfStudy is not None:  # 学段
-    #             self.htmlSelect(xd_loc, periodOfStudy)
-    #         else:
-    #             pass
-    #     except:
-    #         pass
-    #     if socialSecurityNumber is not None:
-    #         self.send_keys(shbzh_loc, socialSecurityNumber)  # 社会保障号
-    #     else:
-    #         pass
-    #     self.click(gzxxBtn_loc)  # 点击工资信息按钮
-    #     try:  # 是否地勘
-    #         if surveyStandard is not None:
-    #             self.htmlSelect(dk_loc, surveyStandard)
-    #         else:
-    #             pass
-    #     except:
-    #         pass
-    #     self.send_keys(xrzw_loc, position)  # 输入现任职务
-    #     self.clear_type(xrwzDate_loc, positionTime)  # 输入现任职务时间
-    #     self.htmlSelect(sjgw_loc, actualPost)  # 选择实际岗位
-    #     try:
-    #         if self.get_element(zydj_loc) and rankOffStaff_time is not None:
-    #             self.htmlSelect(zydj_loc, rankOfStaff)  # 职员等级
-    #             self.clear_type(rzydjDate_loc, rankOffStaff_time)  # 任职员等级时间
-    #         else:
-    #             pass
-    #     except:
-    #         pass
-    #     self.htmlSelect(jbgzdygw_loc, postWage)  # 选择基本工资对应岗位
-    #     self.clear_type(rxgwDate_loc, actualPostTime)  # 输入任现岗位/职员等级时间
-    #     isPayScale = {
-    #         '实际岗位': actualPost,
-    #         '基本工资对应岗位': postWage
-    #     }
-    #     if isPayScale.get('实际岗位') and isPayScale.get('基本工资对应岗位') != '事业管理人员试用期':
-    #         time.sleep(1)
-    #         self.htmlSelect(xj_loc, payScale)  # 选择薪级
-    #         self.clear_type(xjqknx_loc, payScaleTime)  # 输入薪级起考年限
-    #     else:
-    #         pass
-    #     if primaryAndHighSchoolTeacher == '是':
-    #         self.htmlSelect(zxxjs_loc, primaryAndHighSchoolTeacher)  # 是否中小学教师
-    #     else:
-    #         pass
-    #     if nurse == '是':
-    #         self.htmlSelect(hs_loc, nurse)  # 是否护士
-    #     else:
-    #         pass
-    #     if tg10wage == '是' and (primaryAndHighSchoolTeacher == '是' or nurse == '是'):
-    #         try:
-    #             self.htmlSelect(tg10wage_loc, tg10wage)  # 是否提高10%
-    #         except:
-    #             pass
-    #     else:
-    #         pass
-    #     if specialEducation == '是':
-    #         self.htmlSelect(tsjy_loc, specialEducation)  # 是否特殊教育
-    #     else:
-    #         pass
-    #     # 输入津补贴
-    #     try:
-    #         if jbt is not None:
-    #             jbtxm = self.get_elements(jbtxmInputs_loc)
-    #             if jbtxm:  # 如果津补贴存在
-    #                 for jbt_input in jbtxm:
-    #                     jbt_input.send_keys(int(jbt))
-    #         else:
-    #             pass
-    #     except:
-    #         pass
-    #     # 输入绩效项
-    #     try:
-    #         if jx is not None:
-    #             jxxm = self.get_elements(jxxmInputs_loc)
-    #             if jxxm:
-    #                 for jx_input in jxxm:
-    #                     jx_input.send_keys(int(jx))
-    #             else:
-    #                 pass
-    #     except:
-    #         pass
-    #
-    #     self.click(gzfjBtn_loc)  # 点击工资报审附件按钮
-    #     time.sleep(0.7)
-    #     self.upload_winFile(upload_file_loc, globalparam.file_path + '附件示例.png')  # 上传附件
-    #     self.click(qdfj_file_loc)  # 点击上传附件确定窗口按钮
-    #     time.sleep(0.5)
-    #     self.click(ndkhBtn_loc)  # 点击年度考核
-    #     try:
-    #         self.click(sureNdkhBtn_loc)  # 点击确认年度考核
-    #     except:
-    #         pass
-    #     self.click(sureBtn_loc)  # 点击保存按钮
-    #     self.fuzzy_assert('录入人员成功', add_msg_loc)  # 断言人员录入成功
-    #     time.sleep(1.5)
-    #
-    # # 新增专业技术人员
-    # def add_professionalSkill_page(self, dentityPersonne, salaryDate, name, gender, nationality, idCard,
-    #                                politicalStatus,
-    #                                initialPersonnelIdentity, personnelSource, entryUnitTime, enterDate,
-    #                                personnelFinanceCode,
-    #                                education, graduationTime, compulsoryEducation,
-    #                                position, positionTime, actualPost, postWage,
-    #                                actualPostTime,
-    #                                payScale, payScaleTime, birthplace, address,
-    #                                internalMechanism, remarks, degree,
-    #                                full_time, periodOfStudy, socialSecurityNumber,
-    #                                surveyStandard, primaryAndHighSchoolTeacher, nurse, tg10wage,
-    #                                specialEducation, jbt, jx):
-    #     """
-    #     :param compulsoryEducation: 是否义务教育教师
-    #     :param jx: 绩效
-    #     :param jbt: 津补贴额度
-    #     :param socialSecurityNumber: 社会保障号
-    #     :param personnelFinanceCode: 人员财政编码
-    #     :param dentityPersonne: 人员身份
-    #     :param salaryDate:起薪时间
-    #     :param name:人员姓名
-    #     :param gender:性别
-    #     :param nationality:民族
-    #     :param idCard:身份证号码
-    #     :param politicalStatus:政治面貌
-    #     :param initialPersonnelIdentity:初始人员身份
-    #     :param personnelSource:人员来源
-    #     :param entryUnitTime:进入本单位时间
-    #     :param enterDate:参加工作时间
-    #     :param education:学历
-    #     :param graduationTime:毕业时间
-    #     :param position:现任职务
-    #     :param positionTime:现任职务时间
-    #     :param actualPost:实际岗位
-    #     :param postWage:基本工资对应岗位
-    #     :param actualPostTime:任现岗位时间
-    #     :param payScale:薪级
-    #     :param payScaleTime:薪级起考年限
-    #     :param internalMechanism:内设机构
-    #     :param remarks:备注
-    #     :param birthplace:籍贯
-    #     :param address:住址
-    #     :param degree:学位
-    #     :param full_time:专职情况
-    #     :param periodOfStudy:学段
-    #     :param surveyStandard:地勘标准
-    #     :param primaryAndHighSchoolTeacher:是否中小学教师
-    #     :param nurse:是否护士
-    #     :param tg10wage:是否提高10%
-    #     :param specialEducation:是否特殊教育
-    #     :return:
-    #     """
-    #     self.preposition()
-    #     self.htmlSelect(rysf_loc, dentityPersonne)  # 选择人员身份
-    #     self.clear_type(qxsj_loc, salaryDate)  # 输入起薪时间
-    #     self.send_keys(name_loc, name)  # 输入人员姓名
-    #     self.htmlSelect(gender_loc, gender)  # 选择性别
-    #     self.htmlSelect(mz_loc, nationality)  # 选择民族
-    #     self.send_keys(idNumber_loc, idCard)  # 输入身份证号码
-    #     self.clear_type(birthday_loc, idCard[6:14])  # 输入出生日期
-    #     self.htmlSelect(zzmm_loc, politicalStatus)  # 选择政治面貌
-    #     if initialPersonnelIdentity is not None:
-    #         self.htmlSelect(csrysf_loc, initialPersonnelIdentity)  # 选择初始人员身份
-    #     else:
-    #         pass
-    #     if birthplace is not None:
-    #         self.send_keys(jg_loc, birthplace)  # 输入籍贯
-    #     else:
-    #         pass
-    #     if address is not None:
-    #         self.send_keys(address_loc, address)  # 输入住址
-    #     else:
-    #         pass
-    #     self.htmlSelect(ryly_loc, personnelSource)  # 选择人员来源
-    #     self.clear_type(jrdwDate_loc, entryUnitTime)  # 输入进入本单位时间
-    #     if internalMechanism is not None:
-    #         try:
-    #             self.htmlSelect(nsjg_loc, internalMechanism)  # 选择所属机构
-    #         except:
-    #             pass
-    #     else:
-    #         pass
-    #     if remarks is not None:
-    #         self.send_keys(rybz_loc, remarks)  # 输入人员备注
-    #     else:
-    #         pass
-    #     self.clear_type(cjgzDate_loc, enterDate)  # 输入参加工作时间
-    #     if personnelFinanceCode is not None:
-    #         self.send_keys(ryczCode_loc, personnelFinanceCode)  # 输入人员财政编码
-    #     else:
-    #         pass
-    #     self.htmlSelect(xl_loc, education)  # 选择学历
-    #     if degree is not None:
-    #         self.htmlSelect(xw_loc, degree)  # 选择学位
-    #     else:
-    #         pass
-    #     self.clear_type(byDate_loc, graduationTime)  # 输入毕业时间
-    #     try:
-    #         if self.get_element(zzqk_loc) and full_time is not None:  # 专职情况
-    #             self.htmlSelect(zzqk_loc, full_time)
-    #         else:
-    #             pass
-    #     except:
-    #         pass
-    #     try:
-    #         if xd_loc and periodOfStudy is not None:  # 学段
-    #             self.htmlSelect(xd_loc, periodOfStudy)
-    #         else:
-    #             pass
-    #     except:
-    #         pass
-    #     if socialSecurityNumber is not None:
-    #         self.send_keys(shbzh_loc, socialSecurityNumber)  # 社会保障号
-    #     else:
-    #         pass
-    #     self.click(gzxxBtn_loc)  # 点击工资信息按钮
-    #
-    #     if surveyStandard is not None:
-    #         try:  # 是否地勘
-    #             self.htmlSelect(dk_loc, surveyStandard)
-    #         except:
-    #             pass
-    #     else:
-    #         pass
-    #     self.htmlSelect(ywjyjs_loc, compulsoryEducation)  # 是否义务教育教师
-    #     self.send_keys(xrzw_loc, position)  # 输入现任职务
-    #     self.clear_type(xrwzDate_loc, positionTime)  # 输入现任职务时间
-    #     self.htmlSelect(sjgw_loc, actualPost)  # 选择实际岗位
-    #     self.htmlSelect(jbgzdygw_loc, postWage)  # 选择基本工资对应岗位
-    #     self.clear_type(rxgwDate_loc, actualPostTime)  # 输入任现岗位/职员等级时间
-    #     isPayScale = {
-    #         '实际岗位': actualPost,
-    #         '基本工资对应岗位': postWage
-    #     }
-    #     if isPayScale.get('实际岗位') and isPayScale.get('基本工资对应岗位') != '事业专业技术人员试用期':
-    #         self.htmlSelect(xj_loc, payScale)  # 选择薪级
-    #         self.clear_type(xjqknx_loc, payScaleTime)  # 输入薪级起考年限
-    #     else:
-    #         pass
-    #     if compulsoryEducation == '否':
-    #         if primaryAndHighSchoolTeacher == '是':
-    #             self.htmlSelect(zxxjs_loc,
-    #                             primaryAndHighSchoolTeacher)  # 是否中小学教师
-    #         else:
-    #             pass
-    #         if nurse == '是':
-    #             self.htmlSelect(hs_loc, nurse)  # 是否护士
-    #         else:
-    #             pass
-    #         if tg10wage == '是' and (primaryAndHighSchoolTeacher == '是' or nurse == '是'):
-    #             try:
-    #                 self.htmlSelect(tg10wage_loc, tg10wage)  # 是否提高10%
-    #             except:
-    #                 pass
-    #         else:
-    #             pass
-    #     else:
-    #         pass
-    #     if specialEducation == '是':
-    #         self.htmlSelect(tsjy_loc, specialEducation)  # 是否特殊教育
-    #     else:
-    #         pass
-    #     # 输入津补贴
-    #     try:
-    #         if jbt is not None:
-    #             jbtxm = self.get_elements(jbtxmInputs_loc)
-    #             if jbtxm:  # 如果津补贴存在
-    #                 for jbt_input in jbtxm:
-    #                     jbt_input.send_keys(int(jbt))
-    #         else:
-    #             pass
-    #     except:
-    #         pass
-    #     # 输入绩效项
-    #     try:
-    #         if jx is not None:
-    #             jxxm = self.get_elements(jxxmInputs_loc)
-    #             if jxxm:
-    #                 for jx_input in jxxm:
-    #                     jx_input.send_keys(int(jx))
-    #             else:
-    #                 pass
-    #     except:
-    #         pass
-    #
-    #     self.click(gzfjBtn_loc)  # 点击工资报审附件按钮
-    #     self.upload_winFile(upload_file_loc, globalparam.file_path + '附件示例.png')  # 上传附件
-    #     self.click(qdfj_file_loc)  # 点击上传附件确定窗口按钮
-    #     time.sleep(0.5)
-    #     self.click(ndkhBtn_loc)  # 点击年度考核
-    #     try:
-    #         self.click(sureNdkhBtn_loc)  # 点击确认年度考核
-    #     except:
-    #         pass
-    #     self.click(sureBtn_loc)  # 点击保存按钮
-    #     self.fuzzy_assert('录入人员成功', add_msg_loc)  # 断言人员录入成功
-    #     time.sleep(1.5)
-    #
-    # # 新增事业技术工人
-    # def add_skilledWorker_page(self, dentityPersonne, salaryDate, name, gender, nationality, idCard,
-    #                            politicalStatus,
-    #                            initialPersonnelIdentity, personnelSource, entryUnitTime, enterDate,
-    #                            personnelFinanceCode,
-    #                            education, graduationTime, technicalCertificate,
-    #                            position, positionTime, actualPost, postWage,
-    #                            actualPostTime,
-    #                            payScale, payScaleTime, birthplace, address,
-    #                            internalMechanism, remarks, degree,
-    #                            periodOfStudy, socialSecurityNumber,
-    #                            surveyStandard,
-    #                            specialEducation, jbt, jx):
-    #     """
-    #     :param technicalCertificate: 是否取得技术证书
-    #     :param jx: 绩效
-    #     :param jbt: 津补贴额度
-    #     :param socialSecurityNumber: 社会保障号
-    #     :param personnelFinanceCode: 人员财政编码
-    #     :param dentityPersonne: 人员身份
-    #     :param salaryDate:起薪时间
-    #     :param name:人员姓名
-    #     :param gender:性别
-    #     :param nationality:民族
-    #     :param idCard:身份证号码
-    #     :param politicalStatus:政治面貌
-    #     :param initialPersonnelIdentity:初始人员身份
-    #     :param personnelSource:人员来源
-    #     :param entryUnitTime:进入本单位时间
-    #     :param enterDate:参加工作时间
-    #     :param education:学历
-    #     :param graduationTime:毕业时间
-    #     :param position:现任职务
-    #     :param positionTime:现任职务时间
-    #     :param actualPost:实际岗位
-    #     :param postWage:基本工资对应岗位
-    #     :param actualPostTime:任现岗位时间
-    #     :param payScale:薪级
-    #     :param payScaleTime:薪级起考年限
-    #     :param internalMechanism:内设机构
-    #     :param remarks:备注
-    #     :param birthplace:籍贯
-    #     :param address:住址
-    #     :param degree:学位
-    #     :param periodOfStudy:学段
-    #     :param surveyStandard:地勘标准
-    #     :param specialEducation:是否特殊教育
-    #     :return:
-    #     """
-    #     self.preposition()
-    #     self.htmlSelect(rysf_loc, dentityPersonne)  # 选择人员身份
-    #     self.clear_type(qxsj_loc, salaryDate)  # 输入起薪时间
-    #     self.send_keys(name_loc, name)  # 输入人员姓名
-    #     self.htmlSelect(gender_loc, gender)  # 选择性别
-    #     self.htmlSelect(mz_loc, nationality)  # 选择民族
-    #     self.send_keys(idNumber_loc, idCard)  # 输入身份证号码
-    #     self.clear_type(birthday_loc, idCard[6:14])  # 输入出生日期
-    #     self.htmlSelect(zzmm_loc, politicalStatus)  # 选择政治面貌
-    #     if initialPersonnelIdentity is not None:
-    #         self.htmlSelect(csrysf_loc, initialPersonnelIdentity)  # 选择初始人员身份
-    #     else:
-    #         pass
-    #     if birthplace is not None:
-    #         self.send_keys(jg_loc, birthplace)  # 输入籍贯
-    #     else:
-    #         pass
-    #     if address is not None:
-    #         self.send_keys(address_loc, address)  # 输入住址
-    #     else:
-    #         pass
-    #     self.htmlSelect(ryly_loc, personnelSource)  # 选择人员来源
-    #     self.clear_type(jrdwDate_loc, entryUnitTime)  # 输入进入本单位时间
-    #     if internalMechanism is not None:
-    #         try:
-    #             self.htmlSelect(nsjg_loc, internalMechanism)  # 选择所属机构
-    #         except:
-    #             pass
-    #     else:
-    #         pass
-    #     if remarks is not None:
-    #         self.send_keys(rybz_loc, remarks)  # 输入人员备注
-    #     else:
-    #         pass
-    #     self.clear_type(cjgzDate_loc, enterDate)  # 输入参加工作时间
-    #     if personnelFinanceCode is not None:
-    #         self.send_keys(ryczCode_loc, personnelFinanceCode)  # 输入人员财政编码
-    #     else:
-    #         pass
-    #     self.htmlSelect(xl_loc, education)  # 选择学历
-    #     if degree is not None:
-    #         self.htmlSelect(xw_loc, degree)  # 选择学位
-    #     else:
-    #         pass
-    #     self.clear_type(byDate_loc, graduationTime)  # 输入毕业时间
-    #     try:
-    #         if jszs_loc and technicalCertificate is not None:  # 是否取得技术证书
-    #             self.htmlSelect(zzqk_loc, jszs_loc)
-    #         else:
-    #             pass
-    #     except:
-    #         pass
-    #     try:
-    #         if xd_loc and periodOfStudy is not None:  # 学段
-    #             self.htmlSelect(xd_loc, periodOfStudy)
-    #         else:
-    #             pass
-    #     except:
-    #         pass
-    #     if socialSecurityNumber is not None:
-    #         self.send_keys(shbzh_loc, socialSecurityNumber)  # 社会保障号
-    #     else:
-    #         pass
-    #     self.click(gzxxBtn_loc)  # 点击工资信息按钮
-    #
-    #     if surveyStandard is not None:
-    #         try:  # 是否地勘
-    #             self.htmlSelect(dk_loc, surveyStandard)
-    #         except:
-    #             pass
-    #     else:
-    #         pass
-    #     self.send_keys(xrzw_loc, position)  # 输入现任职务
-    #     self.clear_type(xrwzDate_loc, positionTime)  # 输入现任职务时间
-    #     self.htmlSelect(sjgw_loc, actualPost)  # 选择实际岗位
-    #     self.htmlSelect(jbgzdygw_loc, postWage)  # 选择基本工资对应岗位
-    #     self.clear_type(rxgwDate_loc, actualPostTime)  # 输入任现岗位/职员等级时间
-    #     isPayScale = {
-    #         '实际岗位': actualPost,
-    #         '基本工资对应岗位': postWage
-    #     }
-    #     if isPayScale.get('实际岗位') and isPayScale.get(
-    #             '基本工资对应岗位') != '事业技术工人学徒期' or '事业技术工人熟练期':
-    #         self.htmlSelect(xj_loc, payScale)  # 选择薪级
-    #         self.clear_type(xjqknx_loc, payScaleTime)  # 输入薪级起考年限
-    #     else:
-    #         pass
-    #     if specialEducation == '是':
-    #         self.htmlSelect(tsjy_loc, specialEducation)  # 是否特殊教育
-    #     else:
-    #         pass
-    #     # 输入津补贴
-    #     try:
-    #         if jbt is not None:
-    #             jbtxm = self.get_elements(jbtxmInputs_loc)
-    #             if jbtxm:  # 如果津补贴存在
-    #                 for jbt_input in jbtxm:
-    #                     jbt_input.send_keys(int(jbt))
-    #         else:
-    #             pass
-    #     except:
-    #         pass
-    #     # 输入绩效项
-    #     try:
-    #         if jx is not None:
-    #             jxxm = self.get_elements(jxxmInputs_loc)
-    #             if jxxm:
-    #                 for jx_input in jxxm:
-    #                     jx_input.send_keys(int(jx))
-    #             else:
-    #                 pass
-    #     except:
-    #         pass
-    #
-    #     self.click(gzfjBtn_loc)  # 点击工资报审附件按钮
-    #     self.upload_winFile(upload_file_loc, globalparam.file_path + '附件示例.png')  # 上传附件
-    #     self.click(qdfj_file_loc)  # 点击上传附件确定窗口按钮
-    #     time.sleep(0.5)
-    #     self.click(ndkhBtn_loc)  # 点击年度考核
-    #     try:
-    #         self.click(sureNdkhBtn_loc)  # 点击确认年度考核
-    #     except:
-    #         pass
-    #     self.click(sureBtn_loc)  # 点击保存按钮
-    #     self.fuzzy_assert('录入人员成功', add_msg_loc)  # 断言人员录入成功
-    #     time.sleep(1.5)
-    #
-    # # 新增事业普通工人
-    # def add_ordinaryWorker_page(self, dentityPersonne, salaryDate, name, gender, nationality, idCard,
-    #                             politicalStatus,
-    #                             initialPersonnelIdentity, personnelSource, entryUnitTime, enterDate,
-    #                             personnelFinanceCode,
-    #                             education, graduationTime,
-    #                             position, positionTime, actualPost, postWage,
-    #                             actualPostTime,
-    #                             payScale, payScaleTime, birthplace, address,
-    #                             internalMechanism, remarks, degree,
-    #                             periodOfStudy, socialSecurityNumber,
-    #                             surveyStandard,
-    #                             specialEducation, jbt, jx):
-    #     """
-    #     :param jx: 绩效
-    #     :param jbt: 津补贴额度
-    #     :param socialSecurityNumber: 社会保障号
-    #     :param personnelFinanceCode: 人员财政编码
-    #     :param dentityPersonne: 人员身份
-    #     :param salaryDate:起薪时间
-    #     :param name:人员姓名
-    #     :param gender:性别
-    #     :param nationality:民族
-    #     :param idCard:身份证号码
-    #     :param politicalStatus:政治面貌
-    #     :param initialPersonnelIdentity:初始人员身份
-    #     :param personnelSource:人员来源
-    #     :param entryUnitTime:进入本单位时间
-    #     :param enterDate:参加工作时间
-    #     :param education:学历
-    #     :param graduationTime:毕业时间
-    #     :param position:现任职务
-    #     :param positionTime:现任职务时间
-    #     :param actualPost:实际岗位
-    #     :param postWage:基本工资对应岗位
-    #     :param actualPostTime:任现岗位时间
-    #     :param payScale:薪级
-    #     :param payScaleTime:薪级起考年限
-    #     :param internalMechanism:内设机构
-    #     :param remarks:备注
-    #     :param birthplace:籍贯
-    #     :param address:住址
-    #     :param degree:学位
-    #     :param periodOfStudy:学段
-    #     :param surveyStandard:地勘标准
-    #     :param specialEducation:是否特殊教育
-    #     :return:
-    #     """
-    #     self.preposition()
-    #     self.htmlSelect(rysf_loc, dentityPersonne)  # 选择人员身份
-    #     self.clear_type(qxsj_loc, salaryDate)  # 输入起薪时间
-    #     self.send_keys(name_loc, name)  # 输入人员姓名
-    #     self.htmlSelect(gender_loc, gender)  # 选择性别
-    #     self.htmlSelect(mz_loc, nationality)  # 选择民族
-    #     self.send_keys(idNumber_loc, idCard)  # 输入身份证号码
-    #     self.clear_type(birthday_loc, idCard[6:14])  # 输入出生日期
-    #     self.htmlSelect(zzmm_loc, politicalStatus)  # 选择政治面貌
-    #     if initialPersonnelIdentity is not None:
-    #         self.htmlSelect(csrysf_loc, initialPersonnelIdentity)  # 选择初始人员身份
-    #     else:
-    #         pass
-    #     if birthplace is not None:
-    #         self.send_keys(jg_loc, birthplace)  # 输入籍贯
-    #     else:
-    #         pass
-    #     if address is not None:
-    #         self.send_keys(address_loc, address)  # 输入住址
-    #     else:
-    #         pass
-    #     self.htmlSelect(ryly_loc, personnelSource)  # 选择人员来源
-    #     self.clear_type(jrdwDate_loc, entryUnitTime)  # 输入进入本单位时间
-    #     if internalMechanism is not None:
-    #         try:
-    #             self.htmlSelect(nsjg_loc, internalMechanism)  # 选择所属机构
-    #         except:
-    #             pass
-    #     else:
-    #         pass
-    #     if remarks is not None:
-    #         self.send_keys(rybz_loc, remarks)  # 输入人员备注
-    #     else:
-    #         pass
-    #     self.clear_type(cjgzDate_loc, enterDate)  # 输入参加工作时间
-    #     if personnelFinanceCode is not None:
-    #         self.send_keys(ryczCode_loc, personnelFinanceCode)  # 输入人员财政编码
-    #     else:
-    #         pass
-    #     self.htmlSelect(xl_loc, education)  # 选择学历
-    #     if degree is not None:
-    #         self.htmlSelect(xw_loc, degree)  # 选择学位
-    #     else:
-    #         pass
-    #     self.clear_type(byDate_loc, graduationTime)  # 输入毕业时间
-    #     try:
-    #         if xd_loc and periodOfStudy is not None:  # 学段
-    #             self.htmlSelect(xd_loc, periodOfStudy)
-    #         else:
-    #             pass
-    #     except:
-    #         pass
-    #     if socialSecurityNumber is not None:
-    #         self.send_keys(shbzh_loc, socialSecurityNumber)  # 社会保障号
-    #     else:
-    #         pass
-    #     self.click(gzxxBtn_loc)  # 点击工资信息按钮
-    #
-    #     if surveyStandard is not None:
-    #         try:  # 是否地勘
-    #             self.htmlSelect(dk_loc, surveyStandard)
-    #         except:
-    #             pass
-    #     else:
-    #         pass
-    #     self.send_keys(xrzw_loc, position)  # 输入现任职务
-    #     self.clear_type(xrwzDate_loc, positionTime)  # 输入现任职务时间
-    #     self.htmlSelect(sjgw_loc, actualPost)  # 选择实际岗位
-    #     self.htmlSelect(jbgzdygw_loc, postWage)  # 选择基本工资对应岗位
-    #     self.clear_type(rxgwDate_loc, actualPostTime)  # 输入任现岗位/职员等级时间
-    #     isPayScale = {
-    #         '实际岗位': actualPost,
-    #         '基本工资对应岗位': postWage
-    #     }
-    #     if isPayScale.get('实际岗位') and isPayScale.get(
-    #             '基本工资对应岗位') != '事业普通工人学徒期' or '事业普通工人熟练期':
-    #         self.htmlSelect(xj_loc, payScale)  # 选择薪级
-    #         self.clear_type(xjqknx_loc, payScaleTime)  # 输入薪级起考年限
-    #     else:
-    #         pass
-    #     if specialEducation == '是':
-    #         self.htmlSelect(tsjy_loc, specialEducation)  # 是否特殊教育
-    #     else:
-    #         pass
-    #     # 输入津补贴
-    #     try:
-    #         if jbt is not None:
-    #             jbtxm = self.get_elements(jbtxmInputs_loc)
-    #             if jbtxm:  # 如果津补贴存在
-    #                 for jbt_input in jbtxm:
-    #                     jbt_input.send_keys(int(jbt))
-    #         else:
-    #             pass
-    #     except:
-    #         pass
-    #     # 输入绩效项
-    #     try:
-    #         if jx is not None:
-    #             jxxm = self.get_elements(jxxmInputs_loc)
-    #             if jxxm:
-    #                 for jx_input in jxxm:
-    #                     jx_input.send_keys(int(jx))
-    #             else:
-    #                 pass
-    #     except:
-    #         pass
-    #
-    #     self.click(gzfjBtn_loc)  # 点击工资报审附件按钮
-    #     self.upload_winFile(upload_file_loc, globalparam.file_path + '附件示例.png')  # 上传附件
-    #     self.click(qdfj_file_loc)  # 点击上传附件确定窗口按钮
-    #     time.sleep(0.5)
-    #     self.click(ndkhBtn_loc)  # 点击年度考核
-    #     try:
-    #         self.click(sureNdkhBtn_loc)  # 点击确认年度考核
-    #     except:
-    #         pass
-    #     self.click(sureBtn_loc)  # 点击保存按钮
-    #     self.fuzzy_assert('录入人员成功', add_msg_loc)  # 断言人员录入成功
-    #     time.sleep(1.5)
-    #
-    # # 新增运动员
-    # def add_sportsman_page(self, dentityPersonne, salaryDate, name, gender, nationality, idCard,
-    #                        politicalStatus,
-    #                        initialPersonnelIdentity, personnelSource, entryUnitTime, enterDate,
-    #                        personnelFinanceCode,
-    #                        education, graduationTime, birthplace, address,
-    #                        internalMechanism, calledTime, whetherMain, remarks, degree, socialSecurityNumber,
-    #                        trueProRankId,
-    #                        formerSalaryMappingProRankId, formerSalaryRank, formerSalaryGrade, rankingDate, jbt, jx):
-    #     """
-    #     :param rankingDate: 成绩津贴名次取得时间
-    #     :param formerSalaryGrade: 成绩津贴名次
-    #     :param formerSalaryRank: 成绩津贴层次
-    #     :param formerSalaryMappingProRankId: 基本工资对应基础津贴档次
-    #     :param trueProRankId: 实际基础津贴档次
-    #     :param whetherMain: 是否主力
-    #     :param calledTime: 选招时间
-    #     :param jx: 绩效
-    #     :param jbt: 津补贴额度
-    #     :param socialSecurityNumber: 社会保障号
-    #     :param personnelFinanceCode: 人员财政编码
-    #     :param dentityPersonne: 人员身份
-    #     :param salaryDate:起薪时间
-    #     :param name:人员姓名
-    #     :param gender:性别
-    #     :param nationality:民族
-    #     :param idCard:身份证号码
-    #     :param politicalStatus:政治面貌
-    #     :param initialPersonnelIdentity:初始人员身份
-    #     :param personnelSource:人员来源
-    #     :param entryUnitTime:进入本单位时间
-    #     :param enterDate:参加工作时间
-    #     :param education:学历
-    #     :param graduationTime:毕业时间
-    #     :param internalMechanism:内设机构
-    #     :param remarks:备注
-    #     :param birthplace:籍贯
-    #     :param address:住址
-    #     :param degree:学位
-    #     :return:
-    #     """
-    #     self.preposition()
-    #     self.htmlSelect(rysf_loc, dentityPersonne)  # 选择人员身份
-    #     self.clear_type(qxsj_loc, salaryDate)  # 输入起薪时间
-    #     self.send_keys(name_loc, name)  # 输入人员姓名
-    #     self.htmlSelect(gender_loc, gender)  # 选择性别
-    #     self.htmlSelect(mz_loc, nationality)  # 选择民族
-    #     self.send_keys(idNumber_loc, idCard)  # 输入身份证号码
-    #     self.clear_type(birthday_loc, idCard[6:14])  # 输入出生日期
-    #     self.htmlSelect(zzmm_loc, politicalStatus)  # 选择政治面貌
-    #     if initialPersonnelIdentity is not None:
-    #         self.htmlSelect(csrysf_loc, initialPersonnelIdentity)  # 选择初始人员身份
-    #     else:
-    #         pass
-    #     if birthplace is not None:
-    #         self.send_keys(jg_loc, birthplace)  # 输入籍贯
-    #     else:
-    #         pass
-    #     if address is not None:
-    #         self.send_keys(address_loc, address)  # 输入住址
-    #     else:
-    #         pass
-    #     self.htmlSelect(ryly_loc, personnelSource)  # 选择人员来源
-    #     self.clear_type(jrdwDate_loc, entryUnitTime)  # 输入进入本单位时间
-    #     if internalMechanism is not None:
-    #         try:
-    #             self.htmlSelect(nsjg_loc, internalMechanism)  # 选择所属机构
-    #         except:
-    #             pass
-    #     else:
-    #         pass
-    #     self.clear_type(xzDate_loc, calledTime)  # 选招时间
-    #     if whetherMain == '是':  # 是否主力
-    #         self.click(isMain_loc)
-    #     else:
-    #         self.click(noMain_loc)
-    #     if remarks is not None:
-    #         self.send_keys(rybz_loc, remarks)  # 输入人员备注
-    #     else:
-    #         pass
-    #     self.clear_type(cjgzDate_loc, enterDate)  # 输入入队时间
-    #     if personnelFinanceCode is not None:
-    #         self.send_keys(ryczCode_loc, personnelFinanceCode)  # 输入人员财政编码
-    #     else:
-    #         pass
-    #     self.htmlSelect(xl_loc, education)  # 选择学历
-    #     if degree is not None:
-    #         self.htmlSelect(xw_loc, degree)  # 选择学位
-    #     else:
-    #         pass
-    #     self.clear_type(byDate_loc, graduationTime)  # 输入毕业时间
-    #     if socialSecurityNumber is not None:
-    #         self.send_keys(shbzh_loc, socialSecurityNumber)  # 社会保障号
-    #     else:
-    #         pass
-    #     self.click(gzxxBtn_loc)  # 点击工资信息按钮
-    #
-    #     self.htmlSelect(sjjcjtdc_loc, trueProRankId)  # 选择实际基础津贴档次
-    #     self.htmlSelect(jbgzdyjcjtdc_loc,
-    #                     formerSalaryMappingProRankId)  # 选择基本工资对应基础津贴档次
-    #     self.htmlSelect(cjjtcc_loc, formerSalaryRank)  # 选择成绩津贴层次
-    #     self.htmlSelect(cjjtmc_loc, formerSalaryGrade)  # 选择成绩津贴名次
-    #     self.clear_type(cjmcDate_loc, rankingDate)  # 输入成绩津贴名次取得时间
-    #
-    #     # 输入津补贴
-    #     try:
-    #         if jbt is not None:
-    #             jbtxm = self.get_elements(jbtxmInputs_loc)
-    #             if jbtxm:  # 如果津补贴存在
-    #                 for jbt_input in jbtxm:
-    #                     jbt_input.send_keys(int(jbt))
-    #         else:
-    #             pass
-    #     except:
-    #         pass
-    #     # 输入绩效项
-    #     try:
-    #         if jx is not None:
-    #             jxxm = self.get_elements(jxxmInputs_loc)
-    #             if jxxm:
-    #                 for jx_input in jxxm:
-    #                     jx_input.send_keys(int(jx))
-    #             else:
-    #                 pass
-    #     except:
-    #         pass
-    #
-    #     self.click(gzfjBtn_loc)  # 点击工资报审附件按钮
-    #     self.upload_winFile(upload_file_loc, globalparam.file_path + '附件示例.png')  # 上传附件
-    #     self.click(qdfj_file_loc)  # 点击上传附件确定窗口按钮
-    #     time.sleep(0.5)
-    #     self.click(ndkhBtn_loc)  # 点击年度考核
-    #     try:
-    #         self.click(sureNdkhBtn_loc)  # 点击确认年度考核
-    #     except:
-    #         pass
-    #     self.click(sureBtn_loc)  # 点击保存按钮
-    #     self.fuzzy_assert('录入人员成功', add_msg_loc)  # 断言人员录入成功
-    #     time.sleep(1.5)
+        self._select_nationality(nationality)
+        self._input_idcard(idcard)
+        self._input_birthday(birthday)
+        self._select_politicalStatus(politicalStatus)
+        self._select_initialPersonality(initialPersonality)
+        self._input_nativePlace(nativePlace)
+        self._input_address(address)
+        self._select_staffSource(staffSource)
+        self._input_joinDate(joinDate)
+        self._select_department(department)
+        self._input_staffRemark(staffRemark)
+        self._input_enterDate(enterDate)
+        self._select_education(education)
+        self._select_degree(degree)
+        self._input_graduateDate(graduateDate)
+        self._uploadAttachment()
+        self._click_wage_info()
+        self._select_surveyStandard(surveyStandard)
+        self._select_compulsoryEducation(compulsoryEducation, identity)
+        self._input_presentOccupation(presentOccupation)
+        self._input_presentOccupationDate(presentOccupationDate)
+        self._select_trueProRank(trueProRank)
+        self._select_levelProRank(levelProRank, identity)
+        self._input_levelProRankDate(levelProRankDate, identity)
+        self._select_salaryMappingProRank(salaryMappingProRank)
+        self._select_leadership(leadership, salaryMappingProRank)
+        self._input_jobNowDate(jobNowDate)
+        self._select_formerSalaryGrade(formerSalaryGrade)
+        self._input_salaryGradeDate(salaryGradeDate)
+        self._select_primaryAndHighSchoolTeacher(primaryAndHighSchoolTeacher, compulsoryEducation)
+        self._select_nurse(nurse, compulsoryEducation)
+        self._select_tg10wage(tg10wage, primaryAndHighSchoolTeacher, nurse, compulsoryEducation)
+        self._select_specialEducation(specialEducation)
+        self._input_hgzbl(hgzbl)
+        self._input_retireSportsManHold(retireSportsManHold)
+        self._input_jh10percentHold(jh10percentHold)
+        self._input_employeeLevelRetention(employeeLevelRetention)
+        self._click_annual()
+        self._determine_annual()
+        self._click_save()
+        return self._get_addPerson_msg()

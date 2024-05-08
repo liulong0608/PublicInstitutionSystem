@@ -1,6 +1,6 @@
 # == Coding: UTF-8 ==
 # @Project :        PublicInstitutionSystem
-# @fileName         sendmail.py  
+# @fileName         sendmail.py
 # @version          v0.1
 # @author           Echo
 # @GiteeWarehouse   https://gitee.com/liu-long068/
@@ -12,68 +12,62 @@ import smtplib
 import time
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from email.mime.application import MIMEApplication
 from public.common.log import Log
 from config import globalparam
 
+# 配置收发件人
+sendaddr_name = 'liulong@3mencn.com'
+sendaddr_pswd = 'Flzx3000c'  # 授权码
+recvaddress = ['liulong@3mencn.com', '1873190160@qq.com']  # [发件人，收件人]
+
 # 测试报告的路径
 reportPath = globalparam.report_path
-logger = Log()
-# 配置收发件人
-recvaddress = ['#', '#']  # [发件人，收件人]
-# 163的用户名和密码
-sendaddr_name = '#'
-sendaddr_pswd = '#'  # 授权码
+logger = Log().get_logger()
 
 
 class SendMail:
-    def __init__(self, recver=None):
-        """接收邮件的人：list or tuple"""
+    def __init__(self, file_path, recver=None):
+        """初始化方法，接收文件路径和接收者邮箱地址列表"""
+        self.file_path = file_path
         if recver is None:
             self.sendTo = recvaddress
         else:
             self.sendTo = recver
 
-    def __get_report(self):
-        """获取最新测试报告"""
-        dirs = os.listdir(reportPath)
-        dirs.sort()
-        newreportname = dirs[-1]
-        print('The new report name: {0}'.format(newreportname))
-        return newreportname
+    def __create_message(self):
+        """创建邮件消息"""
+        self.msg = MIMEMultipart("mixed")
+        self.msg['Subject'] = '文件传输'
+        self.msg['From'] = sendaddr_name
+        self.msg['To'] = ", ".join(self.sendTo)
+        self.msg['Date'] = time.strftime('%a, %d %b %Y %H:%M:%S %z')
 
-    def __take_messages(self):
-        """生成邮件的内容，和html报告附件"""
-        newreport = self.__get_report()
-        self.msg = MIMEMultipart()
-        self.msg['Subject'] = '测试报告主题'
-        self.msg['date'] = time.strftime('%a, %d %b %Y %H:%M:%S %z')
+        # 添加文本内容
+        text = MIMEText("请查看附件中的文件。")
+        self.msg.attach(text)
 
-        with open(os.path.join(reportPath, newreport), 'rb') as f:
-            mailbody = f.read()
-        html = MIMEText(mailbody, _subtype='html', _charset='utf-8')
-        self.msg.attach(html)
-
-        # html附件
-        att1 = MIMEText(mailbody, 'base64', 'gb2312')
-        att1["Content-Type"] = 'application/octet-stream'
-        att1["Content-Disposition"] = 'attachment; filename="TestReport.html"'  # 这里的filename可以任意写，写什么名字，邮件中显示什么名字
-        self.msg.attach(att1)
+        # 添加附件
+        with open(self.file_path, "rb") as file:
+            attach = MIMEApplication(file.read(), _subtype="octet-stream")
+            attach.add_header('Content-Disposition', 'attachment', filename=os.path.basename(self.file_path))
+            self.msg.attach(attach)
 
     def send(self):
         """发送邮件"""
-        self.__take_messages()
-        self.msg['from'] = sendaddr_name
+        self.__create_message()
         try:
-            smtp = smtplib.SMTP('smtp.163.com', 25)
-            smtp.login(sendaddr_name, sendaddr_pswd)
-            smtp.sendmail(self.msg['from'], self.sendTo, self.msg.as_string())
-            smtp.close()
-            logger.info("发送邮件成功")
-        except Exception:
-            logger.error('发送邮件失败')
+            smtp = smtplib.SMTP('smtp.exmail.qq.com', 465)  # SMTP服务器
+            smtp.login(sendaddr_name, sendaddr_pswd)  # 登录验证
+            smtp.send_message(self.msg)  # 发送邮件消息对象
+            logger.success("邮件发送成功")
+        except Exception as e:
+            logger.error(f"发送邮件失败: {e}")
             raise
 
 
 if __name__ == '__main__':
-    sendMail = SendMail()
+    # 指定要发送的文件路径
+    file_to_send = 'D:\\PublicInstitutionSystem\\report\\testreport\\TestResult.html'  # 替换为你的文件路径
+    sendMail = SendMail(file_path=file_to_send)
     sendMail.send()

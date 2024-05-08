@@ -19,7 +19,7 @@ def generate_name():
     # Generate random name
     # fake = Factory.create('zh_CN')
     fake = Factory.create()
-    return "测试" + fake.name()
+    return fake.name()
 
 
 def generate_idcard():
