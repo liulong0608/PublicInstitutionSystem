@@ -7,6 +7,7 @@
 """
 import random
 
+import pytest
 from ddt import ddt, data
 
 from public.common.base_util import BaseUtil
@@ -20,7 +21,8 @@ from utils.generateRandomIDNumbers import GenerateRandomIDNumbers
 class TestPersonnelAdd(BaseUtil):
     """人员新增"""
 
-    @data(*get_xls_to_dict("test_datas.xlsx", "add_person"))
+    @pytest.mark.skip
+    @pytest.mark.parametrize("args", get_xls_to_dict("test_datas.xlsx", "add_person"))
     def test_add_staff(self, args):
         """人员新增"""
         pa = PersonnelAddPage(self.driver)

@@ -1,0 +1,891 @@
+2024-05-09 11:33:04 - MainProcess | MainThread | base_util.setUp:46 - INFO -############################### START ###############################
+2024-05-09 11:33:07 - MainProcess | MainThread | base_page.max_window:59 - SUCCESS -Maximized the window.
+2024-05-09 11:33:08 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/login.
+2024-05-09 11:33:08 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'qyq002' to id->username, Spend 0.22951555252075195 seconds.
+2024-05-09 11:33:08 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'Aa123456' to id->password, Spend 0.14773273468017578 seconds.
+2024-05-09 11:33:08 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'abfhj' to id->captcha, Spend 0.1295483112335205 seconds.
+2024-05-09 11:33:09 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//*[@id="root"]/div/div[2]/div[1]/div/form/div[5]/div/div/div/div/button, Spend 0.09115982055664062 seconds.
+2024-05-09 11:33:10 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/home.
+2024-05-09 11:33:11 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//*[@id="root"]/section/section/main/div[1]/div[3]/div/div/div[2]/div[1], Spend 0.9163973331451416 seconds.
+2024-05-09 11:33:11 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '93140824332878805W' to id->nest-messages_creditCode, Spend 0.19339823722839355 seconds.
+2024-05-09 11:33:12 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '测试Marshall-Freeman' to id->nest-messages_organizationName, Spend 0.20998764038085938 seconds.
+2024-05-09 11:33:12 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="ant-select-selector"], Spend 0.08576345443725586 seconds.
+2024-05-09 11:33:13 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@title='否'], Spend 0.9116981029510498 seconds.
+2024-05-09 11:33:13 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="unit_add_head__fNOk6"]/button[1], Spend 0.0836493968963623 seconds.
+2024-05-09 11:33:14 - MainProcess | MainThread | base_page.get_text:281 - SUCCESS -Get text: '保存成功，是否需要维护单位信息？' from xpath->//div[@class="ant-modal-content"]/div/div/div/div, Spend 1.6809396743774414 seconds.
+2024-05-09 11:33:14 - MainProcess | MainThread | base_page.assert_text:471 - SUCCESS -The successful assertion text: '保存成功，是否需要维护单位信息？' is from '保存成功，是否需要维护单位信息？' and takes 0.00 seconds.
+2024-05-09 11:33:16 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="ant-modal-confirm-btns"]/button[2], Spend 1.2807726860046387 seconds.
+2024-05-09 11:33:17 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '测试' to xpath->//input[@formcontrolname="head"], Spend 1.072824478149414 seconds.
+2024-05-09 11:33:17 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '15111111111' to xpath->//input[@formcontrolname="telephone"], Spend 0.18480443954467773 seconds.
+2024-05-09 11:33:17 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'xxx省xxx市xxx区xxx路' to xpath->//input[@formcontrolname="address"], Spend 0.18071722984313965 seconds.
+2024-05-09 11:33:17 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '631002' to xpath->//input[@formcontrolname="zipCode"], Spend 0.15191912651062012 seconds.
+2024-05-09 11:33:17 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="financialSupportType"], Spend 0.0960538387298584 seconds.
+2024-05-09 11:33:18 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='部分人员'], Spend 0.09422683715820312 seconds.
+2024-05-09 11:33:18 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 部分人员 from xpath->//nz-select[@formcontrolname="financialSupportType"], Spend 0.692216157913208 seconds.
+2024-05-09 11:33:19 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="financialPaymentType"], Spend 0.09377908706665039 seconds.
+2024-05-09 11:33:19 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='部分人员'], Spend 0.08324027061462402 seconds.
+2024-05-09 11:33:19 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 部分人员 from xpath->//nz-select[@formcontrolname="financialPaymentType"], Spend 0.6794042587280273 seconds.
+2024-05-09 11:33:20 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="organizationTypeId"], Spend 0.08484268188476562 seconds.
+2024-05-09 11:33:20 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='事业单位'], Spend 0.08896374702453613 seconds.
+2024-05-09 11:33:20 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 事业单位 from xpath->//nz-select[@formcontrolname="organizationTypeId"], Spend 0.6768903732299805 seconds.
+2024-05-09 11:33:21 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="salarySystemType"], Spend 0.08456635475158691 seconds.
+2024-05-09 11:33:21 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='事业单位工资制度'], Spend 0.1131892204284668 seconds.
+2024-05-09 11:33:21 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 事业单位工资制度 from xpath->//nz-select[@formcontrolname="salarySystemType"], Spend 0.700617790222168 seconds.
+2024-05-09 11:33:22 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="gradeId"], Spend 0.08590245246887207 seconds.
+2024-05-09 11:33:23 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='正区科级'], Spend 0.08789825439453125 seconds.
+2024-05-09 11:33:23 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 正区科级 from xpath->//nz-select[@formcontrolname="gradeId"], Spend 0.6786243915557861 seconds.
+2024-05-09 11:33:23 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-radio-group[formcontrolname="supervisor"] label:nth-child(2) span:nth-child(1) input, Spend 0.06835126876831055 seconds.
+2024-05-09 11:33:23 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '玻璃娃娃有限公司' to xpath->//nz-select[@formcontrolname="supervisorOrganizationId"]/nz-select-top-control/nz-select-search/input, Spend 0.20238518714904785 seconds.
+2024-05-09 11:33:24 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='玻璃娃娃有限公司'], Spend 0.10519599914550781 seconds.
+2024-05-09 11:33:24 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="auditProcess"], Spend 0.08819293975830078 seconds.
+2024-05-09 11:33:24 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='2级审核（基层-终审）'], Spend 0.07142043113708496 seconds.
+2024-05-09 11:33:24 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 2级审核（基层-终审） from xpath->//nz-select[@formcontrolname="auditProcess"], Spend 0.6633284091949463 seconds.
+2024-05-09 11:33:25 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="hardshipAreaTypeId"], Spend 0.08997058868408203 seconds.
+2024-05-09 11:33:25 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='无'], Spend 0.08171820640563965 seconds.
+2024-05-09 11:33:25 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 无 from xpath->//nz-select[@formcontrolname="hardshipAreaTypeId"], Spend 0.6731278896331787 seconds.
+2024-05-09 11:33:26 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="subordinationCodeId"], Spend 0.0844728946685791 seconds.
+2024-05-09 11:33:27 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='县、市、区'], Spend 0.11496114730834961 seconds.
+2024-05-09 11:33:27 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 县、市、区 from xpath->//nz-select[@formcontrolname="subordinationCodeId"], Spend 0.7036495208740234 seconds.
+2024-05-09 11:33:27 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//lib-cascader-wrap[@formcontrolname="localeId"], Spend 0.08091068267822266 seconds.
+2024-05-09 11:33:28 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//li[@title='四川省'], Spend 0.9152107238769531 seconds.
+2024-05-09 11:33:28 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="localeAverageElevationId"], Spend 0.12368154525756836 seconds.
+2024-05-09 11:33:29 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='3499米以下地区'], Spend 0.09100508689880371 seconds.
+2024-05-09 11:33:29 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 3499米以下地区 from xpath->//nz-select[@formcontrolname="localeAverageElevationId"], Spend 0.7165589332580566 seconds.
+2024-05-09 11:33:29 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="localeElevationId"], Spend 0.07870364189147949 seconds.
+2024-05-09 11:33:30 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='3499米以下地区'], Spend 0.0876469612121582 seconds.
+2024-05-09 11:33:30 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 3499米以下地区 from xpath->//nz-select[@formcontrolname="localeElevationId"], Spend 0.6722612380981445 seconds.
+2024-05-09 11:33:31 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="institutionTypeId"], Spend 0.08573246002197266 seconds.
+2024-05-09 11:33:31 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='公益一类事业单位'], Spend 0.08405137062072754 seconds.
+2024-05-09 11:33:31 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 公益一类事业单位 from xpath->//nz-select[@formcontrolname="institutionTypeId"], Spend 0.6734104156494141 seconds.
+2024-05-09 11:33:32 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '11.其他行业' to xpath->//nz-tree-select[@formcontrolname="institutionIndustryId"]/div/nz-select-search/input, Spend 0.20445919036865234 seconds.
+2024-05-09 11:33:32 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-tree-node-title[@title="11.其他行业"], Spend 0.08152985572814941 seconds.
+2024-05-09 11:33:32 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="defaultSurveyStandard"], Spend 0.10293221473693848 seconds.
+2024-05-09 11:33:33 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='否'], Spend 0.08582019805908203 seconds.
+2024-05-09 11:33:33 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 否 from xpath->//nz-select[@formcontrolname="defaultSurveyStandard"], Spend 0.6936988830566406 seconds.
+2024-05-09 11:33:33 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="financialSourceTypeId"], Spend 0.08855867385864258 seconds.
+2024-05-09 11:33:34 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='核定收支、定额补助'], Spend 0.08285212516784668 seconds.
+2024-05-09 11:33:34 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 核定收支、定额补助 from xpath->//nz-select[@formcontrolname="financialSourceTypeId"], Spend 0.673067569732666 seconds.
+2024-05-09 11:33:34 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//span[contains(text(),"附件上传")], Spend 0.1172327995300293 seconds.
+2024-05-09 11:33:35 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->(//button[@class='ant-btn ng-star-inserted'])[1], Spend 0.1240534782409668 seconds.
+2024-05-09 11:33:40 - MainProcess | MainThread | base_page.get_text:281 - SUCCESS -Get text: '附件示例.png' from xpath->//div/span[contains(text(),'附件示例.png')], Spend 0.03299856185913086 seconds.
+2024-05-09 11:33:40 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->div.ant-modal-footer button.ant-btn-primary, Spend 0.1128995418548584 seconds.
+2024-05-09 11:33:40 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="ant-tabs-content-holder"]/div/div/lib-unit-basis/button, Spend 0.2655446529388428 seconds.
+2024-05-09 11:33:41 - MainProcess | MainThread | base_page.get_text:281 - SUCCESS -Get text: '保存成功，稍后请在单位信息查看' from css->.ant-message span, Spend 0.8565816879272461 seconds.
+2024-05-09 11:33:41 - MainProcess | MainThread | base_page.assert_text:471 - SUCCESS -The successful assertion text: '保存成功，稍后请在单位信息查看' is from '保存成功，稍后请在单位信息查看' and takes 0.00 seconds.
+2024-05-09 11:33:42 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[contains(text(),'单位经办人信息')], Spend 0.1085059642791748 seconds.
+2024-05-09 11:33:42 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//span[contains(text(),'新建账号')], Spend 0.14458036422729492 seconds.
+2024-05-09 11:33:43 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '93140824332878805W' to xpath->//input[@formcontrolname='userName'], Spend 0.2665867805480957 seconds.
+2024-05-09 11:33:43 - MainProcess | MainThread | base_page.tab:224 - SUCCESS -Input '' to xpath->//input[@formcontrolname='userName'], Spend 0.10799813270568848 seconds.
+2024-05-09 11:33:44 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'test' to xpath->//input[@formcontrolname='userNickName'], Spend 0.12830209732055664 seconds.
+2024-05-09 11:33:44 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname='gender'], Spend 0.09201216697692871 seconds.
+2024-05-09 11:33:44 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='男'], Spend 0.07330441474914551 seconds.
+2024-05-09 11:33:44 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 男 from xpath->//nz-select[@formcontrolname='gender'], Spend 0.6678991317749023 seconds.
+2024-05-09 11:33:45 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '23088119890721296X' to xpath->//input[@formcontrolname='identityCard'], Spend 0.19700908660888672 seconds.
+2024-05-09 11:33:45 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '15112345678' to xpath->//input[@formcontrolname='phoneNumber'], Spend 0.21872901916503906 seconds.
+2024-05-09 11:33:45 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-card[nztitle='权限选择'] div.ant-card-body div:nth-child(1), Spend 0.08497929573059082 seconds.
+2024-05-09 11:33:45 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//span[contains(text(),'保存')]/ancestor::button, Spend 0.09583115577697754 seconds.
+2024-05-09 11:33:46 - MainProcess | MainThread | base_page.get_text:281 - SUCCESS -Get text: '用户已添加，用户名：【93140824332878805W】，登录密码：【7jNa6jVI】！' from css->.ant-modal-footer span.foot_msg, Spend 0.05056190490722656 seconds.
+2024-05-09 11:33:46 - MainProcess | MainThread | base_page.assert_text_contains:489 - ERROR -Assertion failure: Expect '用户已添加，用户名：【93140824332878805W】，登录密码：【7jNa6jVI】！' to appear in '用户已添加'.
+2024-05-09 11:33:46 - MainProcess | MainThread | base_page.take_screenshot:549 - SUCCESS -Get the current window screenshot,path: D:\PublicInstitutionSystem\report\image\screenshot_20240509-113346.png, Spend 0.16662049293518066 seconds.
+2024-05-09 11:33:46 - MainProcess | MainThread | base_page.assert_text_contains:494 - SUCCESS -Assertions are present in the actual text with: '用户已添加，用户名：【93140824332878805W】，登录密码：【7jNa6jVI】！'. Time taken 0.17 seconds.
+2024-05-09 11:33:47 - MainProcess | MainThread | base_util.setUp:46 - INFO -############################### START ###############################
+2024-05-09 11:33:49 - MainProcess | MainThread | base_page.max_window:59 - SUCCESS -Maximized the window.
+2024-05-09 11:33:50 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/login.
+2024-05-09 11:33:50 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'qyq002' to id->username, Spend 0.22930264472961426 seconds.
+2024-05-09 11:33:51 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'Aa123456' to id->password, Spend 0.24171996116638184 seconds.
+2024-05-09 11:33:51 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'abfhj' to id->captcha, Spend 0.14998602867126465 seconds.
+2024-05-09 11:33:51 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//*[@id="root"]/div/div[2]/div[1]/div/form/div[5]/div/div/div/div/button, Spend 0.10112810134887695 seconds.
+2024-05-09 11:33:53 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.ant-card:nth-child(3) .home_auto_btn__LBhkK:nth-child(2), Spend 0.9819004535675049 seconds.
+2024-05-09 11:33:53 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_admin/unit.
+2024-05-09 11:33:55 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '9245080361047267B5' to name->queryStr, Spend 0.1981499195098877 seconds.
+2024-05-09 11:33:55 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="ant-row"]/nz-form-item[7]/nz-form-control/div/div/nz-button-group/button[1], Spend 0.08159327507019043 seconds.
+2024-05-09 11:33:56 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//tbody[@class="ant-table-tbody"]/tr[2]/td[2], Spend 0.09143996238708496 seconds.
+2024-05-09 11:33:56 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="btn"]/button[1], Spend 0.11049604415893555 seconds.
+2024-05-09 11:33:57 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[contains(text(),'单位编制信息')], Spend 0.9232127666473389 seconds.
+2024-05-09 11:33:57 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '13' to css->.content .ant-row input, Spend 0.16426348686218262 seconds.
+2024-05-09 11:33:57 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//span[text()='保存'], Spend 0.08334636688232422 seconds.
+2024-05-09 11:33:58 - MainProcess | MainThread | base_page.get_text:281 - SUCCESS -Get text: '保存成功' from css->.ant-message span, Spend 0.85589599609375 seconds.
+2024-05-09 11:33:58 - MainProcess | MainThread | base_page.assert_text:471 - SUCCESS -The successful assertion text: '保存成功' is from '保存成功' and takes 0.00 seconds.
+2024-05-09 11:33:58 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.tool a, Spend 0.18550419807434082 seconds.
+2024-05-09 11:33:58 - MainProcess | MainThread | base_page.get_url:294 - SUCCESS -Get url: http://192.168.2.209/test_console/home.
+2024-05-09 11:33:59 - MainProcess | MainThread | base_page.move_to_element:325 - SUCCESS -Move to element xpath->(//div[@class="ant-space-item"])[2], Spend 1.1232070922851562 seconds.
+2024-05-09 11:33:59 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->li.ant-dropdown-menu-item, Spend 0.07844018936157227 seconds.
+2024-05-09 11:34:01 - MainProcess | MainThread | base_page.quit:105 - SUCCESS -Quit the browser.
+2024-05-09 11:34:01 - MainProcess | MainThread | base_util.tearDown:62 - INFO -###############################  End  ###############################
+2024-05-09 11:34:05 - MainProcess | MainThread | base_util.setUp:46 - INFO -############################### START ###############################
+2024-05-09 11:34:07 - MainProcess | MainThread | base_page.max_window:59 - SUCCESS -Maximized the window.
+2024-05-09 11:34:09 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/login.
+2024-05-09 11:34:09 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'qyq002' to id->username, Spend 0.23479080200195312 seconds.
+2024-05-09 11:34:09 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'Aa123456' to id->password, Spend 0.19967103004455566 seconds.
+2024-05-09 11:34:09 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'abfhj' to id->captcha, Spend 0.17757487297058105 seconds.
+2024-05-09 11:34:09 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//*[@id="root"]/div/div[2]/div[1]/div/form/div[5]/div/div/div/div/button, Spend 0.10847687721252441 seconds.
+2024-05-09 11:34:12 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[contains(text(),"管理版")], Spend 1.112419605255127 seconds.
+2024-05-09 11:34:13 - MainProcess | MainThread | base_page.move_to_element:325 - SUCCESS -Move to element xpath->//span[contains(text(),"业务审核")], Spend 1.1346275806427002 seconds.
+2024-05-09 11:34:13 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="menu-sub ng-star-inserted"]/ul/li[4]/a, Spend 0.10616302490234375 seconds.
+2024-05-09 11:34:14 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '91220721378526928J' to xpath->//input[@placeholder="输入统一社会信用代码/单位名称/主管单位查询"], Spend 1.0875468254089355 seconds.
+2024-05-09 11:34:15 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element link->91220721378526928J, Spend 0.9451196193695068 seconds.
+2024-05-09 11:34:16 - MainProcess | MainThread | base_page.switch_to_new_window:389 - SUCCESS -Switched to new window, spent 0.6733615398406982 seconds.
+2024-05-09 11:34:17 - MainProcess | MainThread | base_page.move_to_element:325 - SUCCESS -Move to element xpath->//span[text()="单位信息管理"], Spend 1.6029276847839355 seconds.
+2024-05-09 11:34:18 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//a[@href="/test_bases/unit/dept-info"], Spend 0.11893081665039062 seconds.
+2024-05-09 11:34:19 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'test001' to xpath->//input[@name='name'], Spend 1.0172100067138672 seconds.
+2024-05-09 11:34:19 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '15123456789' to xpath->//input[@name='phone'], Spend 0.21739840507507324 seconds.
+2024-05-09 11:34:19 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//button[@type='submit'], Spend 0.11072373390197754 seconds.
+2024-05-09 11:34:20 - MainProcess | MainThread | base_page.get_text:281 - SUCCESS -Get text: '添加成功' from css->div.ant-message span, Spend 0.8920178413391113 seconds.
+2024-05-09 11:34:20 - MainProcess | MainThread | base_page.assert_text:463 - ERROR -The actual text '添加成功' does not match the expected text '保存成功'.
+2024-05-09 11:34:20 - MainProcess | MainThread | base_page.take_screenshot:549 - SUCCESS -Get the current window screenshot,path: D:\PublicInstitutionSystem\report\image\screenshot_20240509-113420.png, Spend 0.16957378387451172 seconds.
+2024-05-09 11:34:20 - MainProcess | MainThread | exceptions.__init__:15 - ERROR -The actual text '添加成功' does not match the expected text '保存成功'.
+2024-05-09 11:34:20 - MainProcess | MainThread | base_page.assert_text:471 - SUCCESS -The successful assertion text: '保存成功' is from '添加成功' and takes 0.17 seconds.
+2024-05-09 11:34:20 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.tool a, Spend 0.2391071319580078 seconds.
+2024-05-09 11:34:20 - MainProcess | MainThread | base_page.get_url:294 - SUCCESS -Get url: http://192.168.2.209/test_console/home.
+2024-05-09 11:34:21 - MainProcess | MainThread | base_page.move_to_element:325 - SUCCESS -Move to element xpath->(//div[@class="ant-space-item"])[2], Spend 0.39528393745422363 seconds.
+2024-05-09 11:34:21 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->li.ant-dropdown-menu-item, Spend 0.10650634765625 seconds.
+2024-05-09 11:34:23 - MainProcess | MainThread | base_page.quit:105 - SUCCESS -Quit the browser.
+2024-05-09 11:34:23 - MainProcess | MainThread | base_util.tearDown:62 - INFO -###############################  End  ###############################
+2024-05-09 11:34:23 - MainProcess | MainThread | base_util.setUp:46 - INFO -############################### START ###############################
+2024-05-09 11:34:26 - MainProcess | MainThread | base_page.max_window:59 - SUCCESS -Maximized the window.
+2024-05-09 11:34:28 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/login.
+2024-05-09 11:34:28 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'qyq002' to id->username, Spend 0.2817542552947998 seconds.
+2024-05-09 11:34:28 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'Aa123456' to id->password, Spend 0.2189486026763916 seconds.
+2024-05-09 11:34:28 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'abfhj' to id->captcha, Spend 0.14989995956420898 seconds.
+2024-05-09 11:34:28 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//*[@id="root"]/div/div[2]/div[1]/div/form/div[5]/div/div/div/div/button, Spend 0.08598828315734863 seconds.
+2024-05-09 11:34:31 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[contains(text(),"管理版")], Spend 1.1088037490844727 seconds.
+2024-05-09 11:34:32 - MainProcess | MainThread | base_page.move_to_element:325 - SUCCESS -Move to element xpath->//span[contains(text(),"业务审核")], Spend 1.129467487335205 seconds.
+2024-05-09 11:34:32 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//span[contains(text(), '业务指导(基层)')]/ancestor::a, Spend 0.11056780815124512 seconds.
+2024-05-09 11:34:33 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '916109281116397393' to name->queryStr, Spend 1.1087324619293213 seconds.
+2024-05-09 11:34:34 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//tbody[@class="ant-table-tbody"]/tr[2]/td[1]/a, Spend 0.08588528633117676 seconds.
+2024-05-09 11:34:35 - MainProcess | MainThread | base_page.switch_to_new_window:389 - SUCCESS -Switched to new window, spent 0.5206356048583984 seconds.
+2024-05-09 11:34:36 - MainProcess | MainThread | base_page.move_to_element:325 - SUCCESS -Move to element xpath->//ul[@class="menu-root"]/li[4]/div, Spend 1.6810524463653564 seconds.
+2024-05-09 11:34:36 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="menu-sub ng-star-inserted"]/ul/li[1]/a, Spend 0.0858309268951416 seconds.
+2024-05-09 11:34:38 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-select[formcontrolname="personalIdentityId"] input, Spend 1.3870162963867188 seconds.
+2024-05-09 11:34:38 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='管理人员'], Spend 0.24192500114440918 seconds.
+2024-05-09 11:34:38 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 管理人员 from css->nz-select[formcontrolname="personalIdentityId"] input, Spend 2.1304008960723877 seconds.
+2024-05-09 11:34:39 - MainProcess | MainThread | base_page.clear:244 - SUCCESS -Clear the text content of css->lib-date-input[formcontrolname="qxDate"] input, Spend 0.34783077239990234 seconds.
+2024-05-09 11:34:40 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '202301.0' to css->lib-date-input[formcontrolname="qxDate"] input, Spend 0.25406360626220703 seconds.
+2024-05-09 11:34:40 - MainProcess | MainThread | base_page.tab:224 - SUCCESS -Input '' to css->lib-date-input[formcontrolname="qxDate"] input, Spend 0.08188486099243164 seconds.
+2024-05-09 11:34:40 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'yijuwenhao' to xpath->//lib-staff-head/form[1]/nz-form-item[3]/nz-form-control[1]/div[1]/div[1]/input[1], Spend 0.22263431549072266 seconds.
+2024-05-09 11:34:40 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'biadongbeiz' to xpath->//lib-staff-head/form[1]/nz-form-item[4]/nz-form-control[1]/div[1]/div[1]/input[1], Spend 0.24593377113342285 seconds.
+2024-05-09 11:34:40 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'Jonathan Garrison' to xpath->//input[@formcontrolname="staffName"], Spend 0.32215356826782227 seconds.
+2024-05-09 11:34:41 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-select[formcontrolname="gender"], Spend 0.12785673141479492 seconds.
+2024-05-09 11:34:41 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='男'], Spend 0.0973365306854248 seconds.
+2024-05-09 11:34:41 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 男 from css->nz-select[formcontrolname="gender"], Spend 0.7264437675476074 seconds.
+2024-05-09 11:34:42 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-select[formcontrolname="nationId"], Spend 0.12964153289794922 seconds.
+2024-05-09 11:34:42 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='汉'], Spend 0.09823799133300781 seconds.
+2024-05-09 11:34:42 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 汉 from css->nz-select[formcontrolname="nationId"], Spend 0.7319362163543701 seconds.
+2024-05-09 11:34:43 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '211481200411216321' to xpath->//input[@formcontrolname="identityCard"], Spend 0.37619781494140625 seconds.
+2024-05-09 11:34:43 - MainProcess | MainThread | base_page.clear:244 - SUCCESS -Clear the text content of css->lib-date-input[formcontrolname="birthDate"] input, Spend 0.16672015190124512 seconds.
+2024-05-09 11:34:44 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '20041121' to css->lib-date-input[formcontrolname="birthDate"] input, Spend 0.21089482307434082 seconds.
+2024-05-09 11:34:44 - MainProcess | MainThread | base_page.tab:224 - SUCCESS -Input '' to css->lib-date-input[formcontrolname="birthDate"] input, Spend 0.06353259086608887 seconds.
+2024-05-09 11:34:44 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-select[formcontrolname="politicalStatusId"], Spend 0.11122560501098633 seconds.
+2024-05-09 11:34:44 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='中共党员'], Spend 0.08619213104248047 seconds.
+2024-05-09 11:34:44 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 中共党员 from css->nz-select[formcontrolname="politicalStatusId"], Spend 0.7014260292053223 seconds.
+2024-05-09 11:34:45 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-select[formcontrolname="initialPersonalIdentityId"], Spend 0.09340643882751465 seconds.
+2024-05-09 11:34:46 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='管理人员'], Spend 0.08076024055480957 seconds.
+2024-05-09 11:34:46 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 管理人员 from css->nz-select[formcontrolname="initialPersonalIdentityId"], Spend 0.6784946918487549 seconds.
+2024-05-09 11:34:46 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'xx省xx市' to xpath->//input[@formcontrolname="nativePlace"], Spend 0.15699291229248047 seconds.
+2024-05-09 11:34:46 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'xx省xx市xx区xx' to xpath->//textarea[@formcontrolname="address"], Spend 0.19360828399658203 seconds.
+2024-05-09 11:34:47 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-select[formcontrolname="staffSourceTypeId"], Spend 0.11521315574645996 seconds.
+2024-05-09 11:34:47 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='公招(高等院校毕业生)'], Spend 0.1012420654296875 seconds.
+2024-05-09 11:34:47 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 公招(高等院校毕业生) from css->nz-select[formcontrolname="staffSourceTypeId"], Spend 0.7196493148803711 seconds.
+2024-05-09 11:34:48 - MainProcess | MainThread | base_page.clear:244 - SUCCESS -Clear the text content of css->lib-date-input[formcontrolname="joinDate"] input, Spend 0.13714861869812012 seconds.
+2024-05-09 11:34:48 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '20230101.0' to css->lib-date-input[formcontrolname="joinDate"] input, Spend 0.17853999137878418 seconds.
+2024-05-09 11:34:48 - MainProcess | MainThread | base_page.tab:224 - SUCCESS -Input '' to css->lib-date-input[formcontrolname="joinDate"] input, Spend 0.05133247375488281 seconds.
+2024-05-09 11:34:48 - MainProcess | MainThread | base_page.clear:244 - SUCCESS -Clear the text content of css->lib-date-input[formcontrolname="enterDate"] input, Spend 0.16923165321350098 seconds.
+2024-05-09 11:34:48 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '20030101.0' to css->lib-date-input[formcontrolname="enterDate"] input, Spend 0.18919920921325684 seconds.
+2024-05-09 11:34:48 - MainProcess | MainThread | base_page.tab:224 - SUCCESS -Input '' to css->lib-date-input[formcontrolname="enterDate"] input, Spend 0.060853004455566406 seconds.
+2024-05-09 11:34:49 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-select[formcontrolname="educationTypeId"], Spend 0.11209249496459961 seconds.
+2024-05-09 11:34:49 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='大学本科毕业'], Spend 0.1005105972290039 seconds.
+2024-05-09 11:34:49 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 大学本科毕业 from css->nz-select[formcontrolname="educationTypeId"], Spend 0.716742753982544 seconds.
+2024-05-09 11:34:50 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-select[formcontrolname="degreeTypeId"], Spend 0.08823227882385254 seconds.
+2024-05-09 11:34:50 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='硕士'], Spend 0.09578800201416016 seconds.
+2024-05-09 11:34:50 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 硕士 from css->nz-select[formcontrolname="degreeTypeId"], Spend 0.6880781650543213 seconds.
+2024-05-09 11:34:51 - MainProcess | MainThread | base_page.clear:244 - SUCCESS -Clear the text content of css->lib-date-input[formcontrolname="graduateDate"] input, Spend 0.13906073570251465 seconds.
+2024-05-09 11:34:51 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '20000630.0' to css->lib-date-input[formcontrolname="graduateDate"] input, Spend 0.19294214248657227 seconds.
+2024-05-09 11:34:51 - MainProcess | MainThread | base_page.tab:224 - SUCCESS -Input '' to css->lib-date-input[formcontrolname="graduateDate"] input, Spend 0.05327558517456055 seconds.
+2024-05-09 11:34:51 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//span[contains(text(),'工资报审附件')], Spend 0.15340781211853027 seconds.
+2024-05-09 11:34:52 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->(//span[contains(text(),'上传附件')])[1]/ancestor::button, Spend 0.9753389358520508 seconds.
+2024-05-09 11:35:00 - MainProcess | MainThread | base_page.get_text:281 - SUCCESS -Get text: '附件示例.png' from xpath->//div/span[contains(text(),'附件示例.png')], Spend 0.04622054100036621 seconds.
+2024-05-09 11:35:00 - MainProcess | MainThread | base_page.assert_text:471 - SUCCESS -The successful assertion text: '附件示例.png' is from '附件示例.png' and takes 0.00 seconds.
+2024-05-09 11:35:00 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->div.ant-modal-footer button.ant-btn-primary, Spend 0.11487483978271484 seconds.
+2024-05-09 11:35:01 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[contains(text(),"工资信息")], Spend 0.12779521942138672 seconds.
+2024-05-09 11:35:01 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'test' to xpath->//input[@formcontrolname="presentOccupation"], Spend 0.18001341819763184 seconds.
+2024-05-09 11:35:01 - MainProcess | MainThread | base_page.clear:244 - SUCCESS -Clear the text content of css->lib-date-input[formcontrolname="presentOccupationDate"] input, Spend 0.195235013961792 seconds.
+2024-05-09 11:35:01 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '20030101.0' to css->lib-date-input[formcontrolname="presentOccupationDate"] input, Spend 0.17944073677062988 seconds.
+2024-05-09 11:35:01 - MainProcess | MainThread | base_page.tab:224 - SUCCESS -Input '' to css->lib-date-input[formcontrolname="presentOccupationDate"] input, Spend 0.05019998550415039 seconds.
+2024-05-09 11:35:01 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-select[formcontrolname="trueProRankId"], Spend 0.10022211074829102 seconds.
+2024-05-09 11:35:02 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='五级岗位'], Spend 0.08927130699157715 seconds.
+2024-05-09 11:35:02 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 五级岗位 from css->nz-select[formcontrolname="trueProRankId"], Spend 0.6924927234649658 seconds.
+2024-05-09 11:35:02 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-select[formcontrolname="salaryMappingProRankId"], Spend 0.10170960426330566 seconds.
+2024-05-09 11:35:03 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='五级岗位'], Spend 0.07919883728027344 seconds.
+2024-05-09 11:35:03 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 五级岗位 from css->nz-select[formcontrolname="salaryMappingProRankId"], Spend 0.6825580596923828 seconds.
+2024-05-09 11:35:04 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-select[formcontrolname="leadership"], Spend 0.08940005302429199 seconds.
+2024-05-09 11:35:04 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='领导工资'], Spend 0.13947272300720215 seconds.
+2024-05-09 11:35:04 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 领导工资 from css->nz-select[formcontrolname="leadership"], Spend 0.7348995208740234 seconds.
+2024-05-09 11:35:05 - MainProcess | MainThread | base_page.clear:244 - SUCCESS -Clear the text content of css->lib-date-input[formcontrolname="jobNowDate"] input, Spend 0.14888954162597656 seconds.
+2024-05-09 11:35:05 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '20030101.0' to css->lib-date-input[formcontrolname="jobNowDate"] input, Spend 0.20669770240783691 seconds.
+2024-05-09 11:35:05 - MainProcess | MainThread | base_page.tab:224 - SUCCESS -Input '' to css->lib-date-input[formcontrolname="jobNowDate"] input, Spend 0.0629262924194336 seconds.
+2024-05-09 11:35:05 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-select[formcontrolname="formerSalaryGrade"], Spend 0.09412288665771484 seconds.
+2024-05-09 11:35:06 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='21级'], Spend 0.09216451644897461 seconds.
+2024-05-09 11:35:06 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 21级 from css->nz-select[formcontrolname="formerSalaryGrade"], Spend 0.6882688999176025 seconds.
+2024-05-09 11:35:07 - MainProcess | MainThread | base_page.clear:244 - SUCCESS -Clear the text content of css->lib-date-input[formcontrolname="salaryGradeDate"] input, Spend 0.15737533569335938 seconds.
+2024-05-09 11:35:07 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '2018.0' to css->lib-date-input[formcontrolname="salaryGradeDate"] input, Spend 0.1499462127685547 seconds.
+2024-05-09 11:35:07 - MainProcess | MainThread | base_page.tab:224 - SUCCESS -Input '' to css->lib-date-input[formcontrolname="salaryGradeDate"] input, Spend 0.045697689056396484 seconds.
+2024-05-09 11:35:07 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-select[formcontrolname="specialEducation"], Spend 0.11828184127807617 seconds.
+2024-05-09 11:35:07 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='是'], Spend 0.0957481861114502 seconds.
+2024-05-09 11:35:07 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 是 from css->nz-select[formcontrolname="specialEducation"], Spend 0.7186391353607178 seconds.
+2024-05-09 11:35:08 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//span[contains(text(),"年度考核")]/ancestor::button, Spend 0.21986079216003418 seconds.
+2024-05-09 11:35:08 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//span[contains(text(),"确认")]/ancestor::button, Spend 0.1469745635986328 seconds.
+2024-05-09 11:35:09 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class='staff-head-warp']//button[@class='ant-btn ant-btn-primary'], Spend 0.10441875457763672 seconds.
+2024-05-09 11:35:09 - MainProcess | MainThread | base_page.get_text:281 - SUCCESS -Get text: '录入人员成功' from css->.ant-message span, Spend 0.8640985488891602 seconds.
+2024-05-09 11:35:09 - MainProcess | MainThread | base_page.assert_text:471 - SUCCESS -The successful assertion text: '录入人员成功' is from '录入人员成功' and takes 0.00 seconds.
+2024-05-09 11:35:10 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.tool a, Spend 0.2587144374847412 seconds.
+2024-05-09 11:35:10 - MainProcess | MainThread | base_page.get_url:294 - SUCCESS -Get url: http://192.168.2.209/test_console/home.
+2024-05-09 11:35:11 - MainProcess | MainThread | base_page.move_to_element:325 - SUCCESS -Move to element xpath->(//div[@class="ant-space-item"])[2], Spend 1.1198227405548096 seconds.
+2024-05-09 11:35:11 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->li.ant-dropdown-menu-item, Spend 0.07764673233032227 seconds.
+2024-05-09 11:35:13 - MainProcess | MainThread | base_page.quit:105 - SUCCESS -Quit the browser.
+2024-05-09 11:35:13 - MainProcess | MainThread | base_util.tearDown:62 - INFO -###############################  End  ###############################
+2024-05-09 11:35:13 - MainProcess | MainThread | base_util.setUp:46 - INFO -############################### START ###############################
+2024-05-09 11:35:15 - MainProcess | MainThread | base_page.max_window:59 - SUCCESS -Maximized the window.
+2024-05-09 11:35:20 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/login.
+2024-05-09 11:35:20 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'qyq002' to id->username, Spend 0.2278916835784912 seconds.
+2024-05-09 11:35:21 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'Aa123456' to id->password, Spend 0.20047760009765625 seconds.
+2024-05-09 11:35:21 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'abfhj' to id->captcha, Spend 0.14838528633117676 seconds.
+2024-05-09 11:35:21 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//*[@id="root"]/div/div[2]/div[1]/div/form/div[5]/div/div/div/div/button, Spend 0.09627771377563477 seconds.
+2024-05-09 11:35:24 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[contains(text(),"管理版")], Spend 1.1535539627075195 seconds.
+2024-05-09 11:35:25 - MainProcess | MainThread | base_page.move_to_element:325 - SUCCESS -Move to element xpath->//span[contains(text(),"业务审核")], Spend 1.1215078830718994 seconds.
+2024-05-09 11:35:25 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//span[contains(text(), '业务指导(基层)')]/ancestor::a, Spend 0.10991716384887695 seconds.
+2024-05-09 11:35:26 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '93533324918225393Y' to name->queryStr, Spend 1.0923047065734863 seconds.
+2024-05-09 11:35:27 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//tbody[@class="ant-table-tbody"]/tr[2]/td[1]/a, Spend 0.08153319358825684 seconds.
+2024-05-09 11:35:27 - MainProcess | MainThread | base_page.switch_to_new_window:389 - SUCCESS -Switched to new window, spent 0.6216533184051514 seconds.
+2024-05-09 11:35:29 - MainProcess | MainThread | base_page.move_to_element:325 - SUCCESS -Move to element xpath->//ul[@class="menu-root"]/li[4]/div, Spend 1.5258104801177979 seconds.
+2024-05-09 11:35:29 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="menu-sub ng-star-inserted"]/ul/li[1]/a, Spend 0.08754706382751465 seconds.
+2024-05-09 11:35:30 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-select[formcontrolname="personalIdentityId"] input, Spend 0.9933156967163086 seconds.
+2024-05-09 11:35:30 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='管理人员'], Spend 0.21773743629455566 seconds.
+2024-05-09 11:35:30 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 管理人员 from css->nz-select[formcontrolname="personalIdentityId"] input, Spend 1.7259366512298584 seconds.
+2024-05-09 11:35:31 - MainProcess | MainThread | base_page.clear:244 - SUCCESS -Clear the text content of css->lib-date-input[formcontrolname="qxDate"] input, Spend 0.1791985034942627 seconds.
+2024-05-09 11:35:31 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '202302.0' to css->lib-date-input[formcontrolname="qxDate"] input, Spend 0.1954514980316162 seconds.
+2024-05-09 11:35:31 - MainProcess | MainThread | base_page.tab:224 - SUCCESS -Input '' to css->lib-date-input[formcontrolname="qxDate"] input, Spend 0.05591630935668945 seconds.
+2024-05-09 11:35:32 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'yijuwenhao' to xpath->//lib-staff-head/form[1]/nz-form-item[3]/nz-form-control[1]/div[1]/div[1]/input[1], Spend 0.18482685089111328 seconds.
+2024-05-09 11:35:32 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'biadongbeiz' to xpath->//lib-staff-head/form[1]/nz-form-item[4]/nz-form-control[1]/div[1]/div[1]/input[1], Spend 0.21668171882629395 seconds.
+2024-05-09 11:35:32 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'Kurt Martin' to xpath->//input[@formcontrolname="staffName"], Spend 0.2097911834716797 seconds.
+2024-05-09 11:35:32 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-select[formcontrolname="gender"], Spend 0.1064448356628418 seconds.
+2024-05-09 11:35:33 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='女'], Spend 0.09387469291687012 seconds.
+2024-05-09 11:35:33 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 女 from css->nz-select[formcontrolname="gender"], Spend 0.7057621479034424 seconds.
+2024-05-09 11:35:33 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-select[formcontrolname="nationId"], Spend 0.09810352325439453 seconds.
+2024-05-09 11:35:34 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='汉'], Spend 0.09484553337097168 seconds.
+2024-05-09 11:35:34 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 汉 from css->nz-select[formcontrolname="nationId"], Spend 0.6959750652313232 seconds.
+2024-05-09 11:35:35 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '36072919760815568X' to xpath->//input[@formcontrolname="identityCard"], Spend 0.21773576736450195 seconds.
+2024-05-09 11:35:35 - MainProcess | MainThread | base_page.clear:244 - SUCCESS -Clear the text content of css->lib-date-input[formcontrolname="birthDate"] input, Spend 0.14812994003295898 seconds.
+2024-05-09 11:35:35 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '19760815' to css->lib-date-input[formcontrolname="birthDate"] input, Spend 0.1910250186920166 seconds.
+2024-05-09 11:35:35 - MainProcess | MainThread | base_page.tab:224 - SUCCESS -Input '' to css->lib-date-input[formcontrolname="birthDate"] input, Spend 0.04298520088195801 seconds.
+2024-05-09 11:35:35 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-select[formcontrolname="politicalStatusId"], Spend 0.10066628456115723 seconds.
+2024-05-09 11:35:36 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='民主党派'], Spend 0.10095000267028809 seconds.
+2024-05-09 11:35:36 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 民主党派 from css->nz-select[formcontrolname="politicalStatusId"], Spend 0.7044410705566406 seconds.
+2024-05-09 11:35:36 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-select[formcontrolname="initialPersonalIdentityId"], Spend 0.09569382667541504 seconds.
+2024-05-09 11:35:37 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='管理人员'], Spend 0.08607721328735352 seconds.
+2024-05-09 11:35:37 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 管理人员 from css->nz-select[formcontrolname="initialPersonalIdentityId"], Spend 0.6861913204193115 seconds.
+2024-05-09 11:35:38 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'xx省xx市' to xpath->//input[@formcontrolname="nativePlace"], Spend 0.20543622970581055 seconds.
+2024-05-09 11:35:38 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'xx省xx市xx区xx' to xpath->//textarea[@formcontrolname="address"], Spend 0.27657079696655273 seconds.
+2024-05-09 11:35:38 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-select[formcontrolname="staffSourceTypeId"], Spend 0.13291382789611816 seconds.
+2024-05-09 11:35:39 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='公招(高等院校毕业生)'], Spend 0.0959467887878418 seconds.
+2024-05-09 11:35:39 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 公招(高等院校毕业生) from css->nz-select[formcontrolname="staffSourceTypeId"], Spend 0.7312321662902832 seconds.
+2024-05-09 11:35:39 - MainProcess | MainThread | base_page.clear:244 - SUCCESS -Clear the text content of css->lib-date-input[formcontrolname="joinDate"] input, Spend 0.1572432518005371 seconds.
+2024-05-09 11:35:40 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '20230101.0' to css->lib-date-input[formcontrolname="joinDate"] input, Spend 0.18792295455932617 seconds.
+2024-05-09 11:35:40 - MainProcess | MainThread | base_page.tab:224 - SUCCESS -Input '' to css->lib-date-input[formcontrolname="joinDate"] input, Spend 0.06038045883178711 seconds.
+2024-05-09 11:35:40 - MainProcess | MainThread | base_page.clear:244 - SUCCESS -Clear the text content of css->lib-date-input[formcontrolname="enterDate"] input, Spend 0.1688549518585205 seconds.
+2024-05-09 11:35:40 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '20030101.0' to css->lib-date-input[formcontrolname="enterDate"] input, Spend 0.18240666389465332 seconds.
+2024-05-09 11:35:40 - MainProcess | MainThread | base_page.tab:224 - SUCCESS -Input '' to css->lib-date-input[formcontrolname="enterDate"] input, Spend 0.05242037773132324 seconds.
+2024-05-09 11:35:40 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-select[formcontrolname="educationTypeId"], Spend 0.11929607391357422 seconds.
+2024-05-09 11:35:41 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='大学本科毕业'], Spend 0.09919285774230957 seconds.
+2024-05-09 11:35:41 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 大学本科毕业 from css->nz-select[formcontrolname="educationTypeId"], Spend 0.7196941375732422 seconds.
+2024-05-09 11:35:41 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-select[formcontrolname="degreeTypeId"], Spend 0.08638954162597656 seconds.
+2024-05-09 11:35:42 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='硕士'], Spend 0.08441472053527832 seconds.
+2024-05-09 11:35:42 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 硕士 from css->nz-select[formcontrolname="degreeTypeId"], Spend 0.6751265525817871 seconds.
+2024-05-09 11:35:43 - MainProcess | MainThread | base_page.clear:244 - SUCCESS -Clear the text content of css->lib-date-input[formcontrolname="graduateDate"] input, Spend 0.14590024948120117 seconds.
+2024-05-09 11:35:43 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '20000630.0' to css->lib-date-input[formcontrolname="graduateDate"] input, Spend 0.18713116645812988 seconds.
+2024-05-09 11:35:43 - MainProcess | MainThread | base_page.tab:224 - SUCCESS -Input '' to css->lib-date-input[formcontrolname="graduateDate"] input, Spend 0.04256010055541992 seconds.
+2024-05-09 11:35:43 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//span[contains(text(),'工资报审附件')], Spend 0.14264440536499023 seconds.
+2024-05-09 11:35:44 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->(//span[contains(text(),'上传附件')])[1]/ancestor::button, Spend 0.9101505279541016 seconds.
+2024-05-09 11:35:50 - MainProcess | MainThread | base_page.get_text:281 - SUCCESS -Get text: '附件示例.png' from xpath->//div/span[contains(text(),'附件示例.png')], Spend 0.04481339454650879 seconds.
+2024-05-09 11:35:50 - MainProcess | MainThread | base_page.assert_text:471 - SUCCESS -The successful assertion text: '附件示例.png' is from '附件示例.png' and takes 0.00 seconds.
+2024-05-09 11:35:50 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->div.ant-modal-footer button.ant-btn-primary, Spend 0.10813117027282715 seconds.
+2024-05-09 11:35:50 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[contains(text(),"工资信息")], Spend 0.1062462329864502 seconds.
+2024-05-09 11:35:50 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'test' to xpath->//input[@formcontrolname="presentOccupation"], Spend 0.19094204902648926 seconds.
+2024-05-09 11:35:51 - MainProcess | MainThread | base_page.clear:244 - SUCCESS -Clear the text content of css->lib-date-input[formcontrolname="presentOccupationDate"] input, Spend 0.18478894233703613 seconds.
+2024-05-09 11:35:51 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '20030102.0' to css->lib-date-input[formcontrolname="presentOccupationDate"] input, Spend 0.1928262710571289 seconds.
+2024-05-09 11:35:51 - MainProcess | MainThread | base_page.tab:224 - SUCCESS -Input '' to css->lib-date-input[formcontrolname="presentOccupationDate"] input, Spend 0.04025149345397949 seconds.
+2024-05-09 11:35:51 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-select[formcontrolname="trueProRankId"], Spend 0.1133110523223877 seconds.
+2024-05-09 11:35:51 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='五级岗位'], Spend 0.08750700950622559 seconds.
+2024-05-09 11:35:51 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 五级岗位 from css->nz-select[formcontrolname="trueProRankId"], Spend 0.7026162147521973 seconds.
+2024-05-09 11:35:52 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-select[formcontrolname="levelProRankId"], Spend 0.09895610809326172 seconds.
+2024-05-09 11:35:53 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='七级职员'], Spend 0.11864614486694336 seconds.
+2024-05-09 11:35:53 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 七级职员 from css->nz-select[formcontrolname="levelProRankId"], Spend 0.7220163345336914 seconds.
+2024-05-09 11:35:53 - MainProcess | MainThread | base_page.clear:244 - SUCCESS -Clear the text content of css->lib-date-input[formcontrolname="levelDate"] input, Spend 0.13274693489074707 seconds.
+2024-05-09 11:35:54 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '20240102.0' to css->lib-date-input[formcontrolname="levelDate"] input, Spend 0.2017381191253662 seconds.
+2024-05-09 11:35:54 - MainProcess | MainThread | base_page.tab:224 - SUCCESS -Input '' to css->lib-date-input[formcontrolname="levelDate"] input, Spend 0.08842158317565918 seconds.
+2024-05-09 11:35:54 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-select[formcontrolname="salaryMappingProRankId"], Spend 0.1083683967590332 seconds.
+2024-05-09 11:35:54 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='五级岗位'], Spend 0.07781481742858887 seconds.
+2024-05-09 11:35:54 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 五级岗位 from css->nz-select[formcontrolname="salaryMappingProRankId"], Spend 0.6895966529846191 seconds.
+2024-05-09 11:35:55 - MainProcess | MainThread | base_page.clear:244 - SUCCESS -Clear the text content of css->lib-date-input[formcontrolname="jobNowDate"] input, Spend 0.15841007232666016 seconds.
+2024-05-09 11:35:55 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '20030102.0' to css->lib-date-input[formcontrolname="jobNowDate"] input, Spend 0.17542433738708496 seconds.
+2024-05-09 11:35:55 - MainProcess | MainThread | base_page.tab:224 - SUCCESS -Input '' to css->lib-date-input[formcontrolname="jobNowDate"] input, Spend 0.05194258689880371 seconds.
+2024-05-09 11:35:55 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-select[formcontrolname="formerSalaryGrade"], Spend 0.10135579109191895 seconds.
+2024-05-09 11:35:56 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='21级'], Spend 0.08759140968322754 seconds.
+2024-05-09 11:35:56 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 21级 from css->nz-select[formcontrolname="formerSalaryGrade"], Spend 0.6906604766845703 seconds.
+2024-05-09 11:35:57 - MainProcess | MainThread | base_page.clear:244 - SUCCESS -Clear the text content of css->lib-date-input[formcontrolname="salaryGradeDate"] input, Spend 0.14300966262817383 seconds.
+2024-05-09 11:35:57 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '2019.0' to css->lib-date-input[formcontrolname="salaryGradeDate"] input, Spend 0.1464543342590332 seconds.
+2024-05-09 11:35:57 - MainProcess | MainThread | base_page.tab:224 - SUCCESS -Input '' to css->lib-date-input[formcontrolname="salaryGradeDate"] input, Spend 0.05371499061584473 seconds.
+2024-05-09 11:35:57 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-select[formcontrolname="specialEducation"], Spend 0.09617161750793457 seconds.
+2024-05-09 11:35:57 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='是'], Spend 0.08725142478942871 seconds.
+2024-05-09 11:35:57 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 是 from css->nz-select[formcontrolname="specialEducation"], Spend 0.6880366802215576 seconds.
+2024-05-09 11:35:58 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//span[contains(text(),"年度考核")]/ancestor::button, Spend 0.22690629959106445 seconds.
+2024-05-09 11:35:58 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//span[contains(text(),"确认")]/ancestor::button, Spend 0.10196304321289062 seconds.
+2024-05-09 11:35:58 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class='staff-head-warp']//button[@class='ant-btn ant-btn-primary'], Spend 0.10970449447631836 seconds.
+2024-05-09 11:35:59 - MainProcess | MainThread | base_page.get_text:281 - SUCCESS -Get text: '人员工资信息未通过验证，请检查填写信息是否有误。' from css->.ant-message span, Spend 0.8737595081329346 seconds.
+2024-05-09 11:35:59 - MainProcess | MainThread | base_page.assert_text:463 - ERROR -The actual text '人员工资信息未通过验证，请检查填写信息是否有误。' does not match the expected text '录入人员成功'.
+2024-05-09 11:35:59 - MainProcess | MainThread | base_page.take_screenshot:549 - SUCCESS -Get the current window screenshot,path: D:\PublicInstitutionSystem\report\image\screenshot_20240509-113559.png, Spend 0.12608575820922852 seconds.
+2024-05-09 11:35:59 - MainProcess | MainThread | exceptions.__init__:15 - ERROR -The actual text '人员工资信息未通过验证，请检查填写信息是否有误。' does not match the expected text '录入人员成功'.
+2024-05-09 11:35:59 - MainProcess | MainThread | base_page.assert_text:471 - SUCCESS -The successful assertion text: '录入人员成功' is from '人员工资信息未通过验证，请检查填写信息是否有误。' and takes 0.14 seconds.
+2024-05-09 11:36:00 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.tool a, Spend 0.21095752716064453 seconds.
+2024-05-09 11:36:00 - MainProcess | MainThread | base_page.get_url:294 - SUCCESS -Get url: http://192.168.2.209/test_console/home.
+2024-05-09 11:36:01 - MainProcess | MainThread | base_page.move_to_element:325 - SUCCESS -Move to element xpath->(//div[@class="ant-space-item"])[2], Spend 1.1265957355499268 seconds.
+2024-05-09 11:36:01 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->li.ant-dropdown-menu-item, Spend 0.07756876945495605 seconds.
+2024-05-09 11:36:03 - MainProcess | MainThread | base_page.quit:105 - SUCCESS -Quit the browser.
+2024-05-09 11:36:03 - MainProcess | MainThread | base_util.tearDown:62 - INFO -###############################  End  ###############################
+2024-05-09 13:24:13 - MainProcess | MainThread | base_util.setup:45 - INFO -############################### START ###############################
+2024-05-09 13:24:16 - MainProcess | MainThread | base_page.max_window:59 - SUCCESS -Maximized the window.
+2024-05-09 13:24:18 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/login.
+2024-05-09 13:24:18 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'qyq002' to id->username, Spend 0.20749592781066895 seconds.
+2024-05-09 13:24:18 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'Aa123456' to id->password, Spend 0.17107582092285156 seconds.
+2024-05-09 13:24:18 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'abfhj' to id->captcha, Spend 0.14578843116760254 seconds.
+2024-05-09 13:24:18 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//*[@id="root"]/div/div[2]/div[1]/div/form/div[5]/div/div/div/div/button, Spend 0.09549427032470703 seconds.
+2024-05-09 13:24:20 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/home.
+2024-05-09 13:24:21 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//*[@id="root"]/section/section/main/div[1]/div[3]/div/div/div[2]/div[1], Spend 0.917888879776001 seconds.
+2024-05-09 13:24:21 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '92632221140249182J' to id->nest-messages_creditCode, Spend 0.24367451667785645 seconds.
+2024-05-09 13:24:21 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '测试Harris Ltd' to id->nest-messages_organizationName, Spend 0.1612405776977539 seconds.
+2024-05-09 13:24:21 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="ant-select-selector"], Spend 0.09360074996948242 seconds.
+2024-05-09 13:24:22 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@title='否'], Spend 0.9242119789123535 seconds.
+2024-05-09 13:24:22 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="unit_add_head__fNOk6"]/button[1], Spend 0.09050655364990234 seconds.
+2024-05-09 13:24:23 - MainProcess | MainThread | base_page.get_text:281 - SUCCESS -Get text: '保存成功，是否需要维护单位信息？' from xpath->//div[@class="ant-modal-content"]/div/div/div/div, Spend 0.8575916290283203 seconds.
+2024-05-09 13:24:23 - MainProcess | MainThread | base_page.assert_text:471 - SUCCESS -The successful assertion text: '保存成功，是否需要维护单位信息？' is from '保存成功，是否需要维护单位信息？' and takes 0.00 seconds.
+2024-05-09 13:24:24 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="ant-modal-confirm-btns"]/button[2], Spend 0.9155218601226807 seconds.
+2024-05-09 13:24:25 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '测试' to xpath->//input[@formcontrolname="head"], Spend 1.1186347007751465 seconds.
+2024-05-09 13:24:25 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '15111111111' to xpath->//input[@formcontrolname="telephone"], Spend 0.17944049835205078 seconds.
+2024-05-09 13:24:26 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'xxx省xxx市xxx区xxx路' to xpath->//input[@formcontrolname="address"], Spend 0.1869068145751953 seconds.
+2024-05-09 13:24:26 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '631002' to xpath->//input[@formcontrolname="zipCode"], Spend 0.16112971305847168 seconds.
+2024-05-09 13:24:26 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="financialSupportType"], Spend 0.1086268424987793 seconds.
+2024-05-09 13:24:26 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='部分人员'], Spend 0.07529449462890625 seconds.
+2024-05-09 13:24:26 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 部分人员 from xpath->//nz-select[@formcontrolname="financialSupportType"], Spend 0.6891143321990967 seconds.
+2024-05-09 13:24:27 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="financialPaymentType"], Spend 0.09407949447631836 seconds.
+2024-05-09 13:24:28 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='部分人员'], Spend 0.0839390754699707 seconds.
+2024-05-09 13:24:28 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 部分人员 from xpath->//nz-select[@formcontrolname="financialPaymentType"], Spend 0.681450366973877 seconds.
+2024-05-09 13:24:28 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="organizationTypeId"], Spend 0.09603619575500488 seconds.
+2024-05-09 13:24:29 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='事业单位'], Spend 0.10302734375 seconds.
+2024-05-09 13:24:29 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 事业单位 from xpath->//nz-select[@formcontrolname="organizationTypeId"], Spend 0.7017989158630371 seconds.
+2024-05-09 13:24:29 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="salarySystemType"], Spend 0.09176445007324219 seconds.
+2024-05-09 13:24:30 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='事业单位工资制度'], Spend 0.11121129989624023 seconds.
+2024-05-09 13:24:30 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 事业单位工资制度 from xpath->//nz-select[@formcontrolname="salarySystemType"], Spend 0.706505537033081 seconds.
+2024-05-09 13:24:31 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="gradeId"], Spend 0.09204483032226562 seconds.
+2024-05-09 13:24:31 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='正区科级'], Spend 0.09522199630737305 seconds.
+2024-05-09 13:24:31 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 正区科级 from xpath->//nz-select[@formcontrolname="gradeId"], Spend 0.6934621334075928 seconds.
+2024-05-09 13:24:32 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-radio-group[formcontrolname="supervisor"] label:nth-child(2) span:nth-child(1) input, Spend 0.06735920906066895 seconds.
+2024-05-09 13:24:32 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '玻璃娃娃有限公司' to xpath->//nz-select[@formcontrolname="supervisorOrganizationId"]/nz-select-top-control/nz-select-search/input, Spend 0.19850707054138184 seconds.
+2024-05-09 13:24:32 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='玻璃娃娃有限公司'], Spend 0.0900270938873291 seconds.
+2024-05-09 13:24:32 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="auditProcess"], Spend 0.10044717788696289 seconds.
+2024-05-09 13:24:33 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='2级审核（基层-终审）'], Spend 0.1044456958770752 seconds.
+2024-05-09 13:24:33 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 2级审核（基层-终审） from xpath->//nz-select[@formcontrolname="auditProcess"], Spend 0.7129220962524414 seconds.
+2024-05-09 13:24:33 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="hardshipAreaTypeId"], Spend 0.09355878829956055 seconds.
+2024-05-09 13:24:34 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='无'], Spend 0.09183335304260254 seconds.
+2024-05-09 13:24:34 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 无 from xpath->//nz-select[@formcontrolname="hardshipAreaTypeId"], Spend 0.688575267791748 seconds.
+2024-05-09 13:24:35 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="subordinationCodeId"], Spend 0.10656118392944336 seconds.
+2024-05-09 13:24:35 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='县、市、区'], Spend 0.08371281623840332 seconds.
+2024-05-09 13:24:35 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 县、市、区 from xpath->//nz-select[@formcontrolname="subordinationCodeId"], Spend 0.6932685375213623 seconds.
+2024-05-09 13:24:36 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//lib-cascader-wrap[@formcontrolname="localeId"], Spend 0.09076857566833496 seconds.
+2024-05-09 13:24:37 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//li[@title='四川省'], Spend 0.9206633567810059 seconds.
+2024-05-09 13:24:37 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="localeAverageElevationId"], Spend 0.11648035049438477 seconds.
+2024-05-09 13:24:37 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='3499米以下地区'], Spend 0.0849146842956543 seconds.
+2024-05-09 13:24:37 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 3499米以下地区 from xpath->//nz-select[@formcontrolname="localeAverageElevationId"], Spend 0.7024307250976562 seconds.
+2024-05-09 13:24:38 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="localeElevationId"], Spend 0.08407402038574219 seconds.
+2024-05-09 13:24:39 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='3499米以下地区'], Spend 0.07974505424499512 seconds.
+2024-05-09 13:24:39 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 3499米以下地区 from xpath->//nz-select[@formcontrolname="localeElevationId"], Spend 0.6654524803161621 seconds.
+2024-05-09 13:24:39 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="institutionTypeId"], Spend 0.08886384963989258 seconds.
+2024-05-09 13:24:40 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='公益一类事业单位'], Spend 0.08696341514587402 seconds.
+2024-05-09 13:24:40 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 公益一类事业单位 from xpath->//nz-select[@formcontrolname="institutionTypeId"], Spend 0.6813478469848633 seconds.
+2024-05-09 13:24:41 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '11.其他行业' to xpath->//nz-tree-select[@formcontrolname="institutionIndustryId"]/div/nz-select-search/input, Spend 0.2499537467956543 seconds.
+2024-05-09 13:24:41 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-tree-node-title[@title="11.其他行业"], Spend 0.09553909301757812 seconds.
+2024-05-09 13:24:41 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="defaultSurveyStandard"], Spend 0.08345293998718262 seconds.
+2024-05-09 13:24:41 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='否'], Spend 0.09017372131347656 seconds.
+2024-05-09 13:24:41 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 否 from xpath->//nz-select[@formcontrolname="defaultSurveyStandard"], Spend 0.6846232414245605 seconds.
+2024-05-09 13:24:42 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="financialSourceTypeId"], Spend 0.08092427253723145 seconds.
+2024-05-09 13:24:42 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='核定收支、定额补助'], Spend 0.08714747428894043 seconds.
+2024-05-09 13:24:42 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 核定收支、定额补助 from xpath->//nz-select[@formcontrolname="financialSourceTypeId"], Spend 0.6711287498474121 seconds.
+2024-05-09 13:24:43 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//span[contains(text(),"附件上传")], Spend 0.1243278980255127 seconds.
+2024-05-09 13:24:43 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->(//button[@class='ant-btn ng-star-inserted'])[1], Spend 0.12142729759216309 seconds.
+2024-05-09 13:24:49 - MainProcess | MainThread | base_page.get_text:281 - SUCCESS -Get text: '附件示例.png' from xpath->//div/span[contains(text(),'附件示例.png')], Spend 0.8638668060302734 seconds.
+2024-05-09 13:24:49 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->div.ant-modal-footer button.ant-btn-primary, Spend 0.09314584732055664 seconds.
+2024-05-09 13:24:50 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="ant-tabs-content-holder"]/div/div/lib-unit-basis/button, Spend 0.22722339630126953 seconds.
+2024-05-09 13:24:50 - MainProcess | MainThread | base_page.get_text:281 - SUCCESS -Get text: '保存成功，稍后请在单位信息查看' from css->.ant-message span, Spend 0.8518772125244141 seconds.
+2024-05-09 13:24:50 - MainProcess | MainThread | base_page.assert_text:471 - SUCCESS -The successful assertion text: '保存成功，稍后请在单位信息查看' is from '保存成功，稍后请在单位信息查看' and takes 0.00 seconds.
+2024-05-09 13:24:52 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[contains(text(),'单位经办人信息')], Spend 0.12364864349365234 seconds.
+2024-05-09 13:24:52 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//span[contains(text(),'新建账号')], Spend 0.1483592987060547 seconds.
+2024-05-09 13:24:53 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '92632221140249182J' to xpath->//input[@formcontrolname='userName'], Spend 0.29645276069641113 seconds.
+2024-05-09 13:24:53 - MainProcess | MainThread | base_page.tab:224 - SUCCESS -Input '' to xpath->//input[@formcontrolname='userName'], Spend 0.06695342063903809 seconds.
+2024-05-09 13:24:53 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'test' to xpath->//input[@formcontrolname='userNickName'], Spend 0.16931557655334473 seconds.
+2024-05-09 13:24:53 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname='gender'], Spend 0.1437973976135254 seconds.
+2024-05-09 13:24:54 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='男'], Spend 0.09758710861206055 seconds.
+2024-05-09 13:24:54 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 男 from xpath->//nz-select[@formcontrolname='gender'], Spend 0.7463531494140625 seconds.
+2024-05-09 13:24:55 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '511129198201078222' to xpath->//input[@formcontrolname='identityCard'], Spend 0.23094677925109863 seconds.
+2024-05-09 13:24:55 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '15112345678' to xpath->//input[@formcontrolname='phoneNumber'], Spend 0.1983628273010254 seconds.
+2024-05-09 13:24:55 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-card[nztitle='权限选择'] div.ant-card-body div:nth-child(1), Spend 0.10027647018432617 seconds.
+2024-05-09 13:24:55 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//span[contains(text(),'保存')]/ancestor::button, Spend 0.09381937980651855 seconds.
+2024-05-09 13:24:56 - MainProcess | MainThread | base_page.get_text:281 - SUCCESS -Get text: '用户已添加，用户名：【92632221140249182J】，登录密码：【eKkMtA77】！' from css->.ant-modal-footer span.foot_msg, Spend 0.057221174240112305 seconds.
+2024-05-09 13:24:56 - MainProcess | MainThread | base_page.assert_text_contains:489 - ERROR -Assertion failure: Expect '用户已添加，用户名：【92632221140249182J】，登录密码：【eKkMtA77】！' to appear in '用户已添加'.
+2024-05-09 13:24:56 - MainProcess | MainThread | base_page.take_screenshot:549 - SUCCESS -Get the current window screenshot,path: D:\PublicInstitutionSystem\report\image\screenshot_20240509-132456.png, Spend 0.17130756378173828 seconds.
+2024-05-09 13:24:56 - MainProcess | MainThread | base_page.assert_text_contains:494 - SUCCESS -Assertions are present in the actual text with: '用户已添加，用户名：【92632221140249182J】，登录密码：【eKkMtA77】！'. Time taken 0.17 seconds.
+2024-05-09 13:24:57 - MainProcess | MainThread | base_util.setup:45 - INFO -############################### START ###############################
+2024-05-09 13:24:59 - MainProcess | MainThread | base_page.max_window:59 - SUCCESS -Maximized the window.
+2024-05-09 13:25:01 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/login.
+2024-05-09 13:25:01 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'qyq002' to id->username, Spend 0.37070465087890625 seconds.
+2024-05-09 13:25:01 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'Aa123456' to id->password, Spend 0.2036905288696289 seconds.
+2024-05-09 13:25:02 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'abfhj' to id->captcha, Spend 0.2463996410369873 seconds.
+2024-05-09 13:25:02 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//*[@id="root"]/div/div[2]/div[1]/div/form/div[5]/div/div/div/div/button, Spend 0.16042804718017578 seconds.
+2024-05-09 13:25:04 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.ant-card:nth-child(3) .home_auto_btn__LBhkK:nth-child(2), Spend 0.9459412097930908 seconds.
+2024-05-09 13:25:04 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_admin/unit.
+2024-05-09 13:27:14 - MainProcess | MainThread | base_util.setup:45 - INFO -############################### START ###############################
+2024-05-09 13:27:17 - MainProcess | MainThread | base_page.max_window:59 - SUCCESS -Maximized the window.
+2024-05-09 13:27:19 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/login.
+2024-05-09 13:27:19 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'qyq002' to id->username, Spend 0.2073965072631836 seconds.
+2024-05-09 13:27:19 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'Aa123456' to id->password, Spend 0.18875336647033691 seconds.
+2024-05-09 13:27:19 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'abfhj' to id->captcha, Spend 0.1534276008605957 seconds.
+2024-05-09 13:27:19 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//*[@id="root"]/div/div[2]/div[1]/div/form/div[5]/div/div/div/div/button, Spend 0.10649371147155762 seconds.
+2024-05-09 13:27:22 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.ant-card:nth-child(3) .home_auto_btn__LBhkK:nth-child(2), Spend 0.9628393650054932 seconds.
+2024-05-09 13:27:22 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_admin/unit.
+2024-05-09 13:27:24 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '93533324918225393Y' to name->queryStr, Spend 0.17348217964172363 seconds.
+2024-05-09 13:27:24 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="ant-row"]/nz-form-item[7]/nz-form-control/div/div/nz-button-group/button[1], Spend 0.10056352615356445 seconds.
+2024-05-09 13:27:24 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//tbody[@class="ant-table-tbody"]/tr[2]/td[2], Spend 0.08059263229370117 seconds.
+2024-05-09 13:27:24 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="btn"]/button[1], Spend 0.10020661354064941 seconds.
+2024-05-09 13:27:25 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[contains(text(),'单位编制信息')], Spend 0.9158451557159424 seconds.
+2024-05-09 13:27:25 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '29' to css->.content .ant-row input, Spend 0.15064787864685059 seconds.
+2024-05-09 13:27:25 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//span[text()='保存'], Spend 0.08892154693603516 seconds.
+2024-05-09 13:27:26 - MainProcess | MainThread | base_page.get_text:281 - SUCCESS -Get text: '保存成功' from css->.ant-message span, Spend 0.8467667102813721 seconds.
+2024-05-09 13:27:26 - MainProcess | MainThread | base_page.assert_text:471 - SUCCESS -The successful assertion text: '保存成功' is from '保存成功' and takes 0.00 seconds.
+2024-05-09 13:27:26 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.tool a, Spend 0.1772012710571289 seconds.
+2024-05-09 13:27:26 - MainProcess | MainThread | base_page.get_url:294 - SUCCESS -Get url: http://192.168.2.209/test_console/home.
+2024-05-09 13:27:28 - MainProcess | MainThread | base_page.move_to_element:325 - SUCCESS -Move to element xpath->(//div[@class="ant-space-item"])[2], Spend 1.1384837627410889 seconds.
+2024-05-09 13:27:28 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->li.ant-dropdown-menu-item, Spend 0.06484127044677734 seconds.
+2024-05-09 13:27:30 - MainProcess | MainThread | base_page.quit:105 - SUCCESS -Quit the browser.
+2024-05-09 13:27:30 - MainProcess | MainThread | base_util.teardown:61 - INFO -###############################  End  ###############################
+2024-05-09 13:39:16 - MainProcess | MainThread | base_util.setup_method:45 - INFO -############################### START ###############################
+2024-05-09 13:39:18 - MainProcess | MainThread | base_page.max_window:59 - SUCCESS -Maximized the window.
+2024-05-09 13:39:20 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/login.
+2024-05-09 13:39:20 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'qyq002' to id->username, Spend 0.25988245010375977 seconds.
+2024-05-09 13:39:20 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'Aa123456' to id->password, Spend 0.2105579376220703 seconds.
+2024-05-09 13:39:20 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'abfhj' to id->captcha, Spend 0.14109492301940918 seconds.
+2024-05-09 13:39:20 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//*[@id="root"]/div/div[2]/div[1]/div/form/div[5]/div/div/div/div/button, Spend 0.09874939918518066 seconds.
+2024-05-09 13:39:23 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.ant-card:nth-child(3) .home_auto_btn__LBhkK:nth-child(2), Spend 0.8546533584594727 seconds.
+2024-05-09 13:39:23 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_admin/unit.
+2024-05-09 13:39:26 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '93140702777410965R' to name->queryStr, Spend 0.20937180519104004 seconds.
+2024-05-09 13:39:26 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="ant-row"]/nz-form-item[7]/nz-form-control/div/div/nz-button-group/button[1], Spend 0.0971987247467041 seconds.
+2024-05-09 13:39:26 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//tbody[@class="ant-table-tbody"]/tr[2]/td[2], Spend 0.09381341934204102 seconds.
+2024-05-09 13:39:26 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="btn"]/button[1], Spend 0.10616803169250488 seconds.
+2024-05-09 13:39:30 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[contains(text(),'单位编制信息')], Spend 4.375562906265259 seconds.
+2024-05-09 13:39:31 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '5' to css->.content .ant-row input, Spend 0.18058156967163086 seconds.
+2024-05-09 13:39:31 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//span[text()='保存'], Spend 0.10197973251342773 seconds.
+2024-05-09 13:39:32 - MainProcess | MainThread | base_page.get_text:281 - SUCCESS -Get text: '保存成功' from css->.ant-message span, Spend 0.8626081943511963 seconds.
+2024-05-09 13:39:32 - MainProcess | MainThread | base_page.assert_text:471 - SUCCESS -The successful assertion text: '保存成功' is from '保存成功' and takes 0.00 seconds.
+2024-05-09 13:39:32 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.tool a, Spend 0.18645548820495605 seconds.
+2024-05-09 13:39:32 - MainProcess | MainThread | base_page.get_url:294 - SUCCESS -Get url: http://192.168.2.209/test_console/home.
+2024-05-09 13:39:32 - MainProcess | MainThread | base_page.move_to_element:325 - SUCCESS -Move to element xpath->(//div[@class="ant-space-item"])[2], Spend 0.3521425724029541 seconds.
+2024-05-09 13:39:32 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->li.ant-dropdown-menu-item, Spend 0.08458542823791504 seconds.
+2024-05-09 13:39:34 - MainProcess | MainThread | base_page.quit:105 - SUCCESS -Quit the browser.
+2024-05-09 13:39:34 - MainProcess | MainThread | base_util.teardown_method:61 - INFO -###############################  End  ###############################
+2024-05-09 13:53:17 - MainProcess | MainThread | base_util.setup_method:45 - INFO -############################### START ###############################
+2024-05-09 13:53:22 - MainProcess | MainThread | base_page.max_window:59 - SUCCESS -Maximized the window.
+2024-05-09 13:53:23 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/login.
+2024-05-09 13:53:24 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'qyq002' to id->username, Spend 0.29030489921569824 seconds.
+2024-05-09 13:53:24 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'Aa123456' to id->password, Spend 0.29883408546447754 seconds.
+2024-05-09 13:53:24 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'abfhj' to id->captcha, Spend 0.27952051162719727 seconds.
+2024-05-09 13:53:25 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//*[@id="root"]/div/div[2]/div[1]/div/form/div[5]/div/div/div/div/button, Spend 0.1440753936767578 seconds.
+2024-05-09 13:53:27 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.ant-card:nth-child(3) .home_auto_btn__LBhkK:nth-child(2), Spend 1.2248280048370361 seconds.
+2024-05-09 13:53:27 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_admin/unit.
+2024-05-09 13:53:30 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '93150203432134969A' to name->queryStr, Spend 0.509782075881958 seconds.
+2024-05-09 13:53:30 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="ant-row"]/nz-form-item[7]/nz-form-control/div/div/nz-button-group/button[1], Spend 0.17606449127197266 seconds.
+2024-05-09 13:53:30 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//tbody[@class="ant-table-tbody"]/tr[2]/td[2], Spend 0.13860225677490234 seconds.
+2024-05-09 13:53:30 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="btn"]/button[1], Spend 0.18916869163513184 seconds.
+2024-05-09 13:53:31 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[contains(text(),'单位编制信息')], Spend 0.9876787662506104 seconds.
+2024-05-09 13:53:31 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '19' to css->.content .ant-row input, Spend 0.2756614685058594 seconds.
+2024-05-09 13:53:32 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//span[text()='保存'], Spend 0.15752363204956055 seconds.
+2024-05-09 13:53:33 - MainProcess | MainThread | base_page.get_text:281 - SUCCESS -Get text: '保存成功' from css->.ant-message span, Spend 0.9196419715881348 seconds.
+2024-05-09 13:53:33 - MainProcess | MainThread | base_page.assert_text:471 - SUCCESS -The successful assertion text: '保存成功' is from '保存成功' and takes 0.00 seconds.
+2024-05-09 13:53:33 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.tool a, Spend 0.37364721298217773 seconds.
+2024-05-09 13:53:33 - MainProcess | MainThread | base_page.get_url:294 - SUCCESS -Get url: http://192.168.2.209/test_console/home.
+2024-05-09 13:53:34 - MainProcess | MainThread | base_page.move_to_element:325 - SUCCESS -Move to element xpath->(//div[@class="ant-space-item"])[2], Spend 1.1941585540771484 seconds.
+2024-05-09 13:53:34 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->li.ant-dropdown-menu-item, Spend 0.1888129711151123 seconds.
+2024-05-09 13:53:37 - MainProcess | MainThread | base_page.quit:105 - SUCCESS -Quit the browser.
+2024-05-09 13:53:37 - MainProcess | MainThread | base_util.teardown_method:61 - INFO -###############################  End  ###############################
+2024-05-09 14:17:02 - MainProcess | MainThread | base_util.setup_method:45 - INFO -############################### START ###############################
+2024-05-09 14:17:05 - MainProcess | MainThread | base_page.max_window:59 - SUCCESS -Maximized the window.
+2024-05-09 14:17:07 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/login.
+2024-05-09 14:17:07 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'qyq002' to id->username, Spend 0.41805362701416016 seconds.
+2024-05-09 14:17:07 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'Aa123456' to id->password, Spend 0.36676526069641113 seconds.
+2024-05-09 14:17:08 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'abfhj' to id->captcha, Spend 0.2894327640533447 seconds.
+2024-05-09 14:17:08 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//*[@id="root"]/div/div[2]/div[1]/div/form/div[5]/div/div/div/div/button, Spend 0.15712261199951172 seconds.
+2024-05-09 14:17:19 - MainProcess | MainThread | base_util.setup_method:45 - INFO -############################### START ###############################
+2024-05-09 14:17:21 - MainProcess | MainThread | base_page.max_window:59 - SUCCESS -Maximized the window.
+2024-05-09 14:17:23 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/login.
+2024-05-09 14:17:23 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'qyq002' to id->username, Spend 0.28264832496643066 seconds.
+2024-05-09 14:17:23 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'Aa123456' to id->password, Spend 0.3156876564025879 seconds.
+2024-05-09 14:17:23 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'abfhj' to id->captcha, Spend 0.27599501609802246 seconds.
+2024-05-09 14:17:24 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//*[@id="root"]/div/div[2]/div[1]/div/form/div[5]/div/div/div/div/button, Spend 0.13794970512390137 seconds.
+2024-05-09 14:17:26 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.ant-card:nth-child(3) .home_auto_btn__LBhkK:nth-child(2), Spend 1.2593467235565186 seconds.
+2024-05-09 14:17:27 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_admin/unit.
+2024-05-09 14:17:29 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '9245080361047267B5' to name->queryStr, Spend 0.4348881244659424 seconds.
+2024-05-09 14:17:29 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="ant-row"]/nz-form-item[7]/nz-form-control/div/div/nz-button-group/button[1], Spend 0.14341402053833008 seconds.
+2024-05-09 14:17:29 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//tbody[@class="ant-table-tbody"]/tr[2]/td[2], Spend 0.16189837455749512 seconds.
+2024-05-09 14:17:29 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="btn"]/button[1], Spend 0.14334845542907715 seconds.
+2024-05-09 14:17:30 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[contains(text(),'单位编制信息')], Spend 0.9833498001098633 seconds.
+2024-05-09 14:17:30 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '36' to css->.content .ant-row input, Spend 0.27217698097229004 seconds.
+2024-05-09 14:17:31 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//span[text()='保存'], Spend 0.1564328670501709 seconds.
+2024-05-09 14:17:32 - MainProcess | MainThread | base_page.get_text:281 - SUCCESS -Get text: '保存成功' from css->.ant-message span, Spend 0.9127271175384521 seconds.
+2024-05-09 14:17:32 - MainProcess | MainThread | base_page.assert_text:471 - SUCCESS -The successful assertion text: '保存成功' is from '保存成功' and takes 0.00 seconds.
+2024-05-09 14:17:32 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.tool a, Spend 0.32610368728637695 seconds.
+2024-05-09 14:17:32 - MainProcess | MainThread | base_page.get_url:294 - SUCCESS -Get url: http://192.168.2.209/test_console/home.
+2024-05-09 14:17:33 - MainProcess | MainThread | base_page.move_to_element:325 - SUCCESS -Move to element xpath->(//div[@class="ant-space-item"])[2], Spend 1.1967921257019043 seconds.
+2024-05-09 14:17:33 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->li.ant-dropdown-menu-item, Spend 0.1917281150817871 seconds.
+2024-05-09 14:17:36 - MainProcess | MainThread | base_page.quit:105 - SUCCESS -Quit the browser.
+2024-05-09 14:17:36 - MainProcess | MainThread | base_util.teardown_method:61 - INFO -###############################  End  ###############################
+2024-05-09 14:20:09 - MainProcess | MainThread | base_util.setup_method:45 - INFO -############################### START ###############################
+2024-05-09 14:20:12 - MainProcess | MainThread | base_page.max_window:59 - SUCCESS -Maximized the window.
+2024-05-09 14:20:15 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/login.
+2024-05-09 14:20:15 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'qyq002' to id->username, Spend 0.29352307319641113 seconds.
+2024-05-09 14:20:15 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'Aa123456' to id->password, Spend 0.3300154209136963 seconds.
+2024-05-09 14:20:16 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'abfhj' to id->captcha, Spend 0.2927563190460205 seconds.
+2024-05-09 14:20:16 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//*[@id="root"]/div/div[2]/div[1]/div/form/div[5]/div/div/div/div/button, Spend 0.15345001220703125 seconds.
+2024-05-09 14:20:19 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.ant-card:nth-child(3) .home_auto_btn__LBhkK:nth-child(2), Spend 1.3485381603240967 seconds.
+2024-05-09 14:20:19 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_admin/unit.
+2024-05-09 14:20:21 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '93511524250417378Q' to name->queryStr, Spend 0.45676183700561523 seconds.
+2024-05-09 14:20:21 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="ant-row"]/nz-form-item[7]/nz-form-control/div/div/nz-button-group/button[1], Spend 0.16630268096923828 seconds.
+2024-05-09 14:20:22 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//tbody[@class="ant-table-tbody"]/tr[2]/td[2], Spend 0.18349504470825195 seconds.
+2024-05-09 14:20:22 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="btn"]/button[1], Spend 0.15848302841186523 seconds.
+2024-05-09 14:20:23 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[contains(text(),'单位编制信息')], Spend 0.9913647174835205 seconds.
+2024-05-09 14:20:23 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '30' to css->.content .ant-row input, Spend 0.29564642906188965 seconds.
+2024-05-09 14:20:23 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//span[text()='保存'], Spend 0.17451000213623047 seconds.
+2024-05-09 14:20:24 - MainProcess | MainThread | base_page.get_text:281 - SUCCESS -Get text: '保存成功' from css->.ant-message span, Spend 0.9082655906677246 seconds.
+2024-05-09 14:20:24 - MainProcess | MainThread | base_page.assert_text:471 - SUCCESS -The successful assertion text: '保存成功' is from '保存成功' and takes 0.00 seconds.
+2024-05-09 14:20:25 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.tool a, Spend 0.402923583984375 seconds.
+2024-05-09 14:20:25 - MainProcess | MainThread | base_page.get_url:294 - SUCCESS -Get url: http://192.168.2.209/test_console/home.
+2024-05-09 14:20:25 - MainProcess | MainThread | base_page.move_to_element:325 - SUCCESS -Move to element xpath->(//div[@class="ant-space-item"])[2], Spend 0.378964900970459 seconds.
+2024-05-09 14:20:25 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->li.ant-dropdown-menu-item, Spend 0.13181471824645996 seconds.
+2024-05-09 14:20:27 - MainProcess | MainThread | base_page.quit:105 - SUCCESS -Quit the browser.
+2024-05-09 14:20:27 - MainProcess | MainThread | base_util.teardown_method:61 - INFO -###############################  End  ###############################
+2024-05-09 14:40:06 - MainProcess | MainThread | base_util.setup_method:45 - INFO -############################### START ###############################
+2024-05-09 14:40:10 - MainProcess | MainThread | base_page.max_window:59 - SUCCESS -Maximized the window.
+2024-05-09 14:40:11 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/login.
+2024-05-09 14:40:12 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'qyq002' to id->username, Spend 0.3176004886627197 seconds.
+2024-05-09 14:40:12 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'Aa123456' to id->password, Spend 0.308063268661499 seconds.
+2024-05-09 14:40:12 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'abfhj' to id->captcha, Spend 0.29022717475891113 seconds.
+2024-05-09 14:40:13 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//*[@id="root"]/div/div[2]/div[1]/div/form/div[5]/div/div/div/div/button, Spend 0.1687309741973877 seconds.
+2024-05-09 14:40:15 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.ant-card:nth-child(3) .home_auto_btn__LBhkK:nth-child(2), Spend 1.0110907554626465 seconds.
+2024-05-09 14:40:15 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_admin/unit.
+2024-05-09 14:40:17 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '93511524250417378Q' to name->queryStr, Spend 0.37680792808532715 seconds.
+2024-05-09 14:40:18 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="ant-row"]/nz-form-item[7]/nz-form-control/div/div/nz-button-group/button[1], Spend 0.14621829986572266 seconds.
+2024-05-09 14:40:18 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//tbody[@class="ant-table-tbody"]/tr[2]/td[2], Spend 0.172377347946167 seconds.
+2024-05-09 14:40:18 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="btn"]/button[1], Spend 0.16867423057556152 seconds.
+2024-05-09 14:40:19 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[contains(text(),'单位编制信息')], Spend 0.9974699020385742 seconds.
+2024-05-09 14:40:19 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '50' to css->.content .ant-row input, Spend 0.28786420822143555 seconds.
+2024-05-09 14:40:19 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//span[text()='保存'], Spend 0.14287710189819336 seconds.
+2024-05-09 14:40:20 - MainProcess | MainThread | base_page.get_text:281 - SUCCESS -Get text: '保存成功' from css->.ant-message span, Spend 0.9189553260803223 seconds.
+2024-05-09 14:40:20 - MainProcess | MainThread | base_page.assert_text:471 - SUCCESS -The successful assertion text: '保存成功' is from '保存成功' and takes 0.00 seconds.
+2024-05-09 14:40:21 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.tool a, Spend 0.46985769271850586 seconds.
+2024-05-09 14:40:21 - MainProcess | MainThread | base_page.get_url:294 - SUCCESS -Get url: http://192.168.2.209/test_console/home.
+2024-05-09 14:40:21 - MainProcess | MainThread | base_page.move_to_element:325 - SUCCESS -Move to element xpath->(//div[@class="ant-space-item"])[2], Spend 0.37216901779174805 seconds.
+2024-05-09 14:40:21 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->li.ant-dropdown-menu-item, Spend 0.18705368041992188 seconds.
+2024-05-09 14:40:24 - MainProcess | MainThread | base_page.quit:105 - SUCCESS -Quit the browser.
+2024-05-09 14:40:24 - MainProcess | MainThread | base_util.teardown_method:61 - INFO -###############################  End  ###############################
+2024-05-09 14:50:29 - MainProcess | MainThread | base_util.setup_method:45 - INFO -############################### START ###############################
+2024-05-09 14:50:32 - MainProcess | MainThread | base_page.max_window:59 - SUCCESS -Maximized the window.
+2024-05-09 14:50:34 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/login.
+2024-05-09 14:50:34 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'qyq002' to id->username, Spend 0.3015308380126953 seconds.
+2024-05-09 14:50:35 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'Aa123456' to id->password, Spend 0.27341723442077637 seconds.
+2024-05-09 14:50:35 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'abfhj' to id->captcha, Spend 0.26836466789245605 seconds.
+2024-05-09 14:50:35 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//*[@id="root"]/div/div[2]/div[1]/div/form/div[5]/div/div/div/div/button, Spend 0.16204285621643066 seconds.
+2024-05-09 14:50:38 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.ant-card:nth-child(3) .home_auto_btn__LBhkK:nth-child(2), Spend 1.109520435333252 seconds.
+2024-05-09 14:50:38 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_admin/unit.
+2024-05-09 14:50:40 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '93450405512554779C' to name->queryStr, Spend 0.49842190742492676 seconds.
+2024-05-09 14:50:40 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="ant-row"]/nz-form-item[7]/nz-form-control/div/div/nz-button-group/button[1], Spend 0.14968562126159668 seconds.
+2024-05-09 14:50:41 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//tbody[@class="ant-table-tbody"]/tr[2]/td[2], Spend 0.17736268043518066 seconds.
+2024-05-09 14:50:41 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="btn"]/button[1], Spend 0.14941191673278809 seconds.
+2024-05-09 14:50:42 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[contains(text(),'单位编制信息')], Spend 0.9833278656005859 seconds.
+2024-05-09 14:50:42 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '8' to css->.content .ant-row input, Spend 0.26746392250061035 seconds.
+2024-05-09 14:50:42 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//span[text()='保存'], Spend 0.1508467197418213 seconds.
+2024-05-09 14:50:43 - MainProcess | MainThread | base_page.get_text:281 - SUCCESS -Get text: '保存成功' from css->.ant-message span, Spend 0.913419246673584 seconds.
+2024-05-09 14:50:43 - MainProcess | MainThread | base_page.assert_text:471 - SUCCESS -The successful assertion text: '保存成功' is from '保存成功' and takes 0.00 seconds.
+2024-05-09 14:50:43 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.tool a, Spend 0.3493461608886719 seconds.
+2024-05-09 14:50:43 - MainProcess | MainThread | base_page.get_url:294 - SUCCESS -Get url: http://192.168.2.209/test_console/home.
+2024-05-09 14:50:45 - MainProcess | MainThread | base_page.move_to_element:325 - SUCCESS -Move to element xpath->(//div[@class="ant-space-item"])[2], Spend 1.203624963760376 seconds.
+2024-05-09 14:50:45 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->li.ant-dropdown-menu-item, Spend 0.19431042671203613 seconds.
+2024-05-09 14:50:47 - MainProcess | MainThread | base_page.quit:105 - SUCCESS -Quit the browser.
+2024-05-09 14:50:47 - MainProcess | MainThread | base_util.teardown_method:61 - INFO -###############################  End  ###############################
+2024-05-09 17:19:34 - MainProcess | MainThread | base_util.setup_method:45 - INFO -############################### START ###############################
+2024-05-09 17:19:38 - MainProcess | MainThread | base_page.max_window:59 - SUCCESS -Maximized the window.
+2024-05-09 17:19:40 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/login.
+2024-05-09 17:19:40 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'qyq002' to id->username, Spend 0.3447842597961426 seconds.
+2024-05-09 17:19:40 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'Aa123456' to id->password, Spend 0.33203673362731934 seconds.
+2024-05-09 17:19:41 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'abfhj' to id->captcha, Spend 0.2989509105682373 seconds.
+2024-05-09 17:19:41 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//*[@id="root"]/div/div[2]/div[1]/div/form/div[5]/div/div/div/div/button, Spend 0.18549180030822754 seconds.
+2024-05-09 17:20:14 - MainProcess | MainThread | base_page.take_screenshot:549 - SUCCESS -Get the current window screenshot,path: D:\PublicInstitutionSystem\report\image\screenshot_20240509-172014.png, Spend 0.25919008255004883 seconds.
+2024-05-09 17:20:14 - MainProcess | MainThread | exceptions.__init__:15 - ERROR -Wait for element css->.tool a to be visible timeout, Spend 31.07986545562744 seconds.
+2024-05-09 17:24:19 - MainProcess | MainThread | base_util.setup_method:45 - INFO -############################### START ###############################
+2024-05-09 17:24:22 - MainProcess | MainThread | base_page.max_window:59 - SUCCESS -Maximized the window.
+2024-05-09 17:24:24 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/login.
+2024-05-09 17:24:24 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'qyq002' to id->username, Spend 0.3376345634460449 seconds.
+2024-05-09 17:24:24 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'Aa123456' to id->password, Spend 0.30269575119018555 seconds.
+2024-05-09 17:24:25 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'abfhj' to id->captcha, Spend 0.2983741760253906 seconds.
+2024-05-09 17:24:25 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//*[@id="root"]/div/div[2]/div[1]/div/form/div[5]/div/div/div/div/button, Spend 0.18605589866638184 seconds.
+2024-05-09 17:24:27 - MainProcess | MainThread | base_page.get_url:294 - SUCCESS -Get url: http://192.168.2.209/test_console/home.
+2024-05-09 17:24:27 - MainProcess | MainThread | base_page.move_to_element:325 - SUCCESS -Move to element xpath->(//div[@class="ant-space-item"])[2], Spend 0.3602175712585449 seconds.
+2024-05-09 17:24:27 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->li.ant-dropdown-menu-item, Spend 0.15524911880493164 seconds.
+2024-05-09 17:24:30 - MainProcess | MainThread | base_page.quit:105 - SUCCESS -Quit the browser.
+2024-05-09 17:24:30 - MainProcess | MainThread | base_util.teardown_method:62 - INFO -###############################  End  ###############################
+2024-05-09 17:25:20 - MainProcess | MainThread | base_util.setup_method:45 - INFO -############################### START ###############################
+2024-05-09 17:25:22 - MainProcess | MainThread | base_page.max_window:59 - SUCCESS -Maximized the window.
+2024-05-09 17:25:26 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/login.
+2024-05-09 17:25:26 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'qyq002' to id->username, Spend 0.36495113372802734 seconds.
+2024-05-09 17:25:27 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'Aa123456' to id->password, Spend 0.3171515464782715 seconds.
+2024-05-09 17:25:27 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'abfhj' to id->captcha, Spend 0.3287670612335205 seconds.
+2024-05-09 17:25:27 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//*[@id="root"]/div/div[2]/div[1]/div/form/div[5]/div/div/div/div/button, Spend 0.17777228355407715 seconds.
+2024-05-09 17:25:45 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/home.
+2024-05-09 17:25:56 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.ant-card:nth-child(3) .home_auto_btn__LBhkK:nth-child(2), Spend 1.1813578605651855 seconds.
+2024-05-09 17:26:01 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '911307086673937119' to name->queryStr, Spend 0.3862130641937256 seconds.
+2024-05-09 17:26:01 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="ant-row"]/nz-form-item[7]/nz-form-control/div/div/nz-button-group/button[1], Spend 0.17663860321044922 seconds.
+2024-05-09 17:26:06 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//tbody[@class="ant-table-tbody"]/tr[2]/td[2], Spend 0.22346901893615723 seconds.
+2024-05-09 17:26:16 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="btn"]/button[1], Spend 0.2435295581817627 seconds.
+2024-05-09 17:26:22 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '91510421287508548X' to xpath->//input[@formcontrolname="organizationCode"], Spend 0.519650936126709 seconds.
+2024-05-09 17:26:25 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'TestUnit' to xpath->//input[@formcontrolname="organizationName"], Spend 0.4557454586029053 seconds.
+2024-05-09 17:26:30 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '测试人员' to xpath->//input[@formcontrolname="head"], Spend 0.38788533210754395 seconds.
+2024-05-09 17:26:33 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '13111111' to xpath->//input[@formcontrolname="telephone"], Spend 0.35137438774108887 seconds.
+2024-05-09 17:26:37 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'sichuanchengdu' to xpath->//input[@formcontrolname="address"], Spend 0.40651893615722656 seconds.
+2024-05-09 17:26:41 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '631002' to xpath->//input[@formcontrolname="zipCode"], Spend 0.27471375465393066 seconds.
+2024-05-09 17:26:55 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="financialSupportType"], Spend 0.24711227416992188 seconds.
+2024-05-09 17:26:56 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='全部人员'], Spend 0.20883893966674805 seconds.
+2024-05-09 17:26:56 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 全部人员 from xpath->//nz-select[@formcontrolname="financialSupportType"], Spend 0.9608135223388672 seconds.
+2024-05-09 17:26:59 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="financialPaymentType"], Spend 0.22287750244140625 seconds.
+2024-05-09 17:27:00 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='全部人员'], Spend 0.191054105758667 seconds.
+2024-05-09 17:27:00 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 全部人员 from xpath->//nz-select[@formcontrolname="financialPaymentType"], Spend 0.9187746047973633 seconds.
+2024-05-09 17:27:04 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '011011' to xpath->//input[@formcontrolname="financialCode"], Spend 0.41049885749816895 seconds.
+2024-05-09 17:27:09 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="organizationTypeId"], Spend 0.24545073509216309 seconds.
+2024-05-09 17:27:10 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='事业单位'], Spend 0.15828752517700195 seconds.
+2024-05-09 17:27:10 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 事业单位 from xpath->//nz-select[@formcontrolname="organizationTypeId"], Spend 0.9100656509399414 seconds.
+2024-05-09 17:27:13 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="salarySystemType"], Spend 0.24964404106140137 seconds.
+2024-05-09 17:27:13 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='事业单位工资制度'], Spend 0.22068405151367188 seconds.
+2024-05-09 17:27:13 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 事业单位工资制度 from xpath->//nz-select[@formcontrolname="salarySystemType"], Spend 0.9763495922088623 seconds.
+2024-05-09 17:27:19 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="gradeId"], Spend 0.22934627532958984 seconds.
+2024-05-09 17:27:19 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='正县处级'], Spend 0.1858839988708496 seconds.
+2024-05-09 17:27:19 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 正县处级 from xpath->//nz-select[@formcontrolname="gradeId"], Spend 0.9199821949005127 seconds.
+2024-05-09 17:27:26 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-radio-group[formcontrolname="supervisor"] label:nth-child(2) span:nth-child(1) input, Spend 0.21092867851257324 seconds.
+2024-05-09 17:27:37 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '测试主管单位' to xpath->//nz-select[@formcontrolname="supervisorOrganizationId"]/nz-select-top-control/nz-select-search/input, Spend 0.4711284637451172 seconds.
+2024-05-09 17:28:07 - MainProcess | MainThread | base_page.take_screenshot:549 - SUCCESS -Get the current window screenshot,path: D:\PublicInstitutionSystem\report\image\screenshot_20240509-172807.png, Spend 0.23599672317504883 seconds.
+2024-05-09 17:28:07 - MainProcess | MainThread | exceptions.__init__:15 - ERROR -Wait for element xpath->//nz-option-item[@title='测试主管单位'] to be visible timeout, Spend 30.26132297515869 seconds.
+2024-05-09 17:28:08 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.tool a, Spend 0.48458266258239746 seconds.
+2024-05-09 17:28:08 - MainProcess | MainThread | base_page.get_url:294 - SUCCESS -Get url: http://192.168.2.209/test_console/home.
+2024-05-09 17:28:09 - MainProcess | MainThread | base_page.move_to_element:325 - SUCCESS -Move to element xpath->(//div[@class="ant-space-item"])[2], Spend 1.2251012325286865 seconds.
+2024-05-09 17:28:10 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->li.ant-dropdown-menu-item, Spend 0.1459512710571289 seconds.
+2024-05-09 17:28:12 - MainProcess | MainThread | base_page.quit:105 - SUCCESS -Quit the browser.
+2024-05-09 17:28:12 - MainProcess | MainThread | base_util.teardown_method:62 - INFO -###############################  End  ###############################
+2024-05-09 17:40:59 - MainProcess | MainThread | base_util.setup_method:45 - INFO -############################### START ###############################
+2024-05-09 17:41:02 - MainProcess | MainThread | base_page.max_window:59 - SUCCESS -Maximized the window.
+2024-05-09 17:41:04 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/login.
+2024-05-09 17:41:04 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'qyq002' to id->username, Spend 0.3747866153717041 seconds.
+2024-05-09 17:41:05 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'Aa123456' to id->password, Spend 0.30880284309387207 seconds.
+2024-05-09 17:41:05 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'abfhj' to id->captcha, Spend 0.30420589447021484 seconds.
+2024-05-09 17:41:05 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//*[@id="root"]/div/div[2]/div[1]/div/form/div[5]/div/div/div/div/button, Spend 0.17678570747375488 seconds.
+2024-05-09 17:41:07 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/home.
+2024-05-09 17:41:09 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.ant-card:nth-child(3) .home_auto_btn__LBhkK:nth-child(2), Spend 2.1763689517974854 seconds.
+2024-05-09 17:41:12 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '911307086673937119' to name->queryStr, Spend 0.48270583152770996 seconds.
+2024-05-09 17:41:12 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="ant-row"]/nz-form-item[7]/nz-form-control/div/div/nz-button-group/button[1], Spend 0.1586012840270996 seconds.
+2024-05-09 17:41:13 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//tbody[@class="ant-table-tbody"]/tr[2]/td[2], Spend 0.178847074508667 seconds.
+2024-05-09 17:41:13 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="btn"]/button[1], Spend 0.1898188591003418 seconds.
+2024-05-09 17:41:17 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '913505021778171124' to xpath->//input[@formcontrolname="organizationCode"], Spend 4.7601799964904785 seconds.
+2024-05-09 17:41:18 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'TestUnit' to xpath->//input[@formcontrolname="organizationName"], Spend 0.3514547348022461 seconds.
+2024-05-09 17:41:18 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '测试人员' to xpath->//input[@formcontrolname="head"], Spend 0.3167994022369385 seconds.
+2024-05-09 17:41:19 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '13111111' to xpath->//input[@formcontrolname="telephone"], Spend 0.3275885581970215 seconds.
+2024-05-09 17:41:19 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'sichuanchengdu' to xpath->//input[@formcontrolname="address"], Spend 0.39240050315856934 seconds.
+2024-05-09 17:41:19 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '631002' to xpath->//input[@formcontrolname="zipCode"], Spend 0.3321826457977295 seconds.
+2024-05-09 17:41:19 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="financialSupportType"], Spend 0.18096089363098145 seconds.
+2024-05-09 17:41:20 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='全部人员'], Spend 0.17974328994750977 seconds.
+2024-05-09 17:41:20 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 全部人员 from xpath->//nz-select[@formcontrolname="financialSupportType"], Spend 0.8670339584350586 seconds.
+2024-05-09 17:41:21 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="financialPaymentType"], Spend 0.1947157382965088 seconds.
+2024-05-09 17:41:21 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='全部人员'], Spend 0.18337750434875488 seconds.
+2024-05-09 17:41:21 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 全部人员 from xpath->//nz-select[@formcontrolname="financialPaymentType"], Spend 0.8824615478515625 seconds.
+2024-05-09 17:41:22 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '011011' to xpath->//input[@formcontrolname="financialCode"], Spend 0.42365026473999023 seconds.
+2024-05-09 17:41:23 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="organizationTypeId"], Spend 0.21605634689331055 seconds.
+2024-05-09 17:41:23 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='事业单位'], Spend 0.22712349891662598 seconds.
+2024-05-09 17:41:23 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 事业单位 from xpath->//nz-select[@formcontrolname="organizationTypeId"], Spend 0.9522576332092285 seconds.
+2024-05-09 17:41:24 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="salarySystemType"], Spend 0.21876835823059082 seconds.
+2024-05-09 17:41:25 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='事业单位工资制度'], Spend 0.24039912223815918 seconds.
+2024-05-09 17:41:25 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 事业单位工资制度 from xpath->//nz-select[@formcontrolname="salarySystemType"], Spend 0.9670906066894531 seconds.
+2024-05-09 17:41:26 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="gradeId"], Spend 0.22635674476623535 seconds.
+2024-05-09 17:41:26 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='正县处级'], Spend 0.18647384643554688 seconds.
+2024-05-09 17:41:26 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 正县处级 from xpath->//nz-select[@formcontrolname="gradeId"], Spend 0.9245362281799316 seconds.
+2024-05-09 17:41:27 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-radio-group[formcontrolname="supervisor"] label:nth-child(2) span:nth-child(1) input, Spend 0.18087029457092285 seconds.
+2024-05-09 17:42:22 - MainProcess | MainThread | exceptions.__init__:15 - ERROR -Invalid positioning syntax. Expected format: 'by->value', but actual format: //nz-option-container[contains(@class, 'ant-select-dropdown')]/div/cdk-virtual-scroll-viewport/div[1]/nz-option-item.
+2024-05-09 17:42:25 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.tool a, Spend 0.34027743339538574 seconds.
+2024-05-09 17:42:25 - MainProcess | MainThread | base_page.get_url:294 - SUCCESS -Get url: http://192.168.2.209/test_console/home.
+2024-05-09 17:42:25 - MainProcess | MainThread | base_page.move_to_element:325 - SUCCESS -Move to element xpath->(//div[@class="ant-space-item"])[2], Spend 0.38093018531799316 seconds.
+2024-05-09 17:42:25 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->li.ant-dropdown-menu-item, Spend 0.14667916297912598 seconds.
+2024-05-09 17:42:28 - MainProcess | MainThread | base_page.quit:105 - SUCCESS -Quit the browser.
+2024-05-09 17:42:28 - MainProcess | MainThread | base_util.teardown_method:62 - INFO -###############################  End  ###############################
+2024-05-09 17:43:11 - MainProcess | MainThread | base_util.setup_method:45 - INFO -############################### START ###############################
+2024-05-09 17:43:13 - MainProcess | MainThread | base_page.max_window:59 - SUCCESS -Maximized the window.
+2024-05-09 17:43:15 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/login.
+2024-05-09 17:43:15 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'qyq002' to id->username, Spend 0.37707090377807617 seconds.
+2024-05-09 17:43:16 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'Aa123456' to id->password, Spend 0.31118154525756836 seconds.
+2024-05-09 17:43:16 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'abfhj' to id->captcha, Spend 0.319439172744751 seconds.
+2024-05-09 17:43:16 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//*[@id="root"]/div/div[2]/div[1]/div/form/div[5]/div/div/div/div/button, Spend 0.18344688415527344 seconds.
+2024-05-09 17:43:18 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/home.
+2024-05-09 17:43:20 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.ant-card:nth-child(3) .home_auto_btn__LBhkK:nth-child(2), Spend 2.3103866577148438 seconds.
+2024-05-09 17:43:23 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '923302265705141932' to name->queryStr, Spend 0.47925877571105957 seconds.
+2024-05-09 17:43:23 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="ant-row"]/nz-form-item[7]/nz-form-control/div/div/nz-button-group/button[1], Spend 0.15938496589660645 seconds.
+2024-05-09 17:43:23 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//tbody[@class="ant-table-tbody"]/tr[2]/td[2], Spend 0.18365168571472168 seconds.
+2024-05-09 17:43:23 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="btn"]/button[1], Spend 0.18909907341003418 seconds.
+2024-05-09 17:43:24 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '91230421475279244J' to xpath->//input[@formcontrolname="organizationCode"], Spend 1.2532484531402588 seconds.
+2024-05-09 17:43:25 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'TestUnit' to xpath->//input[@formcontrolname="organizationName"], Spend 0.38338756561279297 seconds.
+2024-05-09 17:43:25 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '测试人员' to xpath->//input[@formcontrolname="head"], Spend 0.3171100616455078 seconds.
+2024-05-09 17:43:25 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '13111111' to xpath->//input[@formcontrolname="telephone"], Spend 0.34950685501098633 seconds.
+2024-05-09 17:43:26 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'sichuanchengdu' to xpath->//input[@formcontrolname="address"], Spend 0.38315296173095703 seconds.
+2024-05-09 17:43:26 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '631002' to xpath->//input[@formcontrolname="zipCode"], Spend 0.35055994987487793 seconds.
+2024-05-09 17:43:26 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="financialSupportType"], Spend 0.1805877685546875 seconds.
+2024-05-09 17:43:27 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='全部人员'], Spend 0.20496010780334473 seconds.
+2024-05-09 17:43:27 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 全部人员 from xpath->//nz-select[@formcontrolname="financialSupportType"], Spend 0.8914546966552734 seconds.
+2024-05-09 17:43:28 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="financialPaymentType"], Spend 0.19632387161254883 seconds.
+2024-05-09 17:43:28 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='全部人员'], Spend 0.25064611434936523 seconds.
+2024-05-09 17:43:28 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 全部人员 from xpath->//nz-select[@formcontrolname="financialPaymentType"], Spend 0.9591331481933594 seconds.
+2024-05-09 17:43:29 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '011011' to xpath->//input[@formcontrolname="financialCode"], Spend 0.2785458564758301 seconds.
+2024-05-09 17:43:29 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="organizationTypeId"], Spend 0.17366933822631836 seconds.
+2024-05-09 17:43:30 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='事业单位'], Spend 0.2056589126586914 seconds.
+2024-05-09 17:43:30 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 事业单位 from xpath->//nz-select[@formcontrolname="organizationTypeId"], Spend 0.8820593357086182 seconds.
+2024-05-09 17:43:31 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="salarySystemType"], Spend 0.21227574348449707 seconds.
+2024-05-09 17:43:32 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='事业单位工资制度'], Spend 0.2507915496826172 seconds.
+2024-05-09 17:43:32 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 事业单位工资制度 from xpath->//nz-select[@formcontrolname="salarySystemType"], Spend 0.9785130023956299 seconds.
+2024-05-09 17:43:32 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="gradeId"], Spend 0.19989562034606934 seconds.
+2024-05-09 17:43:33 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='正县处级'], Spend 0.2183675765991211 seconds.
+2024-05-09 17:43:33 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 正县处级 from xpath->//nz-select[@formcontrolname="gradeId"], Spend 0.9311473369598389 seconds.
+2024-05-09 17:43:34 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-radio-group[formcontrolname="supervisor"] label:nth-child(2) span:nth-child(1) input, Spend 0.16207504272460938 seconds.
+2024-05-09 17:44:31 - MainProcess | MainThread | base_page.take_screenshot:549 - SUCCESS -Get the current window screenshot,path: D:\PublicInstitutionSystem\report\image\screenshot_20240509-174430.png, Spend 0.38460612297058105 seconds.
+2024-05-09 17:44:31 - MainProcess | MainThread | exceptions.__init__:15 - ERROR -Wait for element xpath->//nz-option-container[contains(@class, 'ant-select-dropdown')]/div/cdk-virtual-scroll-viewport/div[1]/nz-option-item to be visible timeout, Spend 30.426374197006226 seconds.
+2024-05-09 17:45:39 - MainProcess | MainThread | base_util.setup_method:45 - INFO -############################### START ###############################
+2024-05-09 17:45:41 - MainProcess | MainThread | base_page.max_window:59 - SUCCESS -Maximized the window.
+2024-05-09 17:45:43 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/login.
+2024-05-09 17:45:43 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'qyq002' to id->username, Spend 0.32682037353515625 seconds.
+2024-05-09 17:45:44 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'Aa123456' to id->password, Spend 0.32372283935546875 seconds.
+2024-05-09 17:45:44 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'abfhj' to id->captcha, Spend 0.3092801570892334 seconds.
+2024-05-09 17:45:44 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//*[@id="root"]/div/div[2]/div[1]/div/form/div[5]/div/div/div/div/button, Spend 0.16870379447937012 seconds.
+2024-05-09 17:45:46 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/home.
+2024-05-09 17:45:48 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.ant-card:nth-child(3) .home_auto_btn__LBhkK:nth-child(2), Spend 2.3522796630859375 seconds.
+2024-05-09 17:45:50 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '93511524250417378Q' to name->queryStr, Spend 0.5729827880859375 seconds.
+2024-05-09 17:45:51 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="ant-row"]/nz-form-item[7]/nz-form-control/div/div/nz-button-group/button[1], Spend 0.1510922908782959 seconds.
+2024-05-09 17:45:51 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//tbody[@class="ant-table-tbody"]/tr[2]/td[2], Spend 0.16870689392089844 seconds.
+2024-05-09 17:45:51 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="btn"]/button[1], Spend 0.19454002380371094 seconds.
+2024-05-09 17:45:52 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '9321091129637393AJ' to xpath->//input[@formcontrolname="organizationCode"], Spend 1.555783987045288 seconds.
+2024-05-09 17:45:53 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'TestUnit' to xpath->//input[@formcontrolname="organizationName"], Spend 0.38305163383483887 seconds.
+2024-05-09 17:45:53 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '测试人员' to xpath->//input[@formcontrolname="head"], Spend 0.35045289993286133 seconds.
+2024-05-09 17:45:54 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '13111111' to xpath->//input[@formcontrolname="telephone"], Spend 0.3625667095184326 seconds.
+2024-05-09 17:45:54 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'sichuanchengdu' to xpath->//input[@formcontrolname="address"], Spend 0.41050219535827637 seconds.
+2024-05-09 17:45:54 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '631002' to xpath->//input[@formcontrolname="zipCode"], Spend 0.33556032180786133 seconds.
+2024-05-09 17:45:55 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="financialSupportType"], Spend 0.1912848949432373 seconds.
+2024-05-09 17:45:55 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='全部人员'], Spend 0.1963212490081787 seconds.
+2024-05-09 17:45:55 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 全部人员 from xpath->//nz-select[@formcontrolname="financialSupportType"], Spend 0.8894269466400146 seconds.
+2024-05-09 17:45:56 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="financialPaymentType"], Spend 0.19838356971740723 seconds.
+2024-05-09 17:45:57 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='全部人员'], Spend 0.24064302444458008 seconds.
+2024-05-09 17:45:57 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 全部人员 from xpath->//nz-select[@formcontrolname="financialPaymentType"], Spend 0.9461081027984619 seconds.
+2024-05-09 17:45:58 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '011011' to xpath->//input[@formcontrolname="financialCode"], Spend 0.4051382541656494 seconds.
+2024-05-09 17:45:58 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="organizationTypeId"], Spend 0.2275404930114746 seconds.
+2024-05-09 17:45:59 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='事业单位'], Spend 0.2028369903564453 seconds.
+2024-05-09 17:45:59 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 事业单位 from xpath->//nz-select[@formcontrolname="organizationTypeId"], Spend 0.9423251152038574 seconds.
+2024-05-09 17:45:59 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="salarySystemType"], Spend 0.19863343238830566 seconds.
+2024-05-09 17:46:00 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='事业单位工资制度'], Spend 0.2417469024658203 seconds.
+2024-05-09 17:46:00 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 事业单位工资制度 from xpath->//nz-select[@formcontrolname="salarySystemType"], Spend 0.947847843170166 seconds.
+2024-05-09 17:46:01 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="gradeId"], Spend 0.21042728424072266 seconds.
+2024-05-09 17:46:01 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='正县处级'], Spend 0.2101149559020996 seconds.
+2024-05-09 17:46:01 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 正县处级 from xpath->//nz-select[@formcontrolname="gradeId"], Spend 0.9235951900482178 seconds.
+2024-05-09 17:46:02 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-radio-group[formcontrolname="supervisor"] label:nth-child(2) span:nth-child(1) input, Spend 0.16875791549682617 seconds.
+2024-05-09 17:47:43 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.tool a, Spend 0.352083683013916 seconds.
+2024-05-09 17:47:43 - MainProcess | MainThread | base_page.get_url:294 - SUCCESS -Get url: http://192.168.2.209/test_console/home.
+2024-05-09 17:47:43 - MainProcess | MainThread | base_page.move_to_element:325 - SUCCESS -Move to element xpath->(//div[@class="ant-space-item"])[2], Spend 0.3708500862121582 seconds.
+2024-05-09 17:47:43 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->li.ant-dropdown-menu-item, Spend 0.1455976963043213 seconds.
+2024-05-09 17:47:46 - MainProcess | MainThread | base_page.quit:105 - SUCCESS -Quit the browser.
+2024-05-09 17:47:46 - MainProcess | MainThread | base_util.teardown_method:62 - INFO -###############################  End  ###############################
+2024-05-09 17:50:32 - MainProcess | MainThread | base_util.setup_method:45 - INFO -############################### START ###############################
+2024-05-09 17:50:35 - MainProcess | MainThread | base_page.max_window:59 - SUCCESS -Maximized the window.
+2024-05-09 17:50:44 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/login.
+2024-05-09 17:50:44 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'qyq002' to id->username, Spend 0.3547699451446533 seconds.
+2024-05-09 17:50:44 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'Aa123456' to id->password, Spend 0.3249189853668213 seconds.
+2024-05-09 17:50:45 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'abfhj' to id->captcha, Spend 0.29995274543762207 seconds.
+2024-05-09 17:50:45 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//*[@id="root"]/div/div[2]/div[1]/div/form/div[5]/div/div/div/div/button, Spend 0.2000114917755127 seconds.
+2024-05-09 17:50:47 - MainProcess | MainThread | base_page.open_url:48 - SUCCESS -Navigated to http://192.168.2.209/test_console/home.
+2024-05-09 17:50:50 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.ant-card:nth-child(3) .home_auto_btn__LBhkK:nth-child(2), Spend 3.1303603649139404 seconds.
+2024-05-09 17:50:52 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '93450405512554779C' to name->queryStr, Spend 0.4558267593383789 seconds.
+2024-05-09 17:50:52 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="ant-row"]/nz-form-item[7]/nz-form-control/div/div/nz-button-group/button[1], Spend 0.17098188400268555 seconds.
+2024-05-09 17:50:52 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//tbody[@class="ant-table-tbody"]/tr[2]/td[2], Spend 0.17847418785095215 seconds.
+2024-05-09 17:50:53 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="btn"]/button[1], Spend 0.19929862022399902 seconds.
+2024-05-09 17:50:55 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '9331011433856665BX' to xpath->//input[@formcontrolname="organizationCode"], Spend 2.3032515048980713 seconds.
+2024-05-09 17:50:55 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'TestUnit' to xpath->//input[@formcontrolname="organizationName"], Spend 0.42287731170654297 seconds.
+2024-05-09 17:50:56 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '测试人员' to xpath->//input[@formcontrolname="head"], Spend 0.3267176151275635 seconds.
+2024-05-09 17:50:56 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '13111111' to xpath->//input[@formcontrolname="telephone"], Spend 0.34772562980651855 seconds.
+2024-05-09 17:50:56 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input 'sichuanchengdu' to xpath->//input[@formcontrolname="address"], Spend 0.3862953186035156 seconds.
+2024-05-09 17:50:57 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '631002' to xpath->//input[@formcontrolname="zipCode"], Spend 0.33383917808532715 seconds.
+2024-05-09 17:50:57 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="financialSupportType"], Spend 0.16303467750549316 seconds.
+2024-05-09 17:50:58 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='全部人员'], Spend 0.20324492454528809 seconds.
+2024-05-09 17:50:58 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 全部人员 from xpath->//nz-select[@formcontrolname="financialSupportType"], Spend 0.8704311847686768 seconds.
+2024-05-09 17:50:58 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="financialPaymentType"], Spend 0.20415139198303223 seconds.
+2024-05-09 17:50:59 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='全部人员'], Spend 0.20685982704162598 seconds.
+2024-05-09 17:50:59 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 全部人员 from xpath->//nz-select[@formcontrolname="financialPaymentType"], Spend 0.9227638244628906 seconds.
+2024-05-09 17:51:00 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '011011' to xpath->//input[@formcontrolname="financialCode"], Spend 0.3264904022216797 seconds.
+2024-05-09 17:51:00 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="organizationTypeId"], Spend 0.1883687973022461 seconds.
+2024-05-09 17:51:01 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='事业单位'], Spend 0.19565701484680176 seconds.
+2024-05-09 17:51:01 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 事业单位 from xpath->//nz-select[@formcontrolname="organizationTypeId"], Spend 0.8904702663421631 seconds.
+2024-05-09 17:51:01 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="salarySystemType"], Spend 0.21869421005249023 seconds.
+2024-05-09 17:51:02 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='事业单位工资制度'], Spend 0.23912692070007324 seconds.
+2024-05-09 17:51:02 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 事业单位工资制度 from xpath->//nz-select[@formcontrolname="salarySystemType"], Spend 0.9717686176300049 seconds.
+2024-05-09 17:51:03 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="gradeId"], Spend 0.2260913848876953 seconds.
+2024-05-09 17:51:04 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='正县处级'], Spend 0.21423983573913574 seconds.
+2024-05-09 17:51:04 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 正县处级 from xpath->//nz-select[@formcontrolname="gradeId"], Spend 0.9429271221160889 seconds.
+2024-05-09 17:51:04 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->nz-radio-group[formcontrolname="supervisor"] label:nth-child(2) span:nth-child(1) input, Spend 0.20720577239990234 seconds.
+2024-05-09 17:51:32 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="supervisorOrganizationId"], Spend 0.2473769187927246 seconds.
+2024-05-09 17:51:45 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '单位99751714' to xpath->//nz-select[@formcontrolname="supervisorOrganizationId"]/nz-select-top-control/nz-select-search/input, Spend 0.3920927047729492 seconds.
+2024-05-09 17:51:47 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='单位99751714'], Spend 0.17508482933044434 seconds.
+2024-05-09 17:52:00 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="auditProcess"], Spend 0.2159559726715088 seconds.
+2024-05-09 17:52:00 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='2级审核（基层-终审）'], Spend 0.1884157657623291 seconds.
+2024-05-09 17:52:00 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 2级审核（基层-终审） from xpath->//nz-select[@formcontrolname="auditProcess"], Spend 0.9093351364135742 seconds.
+2024-05-09 17:52:02 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="hardshipAreaTypeId"], Spend 0.1750478744506836 seconds.
+2024-05-09 17:52:02 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='一类区'], Spend 0.1796736717224121 seconds.
+2024-05-09 17:52:02 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 一类区 from xpath->//nz-select[@formcontrolname="hardshipAreaTypeId"], Spend 0.8593719005584717 seconds.
+2024-05-09 17:52:08 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="subordinationCodeId"], Spend 0.23733854293823242 seconds.
+2024-05-09 17:52:09 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='县、市、区'], Spend 0.1999654769897461 seconds.
+2024-05-09 17:52:09 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 县、市、区 from xpath->//nz-select[@formcontrolname="subordinationCodeId"], Spend 0.9414932727813721 seconds.
+2024-05-09 17:52:15 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//lib-cascader-wrap[@formcontrolname="localeId"], Spend 0.21472477912902832 seconds.
+2024-05-09 17:52:16 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//li[@title='四川省'], Spend 1.0527665615081787 seconds.
+2024-05-09 17:52:19 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="localeAverageElevationId"], Spend 0.23553466796875 seconds.
+2024-05-09 17:52:20 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='4500米以上地区'], Spend 0.19207334518432617 seconds.
+2024-05-09 17:52:20 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 4500米以上地区 from xpath->//nz-select[@formcontrolname="localeAverageElevationId"], Spend 0.932537317276001 seconds.
+2024-05-09 17:52:30 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="localeElevationId"], Spend 0.17934799194335938 seconds.
+2024-05-09 17:52:31 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='3500-4499米地区'], Spend 0.16522598266601562 seconds.
+2024-05-09 17:52:31 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 3500-4499米地区 from xpath->//nz-select[@formcontrolname="localeElevationId"], Spend 0.8476822376251221 seconds.
+2024-05-09 17:52:33 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="institutionTypeId"], Spend 0.17344164848327637 seconds.
+2024-05-09 17:52:33 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='公益一类事业单位'], Spend 0.16367125511169434 seconds.
+2024-05-09 17:52:33 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 公益一类事业单位 from xpath->//nz-select[@formcontrolname="institutionTypeId"], Spend 0.8405835628509521 seconds.
+2024-05-09 17:52:35 - MainProcess | MainThread | base_page.input:206 - SUCCESS -Input '农业' to xpath->//nz-tree-select[@formcontrolname="institutionIndustryId"]/div/nz-select-search/input, Spend 0.33048558235168457 seconds.
+2024-05-09 17:52:35 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-tree-node-title[@title="农业"], Spend 0.17493796348571777 seconds.
+2024-05-09 17:52:39 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="defaultSurveyStandard"], Spend 0.19037890434265137 seconds.
+2024-05-09 17:52:40 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='是'], Spend 0.18296313285827637 seconds.
+2024-05-09 17:52:40 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 是 from xpath->//nz-select[@formcontrolname="defaultSurveyStandard"], Spend 0.8790628910064697 seconds.
+2024-05-09 17:52:42 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-select[@formcontrolname="financialSourceTypeId"], Spend 0.17641735076904297 seconds.
+2024-05-09 17:52:43 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//nz-option-item[@title='核定收支、定额补助'], Spend 0.1941983699798584 seconds.
+2024-05-09 17:52:43 - MainProcess | MainThread | base_page.htmlSelect:567 - SUCCESS -Special select option: 核定收支、定额补助 from xpath->//nz-select[@formcontrolname="financialSourceTypeId"], Spend 0.8755137920379639 seconds.
+2024-05-09 17:52:49 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element xpath->//div[@class="ant-tabs-content-holder"]/div/div/lib-unit-basis/button, Spend 0.19900083541870117 seconds.
+2024-05-09 17:52:51 - MainProcess | MainThread | base_page.get_text:281 - SUCCESS -Get text: '保存成功，稍后请在单位信息查看' from css->.ant-message span, Spend 1.7650516033172607 seconds.
+2024-05-09 17:52:51 - MainProcess | MainThread | base_page.assert_text:471 - SUCCESS -The successful assertion text: '保存成功，稍后请在单位信息查看' is from '保存成功，稍后请在单位信息查看' and takes 0.00 seconds.
+2024-05-09 17:52:51 - MainProcess | MainThread | base_page.click:184 - SUCCESS -Click element css->.tool a, Spend 0.37381672859191895 seconds.
+2024-05-09 17:52:51 - MainProcess | MainThread | base_page.get_url:294 - SUCCESS -Get url: http://192.168.2.209/test_console/home.
+2024-05-09 17:52:52 - MainProcess | MainThread | base_page.move_to_element:325 - SUCCESS -Move to element xpath->(//div[@class="ant-space-item"])[2], Spend 1.2070493698120117 seconds.
+2024-05-09 17:53:23 - MainProcess | MainThread | base_page.take_screenshot:549 - SUCCESS -Get the current window screenshot,path: D:\PublicInstitutionSystem\report\image\screenshot_20240509-175323.png, Spend 0.2386012077331543 seconds.
+2024-05-09 17:53:23 - MainProcess | MainThread | exceptions.__init__:15 - ERROR -Wait for element css->li.ant-dropdown-menu-item to be visible timeout, Spend 30.992030382156372 seconds.

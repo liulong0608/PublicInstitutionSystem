@@ -1,1 +1,1 @@
-{"reportName":"Allure Report","testRuns":[],"statistic":{"failed":0,"broken":0,"skipped":0,"passed":0,"unknown":0,"total":0},"time":{}}
+{"reportName":"张三 Allure Report","testRuns":[],"statistic":{"failed":0,"broken":0,"skipped":5,"passed":1,"unknown":0,"total":6},"time":{"start":1715237429168,"stop":1715237447780,"duration":18612,"minDuration":0,"maxDuration":6409,"sumDuration":6409}}
