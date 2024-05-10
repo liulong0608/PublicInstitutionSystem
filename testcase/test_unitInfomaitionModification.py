@@ -9,6 +9,7 @@
 # ====/******/=====
 import unittest
 
+import allure
 import pytest
 
 from public.common.base_util import BaseUtil
@@ -17,9 +18,13 @@ from public.pages.modules.单位信息管理.unitInformationModification_page im
 from utils.social_unified_creditcode.succ_utils.sucreditcode import generateUnifiedSocialCreditCode
 
 
+@allure.epic("信息管理")
+@allure.feature("单位信息管理")
+@allure.story("单位基础信息修改")
 class TestUnitInfomaitionModification(BaseUtil):
     """ 单位基础信息修改 """
 
+    @allure.title("单位基础信息修改")
     @pytest.mark.parametrize("args", get_xls_to_dict("test_datas.xlsx", "unitInformationModification"))
     def test_modification_unitInformation(self, args):
         """单位基础信息修改"""
