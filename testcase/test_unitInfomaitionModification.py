@@ -10,7 +10,6 @@
 import unittest
 
 import pytest
-from ddt import data, ddt
 
 from public.common.base_util import BaseUtil
 from public.common.datainfo import get_xls_to_dict
@@ -18,7 +17,6 @@ from public.pages.modules.单位信息管理.unitInformationModification_page im
 from utils.social_unified_creditcode.succ_utils.sucreditcode import generateUnifiedSocialCreditCode
 
 
-@ddt
 class TestUnitInfomaitionModification(BaseUtil):
     """ 单位基础信息修改 """
 

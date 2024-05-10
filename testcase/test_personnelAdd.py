@@ -8,7 +8,6 @@
 import random
 
 import pytest
-from ddt import ddt, data
 
 from public.common.base_util import BaseUtil
 from public.common.datainfo import get_xls_to_dict
@@ -17,7 +16,6 @@ from utils.RandomlyGeneratePersonnelInformation import generate_name
 from utils.generateRandomIDNumbers import GenerateRandomIDNumbers
 
 
-@ddt
 class TestPersonnelAdd(BaseUtil):
     """人员新增"""
 
