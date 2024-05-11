@@ -76,6 +76,7 @@ class CreateUnitPage(BasePage):
     _set_jurisdiction_loc = "css->nz-card[nztitle='权限选择'] div.ant-card-body div:nth-child(1)"
     _save_operator_btn_loc = "xpath->//span[contains(text(),'保存')]/ancestor::button"
     _save_operator_msg_loc = "css->.ant-modal-footer span.foot_msg"
+    _shutDown_btn_loc = "xpath->//div[contains(@class, 'ant-modal-footer')]/button[2]"
 
     def _swith_to_home(self):
         self.driver.open_url(f'{globalparam.env}/home')
@@ -245,6 +246,9 @@ class CreateUnitPage(BasePage):
     def _get_create_operator_msg(self):
         return self.driver.get_text(self._save_operator_msg_loc)
 
+    def _click_shutDown_btn(self):
+        self.driver.click(self._shutDown_btn_loc)
+
     def create_uniit(self, nest_messages_creditCode, unit_name, supervisor):
         """
         新建单位
@@ -303,5 +307,7 @@ class CreateUnitPage(BasePage):
         self._choice_jurisdiction()
         self._click_save_operator()
         time.sleep(0.5)
-        return self._get_create_operator_msg()
+        msg = self._get_create_operator_msg()
+        self._click_shutDown_btn()
+        return msg
 

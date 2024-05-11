@@ -21,8 +21,12 @@ prj_path = os.path.dirname(os.path.split(os.path.realpath(__file__))[0])
 log_path = os.path.join(prj_path, 'report', 'logs', f'{time.strftime("%Y%m%d")}_run.log')
 # 截图文件路径
 img_path = os.path.join(prj_path, 'report', 'image')
+# 测试报告根目录
+report_root_path = os.path.join(prj_path, 'report')
+# 测试报告json数据
+report_temp_path = os.path.join(prj_path, 'report', 'temp')
 # 测试报告路径
-report_path = os.path.join(prj_path, 'report', 'testreport')
+report_path = os.path.join(prj_path, 'report', 'html')
 # 测试用例路径
 case_path = os.path.join(prj_path, 'testcase')
 # 默认浏览器

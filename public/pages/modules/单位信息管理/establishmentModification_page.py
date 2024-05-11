@@ -8,6 +8,8 @@
 import random
 from typing import *
 
+import allure
+
 from config import globalparam
 from public.common.base_page import BasePage
 
@@ -34,37 +36,44 @@ class EstablishmentModificationPage(BasePage):
 
     def _swith_to_unitInformationManagement(self):
         """ 切换到单位信息管理界面 """
-        self.driver.click(self._unitInformationManagement_btn_loc)
-        self.driver.open_url(f'{globalparam.node}/test_admin/unit')
+        with allure.step('切换到单位信息管理界面'):
+            self.driver.click(self._unitInformationManagement_btn_loc)
+            self.driver.open_url(f'{globalparam.node}/test_admin/unit')
 
     def _org_code(self):
         return self._get_orgCode()
 
     def _query_unit(self):
         """ 查询并点击单位 """
-        self.driver.input(self._query_loc, self._org_code())
-        self.driver.click(self._queryBtn_loc)
+        with allure.step('查询并点击单位'):
+            self.driver.input(self._query_loc, self._org_code())
+            self.driver.click(self._queryBtn_loc)
 
     def _click_unitInformationManagement(self):
         """ 点击单位信息管理 """
-        self.driver.click(self._orgCode_loc)
-        self.driver.click(self._orgInfo_btn_loc)
+        with allure.step('点击单位信息管理'):
+            self.driver.click(self._orgCode_loc)
+            self.driver.click(self._orgInfo_btn_loc)
 
     def _click_establishment_btn(self):
         """ 点击单位编制信息按钮 """
-        self.driver.click(self._establishment_btn_loc)
+        with allure.step('点击单位编制信息'):
+            self.driver.click(self._establishment_btn_loc)
 
     def _input_establishment(self, establishment):
         """ 输入编制数 """
-        self.driver.input(self._input_establishment_loc, establishment)
+        with allure.step('输入编制数'):
+            self.driver.input(self._input_establishment_loc, establishment)
 
     def _save_establishment(self):
         """ 保存单位编制信息 """
-        self.driver.click(self._save_establishment_btn_loc)
+        with allure.step('点击保存按钮，保存单位编制信息'):
+            self.driver.click(self._save_establishment_btn_loc)
 
     def _get_save_establishment_msg(self):
         """ 获取保存成功的提示信息 """
-        return self.driver.get_text(self._save_establishment_msg_loc)
+        with allure.step('获取保存成功的提示信息'):
+            return self.driver.get_text(self._save_establishment_msg_loc)
 
     def establishment_modification(self, establishment):
         """ 单位编制信息修改 """

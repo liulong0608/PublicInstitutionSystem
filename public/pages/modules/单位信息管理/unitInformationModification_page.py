@@ -11,6 +11,7 @@ import random
 import time
 from typing import Text
 
+import allure
 from selenium.webdriver.common.by import By
 
 from config import globalparam
@@ -64,115 +65,194 @@ class UnitInformationModificationPage(BasePage):
             self._get_orgCode()
 
     def _swith_to_home(self):
-        self.driver.open_url(f'{globalparam.env}/home')
+        with allure.step('切换到首页'):
+            self.driver.open_url(f'{globalparam.env}/home')
 
     def _switch_to_unitInformationManagement(self):
-        self.driver.click(self._unitInformationManagement__btn_loc)
+        with allure.step('切换到单位信息管理'):
+            self.driver.click(self._unitInformationManagement__btn_loc)
 
     def _org_code(self):
         return self._get_orgCode()
 
     def _query_unit(self):
-        self.driver.input(self._query_loc, self._org_code())
-        self.driver.click(self._queryBtn_loc)
+        with allure.step('查询单位'):
+            self.driver.input(self._query_loc, self._org_code())
+            self.driver.click(self._queryBtn_loc)
 
     def _select_unit(self):
-        self.driver.click(self._orgCode_loc)
+        with allure.step('选择单位'):
+            self.driver.click(self._orgCode_loc)
 
     def _click_orgInfo_btn(self):
-        self.driver.click(self._orgInfo_btn_loc)
+        with allure.step('点击单位基础信息'):
+            self.driver.click(self._orgInfo_btn_loc)
 
     def _input_orgCode(self, newGrassrootsUnitsID):
-        self.driver.input(self._input_orgcode_loc, newGrassrootsUnitsID)
+        """ 修改单位统一社会信用代码 """
+        with allure.step('修改单位统一社会信用代码'):
+            self.driver.input(self._input_orgcode_loc, newGrassrootsUnitsID)
 
     def _input_orgName(self, unitName):
-        self.driver.input(self._input_orgName_loc, unitName)
+        """ 修改单位名称 """
+        with allure.step('修改单位名称'):
+            self.driver.input(self._input_orgName_loc, unitName)
 
     def _input_headOfUnit(self, headOfUnit):
-        self.driver.input(self._input_headOfUnit_loc, headOfUnit)
+        """ 修改单位负责人 """
+        if headOfUnit is not None:
+            with allure.step('修改单位负责人'):
+                self.driver.input(self._input_headOfUnit_loc, headOfUnit)
 
     def _input_phone(self, officeTel):
-        self.driver.input(self._input_phone_loc, officeTel)
+        """ 修改单位电话 """
+        if officeTel is not None:
+            with allure.step('修改单位电话'):
+                self.driver.input(self._input_phone_loc, officeTel)
 
     def _input_address(self, unitAddress):
-        self.driver.input(self._input_address_loc, unitAddress)
+        """ 修改单位地址 """
+        if unitAddress is not None:
+            with allure.step('修改单位地址'):
+                self.driver.input(self._input_address_loc, unitAddress)
 
     def _input_postcode(self, postcode):
-        self.driver.input(self._input_postcode_loc, postcode)
+        """ 修改邮编 """
+        if postcode is not None:
+            with allure.step('修改邮编'):
+                self.driver.input(self._input_postcode_loc, postcode)
 
     def _select_financialSupport(self, financialSupportType):
-        self.driver.htmlSelect(self._select_financialSupport_loc, financialSupportType)
+        """ 修改财政供养 """
+        if financialSupportType is not None:
+            with allure.step('修改财政供养'):
+                self.driver.htmlSelect(self._select_financialSupport_loc, financialSupportType)
 
     def _select_financialRegulation(self, financialRegulation):
-        self.driver.htmlSelect(self._select_financialRegulation_loc, financialRegulation)
+        """ 修改财政统发 """
+        if financialRegulation is not None:
+            with allure.step('修改财政统发'):
+                self.driver.htmlSelect(self._select_financialRegulation_loc, financialRegulation)
 
     def _input_unitFinancialCode(self, financialCode):
-        self.driver.input(self._input_unitFinancialCode_loc, financialCode)
+        """ 修改财政编码 """
+        if financialCode is not None:
+            with allure.step('修改财政编码'):
+                self.driver.input(self._input_unitFinancialCode_loc, financialCode)
 
     def _select_unitProperty(self, unitProperty):
-        self.driver.htmlSelect(self._select_unitProperty_loc, unitProperty)
+        """ 修改单位性质 """
+        if unitProperty is not None:
+            with allure.step('修改单位性质'):
+                self.driver.htmlSelect(self._select_unitProperty_loc, unitProperty)
 
-    def _select_typeOfPublicInstitution(self, institutionType):
-        self.driver.htmlSelect(self._select_typeOfPublicInstitution_loc, institutionType)
-
-    def _select_publicInstitutionIndustry(self, industry):
-        self.driver.input(self._select_publicInstitutionIndustry_loc, industry)
-        self.driver.click(f'xpath->//nz-tree-node-title[@title="{industry}"]')
-
-    def _select_defaultSurveyStandard(self, surveyStandard):
-        self.driver.htmlSelect(self._select_defaultSurveyStandard_loc, surveyStandard)
-
-    def _select_sourceOfFunds(self, fundsSource):
-        self.driver.htmlSelect(self._select_sourceOfFunds_loc, fundsSource)
-
-    def _select_salarySystem(self, salarySystemType, subsidyStandardTypeArea):
-        self.driver.htmlSelect(self._select_salarySystem_loc, salarySystemType)
-        if salarySystemType == "机关工资制度" or salarySystemType == "机关、事业两种制度并存":
-            self.driver.click(self._select_subsidyStandardTypeLocale_loc)
-            self.driver.click(f'//li[@title="{subsidyStandardTypeArea}"]')
+    def _select_salarySystem(self, salarySystemType):
+        """ 选择工资制度 """
+        if salarySystemType is not None:
+            with allure.step('修改执行工资制度'):
+                self.driver.htmlSelect(self._select_salarySystem_loc, salarySystemType)
 
     def _select_unitLevel(self, unitLevel):
-        self.driver.htmlSelect(self._select_unitLevel_loc, unitLevel)
+        """ 修改单位级别 """
+        if unitLevel is not None:
+            with allure.step('修改单位级别'):
+                self.driver.htmlSelect(self._select_unitLevel_loc, unitLevel)
 
     def _select_isManager(self, whetherManager):
-        if whetherManager == '是':
-            self.driver.click(self._click_isManager_loc, False)
-        else:
-            self.driver.click(self._click_noManager_loc, False)
+        """ 修改是否为主管单位 """
+        if whetherManager is not None:
+            with allure.step('修改是否为主管单位'):
+                if whetherManager == '是':
+                    self.driver.click(self._click_isManager_loc, False)
+                else:
+                    self.driver.click(self._click_noManager_loc, False)
 
-    def _input_managerUnit(self, managerUnit):
-        self.driver.input(self._input_managerUnit_loc, managerUnit)
-        self.driver.click(f"xpath->//nz-option-item[@title='{managerUnit}']")
+    def _input_managerUnit(self, whetherManager):
+        """ 修改主管单位 """
+        _get_orgs_loc = ("xpath->//nz-option-container[contains(@class, "
+                         "'ant-select-dropdown')]/div/cdk-virtual-scroll-viewport/div[1]/nz-option-item")
+        if whetherManager == '否':
+            with allure.step('修改主管单位'):
+                self.driver.click(self._click_managerUnit_loc)
+                managerUnit = random.choice(self.driver.get_elements(_get_orgs_loc)).get_attribute('title')
+                self.driver.input(self._input_managerUnit_loc, managerUnit)
+                self.driver.click(f"xpath->//nz-option-item[@title='{managerUnit}']")
 
     def _select_auditProcess(self, auditProcess):
-        self.driver.htmlSelect(self._select_auditProcess_loc, auditProcess)
+        """ 修改审核流程 """
+        with allure.step('修改审核流程'):
+            self.driver.htmlSelect(self._select_auditProcess_loc, auditProcess)
 
     def _select_hardshipArea(self, hardshipAreaType):
-        self.driver.htmlSelect(self._select_hardshipArea_loc, hardshipAreaType)
+        """ 修改艰边类别 """
+        with allure.step('修改艰边类别'):
+            self.driver.htmlSelect(self._select_hardshipArea_loc, hardshipAreaType)
+
+    def _select_subsidyStandardTypeLocale(self, subsidyStandardTypeLocale):
+        """ 选择公务员规范后津补贴标准驻地 """
+        if self.driver.element_exists(self._select_subsidyStandardTypeLocale_loc):
+            with allure.step('修改执行工资制度'):
+                self.driver.click(self._select_subsidyStandardTypeLocale_loc)
+                self.driver.click(f'//li[@title="{subsidyStandardTypeLocale}"]')
 
     def _select_membership(self, membership):
-        self.driver.htmlSelect(self._select_membership_loc, membership)
+        """ 修改隶属关系 """
+        with allure.step('修改隶属关系'):
+            self.driver.htmlSelect(self._select_membership_loc, membership)
 
     def _select_unitStation(self, unitStation):
-        self.driver.click(self._click_unitStation_loc)
-        self.driver.click(f"xpath->//li[@title='{unitStation}']")
+        """ 修改单位驻地 """
+        with allure.step('修改单位驻地'):
+            self.driver.click(self._click_unitStation_loc)
+            self.driver.click(f"xpath->//li[@title='{unitStation}']")
 
     def _select_averageElevation(self, averageElevation):
-        self.driver.htmlSelect(self._select_averageElevation_loc, averageElevation)
+        """ 修改平均海拔 """
+        with allure.step('修改平均海拔'):
+            self.driver.htmlSelect(self._select_averageElevation_loc, averageElevation)
 
     def _select_stationElevation(self, stationElevation):
-        self.driver.htmlSelect(self._select_stationElevation_loc, stationElevation)
+        """ 修改驻地海拔 """
+        with allure.step('修改驻地海拔'):
+            self.driver.htmlSelect(self._select_stationElevation_loc, stationElevation)
+
+    def _select_typeOfPublicInstitution(self, institutionType):
+        """ 修改单位类型 """
+        if self.driver.element_exists(self._select_typeOfPublicInstitution_loc):
+            with allure.step('修改单位类型'):
+                self.driver.htmlSelect(self._select_typeOfPublicInstitution_loc, institutionType)
+
+    def _select_publicInstitutionIndustry(self, industry):
+        """ 修改单位行业 """
+        if self.driver.element_exists(self._select_publicInstitutionIndustry_loc):
+            with allure.step('修改单位行业'):
+                self.driver.input(self._select_publicInstitutionIndustry_loc, industry)
+                self.driver.click(f'xpath->//nz-tree-node-title[@title="{industry}"]')
+
+    def _select_defaultSurveyStandard(self, surveyStandard):
+        """ 修改是否地勘 """
+        if self.driver.element_exists(self._select_defaultSurveyStandard_loc):
+            with allure.step('修改是否地勘'):
+                self.driver.htmlSelect(self._select_defaultSurveyStandard_loc, surveyStandard)
+
+    def _select_sourceOfFunds(self, fundsSource):
+        """ 修改经费来源 """
+        if self.driver.element_exists(self._select_sourceOfFunds_loc):
+            with allure.step('修改经费来源'):
+                self.driver.htmlSelect(self._select_sourceOfFunds_loc, fundsSource)
 
     def _click_save_modify_btn(self):
-        self.driver.click(self._save_modify_btn_loc)
+        with allure.step('点击保存修改按钮'):
+            self.driver.click(self._save_modify_btn_loc)
 
     def _get_save_msg(self):
-        return self.driver.get_text(self._save_msg_loc)
+        with allure.step('获取保存信息'):
+            return self.driver.get_text(self._save_msg_loc)
 
     def modification_unit_base_information(self, newGrassrootsUnitsID, unitName, headOfUnit, officeTel, unitAddress,
                                            postcode, financialSupport, financialRegulation, unitFinancialCode,
-                                           unitProperty, salarySystemType, unitLevel, whetherManager, managerUnit,
-                                           auditProcess, hardshipAreaType, subsidyStandardTypeArea, membership,
+                                           unitProperty, salarySystemType, unitLevel, whetherManager, auditProcess,
+                                           hardshipAreaType, membership, subsidyStandardTypeLocale,
                                            unitStation, averageElevation, stationElevation, typeOfPublicInstitution,
                                            publicInstitutionIndustry, defaultSurveyStandard, sourceOfFunds):
         """ 修改单位基础信息 """
@@ -191,21 +271,20 @@ class UnitInformationModificationPage(BasePage):
         self._select_financialRegulation(financialRegulation)  # 选择财政统发
         self._input_unitFinancialCode(unitFinancialCode)  # 输入财政编码
         self._select_unitProperty(unitProperty)  # 选择单位性质
-        self._select_salarySystem(salarySystemType, subsidyStandardTypeArea)  # 选择工资制度
+        self._select_salarySystem(salarySystemType)  # 选择工资制度
         self._select_unitLevel(unitLevel)  # 选择单位级别
         self._select_isManager(whetherManager)  # 选择是否为主管
-        self._input_managerUnit(managerUnit)  # 输入主管单位,点击主管单位
+        self._input_managerUnit(whetherManager)  # 输入主管单位，点击主管单位
         self._select_auditProcess(auditProcess)  # 选择审核流程
         self._select_hardshipArea(hardshipAreaType)  # 选择艰边类别
+        self._select_subsidyStandardTypeLocale(subsidyStandardTypeLocale)  # 选择公务员规范后津补贴标准驻地
         self._select_membership(membership)  # 选择隶属关系
         self._select_unitStation(unitStation)  # 选择单位驻地
-        self._select_averageElevation(averageElevation)  # 选择平均海拔
-        self._select_stationElevation(stationElevation)  # 选择驻地海拔
-        self._select_typeOfPublicInstitution(typeOfPublicInstitution)  # 选择事业单位类型
-        self._select_publicInstitutionIndustry(publicInstitutionIndustry)  # 选择事业单位行业
-        self._select_defaultSurveyStandard(defaultSurveyStandard)  # 选择是否地勘单位
+        self._select_averageElevation(averageElevation)  # 输入平均海拔
+        self._select_stationElevation(stationElevation)  # 输入站点海拔
+        self._select_typeOfPublicInstitution(typeOfPublicInstitution)  # 选择单位类型
+        self._select_publicInstitutionIndustry(publicInstitutionIndustry)  # 选择单位行业
+        self._select_defaultSurveyStandard(defaultSurveyStandard)  # 选择是否地勘
         self._select_sourceOfFunds(sourceOfFunds)  # 选择经费来源
-        self._click_save_modify_btn()  # 点击保存
+        self._click_save_modify_btn()  # 点击保存修改按钮
         return self._get_save_msg()
-
-

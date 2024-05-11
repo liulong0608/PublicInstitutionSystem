@@ -7,40 +7,15 @@
 # @editsession      2023/4/6
 # @Software:        PyCharm
 # ====/******/=====
-import time
-import unittest
+import os
 
-import unittestreport
+import pytest
+from utils.others_controls.allure_control import set_report_env_on_results, set_report_executer_on_results
+from config.globalparam import report_temp_path, report_path
 
-from config import globalparam
-
-
-def run():
-    suite = unittest.defaultTestLoader.discover(start_dir=globalparam.case_path, pattern='test*.py')
-    report_path = globalparam.report_path
-    reportname = 'TestResult'
-    runner = unittestreport.TestRunner(
-        suite=suite,
-        tester='Echo',
-        report_dir=report_path,
-        filename=reportname,
-        title='事业工资系统-测试报告',
-        templates=1,
-        desc='This is the test report of the business payroll system.'
-    )
-    runner.run(
-        # count=3, interval=3  # 失败重跑3次，每次间隔3秒
-    )
-    time.sleep(3)
-    # # 发送邮件
-    runner.send_email(
-        host='smtp.exmail.qq.com',    # smtp服务器地址
-        port=465,      # smtp服务器端口465,25
-        user='liulong@3mencn.com',    # 发送邮箱用户名
-        password='Flzx3000c',    # 发送邮箱密码
-        to_addrs='liulong@3mencn.com'  # 收件人邮箱地址
-    )
-
-
-if __name__ == '__main__':
-    run()
+if __name__ == "__main__":
+    pytest.main()
+    set_report_env_on_results()  # 写入环境信息
+    # set_report_executer_on_results()    # 写入运行器
+    os.system(f"allure generate {report_temp_path} -o {report_path} --clean")
+    os.system(f"allure open -h localhost -p 51733 {report_path}")

@@ -7,7 +7,8 @@
 """
 import random
 
-from ddt import ddt, data
+import allure
+import pytest
 
 from public.common.base_util import BaseUtil
 from public.common.datainfo import get_xls_to_dict
@@ -16,11 +17,13 @@ from utils.RandomlyGeneratePersonnelInformation import generate_name
 from utils.generateRandomIDNumbers import GenerateRandomIDNumbers
 
 
-@ddt
+@allure.epic("人员新增减少")
+@allure.feature("人员新增")
 class TestPersonnelAdd(BaseUtil):
     """人员新增"""
 
-    @data(*get_xls_to_dict("test_datas.xlsx", "add_person"))
+    @allure.title("人员新增")
+    @pytest.mark.parametrize("args", get_xls_to_dict("test_datas.xlsx", "add_person"))
     def test_add_staff(self, args):
         """人员新增"""
         pa = PersonnelAddPage(self.driver)

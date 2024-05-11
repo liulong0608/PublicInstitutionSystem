@@ -13,7 +13,7 @@ from typing import *
 
 import selenium.common.exceptions
 from selenium import webdriver
-from selenium.common.exceptions import ElementNotVisibleException
+from selenium.common.exceptions import ElementNotVisibleException, ElementClickInterceptedException
 from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
@@ -182,7 +182,7 @@ class BasePage(BasePageABC):
         try:
             self.get_element(locator, whetherWait).click()
             self.log.success(f"Click element {locator}, Spend {time.time() - t1} seconds.")
-        except ElementNotInteractableException:  # 元素不可交互
+        except ElementClickInterceptedException:  # 元素不可交互
             self.take_screenshot()
             raise ElementNotInteractableException(f"Element {locator} is not interactable.")
         except ElementNotSelectableException:  # 元素不可选择
