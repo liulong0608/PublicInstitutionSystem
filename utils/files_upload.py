@@ -13,6 +13,7 @@ import time
 
 
 def upload_file(file_path, file_name):
+    time.sleep(0.5)
     app = pywinauto.Desktop()
     dlg = app["打开"]
     dlg["Toolbar3"].click()

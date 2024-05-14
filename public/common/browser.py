@@ -35,8 +35,13 @@ def setup_driver_options(browser):
             options.add_experimental_option('useAutomationExtension', False)  # 禁用自动化扩展
             options.add_experimental_option("prefs", {
                 "credentials_enable_service": False,
-                "profile.password_manager_enabled": False
-            })  # 禁用保存密码提示框
+                "profile.password_manager_enabled": False,  # 禁用保存密码提示框
+                'download.default_directory': globalparam.download_path,  # 设置下载路径
+                'download.prompt_for_download': False,  # 不弹出下载提示框
+                'download.directory_upgrade': False,  # 记录下载目录是否被更改
+                'safebrowsing.enabled': False  # 禁用提示安全警告
+            })
+
         options.add_argument('ignore-certificate-errors')  # 忽略证书错误
         return options
     else:

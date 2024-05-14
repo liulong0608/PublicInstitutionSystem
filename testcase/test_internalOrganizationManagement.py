@@ -27,11 +27,11 @@ class TestInternalOrganizationManagement(BaseUtil):
     def test_add_internalOrganization(self, args):
         """新增内设机构"""
         iom = InternalOrganizationManagementPage(self.driver)
-        m = iom.add_internal_organization(
+        msg = iom.add_internal_organization(
             org_code=str(args['org_code']),
             name=args['internal_name'],
             phone=args['internal_phone']
         )
-        self.driver.assert_text("保存成功", m)
+        self.driver.assert_text("保存成功", msg)
         iom.modify_internal_organization()
         iom.delete_internal_organization()

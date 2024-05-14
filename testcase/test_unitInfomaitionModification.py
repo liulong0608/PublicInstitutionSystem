@@ -49,4 +49,4 @@ class TestUnitInfomaitionModification(BaseUtil):
                                                     defaultSurveyStandard=args['是否地勘单位'],
                                                     sourceOfFunds=args['经费来源'],
                                                     subsidyStandardTypeLocale=args['公务员规范后津贴标准类别驻地'])
-        self.driver.assert_text(msg, "保存成功，稍后请在单位信息查看")
+        self.driver.assert_text("保存成功，稍后请在单位信息查看", msg)
