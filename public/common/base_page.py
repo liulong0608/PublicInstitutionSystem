@@ -60,6 +60,13 @@ class BasePage(BasePageABC):
         except selenium.common.exceptions.InvalidArgumentException:
             raise InvalidArgumentException("Unable to maximize the window.")
 
+    def get_cookie(self) -> Dict:
+        """
+        获取cookies
+        :return:
+        """
+        return self.driver.get_cookies()
+
     def set_window(self, width: int, height: int) -> None:
         """
         设置窗口大小
@@ -259,6 +266,7 @@ class BasePage(BasePageABC):
         """
         try:
             self.clear(locator, whetherWait)
+            time.sleep(1)
             self.input(locator, text)
             self.tab(locator)
         except ElementNotInteractableException:
@@ -444,32 +452,42 @@ class BasePage(BasePageABC):
     def assert_text(self, expected_text: str, actual_result: str, whether_wait: bool = True) -> None:
         """
         断言文本相等。
+
         :param expected_text: 预期的文本。
         :param actual_result: 实际结果的文本。
         :param whether_wait: 是否等待断言之前的某些条件。
+        :raises AssertionError: 当实际结果与预期文本不匹配时抛出。
+        :raises Exception: 处理与元素交互相关的异常。
         """
-        assert isinstance(actual_result, str), "actual_result 必须是一个字符串"
-        assert isinstance(expected_text, str), "expected_text 必须是一个字符串"
+        if not isinstance(actual_result, str):
+            raise TypeError("actual_result 必须是一个字符串")
+        if not isinstance(expected_text, str):
+            raise TypeError("expected_text 必须是一个字符串")
+
         start_time = time.time()
         try:
-            assert actual_result == expected_text, f"The actual text '{actual_result}' does not match the expected text '{expected_text}'."
-        except ElementNotInteractableException:
+            assert actual_result == expected_text, (f"The assertion fails. The actual text '{actual_result}' does not "
+                                                    f"match the expected text '{expected_text}'.")
+
+        except (ElementNotInteractableException, ElementNotSelectableException) as e:
             self.take_screenshot()
+            self.log.exception("Element interaction failed.")
             raise
-        except ElementNotSelectableException:
-            self.take_screenshot()
-            raise
+
         except AssertionError as e:
-            self.log.error(e.args[0])
             self.take_screenshot()
-            raise AssertionException(e.args[0])
-        except Exception:  # 其他意外异常仍应记录和截图
-            self.take_screenshot()
+            self.log.error(f"Assertion failed: {str(e)}")
             raise
-        finally:
+
+        except Exception as e:
+            self.take_screenshot()
+            self.log.exception("An unexpected error occurred.")
+            raise
+
+        else:
             elapsed_time = time.time() - start_time
-            self.log.success(
-                f"The successful assertion text: '{expected_text}' is from '{actual_result}' and takes {elapsed_time:.2f} seconds.")
+            self.log.success(f"Assertion succeeded: The actual text '{actual_result}' matches the expected text "
+                             f"'{expected_text}'. Time taken: {elapsed_time} seconds.")
 
     def assert_text_contains(self, expected_text: str, actual_text: str, whetherWait: bool = True) -> None:
         """
@@ -484,15 +502,22 @@ class BasePage(BasePageABC):
 
         start_time = time.time()
         try:
-            assert expected_text in actual_text, f"Expect '{expected_text}' to appear in '{actual_text}'."
-        except AssertionError as e:
-            self.log.error(f"Assertion failure: {e}")
+            assert expected_text in actual_text, f"The assertion fails. Expect '{expected_text}' to appear in '{actual_text}'."
+        except (ElementNotInteractableException, ElementNotSelectableException) as e:
             self.take_screenshot()
+            self.log.error(f"Element interaction failed: {str(e)}")
+        except AssertionError as e:
+            self.take_screenshot()
+            self.log.error(f"Assertion failed: expect '{expected_text}' to appear in '{actual_text}'.")
             raise
-        finally:
+        except Exception as e:
+            self.take_screenshot()
+            self.log.error(f"An unexpected error occurred: {str(e)}")
+            raise
+        else:
             elapsed_time = time.time() - start_time
             self.log.success(
-                f"Assertions are present in the actual text with: '{expected_text}'. Time taken {elapsed_time:.2f} seconds.")
+                f"Assertions are present in the actual text with: '{expected_text}'. Time taken {elapsed_time} seconds.")
 
     def submit(self, locator: Text, whetherWait: bool = True) -> None:
         """
@@ -662,9 +687,12 @@ class BasePage(BasePageABC):
         _upload_btn_loc = "xpath->(//button[@class='ant-btn ng-star-inserted'])[1]"
         _upload_file_msg_loc = "xpath->//div/span[contains(text(),'附件示例.png')]"
         _save_attachment_btn_loc = 'css->div.ant-modal-footer button.ant-btn-primary'
+        _file_download_loc = 'xpath->//span[contains(text(),"下载")]'
 
-        self.click(_attachment_btn_loc)
-        self.click(_upload_btn_loc)
+        self.driver.click(_attachment_btn_loc)
+        self.driver.click(_upload_btn_loc)
         upload_file(datas_path, "附件示例.png")
-        assert "附件示例.png" == self.get_text(_upload_file_msg_loc), "上传附件失败."
-        self.click(_save_attachment_btn_loc)
+        if self.driver.get_element(_file_download_loc):
+            # assert "附件示例.png" == self.get_text(_upload_file_msg_loc), "上传附件失败."
+            self.driver.assert_text("附件示例.png", self.driver.get_text(_upload_file_msg_loc))
+            self.driver.click(_save_attachment_btn_loc)

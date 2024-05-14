@@ -26,4 +26,4 @@ class TestEstablishmentModification(BaseUtil):
         """修改单位编制信息"""
         em = EstablishmentModificationPage(self.driver)
         msg = em.establishment_modification(establishment=random.randint(1, 50))
-        self.driver.assert_text(msg, "保存成功")
+        self.driver.assert_text("保存成功", msg)

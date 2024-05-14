@@ -16,7 +16,7 @@ def set_report_env_on_results():
     """
     # 需要写入的环境信息
     allure_env = {
-        'OperatingEnvironment': '测试环境',
+        'OperatingEnvironment': 'TESTING ENVIRONMENT',
         'BaseUrl': node
     }
     allure_env_file = os.path.join(report_temp_path, 'environment.properties')

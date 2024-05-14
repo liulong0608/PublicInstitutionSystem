@@ -10,8 +10,8 @@ The simplest way to use this is to invoke its main method. E.g.
         HTMLTestRunner.main()
 For more customization options, instantiates a HTMLTestRunner object.
 HTMLTestRunner is a counterpart to unittest's TextTestRunner. E.g.
-    # output to a file
-    fp = file('my_report.html', 'wb')
+    # output to a files
+    fp = files('my_report.html', 'wb')
     runner = HTMLTestRunner.HTMLTestRunner(
                 stream=fp,
                 title='My unit test',

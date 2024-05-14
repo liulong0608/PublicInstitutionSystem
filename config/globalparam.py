@@ -44,3 +44,5 @@ file_path = os.path.join(datas_path, '附件示例.png')  # 输出：D:\PublicIn
 data_path = os.path.join(prj_path, 'data', 'testdata')
 # 测试截图
 screenshot_path = os.path.join(prj_path, 'report', 'image')
+# 下载路径
+download_path = os.path.join(prj_path, 'data', 'files')

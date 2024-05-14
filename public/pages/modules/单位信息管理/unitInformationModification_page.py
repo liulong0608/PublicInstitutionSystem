@@ -191,7 +191,7 @@ class UnitInformationModificationPage(BasePage):
     def _select_subsidyStandardTypeLocale(self, subsidyStandardTypeLocale):
         """ 选择公务员规范后津补贴标准驻地 """
         if self.driver.element_exists(self._select_subsidyStandardTypeLocale_loc):
-            with allure.step('修改执行工资制度'):
+            with allure.step('修改公务员规范后津补贴标准驻地'):
                 self.driver.click(self._select_subsidyStandardTypeLocale_loc)
                 self.driver.click(f'//li[@title="{subsidyStandardTypeLocale}"]')
 
