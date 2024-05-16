@@ -9,6 +9,8 @@
 # ====/******/=====
 import time
 
+import pytest
+
 from config import globalparam
 from public.common import browser
 from public.common.base_page import BasePage
@@ -42,7 +44,8 @@ class BaseUtil:
 
         time.sleep(1.5)
 
-    def setup_method(self):
+    @pytest.fixture(scope="class", autouse=True)
+    def setup_class_method(self):
         self.logger = Log().get_logger()
         self.logger.info('############################### START ###############################')
         datas = get_xls_to_dict("test_datas.xlsx", "login")[0]
@@ -52,7 +55,8 @@ class BaseUtil:
         self.driver.open_url(f'{globalparam.env}/login')
         self.login_control(datas['username'], datas['password'], datas['verifyCode'])
 
-    def teardown_method(self):
+    @pytest.fixture(scope="class", autouse=True)
+    def teardown_class_method(self):
         if self.driver.element_exists(self._back_btn_loc):
             self.driver.click(self._back_btn_loc)
         if self.driver.get_url() == f'{globalparam.env}/home':
@@ -76,11 +80,6 @@ class BaseUtil:
         cookie_dict = self.get_cookie()
         self.driver.open_url(f'http://192.168.2.209/test_admin?token={cookie_dict[0]['value']}')
         time.sleep(30)
-
-
-if __name__ == '__main__':
-    b = BaseUtil()
-    b.open_new_url()
 
 
 
