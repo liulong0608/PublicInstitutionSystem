@@ -679,20 +679,26 @@ class BasePage(BasePageABC):
         self.driver.click(_orgcode_link_loc)  # 点击统一社会信用代码进入基层单位
         self.driver.switch_to_new_window()
 
-    def upload_attachment(self) -> None:
+    def upload_attachments(self):
         """
         上传附件
         """
-        _attachment_btn_loc = "xpath->//span[contains(text(),'工资报审附件')]"
         _upload_btn_loc = "xpath->(//button[@class='ant-btn ng-star-inserted'])[1]"
         _upload_file_msg_loc = "xpath->//div/span[contains(text(),'附件示例.png')]"
         _save_attachment_btn_loc = 'css->div.ant-modal-footer button.ant-btn-primary'
         _file_download_loc = 'xpath->//span[contains(text(),"下载")]'
-
-        self.driver.click(_attachment_btn_loc)
-        self.driver.click(_upload_btn_loc)
+        self.click(_upload_btn_loc)  # 点击上传附件按钮
         upload_file(datas_path, "附件示例.png")
-        if self.driver.get_element(_file_download_loc):
-            # assert "附件示例.png" == self.get_text(_upload_file_msg_loc), "上传附件失败."
-            self.driver.assert_text("附件示例.png", self.driver.get_text(_upload_file_msg_loc))
-            self.driver.click(_save_attachment_btn_loc)
+        if self.get_element(_file_download_loc):
+            self.assert_text("附件示例.png", self.get_text(_upload_file_msg_loc))
+            time.sleep(0.6)
+            self.click(_save_attachment_btn_loc)
+
+    def salary_report_attachment(self) -> None:
+        """
+        工资报审附件
+        """
+        _attachment_btn_loc = "xpath->//span[contains(text(),'工资报审附件')]"
+
+        self.click(_attachment_btn_loc)
+        self.upload_attachments()

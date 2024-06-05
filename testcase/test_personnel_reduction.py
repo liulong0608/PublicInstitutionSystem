@@ -26,4 +26,4 @@ class TestPersonnelReduction(BaseUtil):
             args["止薪时间"],
             args["减少类型"]
         )
-        self.driver.assert_text("操作不成功", msg)
+        self.driver.assert_text("操作成功", msg)

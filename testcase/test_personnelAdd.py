@@ -5,7 +5,6 @@
 **    @author           Echo
 **    @EditTime         2024/1/3
 """
-import random
 
 import allure
 import pytest

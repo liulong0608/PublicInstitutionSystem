@@ -9,6 +9,7 @@
 # ====/******/=====
 import time
 
+import allure
 from selenium.webdriver.common.by import By
 
 from config.globalparam import datas_path
@@ -76,236 +77,282 @@ class PersonnelAddPage(BasePage):
     _add_msg_loc = 'css->.ant-message span'
 
     def _click_manager_menu(self):
-        self.driver.click(self._manager_menu_loc)  # 点击管理版按钮
+        with allure.step("点击管理版按钮"):
+            self.driver.click(self._manager_menu_loc)  # 点击管理版按钮
 
-    def _click_businessGuidance_menu(self):
-        self.driver.move_to_element(self._businessAudit_menu_loc)  # 悬停在业务审核
-        self.driver.click(self._businessGuidance_menu_loc)  # 点击业务指导基层
-
-    def _switch_to_basicUnit(self, org_code):
-        self.driver.input(self._query_org_input_loc, org_code)  # 输入查询统一社会信用代码
-        time.sleep(0.5)
-        self.driver.click(self._orgcode_link_loc)  # 点击统一社会信用代码进入基层单位
+    def _switch_to_basic_unit(self, org_code):
+        with allure.step("进入基层单位"):
+            self.business_guidance_grass_roots(org_code)  # 进入基层单位
 
     def _click_addstaff_menu(self):
-        self.driver.switch_to_new_window()  # 跳转新窗口
-        self.driver.move_to_element(self._add_decrease_loc)  # 悬停在人员新增减少菜单上
-        self.driver.click(self._add_menu_loc)  # 点击人员新增
+        with allure.step("点击人员新增按钮"):
+            self.driver.switch_to_new_window()  # 跳转新窗口
+            self.driver.move_to_element(self._add_decrease_loc)  # 悬停在人员新增减少菜单上
+            self.driver.click(self._add_menu_loc)  # 点击人员新增
 
     def _select_stafftype(self, identity):
         """ 选择人员身份 """
-        self.driver.htmlSelect(self._personnel_identity_loc, identity)  # 选择人员身份
+        with allure.step("选择人员身份"):
+            self.driver.htmlSelect(self._personnel_identity_loc, identity)  # 选择人员身份
 
     def _input_qxDate(self, qxDate):
         """ 输入起薪时间 """
-        self.driver.clear_and_input(self._qxDate_input_loc, qxDate)  # 输入起薪时间
+        with allure.step("输入起薪时间"):
+            self.driver.clear_and_input(self._qxDate_input_loc, qxDate)  # 输入起薪时间
 
     def _input_bySymbol(self, msg):
         """ 输入依据文号 """
-        self.driver.input(self._bySymbol_input_loc, msg)  # 输入依据文号
+        if msg is not None:
+            with allure.step("输入依据文号"):
+                self.driver.input(self._bySymbol_input_loc, msg)  # 输入依据文号
 
     def _input_change_remarks(self, msg):
         """ 变动备注 """
-        self.driver.input(self._changeRemarks_input_loc, msg)
+        if msg is not None:
+            with allure.step("输入变动备注"):
+                self.driver.input(self._changeRemarks_input_loc, msg)
 
     def _uploadAttachment(self):
         """ 上传附件 """
-        file_download_loc = 'xpath->//span[contains(text(),"下载")]'
-        self.driver.click(self._attachment_btn_loc)
-        self.driver.click(self._upload_btn_loc)
-        upload_file(datas_path, "附件示例.png")
-        if self.driver.get_element(file_download_loc):
-            self.driver.assert_text("附件示例.png", self.driver.get_text(self._upload_file_msg_loc))
-            self.driver.click(self._save_attachment_btn_loc)
+        with allure.step("上传附件"):
+            self.driver.salary_report_attachment()
 
     def _input_staffName(self, name):
         """输入人员姓名"""
-        self.driver.input(self._staffName_input_loc, name)
+        with allure.step("输入人员姓名"):
+            self.driver.input(self._staffName_input_loc, name)
 
     def _select_gender(self, gender):
         """ 选择性别 """
-        self.driver.htmlSelect(self._gender_input_loc, gender)
+        with allure.step("选择性别"):
+            self.driver.htmlSelect(self._gender_input_loc, gender)
 
     def _select_nationality(self, nationality):
         """ 选择民族 """
-        self.driver.htmlSelect(self._select_nation_loc, nationality)
+        with allure.step("选择民族"):
+            self.driver.htmlSelect(self._select_nation_loc, nationality)
 
     def _input_idcard(self, idcard):
         """ 输入身份证号 """
-        self.driver.input(self._input_idcard_loc, idcard)
+        with allure.step("输入身份证号"):
+            self.driver.input(self._input_idcard_loc, idcard)
 
     def _input_birthday(self, birthday):
         """ 输入出生日期 """
-        self.driver.clear_and_input(self._input_birthday_loc, birthday)
+        with allure.step("输入出生日期"):
+            self.driver.clear_and_input(self._input_birthday_loc, birthday)
 
     def _select_politicalStatus(self, politicalStatus):
         """ 选择政治面貌 """
-        self.driver.htmlSelect(self._select_politicalStatus_loc, politicalStatus)
+        with allure.step("选择政治面貌"):
+            self.driver.htmlSelect(self._select_politicalStatus_loc, politicalStatus)
 
     def _select_initialPersonality(self, initialPersonality):
         """ 选择初始人员身份 """
-        self.driver.htmlSelect(self._select_initialPersonality_loc, initialPersonality)
+        if initialPersonality is not None:
+            with allure.step("选择初始人员身份"):
+                self.driver.htmlSelect(self._select_initialPersonality_loc, initialPersonality)
 
     def _input_nativePlace(self, nativePlace):
         """ 输入籍贯 """
-        self.driver.input(self._input_nativePlace_loc, nativePlace)
+        if nativePlace is not None:
+            with allure.step("输入籍贯"):
+                self.driver.input(self._input_nativePlace_loc, nativePlace)
 
     def _input_address(self, address):
         """ 输入地址 """
-        self.driver.input(self._input_address_loc, address)
+        if address is not None:
+            with allure.step("输入地址"):
+                self.driver.input(self._input_address_loc, address)
 
     def _select_staffSource(self, staffSource):
         """ 选择人员来源 """
-        self.driver.htmlSelect(self._select_staffSource_loc, staffSource)
+        with allure.step("选择人员来源"):
+            self.driver.htmlSelect(self._select_staffSource_loc, staffSource)
 
     def _input_joinDate(self, joinDate):
         """ 进入本单位时间 """
-        self.driver.clear_and_input(self._input_joinDate_loc, joinDate)
+        with allure.step("输入进入本单位时间"):
+            self.driver.clear_and_input(self._input_joinDate_loc, joinDate)
 
     def _select_department(self, department):
         """ 选择内设机构 """
         if department is not None:
-            self.driver.htmlSelect(self._select_department_loc, department)
+            with allure.step("选择内设机构"):
+                self.driver.htmlSelect(self._select_department_loc, department)
 
     def _input_staffRemark(self, staffRemark):
         """ 输入备注 """
         if staffRemark is not None:
-            self.driver.input(self._input_staffRemark_loc, staffRemark)
+            with allure.step("输入备注"):
+                self.driver.input(self._input_staffRemark_loc, staffRemark)
 
     def _input_enterDate(self, enterDate):
-        """ 参公时间 """
-        self.driver.clear_and_input(self._input_enterDate_loc, enterDate)
+        """ 参工时间 """
+        with allure.step("输入参工时间"):
+            self.driver.clear_and_input(self._input_enterDate_loc, enterDate)
 
     def _select_education(self, education):
         """ 选择学历 """
-        self.driver.htmlSelect(self._select_education_loc, education)
+        with allure.step("选择学历"):
+            self.driver.htmlSelect(self._select_education_loc, education)
 
     def _select_degree(self, degree):
         """ 选择学位 """
         if degree is not None:
-            self.driver.htmlSelect(self._select_degree_loc, degree)
+            with allure.step("选择学位"):
+                self.driver.htmlSelect(self._select_degree_loc, degree)
 
     def _input_graduateDate(self, graduateDate):
         """ 毕业时间 """
-        self.driver.clear_and_input(self._input_graduateDate_loc, graduateDate)
+        with allure.step("输入毕业时间"):
+            self.driver.clear_and_input(self._input_graduateDate_loc, graduateDate)
 
     def _click_wage_info(self):
         """ 点击工资信息 """
-        self.driver.click(self._click_wage_info_btn_loc)
+        with allure.step("点击工资信息按钮"):
+            self.driver.click(self._click_wage_info_btn_loc)
 
     def _select_surveyStandard(self, surveyStandard):
         """ 是否地勘标准 """
         if surveyStandard == "是":
-            self.driver.htmlSelect(self._select_surveyStandard_loc, surveyStandard)
+            with allure.step("选择是否地勘标准"):
+                self.driver.htmlSelect(self._select_surveyStandard_loc, surveyStandard)
 
-    def _select_compulsoryEducation(self, compulsoryEducation, identity):
+    def _select_compulsoryEducation(self, compulsoryEducation, identity, surveyStandard):
         """ 是否义务教育教师 """
-        if identity == "专业技术人员":
-            self.driver.htmlSelect(self._select_compulsoryEducation_loc, compulsoryEducation)
+        if identity == "专业技术人员" and surveyStandard == "否":
+            with allure.step("选择是否义务教育教师"):
+                self.driver.htmlSelect(self._select_compulsoryEducation_loc, compulsoryEducation)
 
     def _input_presentOccupation(self, presentOccupation):
         """ 输入现任职务 """
-        self.driver.input(self._input_presentOccupation_loc, presentOccupation)
+        with allure.step("输入现任职务"):
+            self.driver.input(self._input_presentOccupation_loc, presentOccupation)
 
     def _input_presentOccupationDate(self, presentOccupationDate):
         """ 输入现任职务时间 """
-        self.driver.clear_and_input(self._input_presentOccupationDate_loc, presentOccupationDate)
+        with allure.step("输入现任职务时间"):
+            self.driver.clear_and_input(self._input_presentOccupationDate_loc, presentOccupationDate)
 
     def _select_trueProRank(self, trueProRank):
         """ 实际岗位 """
-        self.driver.htmlSelect(self._select_trueProRank_loc, trueProRank)
+        with allure.step("选择实际岗位"):
+            self.driver.htmlSelect(self._select_trueProRank_loc, trueProRank)
 
     def _select_levelProRank(self, levelProRank, identity):
         """ 职员等级 """
-        if levelProRank is not None and identity == "管理人员" and self.driver.element_exists(self._select_levelProRank_loc):
-            self.driver.htmlSelect(self._select_levelProRank_loc, levelProRank)
+        if levelProRank is not None and identity == "管理人员" and self.driver.element_exists(
+                self._select_levelProRank_loc):
+            with allure.step("选择职员等级"):
+                self.driver.htmlSelect(self._select_levelProRank_loc, levelProRank)
 
     def _input_levelProRankDate(self, levelProRankDate, identity):
         """ 任职员等级时间 """
-        if levelProRankDate is not None and identity == "管理人员" and self.driver.element_exists(self._input_levelDate_loc):
+        if levelProRankDate is not None and identity == "管理人员" and self.driver.element_exists(
+                self._input_levelDate_loc):
             self.driver.clear_and_input(self._input_levelDate_loc, levelProRankDate)
 
     def _select_salaryMappingProRank(self, salaryMappingProRank):
         """ 基本工资对应岗位 """
-        self.driver.htmlSelect(self._select_salaryMappingProRank_loc, salaryMappingProRank)
+        with allure.step("选择基本工资对应岗位"):
+            self.driver.htmlSelect(self._select_salaryMappingProRank_loc, salaryMappingProRank)
 
     def _select_leadership(self, leadership, salaryMappingProRank):
         """ 是否领导工资 """
         if salaryMappingProRank in ['四级岗位', '五级岗位'] and self.driver.element_exists(self._select_leadership_loc):
-            self.driver.htmlSelect(self._select_leadership_loc, leadership)
+            with allure.step("选择是否领导工资"):
+                self.driver.htmlSelect(self._select_leadership_loc, leadership)
 
     def _input_jobNowDate(self, jobNowDate):
         """ 任现岗位时间 """
-        self.driver.clear_and_input(self._input_jobNowDate_loc, jobNowDate)
+        with allure.step("输入任现岗位时间"):
+            self.driver.clear_and_input(self._input_jobNowDate_loc, jobNowDate)
 
     def _select_formerSalaryGrade(self, formerSalaryGrade):
         """ 薪级 """
-        self.driver.htmlSelect(self._select_formerSalaryGrade_loc, formerSalaryGrade)
+        with allure.step("选择薪级"):
+            self.driver.htmlSelect(self._select_formerSalaryGrade_loc, formerSalaryGrade)
 
     def _input_salaryGradeDate(self, salaryGradeDate):
         """ 起薪时间 """
-        self.driver.clear_and_input(self._input_salaryGradeDate_loc, salaryGradeDate)
+        with allure.step("输入起薪时间"):
+            self.driver.clear_and_input(self._input_salaryGradeDate_loc, salaryGradeDate)
 
     def _select_primaryAndHighSchoolTeacher(self, primaryAndHighSchoolTeacher, compulsoryEducation):
         """ 是否中小学教师 """
         if primaryAndHighSchoolTeacher is not None and compulsoryEducation == "否":
-            self.driver.htmlSelect(self._select_primaryAndHighSchoolTeacher_loc, primaryAndHighSchoolTeacher)
+            with allure.step("选择是否中小学教师"):
+                self.driver.htmlSelect(self._select_primaryAndHighSchoolTeacher_loc, primaryAndHighSchoolTeacher)
 
     def _select_nurse(self, nurse, compulsoryEducation):
         """ 是否护士 """
         if nurse is not None and compulsoryEducation == "否":
-            self.driver.htmlSelect(self._select_nurse_loc, nurse)
+            with allure.step("选择是否护士"):
+                self.driver.htmlSelect(self._select_nurse_loc, nurse)
 
     def _select_tg10wage(self, tg10wage, primaryAndHighSchoolTeacher, nurse, compulsoryEducation):
         """ 是否提高10% """
-        if tg10wage is not None and (primaryAndHighSchoolTeacher == "是" or nurse == "是") and compulsoryEducation == "否":
-            self.driver.htmlSelect(self._select_tg10wage_loc, tg10wage)
+        if tg10wage is not None and (
+                primaryAndHighSchoolTeacher == "是" or nurse == "是") and compulsoryEducation == "否":
+            with allure.step("选择是否提高10%工资"):
+                self.driver.htmlSelect(self._select_tg10wage_loc, tg10wage)
 
     def _select_specialEducation(self, specialEducation):
         """ 是否特殊教育 """
         if specialEducation is not None:
-            self.driver.htmlSelect(self._select_specialEducation_loc, specialEducation)
+            with allure.step("选择是否特殊教育"):
+                self.driver.htmlSelect(self._select_specialEducation_loc, specialEducation)
 
     def _input_hgzbl(self, hgzbl):
         """ 保留原特殊岗位 """
         if hgzbl is not None:
-            self.driver.input(self._input_hgzbl_loc, int(hgzbl))
+            with allure.step("输入保留原特殊岗位"):
+                self.driver.input(self._input_hgzbl_loc, int(hgzbl))
 
     def _input_retireSportsManHold(self, retireSportsManHold):
         """ 退役运动员保留工资额度 """
         if retireSportsManHold is not None:
-            self.driver.input(self._input_retire_sports_man_hold_loc, int(retireSportsManHold))
+            with allure.step("输入退役运动员保留工资额度"):
+                self.driver.input(self._input_retire_sports_man_hold_loc, int(retireSportsManHold))
 
     def _input_jh10percentHold(self, jh10percentHold):
         """ 中小学教师或护士保留原额10% """
         if jh10percentHold is not None:
-            self.driver.input(self._input_jh10percent_hold_loc, int(jh10percentHold))
+            with allure.step("输入中小学教师或护士保留原额10%"):
+                self.driver.input(self._input_jh10percent_hold_loc, int(jh10percentHold))
 
     def _input_employeeLevelRetention(self, employeeLevelRetention):
         """ 原职员等级保留绝对额 """
         if employeeLevelRetention is not None:
-            self.driver.input(self._input_employee_level_retention_loc, int(employeeLevelRetention))
+            with allure.step("输入原职员等级保留绝对额"):
+                self.driver.input(self._input_employee_level_retention_loc, int(employeeLevelRetention))
 
     def _click_annual(self):
         """ 点击年度考核 """
-        self.driver.click(self._click_annual_btn_loc)
+        with allure.step("点击年度考核按钮"):
+            self.driver.click(self._click_annual_btn_loc)
 
     def _determine_annual(self):
         """ 确定年度考核 """
         if self.driver.element_exists(self._click_annual_determine_btn_loc):
-            self.driver.click(self._click_annual_determine_btn_loc)
+            with allure.step("点击确定年度考核"):
+                self.driver.click(self._click_annual_determine_btn_loc)
 
     def _click_save(self):
         """ 点击保存 """
-        self.driver.click(self._save_addPerson_btn_loc)
+        with allure.step("点击保存按钮"):
+            self.driver.click(self._save_addPerson_btn_loc)
 
     def _get_addPerson_msg(self):
         """ 获取新增人员提示信息 """
-        return self.driver.get_text(self._add_msg_loc)
+        with allure.step("获取新增人员提示信息"):
+            return self.driver.get_text(self._add_msg_loc)
 
     def add_staff(self, org_code, identity, qxDate, bySymbol_msg, change_remarks_msg, name, gender, nationality, idcard,
                   birthday, politicalStatus, initialPersonality, nativePlace, address, staffSource, joinDate,
-                  department, staffRemark, enterDate, education, degree, graduateDate, surveyStandard, compulsoryEducation,
+                  department, staffRemark, enterDate, education, degree, graduateDate, surveyStandard,
+                  compulsoryEducation,
                   presentOccupation, presentOccupationDate, trueProRank, levelProRank, levelProRankDate,
                   salaryMappingProRank, leadership, jobNowDate, formerSalaryGrade,
                   salaryGradeDate, primaryAndHighSchoolTeacher, nurse, tg10wage, specialEducation, hgzbl,
@@ -356,8 +403,7 @@ class PersonnelAddPage(BasePage):
         :param employeeLevelRetention: 原职员等级保留绝对额
         """
         self._click_manager_menu()  # 点击管理版按钮
-        self._click_businessGuidance_menu()  # 业务审核-业务指导基层
-        self._switch_to_basicUnit(org_code)  # 进入基层单位
+        self._switch_to_basic_unit(org_code)  # 进入基层单位
         self._click_addstaff_menu()
         self._select_stafftype(identity)
         self._input_qxDate(qxDate)
@@ -383,7 +429,7 @@ class PersonnelAddPage(BasePage):
         self._uploadAttachment()
         self._click_wage_info()
         self._select_surveyStandard(surveyStandard)
-        self._select_compulsoryEducation(compulsoryEducation, identity)
+        self._select_compulsoryEducation(compulsoryEducation, identity, surveyStandard)
         self._input_presentOccupation(presentOccupation)
         self._input_presentOccupationDate(presentOccupationDate)
         self._select_trueProRank(trueProRank)

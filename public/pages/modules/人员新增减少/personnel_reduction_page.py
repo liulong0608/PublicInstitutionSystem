@@ -61,7 +61,7 @@ class PersonnelReductionPage(BasePage):
 
     def upload_change_attachment(self) -> None:
         with allure.step("上传附件"):
-            self.upload_attachment()
+            self.driver.salary_report_attachment()
 
     def _save_change_btn(self):
         """

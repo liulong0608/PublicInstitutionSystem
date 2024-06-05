@@ -88,5 +88,3 @@ class GenerateRandomIDNumbers(object):
         return id_number
 
 
-if __name__ == '__main__':
-    print(GenerateRandomIDNumbers().generate_id)

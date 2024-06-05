@@ -5,15 +5,19 @@
 **    @author           Echo
 **    @EditTime         2024/2/21
 """
+import os
 from typing import *
 
+import pyautogui
+import pyperclip
 import pywinauto
+from pywinauto import Application
 from pywinauto.keyboard import send_keys
 import time
 
 
 def upload_file(file_path, file_name):
-    time.sleep(0.5)
+    time.sleep(1)
     app = pywinauto.Desktop()
     dlg = app["打开"]
     dlg["Toolbar3"].click()

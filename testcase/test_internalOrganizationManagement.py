@@ -32,6 +32,6 @@ class TestInternalOrganizationManagement(BaseUtil):
             name=args['internal_name'],
             phone=args['internal_phone']
         )
-        self.driver.assert_text("保存成功", msg)
+        self.driver.assert_text("添加成功", msg)
         iom.modify_internal_organization()
         iom.delete_internal_organization()

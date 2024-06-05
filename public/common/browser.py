@@ -33,6 +33,7 @@ def setup_driver_options(browser):
         if browser == 'chrome':
             options.add_experimental_option('excludeSwitches', ['enable-automation'])  # 禁用自动测试迹象
             options.add_experimental_option('useAutomationExtension', False)  # 禁用自动化扩展
+            options.add_experimental_option("detach", True)
             options.add_experimental_option("prefs", {
                 "credentials_enable_service": False,
                 "profile.password_manager_enabled": False,  # 禁用保存密码提示框

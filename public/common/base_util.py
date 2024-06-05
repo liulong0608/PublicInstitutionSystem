@@ -44,8 +44,8 @@ class BaseUtil:
 
         time.sleep(1.5)
 
-    @pytest.fixture(scope="class", autouse=True)
-    def setup_class_method(self):
+    # @pytest.fixture(scope="class", autouse=True)
+    def setup_class(self):
         self.logger = Log().get_logger()
         self.logger.info('############################### START ###############################')
         datas = get_xls_to_dict("test_datas.xlsx", "login")[0]
@@ -53,18 +53,16 @@ class BaseUtil:
         self.driver: BasePage = BasePage(driver)
         self.driver.max_window()
         self.driver.open_url(f'{globalparam.env}/login')
-        self.login_control(datas['username'], datas['password'], datas['verifyCode'])
+        # self.login_control(datas['username'], datas['password'], datas['verifyCode'])
+        self.driver.input(self._login_username_loc, datas['username'])
+        self.driver.input(self._login_password_loc, datas['password'])
+        self.driver.input(self._verifyCode_loc, datas['verifyCode'])
+        self.driver.click(self._login_btn_loc)
+        time.sleep(1.5)
 
-    @pytest.fixture(scope="class", autouse=True)
-    def teardown_class_method(self):
-        if self.driver.element_exists(self._back_btn_loc):
-            self.driver.click(self._back_btn_loc)
-        if self.driver.get_url() == f'{globalparam.env}/home':
-            self.driver.move_to_element(self._hover_quit_btn_loc)
-            self.driver.click(self._quit_btn_loc)
-            self.driver.quit()
-        else:
-            self.logger.error('跳转首页失败')
+    # @pytest.fixture(scope="class", autouse=True)
+    def teardown_class(self):
+        self.driver.quit()
         self.logger.info('###############################  End  ###############################')
 
     def get_cookie(self):
