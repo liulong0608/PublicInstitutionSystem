@@ -519,6 +519,31 @@ class BasePage(BasePageABC):
             self.log.success(
                 f"Assertions are present in the actual text with: '{expected_text}'. Time taken {elapsed_time} seconds.")
 
+    def assert_multiple(self, *args: Tuple):
+        """
+        多项断言
+        """
+        start_time = time.time()
+        try:
+            for expected_text, actual_result in args:
+                assert expected_text == actual_result, f"The assertion fails. The actual text '{actual_result}' does not match the expected text '{expected_text}'."
+        except (ElementNotInteractableException, ElementNotSelectableException) as e:
+            self.take_screenshot()
+            self.log.error("Element interaction failed.")
+            raise
+        except AssertionError as e:
+            self.take_screenshot()
+            self.log.error(f"Assertion failed: {str(e)}")
+            raise
+        except Exception as e:
+            self.take_screenshot()
+            self.log.error(f"An unexpected error occurred: {str(e)}")
+            raise
+        else:
+            elapsed_time = time.time() - start_time
+            self.log.success(f"Assertion succeeded: The actual text '{actual_result}' matches the expected text "
+                             f"'{expected_text}'. Time taken: {elapsed_time:.2f} seconds.")
+
     def submit(self, locator: Text, whetherWait: bool = True) -> None:
         """
         提交
@@ -688,9 +713,9 @@ class BasePage(BasePageABC):
         _save_attachment_btn_loc = 'css->div.ant-modal-footer button.ant-btn-primary'
         _file_download_loc = 'xpath->//span[contains(text(),"下载")]'
         self.click(_upload_btn_loc)  # 点击上传附件按钮
-        upload_file(datas_path, "附件示例.png")
+        upload_file(datas_path, "attachedExample.png")
         if self.get_element(_file_download_loc):
-            self.assert_text("附件示例.png", self.get_text(_upload_file_msg_loc))
+            self.assert_text("attachedExample.png", self.get_text(_upload_file_msg_loc))
             time.sleep(0.6)
             self.click(_save_attachment_btn_loc)
 
